@@ -28,6 +28,8 @@ SITE = os.path.join(ROOT, "site")
 CACHE = os.path.join(ROOT, "cache")
 GCACHE = os.path.join(CACHE, "games")
 NHL = "https://api-web.nhle.com/v1"
+REST = "https://api.nhle.com/stats/rest/en"
+TID, FUT, TNAME = {}, {}, {}
 MP = "https://moneypuck.com/moneypuck/playerData/seasonSummary/%s/regular/" % MP_YEAR
 MP_SHOTS = "https://peter-tanner.com/moneypuck/downloads/shots_%s.zip" % MP_YEAR
 UA = "Mozilla/5.0 (compatible; nhl-statistiky/1.0; personal non-commercial stats page)"
@@ -96,6 +98,11 @@ def c2(v):
     return B64[v >> 6] + B64[v & 63]
 
 
+def norm_name(s):
+    import unicodedata
+    return "".join(c for c in unicodedata.normalize("NFD", s or "") if c.isalnum()).lower()
+
+
 def sec(t):
     if not t:
         return 0
@@ -114,6 +121,15 @@ def build_nhl():
                    t.get("conferenceAbbrev", ""), t.get("divisionName", ""), t["gamesPlayed"], t["wins"],
                    t["losses"], t["otLosses"], t["points"], t["goalFor"], t["goalAgainst"], streak])
     teams = [t[0] for t in tm]
+    tx = {}
+    for t in st:
+        ab = t["teamAbbrev"]["default"]
+        TNAME[norm_name((t.get("teamName") or {}).get("default", ""))] = ab
+        tx[ab] = [t.get(k) or 0 for k in ("homeWins", "homeLosses", "homeOtLosses", "roadWins", "roadLosses", "roadOtLosses",
+                                           "l10Wins", "l10Losses", "l10OtLosses", "regulationWins", "regulationPlusOtWins",
+                                           "shootoutWins", "shootoutLosses", "leagueSequence", "conferenceSequence",
+                                           "divisionSequence", "wildcardSequence", "homeGoalsFor", "homeGoalsAgainst",
+                                           "roadGoalsFor", "roadGoalsAgainst", "l10GoalsFor", "l10GoalsAgainst")]
 
     natf = os.path.join(CACHE, "nat.json")
     nat = rjson(natf, {}) or {}
@@ -158,7 +174,7 @@ def build_nhl():
     with open(natf, "w", encoding="utf-8") as f:
         json.dump(nat, f, separators=(",", ":"))
     log("  hráčů %d, brankářů %d" % (len(sk), len(gk)))
-    return {"sk": sk, "gk": gk, "tm": tm}, teams
+    return {"sk": sk, "gk": gk, "tm": tm, "tx": tx}, teams
 
 
 # ---------------------------------------------------------------- NHL: kariéra a osobní údaje
@@ -287,10 +303,37 @@ def completed_games(teams):
     for ab in teams:
         sc = jget("%s/club-schedule-season/%s/%s" % (NHL, ab, SEASON))
         for g in sc.get("games", []):
-            if g.get("gameType") == 2 and g.get("gameState") in ("OFF", "FINAL"):
+            for side in ("awayTeam", "homeTeam"):
+                t = g.get(side) or {}
+                if t.get("id") and t.get("abbrev"):
+                    TID[t["id"]] = t["abbrev"]
+            if g.get("gameType") != 2:
+                continue
+            if g.get("gameState") in ("OFF", "FINAL"):
                 ids[g["id"]] = g.get("gameDate")
+            else:
+                FUT[g["id"]] = [g["id"], g.get("startTimeUTC") or "", (g.get("awayTeam") or {}).get("abbrev", ""),
+                                (g.get("homeTeam") or {}).get("abbrev", ""), (g.get("venue") or {}).get("default", ""),
+                                g.get("gameState") or ""]
         time.sleep(0.05)
     return ids
+
+
+def build_schedule():
+    """Nadcházející zápasy základní části (příštích 21 dní) pro záložku Program."""
+    import datetime as dt
+    now = dt.datetime.now(dt.timezone.utc)
+    out = []
+    for g in FUT.values():
+        try:
+            t = dt.datetime.strptime(g[1], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
+        except Exception:  # noqa: BLE001
+            continue
+        if now - dt.timedelta(hours=6) <= t <= now + dt.timedelta(days=21):
+            out.append(g)
+    out.sort(key=lambda g: (g[1], g[0]))
+    log("  nadcházejících zápasů %d" % len(out))
+    return {"updated": now.strftime("%Y-%m-%dT%H:%MZ"), "g": out}
 
 
 def build_games(teams):
@@ -361,6 +404,159 @@ def build_games(teams):
     return out, last
 
 
+# ---------------------------------------------------------------- NHL stats REST: speciální formace, tresty, vhazování
+def rest(kind, report):
+    url = "%s/%s/%s?isAggregate=false&isGame=false&start=0&limit=-1&cayenneExp=seasonId=%s%%20and%%20gameTypeId=2" % (
+        REST, kind, report, SEASON)
+    return jget(url).get("data", [])
+
+
+def build_special():
+    log("NHL: speciální formace, tresty, vhazování, brankáři podle situace")
+
+    def safe(kind, report):
+        try:
+            rows = rest(kind, report)
+            log("  %s/%s: %d" % (kind, report, len(rows)))
+            return rows
+        except Exception as e:  # noqa: BLE001
+            log("  %s/%s selhalo: %s" % (kind, report, e))
+            return []
+
+    def by(rows, key="playerId"):
+        return {r[key]: r for r in rows if r.get(key)}
+
+    def v(r, k, nd=None):
+        x = (r or {}).get(k)
+        if not isinstance(x, (int, float)):
+            return None if r is None else 0
+        return round(x) if nd is None else round(x, nd)
+
+    S, T = by(safe("skater", "summary")), by(safe("skater", "timeonice"))
+    PP, PK = by(safe("skater", "powerplay")), by(safe("skater", "penaltykill"))
+    RT, PN, FO = by(safe("skater", "realtime")), by(safe("skater", "penalties")), by(safe("skater", "faceoffwins"))
+    sk = {}
+    for pid in set(S) | set(T) | set(PP) | set(PK):
+        s, t, pp, pk, rt, pn, fo = S.get(pid), T.get(pid), PP.get(pid), PK.get(pid), RT.get(pid), PN.get(pid), FO.get(pid)
+        posts = (v(rt, "missedShotGoalpost") or 0) + (v(rt, "missedShotCrossbar") or 0) if rt else None
+        sk[str(pid)] = [v(pp or s, "ppGoals"), v(pp, "ppAssists"), v(pp or s, "ppPoints"), v(pp, "ppShots"),
+                        v(t or pp, "ppTimeOnIcePerGame"), v(pp, "ppTimeOnIcePctPerGame", 3),
+                        v(pk or s, "shGoals"), v(pk, "shAssists"), v(pk or s, "shPoints"), v(t or pk, "shTimeOnIcePerGame"),
+                        v(pk, "shTimeOnIcePctPerGame", 3),
+                        v(s, "evGoals"), v(s, "evPoints"), v(t, "evTimeOnIcePerGame"),
+                        v(t, "shiftsPerGame", 1), v(t, "timeOnIcePerShift", 1),
+                        posts, v(rt, "missedShots"), v(rt, "shotAttemptsBlocked"), v(rt, "firstGoals"), v(rt, "emptyNetGoals"),
+                        v(pn, "penalties"), v(pn, "penaltiesDrawn"), v(pn, "minorPenalties"), v(pn, "majorPenalties"),
+                        v(fo, "offensiveZoneFaceoffWins"), v(fo, "offensiveZoneFaceoffLosses"),
+                        v(fo, "neutralZoneFaceoffWins"), v(fo, "neutralZoneFaceoffLosses"),
+                        v(fo, "defensiveZoneFaceoffWins"), v(fo, "defensiveZoneFaceoffLosses"),
+                        v(pk, "ppGoalsAgainstPer60", 2)]
+    gk = {}
+    for r in safe("goalie", "savesByStrength"):
+        if r.get("playerId"):
+            gk[str(r["playerId"])] = [v(r, "evShotsAgainst"), v(r, "evGoalsAgainst"), v(r, "ppShotsAgainst"),
+                                      v(r, "ppGoalsAgainst"), v(r, "shShotsAgainst"), v(r, "shGoalsAgainst")]
+
+    def team_ab(r):
+        return TID.get(r.get("teamId")) or TNAME.get(norm_name(r.get("teamFullName")))
+    TS, TP, TK, TR = (by(safe("team", x), "teamId") for x in ("summary", "powerplay", "penaltykill", "realtime"))
+    tm = {}
+    for tid_ in set(TS) | set(TP) | set(TK):
+        s, p, k, r = TS.get(tid_), TP.get(tid_), TK.get(tid_), TR.get(tid_)
+        ab = team_ab(s or p or k)
+        if not ab:
+            continue
+        tm[ab] = [v(s or p, "powerPlayPct", 4), v(s or k, "penaltyKillPct", 4), v(p, "ppOpportunities"), v(p, "powerPlayGoalsFor"),
+                  v(p, "shGoalsAgainst"), v(k, "timesShorthanded"), v(k, "ppGoalsAgainst"), v(k, "shGoalsFor"),
+                  v(s or p, "powerPlayNetPct", 4), v(s or k, "penaltyKillNetPct", 4), v(p, "ppTimeOnIcePerGame"),
+                  v(k, "pkTimeOnIcePerGame"), v(s, "shotsForPerGame", 1), v(s, "shotsAgainstPerGame", 1), v(s, "faceoffWinPct", 4),
+                  v(r, "hits"), v(r, "blockedShots"), v(r, "giveaways"), v(r, "takeaways"), v(r, "satPct", 4)]
+    log("  speciální: hráčů %d, brankářů %d, týmů %d" % (len(sk), len(gk), len(tm)))
+    return {"updated": time.strftime("%Y-%m-%d"), "skaters": sk, "goalies": gk, "teams": tm}
+
+
+# ---------------------------------------------------------------- NHL EDGE (sledovací data)
+EDGE_AREAS = ["Crease", "Low Slot", "High Slot", "L Net Side", "R Net Side", "L Circle", "R Circle", "L Corner", "R Corner",
+              "Behind the Net", "Outside L", "Outside R", "L Point", "Center Point", "R Point", "Offensive Neutral Zone",
+              "Beyond Red Line"]
+
+
+def _edge(arg):
+    pid, g = arg
+    try:
+        return pid, g, jget("%s/edge/%s-detail/%s/%s/2" % (NHL, "goalie" if g else "skater", pid, SEASON))
+    except Exception as e:  # noqa: BLE001
+        return pid, g, e
+
+
+def edge_skater(E):
+    def n(x, nd=1):
+        return round(x, nd) if isinstance(x, (int, float)) else None
+    ts, sp = E.get("topShotSpeed") or {}, E.get("skatingSpeed") or {}
+    sm, b20 = sp.get("speedMax") or {}, sp.get("burstsOver20") or {}
+    ds, dm, z = E.get("totalDistanceSkated") or {}, E.get("distanceMaxGame") or {}, E.get("zoneTimeDetails") or {}
+    sog = {x.get("locationCode"): x for x in E.get("sogSummary") or []}
+    det = {x.get("area"): x for x in E.get("sogDetails") or []}
+    if not sm and not ts and not ds:
+        return None, None
+    row = [n(sm.get("metric")), n(sm.get("percentile"), 3), b20.get("value"), n(b20.get("percentile"), 3),
+           n(ds.get("metric")), n(ds.get("percentile"), 3), n(dm.get("metric"), 2), n(ts.get("metric")),
+           n(ts.get("percentile"), 3), n(z.get("offensiveZonePctg"), 3), n(z.get("offensiveZonePercentile"), 3),
+           n(z.get("neutralZonePctg"), 3), n(z.get("defensiveZonePctg"), 3), n(z.get("defensiveZonePercentile"), 3)]
+    for c in ("high", "mid", "long"):
+        x = sog.get(c) or {}
+        row += [x.get("shots"), x.get("goals"), n(x.get("shotsPercentile"), 2)]
+    row.append([(det.get(a) or {}).get("shots") for a in EDGE_AREAS])
+    row.append([n((det.get(a) or {}).get("shotsPercentile"), 2) for a in EDGE_AREAS])
+    la = lambda o, k="metric": n((o.get("leagueAvg") or {}).get(k)) if isinstance(o.get("leagueAvg"), dict) else None  # noqa: E731
+    avg = [la(sm), la(b20, "value"), la(ds), la(ts), n(z.get("offensiveZoneLeagueAvg"), 3), n(z.get("neutralZoneLeagueAvg"), 3),
+           n(z.get("defensiveZoneLeagueAvg"), 3)] + [n((sog.get(c) or {}).get("shootingPctgLeagueAvg"), 3) for c in ("high", "mid", "long")]
+    return row, avg
+
+
+def edge_goalie(E):
+    def n(x, nd=1):
+        return round(x, nd) if isinstance(x, (int, float)) else None
+    st = E.get("stats") or {}
+    loc = {x.get("locationCode"): x for x in E.get("shotLocationSummary") or []}
+    det = {x.get("area"): x for x in E.get("shotLocationDetails") or []}
+    if not st and not loc:
+        return None, None
+    row = []
+    for k in ("goalsAgainstAvg", "gamesAbove900", "goalDifferentialPer60", "goalSupportAvg", "pointPctg"):
+        o = st.get(k) or {}
+        row += [n(o.get("value"), 3), n(o.get("percentile"), 3)]
+    for c in ("all", "high", "mid", "long"):
+        x = loc.get(c) or {}
+        row += [x.get("saves"), x.get("goalsAgainst"), n(x.get("savePctg"), 4), n(x.get("savePctgPercentile"), 3)]
+    row.append([(det.get(a) or {}).get("saves") for a in EDGE_AREAS])
+    row.append([n((det.get(a) or {}).get("savePctg"), 3) for a in EDGE_AREAS])
+    avg = [n((loc.get(c) or {}).get("savePctgLeagueAvg"), 4) for c in ("all", "high", "mid", "long")]
+    return row, avg
+
+
+def build_edge(data):
+    from concurrent.futures import ThreadPoolExecutor
+    gks = {r[0] for r in data["gk"]}
+    ids = sorted({(r[0], False) for r in data["sk"] if r[0] not in gks} | {(r[0], True) for r in data["gk"]})
+    log("NHL EDGE: %d hráčů a brankářů" % len(ids))
+    sk, gk, avg, fails = {}, {}, {}, 0
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for pid, g, E in ex.map(_edge, ids):
+            if isinstance(E, Exception) or not isinstance(E, dict):
+                fails += 1
+                continue
+            row, a = (edge_goalie if g else edge_skater)(E)
+            if row is None:
+                continue
+            (gk if g else sk)[str(pid)] = row
+            key = "gk" if g else "sk"
+            if key not in avg and a and any(x is not None for x in a):
+                avg[key] = a
+    log("  bruslařů %d, brankářů %d, neúspěšných %d" % (len(sk), len(gk), fails))
+    return {"updated": time.strftime("%Y-%m-%d"), "areas": EDGE_AREAS, "avg": avg, "sk": sk, "gk": gk}
+
+
 # ---------------------------------------------------------------- MoneyPuck
 def mp_csv(name):
     txt = get(MP + name + ".csv").decode("utf-8")
@@ -382,7 +578,7 @@ def fnum(v):
 def build_mp():
     log("MoneyPuck: souhrny hráčů, brankářů a týmů")
     si, srows = mp_csv("skaters")
-    allr, five = {}, {}
+    allr, five, ppr, pkr = {}, {}, {}, {}
     for r in srows:
         pid = int(fnum(r[si["playerId"]]))
         sit = r[si["situation"]]
@@ -390,6 +586,10 @@ def build_mp():
             allr[pid] = r
         elif sit == "5on5":
             five[pid] = r
+        elif sit == "5on4":
+            ppr[pid] = r
+        elif sit == "4on5":
+            pkr[pid] = r
 
     def g(r, k, nd=None):
         v = fnum(r[si[k]]) if k in si else 0.0
@@ -407,9 +607,20 @@ def build_mp():
                    g(f, "onIce_xGoalsPercentage", 2) if f else None, g(f, "onIce_corsiPercentage", 2) if f else None,
                    g(f, "offIce_xGoalsPercentage", 2) if f else None, g(f, "icetime") if f else 0,
                    g(r, "I_F_primaryAssists")])
+    skx = {}
+    for pid, r in allr.items():
+        p, k = ppr.get(pid), pkr.get(pid)
+        skx[str(pid)] = [g(r, "I_F_oZoneShiftStarts"), g(r, "I_F_neutralZoneShiftStarts"), g(r, "I_F_dZoneShiftStarts"),
+                         g(r, "I_F_flyShiftStarts"), g(r, "I_F_rebounds"), g(r, "I_F_reboundGoals"), g(r, "I_F_xRebounds", 1),
+                         g(p, "icetime") if p else 0, g(p, "I_F_xGoals", 2) if p else 0, g(p, "I_F_goals") if p else 0,
+                         g(p, "I_F_points") if p else 0, g(p, "OnIce_F_xGoals", 2) if p else 0, g(p, "OnIce_F_goals") if p else 0,
+                         g(k, "icetime") if k else 0, g(k, "OnIce_A_xGoals", 2) if k else 0, g(k, "OnIce_A_goals") if k else 0,
+                         g(r, "penalties"), g(r, "penaltiesDrawn"), g(r, "I_F_dZoneGiveaways")]
 
     gi_, grows = mp_csv("goalies")
-    gk = []
+    gk, gsit = [], defaultdict(dict)
+    for r in grows:
+        gsit[int(fnum(r[gi_["playerId"]]))][r[gi_["situation"]]] = r
     for r in grows:
         if r[gi_["situation"]] != "all":
             continue
@@ -421,6 +632,18 @@ def build_mp():
                    h("goals"), h("ongoal"), h("highDangerShots"), h("highDangerxGoals", 1), h("highDangerGoals"),
                    h("mediumDangerShots"), h("mediumDangerxGoals", 1), h("mediumDangerGoals"), h("lowDangerShots"),
                    h("lowDangerxGoals", 1), h("lowDangerGoals"), h("rebounds"), h("xRebounds", 1)])
+
+    def gv(r, k, nd=None):
+        if r is None or k not in gi_:
+            return 0
+        v = fnum(r[gi_[k]])
+        return round(v) if nd is None else round(v, nd)
+    gkx = {}
+    for pid, S in gsit.items():
+        a, e, k, p = S.get("all"), S.get("5on5"), S.get("4on5"), S.get("5on4")
+        gkx[str(pid)] = [gv(a, "freeze"), gv(a, "xFreeze", 1), gv(e, "xGoals", 2), gv(e, "goals"), gv(e, "icetime"),
+                         gv(k, "xGoals", 2), gv(k, "goals"), gv(k, "icetime"), gv(p, "xGoals", 2), gv(p, "goals"),
+                         gv(a, "ongoal"), gv(e, "ongoal"), gv(k, "ongoal"), gv(p, "ongoal")]
 
     ti, trows = mp_csv("teams")
     by = defaultdict(dict)
@@ -439,8 +662,15 @@ def build_mp():
                    tv(f, "xGoalsAgainst", 1), tv(f, "goalsFor"), tv(f, "goalsAgainst"), tv(a, "xGoalsFor", 1),
                    tv(a, "xGoalsAgainst", 1), tv(a, "goalsFor"), tv(a, "goalsAgainst"), tv(a, "highDangerShotsFor"),
                    tv(a, "highDangerShotsAgainst"), tv(a, "highDangerGoalsFor"), tv(a, "highDangerGoalsAgainst")])
+    ice = "iceTime" if "iceTime" in ti else "icetime"
+    tmx = {}
+    for t, s in by.items():
+        p, k, a = s.get("5on4"), s.get("4on5"), s.get("all")
+        tmx[t] = [tv(p, "xGoalsFor", 2), tv(p, "goalsFor"), tv(p, ice), tv(p, "xGoalsAgainst", 2), tv(p, "goalsAgainst"),
+                  tv(k, "xGoalsAgainst", 2), tv(k, "goalsAgainst"), tv(k, ice), tv(k, "xGoalsFor", 2), tv(k, "goalsFor"),
+                  tv(a, "reboundsFor"), tv(a, "reboundGoalsFor"), tv(a, "reboundsAgainst"), tv(a, "reboundGoalsAgainst")]
     log("  hráčů %d, brankářů %d, týmů %d" % (len(sk), len(gk), len(tm)))
-    return {"updated": time.strftime("%Y-%m-%d"), "sk": sk, "gk": gk, "tm": tm}
+    return {"updated": time.strftime("%Y-%m-%d"), "sk": sk, "gk": gk, "tm": tm, "skx": skx, "gkx": gkx, "tmx": tmx}
 
 
 def build_lines():
@@ -510,15 +740,17 @@ def build_shots():
         y = max(0, min(84, int(round(fnum(r[H["yCordAdjusted"]]))) + 42))
         q = max(0, min(63, int(round(math.sqrt(max(0.0, fnum(r[H["xGoal"]]))) * 63))))
         v = ((((x * 85 + y) * 64 + q) * 3 + ev) * 8 + t)
-        shots.append((gid, pid, is_home, enc4(v), int(fnum(r[H["goalieIdForShot"]])), en))
+        tsec = int(fnum(r[H["time"]])) if "time" in H else 0
+        fl = (1 if "shotRush" in H and fnum(r[H["shotRush"]]) >= 0.5 else 0) + (2 if "shotRebound" in H and fnum(r[H["shotRebound"]]) >= 0.5 else 0)
+        shots.append((gid, pid, is_home, enc4(v), int(fnum(r[H["goalieIdForShot"]])), en, c2(tsec) + c1(fl)))
     glist = sorted(games)
     gindex = {g: i for i, g in enumerate(glist)}
     per = defaultdict(lambda: defaultdict(list))
-    for gid, pid, is_home, code, goalie, en in shots:
-        per[pid][gindex[gid]].append((is_home, code, goalie, en))
+    for gid, pid, is_home, code, goalie, en, tf in shots:
+        per[pid][gindex[gid]].append((is_home, code, goalie, en, tf))
     gkeys = defaultdict(list)
     needs = set()
-    for gid, pid, is_home, code, goalie, en in shots:
+    for gid, pid, is_home, code, goalie, en, tf in shots:
         gi = gindex[gid]
         home, away = games[gid]
         key = "%d-%s" % (gi, away if is_home else home)
@@ -529,11 +761,12 @@ def build_shots():
     for k, v in gkeys.items():
         if len(v) > 1:
             needs.add(k)
-    pout, gx = {}, {}
+    pout, gx, tout = {}, {}, {}
     for pid in sorted(per):
-        blocks, digits = [], []
+        blocks, digits, times = [], [], []
         for gi in sorted(per[pid]):
             lst = per[pid][gi]
+            times.append("".join(s[4] for s in lst))
             is_home = lst[0][0]
             blocks.append(b36(gi) + ("." if is_home else ":") + "".join(s[1] for s in lst))
             home, away = games[glist[gi]]
@@ -543,11 +776,12 @@ def build_shots():
                 for s in lst:
                     digits.append(str(gl.index(s[2])) if s[2] and s[2] in gl and gl.index(s[2]) < 9 else "9")
         pout[str(pid)] = ",".join(blocks)
+        tout[str(pid)] = "".join(times)
         if digits:
             gx[str(pid)] = "".join(digits)
     log("  střel %d v %d zápasech" % (len(shots), len(glist)))
     shots_json = {"v": 1, "src": "MoneyPuck.com shots_%s" % MP_YEAR, "n": len(shots),
-                  "g": [[g, games[g][0], games[g][1]] for g in glist], "p": pout}
+                  "g": [[g, games[g][0], games[g][1]] for g in glist], "p": pout, "t": tout}
     gs_json = {"gk": dict(gkeys), "gd": sorted(needs), "gx": gx}
     return shots_json, gs_json
 
@@ -594,6 +828,15 @@ def main():
         cr = step("NHL kariéra", lambda: build_careers(data))
         if cr:
             wjson("careers.json", cr)
+        sc = step("NHL program", build_schedule)
+        if sc:
+            wjson("schedule.json", sc)
+        sp = step("NHL speciální formace", build_special)
+        if sp:
+            wjson("special.json", sp)
+        ed = step("NHL EDGE", lambda: build_edge(data))
+        if ed:
+            wjson("edge.json", ed)
         wjson("data.json", data)
     else:
         ok = False
