@@ -170,11 +170,18 @@ footer a { color: var(--red-deep); }
   display: flex; flex-direction: column;
 }
 .drawer[hidden], .scrim[hidden] { display: none; }
-.drawer .close {
-  position: sticky; top: 10px; align-self: flex-end; margin: 10px 10px -48px 0; z-index: 3; flex: none; font: 600 22px/1 var(--font-display); width: 38px; height: 38px; border-radius: 2px;
-  border: 1px solid var(--tc-on); background: var(--tc1); color: var(--tc-on); cursor: pointer;
+.dnav { position: sticky; top: 10px; align-self: flex-end; margin: 10px 10px -48px 0; z-index: 3; flex: none; display: flex; gap: 6px; }
+.dnav button {
+  font: 600 12px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; height: 38px; padding: 0 12px; border-radius: 2px;
+  border: 1px solid var(--tc-on); background: var(--tc1); color: var(--tc-on); cursor: pointer; white-space: nowrap;
 }
-.drawer .close:hover { background: var(--tc-on); color: var(--tc1); }
+.dnav .close { font-size: 22px; letter-spacing: 0; width: 38px; padding: 0; }
+.dnav button:hover { background: var(--tc-on); color: var(--tc1); }
+.home { color: inherit; text-decoration: none; }
+.home:hover .dot { color: var(--rinkblue); }
+.tohome { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 10; font: 600 12px/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; padding: 12px 14px; border-radius: 2px; border: 1px solid var(--ink); background: var(--board); color: var(--ink); box-shadow: var(--shadow); cursor: pointer; }
+.tohome:hover { background: var(--ink); color: var(--board); }
+.tohome[hidden] { display: none; }
 .pd-head { position: relative; background: var(--tc1); color: var(--tc-on); padding: 22px 64px 18px 26px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 22px; align-items: center; border-bottom: 1px solid var(--ink); }
 .pd-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 4px; background: var(--tc2); box-shadow: 0 -8px 0 var(--tc1), 0 -12px 0 var(--tc2); opacity: .95; }
 .pd-num { font-family: var(--font-display); font-weight: 900; font-size: clamp(54px, 9vw, 96px); line-height: .9; letter-spacing: -.03em; min-width: 1.2em; text-align: center; padding-bottom: 14px; }
@@ -352,7 +359,7 @@ footer a { color: var(--red-deep); }
 @media (max-width: 920px) {
   .pd-body { grid-template-columns: minmax(0, 1fr); padding: 18px 16px 24px; }
   .drawer { top: 0; width: 100vw; max-height: 100vh; height: 100vh; border: 0; box-shadow: none; }
-  .pd-head { padding: 16px 56px 14px 16px; gap: 4px 14px; }
+  .pd-head { padding: 58px 16px 14px 16px; gap: 4px 14px; }
 }
 @media (max-width: 560px) {
   .pd-num { font-size: 50px; }
@@ -393,7 +400,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 <div class="wrap">
   <header>
     <div class="eyebrow">NHL · základní část 2026/27</div>
-    <h1>Statistiky NHL<span class="dot">.</span></h1>
+    <h1><a href="#hraci" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
   </header>
@@ -499,6 +506,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   <footer id="foot">Kliknutím na hráče, brankáře nebo tým otevřete detail v barvách klubu: číslo dresu, kariéru po sezonách, porovnání s ligou a seznam zápasů; každý zápas jde rozkliknout. Data jsou snímek ze statistik NHL; čísla se mění po každém hracím dni. Údaje o tom, kam do branky střely míří, veřejně dostupné nejsou, proto mapy ukazují místo, odkud se střílelo.</footer>
 </div>
 
+<button type="button" class="tohome" id="tohome" hidden>↑ Úvod</button>
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="d-name"></aside>
 
@@ -946,13 +954,14 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   }
   const careerBlock = (id, goalie) => `<div class="sec car" id="car" data-pid="${id}" data-g="${goalie ? 1 : 0}"><h4>Kariéra po sezonách</h4>${careerHTML(id, goalie)}</div>`;
 
-  let lastFocus = null, drawerKey = "";
+  let lastFocus = null, drawerKey = "", navStack = [], navBack = false;
   function openDrawer(html, team, key) {
-    if ($("#drawer").hidden) lastFocus = document.activeElement;
     const dr = $("#drawer");
+    if (dr.hidden) { lastFocus = document.activeElement; navStack = []; }
+    if (!navBack && key && navStack[navStack.length - 1] !== key) navStack.push(key);
     drawerKey = key || "";
     dr.setAttribute("style", teamStyle(team));
-    dr.innerHTML = `<button type="button" class="close" id="d-close" aria-label="Zavřít">×</button>` + html;
+    dr.innerHTML = `<div class="dnav">${navStack.length > 1 ? `<button type="button" id="d-back" title="Zpět na předchozí detail">‹ Zpět</button>` : ""}<button type="button" id="d-home" title="Zavřít a přejít na úvodní stránku">Úvod</button><button type="button" class="close" id="d-close" aria-label="Zavřít">×</button></div>` + html;
     dr.hidden = false; $("#scrim").hidden = false;
     dr.scrollTop = 0;
     document.body.style.overflow = "hidden";
@@ -966,6 +975,21 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     box.innerHTML = `<h4>Kariéra po sezonách</h4>${careerHTML(id, g)}`;
     const bio = $("#pd-bio"); if (bio && c) bio.innerHTML = bioHTML(c, g);
     const num = $("#pd-num-v"); if (num && c && c.n && !num.textContent.trim()) num.textContent = c.n;
+  }
+  function openKey(k) {
+    if (k[0] === "t") return teamDetail(k.slice(1));
+    const [id, team] = k.slice(1).split(":");
+    (k[0] === "g" ? goalieDetail : playerDetail)(+id, team);
+  }
+  function drawerBack() {
+    if (navStack.length < 2) return closeDrawer();
+    navStack.pop(); navBack = true;
+    try { openKey(navStack[navStack.length - 1]); } finally { navBack = false; }
+  }
+  function goHome() {
+    if (!$("#drawer").hidden) closeDrawer();
+    setView("hraci");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
   function closeDrawer() {
     $("#drawer").hidden = true; $("#scrim").hidden = true; drawerKey = "";
@@ -1026,7 +1050,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           ${linesBlock(r.id)}
           <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil hráče na NHL.com ↗</a>
         </div>
-      </div>`, r.team, "p" + r.id);
+      </div>`, r.team, "p" + r.id + ":" + r.team);
   }
 
   function advBlock(id) {
@@ -1099,7 +1123,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           ${goalieShotsBlock(r.id)}
           <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil brankáře na NHL.com ↗</a>
         </div>
-      </div>`, r.team, "g" + r.id);
+      </div>`, r.team, "g" + r.id + ":" + r.team);
   }
 
   /* ===== Team detail ===== */
@@ -1658,7 +1682,14 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   });
   $("#conf").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("tr")) e.target.click(); });
   $("#scrim").addEventListener("click", closeDrawer);
-  $("#drawer").addEventListener("click", e => { if (e.target.closest("#d-close")) closeDrawer(); });
+  $("#drawer").addEventListener("click", e => {
+    if (e.target.closest("#d-close")) closeDrawer();
+    else if (e.target.closest("#d-back")) drawerBack();
+    else if (e.target.closest("#d-home")) goHome();
+  });
+  $("#home").addEventListener("click", e => { e.preventDefault(); goHome(); });
+  $("#tohome").addEventListener("click", goHome);
+  window.addEventListener("scroll", () => { $("#tohome").hidden = window.scrollY < 700; }, { passive: true });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });
 
   const segBind = (sel, key) => $(sel).addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; smState[key] = b.dataset.v; store.set("sm", smState); renderShotMap(); });
