@@ -1,0 +1,309 @@
+{
+ "playerId": 8470613,
+ "isActive": true,
+ "currentTeamId": 21,
+ "currentTeamAbbrev": "COL",
+ "fullTeamName": {
+  "default": "Colorado Avalanche",
+  "fr": "Avalanche du Colorado"
+ },
+ "teamCommonName": {
+  "default": "Avalanche"
+ },
+ "teamPlaceNameWithPreposition": {
+  "default": "Colorado",
+  "fr": "du Colorado"
+ },
+ "firstName": {
+  "default": "Brent"
+ },
+ "lastName": {
+  "default": "Burns"
+ },
+ "badges": [],
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/COL_light.svg",
+ "sweaterNumber": 84,
+ "position": "D",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/COL/8470613.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8470613.jpg",
+ "heightInInches": 77,
+ "heightInCentimeters": 196,
+ "weightInPounds": 228,
+ "weightInKilograms": 103,
+ "birthDate": "1985-03-09",
+ "birthCity": {
+  "default": "Barrie"
+ },
+ "birthStateProvince": {
+  "default": "Ontario"
+ },
+ "birthCountry": "CAN",
+ "shootsCatches": "R",
+ "draftDetails": {
+  "year": 2003,
+  "teamAbbrev": "MIN",
+  "round": 1,
+  "pickInRound": 20,
+  "overallPick": 20
+ },
+ "playerSlug": "brent-burns-8470613",
+ "inTop100AllTime": 0,
+ "inHHOF": 0,
+ "featuredStats": {
+  "season": 20262027,
+  "regularSeason": {
+   "subSeason": {
+    "assists": 3,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 12,
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 8,
+    "plusMinus": -2,
+    "points": 3,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 15
+   },
+   "career": {
+    "assists": 675,
+    "gameWinningGoals": 47,
+    "gamesPlayed": 1591,
+    "goals": 273,
+    "otGoals": 16,
+    "pim": 895,
+    "plusMinus": 41,
+    "points": 948,
+    "powerPlayGoals": 88,
+    "powerPlayPoints": 323,
+    "shootingPctg": 0.0644,
+    "shorthandedGoals": 3,
+    "shorthandedPoints": 17,
+    "shots": 4238
+   }
+  }
+ },
+ "careerTotals": {
+  "regularSeason": {
+   "assists": 675,
+   "avgToi": "22:09",
+   "faceoffWinningPctg": 0.455,
+   "gameWinningGoals": 47,
+   "gamesPlayed": 1591,
+   "goals": 273,
+   "otGoals": 16,
+   "pim": 895,
+   "plusMinus": 41,
+   "points": 948,
+   "powerPlayGoals": 88,
+   "powerPlayPoints": 323,
+   "shootingPctg": 0.0644,
+   "shorthandedGoals": 3,
+   "shorthandedPoints": 17,
+   "shots": 4238
+  },
+  "playoffs": {
+   "assists": 60,
+   "avgToi": "23:41",
+   "faceoffWinningPctg": 0.22219999999999998,
+   "gameWinningGoals": 0,
+   "gamesPlayed": 148,
+   "goals": 24,
+   "otGoals": 0,
+   "pim": 123,
+   "plusMinus": 25,
+   "points": 84,
+   "powerPlayGoals": 8,
+   "powerPlayPoints": 32,
+   "shootingPctg": 0.0559,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 429
+  }
+ },
+ "shopLink": "#TODO",
+ "twitterLink": "#TODO",
+ "watchLink": "#TODO",
+ "last5Games": [
+  {
+   "assists": 0,
+   "gameDate": "2026-10-25",
+   "gameId": 2026020183,
+   "gameTypeId": 2,
+   "goals": 0,
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "NSH",
+   "pim": 4,
+   "plusMinus": 1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 17,
+   "shorthandedGoals": 0,
+   "shots": 1,
+   "teamAbbrev": "COL",
+   "toi": "12:48"
+  },
+  {
+   "assists": 0,
+   "gameDate": "2026-10-23",
+   "gameId": 2026020167,
+   "gameTypeId": 2,
+   "goals": 0,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "TBL",
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 24,
+   "shorthandedGoals": 0,
+   "shots": 1,
+   "teamAbbrev": "COL",
+   "toi": "18:15"
+  },
+  {
+   "assists": 0,
+   "gameDate": "2026-10-20",
+   "gameId": 2026020142,
+   "gameTypeId": 2,
+   "goals": 0,
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "NJD",
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 17,
+   "shorthandedGoals": 0,
+   "shots": 2,
+   "teamAbbrev": "COL",
+   "toi": "15:47"
+  }
+ ],
+ "seasonTotals": [
+  {
+   "assists": 7,
+   "faceoffWinningPctg": 0.0,
+   "gameTypeId": 2,
+   "gamesPlayed": 46,
+   "goals": 4,
+   "leagueAbbrev": "MTHL",
+   "pim": 16,
+   "points": 11,
+   "season": 20002001,
+   "sequence": 1,
+   "teamName": {
+    "default": "North York"
+   }
+  },
+  {
+   "assists": 25,
+   "faceoffWinningPctg": 0.0,
+   "gameTypeId": 2,
+   "gamesPlayed": 68,
+   "goals": 15,
+   "leagueAbbrev": "OPJHL",
+   "pim": 14,
+   "points": 40,
+   "season": 20012002,
+   "sequence": 1,
+   "teamName": {
+    "default": "Couchiching"
+   }
+  },
+  {
+   "assists": 25,
+   "faceoffWinningPctg": 0.0,
+   "gameTypeId": 2,
+   "gamesPlayed": 68,
+   "goals": 15,
+   "leagueAbbrev": "OHL",
+   "pim": 14,
+   "plusMinus": 6,
+   "points": 40,
+   "powerPlayGoals": 4,
+   "season": 20022003,
+   "sequence": 1,
+   "shorthandedGoals": 2,
+   "teamName": {
+    "default": "Brampton"
+   }
+  }
+ ],
+ "awards": [
+  {
+   "trophy": {
+    "default": "James Norris Memorial Trophy",
+    "fr": "Trophée James Norris"
+   },
+   "seasons": [
+    {
+     "assists": 47,
+     "blockedShots": 142,
+     "gameTypeId": 2,
+     "gamesPlayed": 82,
+     "goals": 29,
+     "hits": 69,
+     "pim": 40,
+     "plusMinus": 19,
+     "points": 76,
+     "seasonId": 20162017
+    }
+   ]
+  },
+  {
+   "trophy": {
+    "default": "NHL Foundation Player Award"
+   },
+   "seasons": [
+    {
+     "assists": 43,
+     "blockedShots": 124,
+     "gameTypeId": 2,
+     "gamesPlayed": 82,
+     "goals": 17,
+     "hits": 148,
+     "pim": 65,
+     "plusMinus": -9,
+     "points": 60,
+     "seasonId": 20142015
+    }
+   ]
+  }
+ ],
+ "currentTeamRoster": [
+  {
+   "playerId": 8478406,
+   "lastName": {
+    "default": "Blackwood"
+   },
+   "firstName": {
+    "default": "Mackenzie"
+   },
+   "playerSlug": "mackenzie-blackwood-8478406"
+  },
+  {
+   "playerId": 8470613,
+   "lastName": {
+    "default": "Burns"
+   },
+   "firstName": {
+    "default": "Brent"
+   },
+   "playerSlug": "brent-burns-8470613"
+  },
+  {
+   "playerId": 8486171,
+   "lastName": {
+    "default": "Hughes"
+   },
+   "firstName": {
+    "default": "T.J."
+   },
+   "playerSlug": "t-j-hughes-8486171"
+  }
+ ]
+}
