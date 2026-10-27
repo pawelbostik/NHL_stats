@@ -2,208 +2,261 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <style>
-/* Layout: kluziště – světlý "led", tenké modro-červené čáry jako motiv, souhrn lídrů nahoře, pod ním přepínač Hráči / Brankáři / Týmy a řaditelná tabulka. */
+/* Vzhled podle Cadastry: pergamen, inkoust, cihlový akcent, Fraunces + Spectral, ostré rohy, vlasové linky
+   a tabulky jako katastrální výpis. Detaily hráče a týmu přebírají barvy klubu (--tc1, --tc2). */
 :root {
-  --ice: #f2f5f8;
-  --board: #ffffff;
-  --ink: #0f1b2a;
-  --muted: #5a6a7c;
-  --line: #d5dde6;
-  --row: #f7f9fb;
-  --red: #c8102e;
-  --blue: #1d4e9e;
-  --blue-soft: #e4ecf8;
-  --red-soft: #fbe6e9;
-  --good: #1f7a4d;
-  --bad: #b3261e;
-  --bar: #c9d8ee;
-  --rink: #fbfdff;
-  --rinkline: #b9c7d6;
-  --heat: 200, 16, 46;
-  --cool: 29, 78, 158;
-  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
-  --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --ice: #ece6d6;          /* papír */
+  --board: #f6f1e6;        /* plocha karet */
+  --row: #f0e9d8;
+  --field: #faf5ea;
+  --ink: #171511;
+  --muted: #6b655a;
+  --faint: #9a9180;
+  --line: #d8cfba;
+  --line-strong: #b6aa8e;
+  --red: #bb3a22;
+  --red-deep: #9c2e19;
+  --blue: #33536b;
+  --blue-soft: #e6dfcd;
+  --red-soft: #ecd6cd;
+  --good: #4d6b3f;
+  --bad: #9c2e19;
+  --bar: #d8cfba;
+  --rink: #faf5ea;
+  --rinkline: #b6aa8e;
+  --heat: 187, 58, 34;
+  --cool: 51, 83, 107;
+  --shadow: 3px 3px 0 rgba(36, 28, 20, .14);
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Spectral", Georgia, "Times New Roman", serif;
+  --tc1: var(--ink); --tc2: var(--red); --tc-on: #f6f1e6; --tc-text: var(--red-deep);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ice: #0b131d; --board: #111c29; --ink: #e5ecf4; --muted: #8d9db0; --line: #22324a; --row: #142130;
-    --red: #ff5a68; --blue: #7aa8ff; --blue-soft: #1a2a44; --red-soft: #3a1820; --good: #5fd39a; --bad: #ff7b72; --bar: #24406b;
-    --rink: #0e1824; --rinkline: #33465e; --heat: 255, 90, 104; --cool: 122, 168, 255;
-    color-scheme: dark;
+    --ice: #16130f; --board: #1f1b16; --row: #25211b; --field: #1b1813; --ink: #ece6d6; --muted: #a39a88; --faint: #7b7365;
+    --line: #3a342b; --line-strong: #5a5143; --red: #e0674b; --red-deep: #e98a72; --blue: #8fb0c9; --blue-soft: #2a2620; --red-soft: #3a221b;
+    --good: #93b47f; --bad: #e98a72; --bar: #3e382e; --rink: #1b1813; --rinkline: #5a5143; --heat: 224, 103, 75; --cool: 143, 176, 201;
+    --shadow: 3px 3px 0 rgba(0, 0, 0, .35); --tc-on: #f6f1e6; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --ice: #0b131d; --board: #111c29; --ink: #e5ecf4; --muted: #8d9db0; --line: #22324a; --row: #142130;
-  --red: #ff5a68; --blue: #7aa8ff; --blue-soft: #1a2a44; --red-soft: #3a1820; --good: #5fd39a; --bad: #ff7b72; --bar: #24406b;
-  --rink: #0e1824; --rinkline: #33465e; --heat: 255, 90, 104; --cool: 122, 168, 255;
-  color-scheme: dark;
+  --ice: #16130f; --board: #1f1b16; --row: #25211b; --field: #1b1813; --ink: #ece6d6; --muted: #a39a88; --faint: #7b7365;
+  --line: #3a342b; --line-strong: #5a5143; --red: #e0674b; --red-deep: #e98a72; --blue: #8fb0c9; --blue-soft: #2a2620; --red-soft: #3a221b;
+  --good: #93b47f; --bad: #e98a72; --bar: #3e382e; --rink: #1b1813; --rinkline: #5a5143; --heat: 224, 103, 75; --cool: 143, 176, 201;
+  --shadow: 3px 3px 0 rgba(0, 0, 0, .35); --tc-on: #f6f1e6; color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
-  background: var(--ice); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45;
+  background: var(--ice); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.45;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0 48px;
+  padding-block: 0 48px; -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
-.num { font-variant-numeric: tabular-nums; }
+.num, td, .v { font-variant-numeric: tabular-nums lining-nums; }
+a { color: var(--red-deep); }
 
-/* Header */
-header { padding-top: 28px; display: flex; flex-direction: column; gap: 6px; }
-.rink { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; height: 4px; margin-top: 12px; }
-.rink span:nth-child(1), .rink span:nth-child(3) { background: var(--blue); }
-.rink span:nth-child(2) { background: linear-gradient(90deg, transparent 0 46%, var(--red) 46% 54%, transparent 54%); }
-.rink span { opacity: .9; }
-.eyebrow { font-family: var(--font-display); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; color: var(--red); }
-h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 7vw, 64px); line-height: .95; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
-.meta { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
-.meta a { color: var(--blue); }
+/* Záhlaví */
+header { padding-top: 34px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--ink); padding-bottom: 16px; }
+.eyebrow { font-family: var(--font-display); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 12px; color: var(--red-deep); }
+h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(38px, 7vw, 64px); line-height: .98; margin: 0; letter-spacing: -.015em; text-wrap: balance; font-optical-sizing: auto; }
+h1 .dot { color: var(--red); }
+.meta { color: var(--muted); font-size: 14.5px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.meta a { color: var(--red-deep); }
+.rink { display: none; }
 
-/* Leaders */
-.leaders { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+/* Lídři */
+.leaders { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .lead {
-  background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; text-align: left;
-  font: inherit; color: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 2px; min-width: 0;
+  background: var(--board); border: 1px solid var(--ink); border-radius: 2px; padding: 12px 14px 13px; text-align: left; box-shadow: var(--shadow);
+  font: inherit; color: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 2px; min-width: 0; transition: transform .08s, box-shadow .08s;
 }
-.lead:hover { border-color: var(--blue); }
-.lead:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, th button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-.lead .lbl { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; color: var(--muted); }
-.lead .val { font-family: var(--font-display); font-weight: 700; font-size: 40px; line-height: 1; color: var(--ink); }
+.lead:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 rgba(36, 28, 20, .2); }
+.lead:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, th button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+.lead .lbl { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: .16em; font-size: 10.5px; color: var(--red-deep); }
+.lead .val { font-family: var(--font-display); font-weight: 900; font-size: 40px; line-height: 1.02; color: var(--ink); }
 .lead .who { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.lead .tm { color: var(--muted); font-size: 13px; }
-.lead.cz .lbl { color: var(--red); }
+.lead .tm { color: var(--muted); font-size: 13.5px; font-style: italic; }
+.lead.cz { border-color: var(--red); }
 
-/* Tabs */
-.tabs { display: flex; gap: 4px; box-shadow: inset 0 -2px 0 var(--line); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+/* Záložky */
+.tabs { display: flex; gap: 2px; box-shadow: inset 0 -1px 0 var(--ink); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
 .tabs::-webkit-scrollbar { display: none; }
-.tab { white-space: nowrap; flex: none; }
 .tab {
-  font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: .02em; padding: 8px 16px 10px; background: none; border: 0;
-  color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent;
+  white-space: nowrap; flex: none; font-family: var(--font-display); font-weight: 600; font-size: 19px; padding: 8px 16px 9px; background: none;
+  border: 1px solid transparent; border-bottom: 0; border-radius: 2px 2px 0 0; color: var(--muted); cursor: pointer;
 }
-.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--red); }
+.tab[aria-selected="true"] { color: var(--ink); background: var(--board); border-color: var(--ink); box-shadow: inset 0 3px 0 var(--red); }
 .tab:hover { color: var(--ink); }
 
-/* Filters */
+/* Filtry */
 .filters { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
 .field { display: flex; flex-direction: column; gap: 4px; }
-.field > span { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.field > span { font-family: var(--font-display); font-size: 10.5px; font-weight: 600; color: var(--red-deep); text-transform: uppercase; letter-spacing: .16em; }
 input[type="search"], select, input[type="number"] {
-  font: inherit; color: var(--ink); background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; min-height: 38px;
+  font: inherit; font-size: 15px; color: var(--ink); background: var(--field); border: 1px solid var(--line-strong); border-radius: 2px; padding: 6px 10px; min-height: 38px;
 }
 input[type="search"] { width: 220px; max-width: 100%; }
 input[type="number"] { width: 76px; }
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--board); }
-.seg button { font: inherit; font-weight: 500; border: 0; background: none; color: var(--muted); padding: 7px 12px; min-height: 38px; cursor: pointer; }
-.seg button + button { border-left: 1px solid var(--line); }
-.seg button[aria-pressed="true"] { background: var(--blue); color: var(--board); }
-.count { margin-left: auto; color: var(--muted); font-size: 14px; align-self: center; }
-.reset { font: inherit; font-size: 14px; color: var(--blue); background: none; border: 0; cursor: pointer; padding: 8px 4px; text-decoration: underline; }
+.seg { display: inline-flex; border: 1px solid var(--ink); border-radius: 2px; overflow: hidden; background: var(--field); }
+.seg button { font: inherit; font-size: 15px; font-weight: 500; border: 0; background: none; color: var(--muted); padding: 6px 12px; min-height: 36px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line-strong); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--board); }
+.count { margin-left: auto; color: var(--muted); font-size: 14px; align-self: center; font-style: italic; }
+.reset { font: inherit; font-size: 14px; color: var(--red-deep); background: none; border: 0; cursor: pointer; padding: 8px 4px; text-decoration: underline; text-underline-offset: 3px; }
 
-/* Table */
-.tablebox { background: var(--board); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; max-height: 72vh; overflow-y: auto; }
+/* Tabulky */
+.tablebox { background: var(--board); border: 1px solid var(--ink); border-radius: 2px; overflow-x: auto; max-height: 72vh; overflow-y: auto; box-shadow: var(--shadow); }
 table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 980px; }
 th, td { padding: 7px 10px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line); }
-thead th { position: sticky; top: 0; z-index: 2; background: var(--board); font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: .04em; color: var(--muted); border-bottom: 2px solid var(--line); }
+thead th { position: sticky; top: 0; z-index: 2; background: var(--board); font-family: var(--font-display); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: .12em; color: var(--red-deep); border-bottom: 1px solid var(--ink); }
 th button { all: unset; cursor: pointer; display: inline-flex; gap: 3px; align-items: center; }
 th button:hover { color: var(--ink); }
 th.sorted { color: var(--ink); }
-th.sorted button::after { content: "▼"; font-size: 9px; color: var(--red); }
+th.sorted button::after { content: "▼"; font-size: 8px; color: var(--red); }
 th.sorted.asc button::after { content: "▲"; }
-td { font-variant-numeric: tabular-nums; }
 tbody tr { cursor: pointer; }
 tbody tr:nth-child(even) td { background: var(--row); }
 tbody tr td { background: var(--board); }
-tbody tr:hover td { background: var(--blue-soft); }
+tbody tr:hover td { background: var(--red-soft); }
 .l { text-align: left; }
-.stick1 { position: sticky; left: 0; z-index: 1; width: 44px; color: var(--muted); }
+.stick1 { position: sticky; left: 0; z-index: 1; width: 44px; color: var(--faint); }
 .stick2 { position: sticky; left: 44px; z-index: 1; box-shadow: 1px 0 0 var(--line); }
 thead .stick1, thead .stick2 { z-index: 3; }
 .name { font-weight: 600; }
-.chip { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .04em; padding: 1px 5px; border-radius: 3px; background: var(--ice); color: var(--muted); margin-left: 6px; vertical-align: 1px; }
-.chip.cze { background: var(--red-soft); color: var(--red); }
-.chip.svk { background: var(--blue-soft); color: var(--blue); }
-.team { font-family: var(--font-display); font-weight: 600; letter-spacing: .04em; }
+.chip { display: inline-block; font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: .1em; padding: 0 4px; border-radius: 2px; border: 1px solid var(--line-strong); color: var(--muted); margin-left: 6px; vertical-align: 2px; }
+.chip.cze { border-color: var(--red); color: var(--red-deep); background: var(--red-soft); }
+.chip.svk { border-color: var(--blue); color: var(--blue); }
+.team { font-family: var(--font-display); font-weight: 600; letter-spacing: .06em; font-size: 14px; }
+.tdot { display: inline-block; width: 8px; height: 8px; margin-right: 6px; vertical-align: 1px; border-radius: 1px; box-shadow: inset -4px 0 0 var(--c2, transparent); background: var(--c1, var(--ink)); }
 .pts { font-weight: 700; position: relative; }
-.pts .bar { position: absolute; left: 6px; right: 6px; bottom: 3px; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
-.pts .bar i { display: block; height: 100%; background: var(--blue); }
+.pts .bar { position: absolute; left: 6px; right: 6px; bottom: 3px; height: 2px; background: var(--line); overflow: hidden; }
+.pts .bar i { display: block; height: 100%; background: var(--red); }
 .pos { color: var(--good); }
 .neg { color: var(--bad); }
 .dim { color: var(--muted); }
 .hl td { font-weight: 600; }
-.empty { padding: 40px 16px; text-align: center; color: var(--muted); }
+.empty { padding: 40px 16px; text-align: center; color: var(--muted); font-style: italic; }
 
-/* Teams */
-.conf { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
-.conf h2 { font-family: var(--font-display); font-weight: 700; font-size: 26px; margin: 0 0 8px; }
+/* Týmy */
+.conf { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+.conf h2 { font-family: var(--font-display); font-weight: 900; font-size: 28px; margin: 0 0 10px; }
 .conf table { min-width: 1060px; }
-footer a { color: var(--blue); }
-.cut td { border-bottom: 2px dashed var(--red); }
-.streak { font-family: var(--font-display); font-weight: 600; padding: 1px 6px; border-radius: 3px; }
-.streak.w { background: color-mix(in srgb, var(--good) 15%, transparent); color: var(--good); }
-.streak.l { background: color-mix(in srgb, var(--bad) 15%, transparent); color: var(--bad); }
-.streak.o { background: var(--ice); color: var(--muted); }
-.legend { color: var(--muted); font-size: 13px; }
+footer a { color: var(--red-deep); }
+.cut td { border-bottom: 1px dashed var(--red); }
+.streak { font-family: var(--font-display); font-weight: 600; font-size: 13px; padding: 0 6px; border-radius: 2px; border: 1px solid currentColor; }
+.streak.w { color: var(--good); }
+.streak.l { color: var(--bad); }
+.streak.o { color: var(--muted); }
+.legend { color: var(--muted); font-size: 14px; font-style: italic; }
 
-/* Player drawer */
-.scrim { position: fixed; inset: 0; background: rgb(8 14 22 / .45); z-index: 20; }
+/* Široký panel hráče / týmu */
+.scrim { position: fixed; inset: 0; background: rgb(23 21 17 / .5); z-index: 20; }
 .drawer {
-  position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100%); z-index: 21; background: var(--board); border-left: 1px solid var(--line);
-  overflow-y: auto; padding: calc(20px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)) 20px;
-  display: flex; flex-direction: column; gap: 18px;
+  position: fixed; z-index: 21; left: 50%; top: max(2.5vh, env(safe-area-inset-top, 0px)); transform: translateX(-50%);
+  width: min(1220px, calc(100vw - 32px)); max-height: calc(100vh - 5vh); overflow-y: auto; overscroll-behavior: contain;
+  background: var(--board); border: 1px solid var(--ink); border-radius: 2px; box-shadow: 6px 6px 0 rgba(23, 21, 17, .28);
+  display: flex; flex-direction: column;
 }
-.drawer .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); font: inherit; font-size: 22px; line-height: 1; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--board); color: var(--ink); cursor: pointer; }
-.drawer h3 { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1; margin: 0; padding-right: 44px; text-wrap: balance; }
-.drawer .sub { color: var(--muted); }
-.big { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); border-radius: 6px; }
+.drawer[hidden], .scrim[hidden] { display: none; }
+.drawer .close {
+  position: sticky; top: 10px; align-self: flex-end; margin: 10px 10px -48px 0; z-index: 3; flex: none; font: 600 22px/1 var(--font-display); width: 38px; height: 38px; border-radius: 2px;
+  border: 1px solid var(--tc-on); background: var(--tc1); color: var(--tc-on); cursor: pointer;
+}
+.drawer .close:hover { background: var(--tc-on); color: var(--tc1); }
+.pd-head { position: relative; background: var(--tc1); color: var(--tc-on); padding: 22px 64px 18px 26px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 22px; align-items: center; border-bottom: 1px solid var(--ink); }
+.pd-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: 6px; height: 4px; background: var(--tc2); box-shadow: 0 -8px 0 var(--tc1), 0 -12px 0 var(--tc2); opacity: .95; }
+.pd-num { font-family: var(--font-display); font-weight: 900; font-size: clamp(54px, 9vw, 96px); line-height: .9; letter-spacing: -.03em; min-width: 1.2em; text-align: center; padding-bottom: 14px; }
+.pd-num small { display: block; font-size: 11px; letter-spacing: .2em; font-weight: 600; text-transform: uppercase; opacity: .8; margin-top: 6px; }
+.pd-id { padding-bottom: 14px; min-width: 0; }
+.pd-head .eyebrow { color: var(--tc-on); opacity: .85; }
+.drawer h3 { font-family: var(--font-display); font-weight: 900; font-size: clamp(30px, 4.6vw, 46px); line-height: 1; margin: 4px 0 6px; text-wrap: balance; }
+.pd-head .sub { font-size: 15px; opacity: .92; }
+.pd-head .sub a, .pd-head .tlink { color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; background: none; border: 0; font: inherit; padding: 0; }
+.pd-bio { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 0; font-size: 14px; padding-bottom: 12px; }
+.pd-bio span { padding: 0 14px 0 0; margin-right: 14px; border-right: 1px solid color-mix(in srgb, var(--tc-on) 40%, transparent); }
+.pd-bio span:last-child { border-right: 0; }
+.pd-bio b { font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: .16em; text-transform: uppercase; opacity: .75; margin-right: 6px; }
+.pd-body { padding: 22px 26px 30px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px 34px; align-items: start; }
+.pd-col { display: flex; flex-direction: column; gap: 22px; min-width: 0; }
+.pd-wide { grid-column: 1 / -1; }
+.big { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--ink); border-radius: 2px; background: var(--field); }
 .big div { padding: 10px 6px; text-align: center; display: flex; flex-direction: column; }
 .big div + div { border-left: 1px solid var(--line); }
-.big b { font-family: var(--font-display); font-size: 30px; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; }
-.big span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-.pct h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
-.pct p { margin: 0 0 10px; color: var(--muted); font-size: 13px; }
-.prow { display: grid; grid-template-columns: 128px minmax(0, 1fr) 52px; gap: 10px; align-items: center; padding: 5px 0; font-size: 14px; }
-.prow .track { height: 10px; background: var(--ice); border-radius: 5px; position: relative; overflow: hidden; border: 1px solid var(--line); }
-.prow .track i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; }
-.prow .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
-.prow small { display: block; color: var(--muted); font-size: 12px; }
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 14px; }
+.big b { font-family: var(--font-display); font-size: 32px; line-height: 1; font-weight: 900; color: var(--tc-text); }
+.big span { font-family: var(--font-display); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .14em; margin-top: 4px; }
+.drawer h4, .pct h4 { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--tc-text); margin: 0 0 6px; padding-bottom: 5px; border-bottom: 1px solid var(--ink); }
+.pct p { margin: 0 0 10px; color: var(--muted); font-size: 14px; }
+.prow { display: grid; grid-template-columns: 150px minmax(0, 1fr) 56px; gap: 10px; align-items: center; padding: 5px 0; font-size: 14.5px; border-bottom: 1px dashed var(--line); }
+.prow .track { height: 8px; background: var(--field); position: relative; overflow: hidden; border: 1px solid var(--line-strong); }
+.prow .track i { position: absolute; left: 0; top: 0; bottom: 0; }
+.prow .v { text-align: right; font-weight: 600; }
+.prow small { display: block; color: var(--muted); font-size: 12.5px; font-style: italic; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 18px; font-size: 14.5px; }
 .facts div { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 4px 0; gap: 8px; }
 .facts span { color: var(--muted); }
-.drawer a.ext { color: var(--blue); font-weight: 600; }
+.facts b { font-weight: 600; }
+.drawer a.ext { color: var(--tc-text); font-weight: 600; }
 
-/* Shot plot */
-.plot { margin: 18px 0 0; background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-.plot h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0; }
-.plot p { margin: 4px 0 0; color: var(--muted); font-size: 14px; max-width: 80ch; }
+.drawer { --tc-text: var(--tcl, var(--red-deep)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .drawer { --tc-text: var(--tcd, var(--red-deep)); } }
+:root[data-theme="dark"] .drawer { --tc-text: var(--tcd, var(--red-deep)); }
+
+/* Kariéra */
+.car table { min-width: 0; width: 100%; font-size: 14px; }
+.car th, .car td { padding: 5px 7px; }
+.car tbody tr { cursor: default; }
+.car tbody tr:hover td { background: inherit; }
+.car tr.nhl td { font-weight: 600; }
+.car tr.nhl td.lg { color: var(--tc-text); }
+.car tr.tot td { border-top: 1px solid var(--ink); font-weight: 700; background: var(--field); }
+.car td.lg { font-family: var(--font-display); font-size: 12.5px; letter-spacing: .04em; }
+.car .scroll { max-height: 420px; overflow-y: auto; border: 1px solid var(--ink); border-radius: 2px; }
+.car .scroll thead th { background: var(--board); }
+.carchart svg { display: block; width: 100%; height: auto; }
+.carchart text { fill: var(--muted); font-size: 10px; font-family: var(--font-body); }
+
+/* Detail týmu */
+.tm-rec { display: flex; flex-wrap: wrap; gap: 4px 0; font-size: 14px; }
+.rost table, .tres table { min-width: 0; width: 100%; font-size: 14px; }
+.rost th, .rost td, .tres th, .tres td { padding: 5px 7px; }
+.rost .jn { font-family: var(--font-display); font-weight: 900; color: var(--tc-text); width: 34px; text-align: center; }
+.tmaps { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.tmaps figure { margin: 0; }
+.tmaps figcaption { font-family: var(--font-display); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+/* Graf střelby */
+.plot { margin: 18px 0 0; background: var(--board); border: 1px solid var(--ink); border-radius: 2px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
+.plot h2 { font-family: var(--font-display); font-weight: 900; font-size: 24px; margin: 0; }
+.plot p { margin: 4px 0 0; color: var(--muted); font-size: 14.5px; max-width: 80ch; }
 .key { display: inline-flex; gap: 6px; align-items: center; margin-left: 6px; white-space: nowrap; }
 .key .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); opacity: .7; margin-left: 6px; }
 .key .dot.cz { background: var(--red); opacity: 1; }
 .plotbox { overflow-x: auto; }
 .plotbox svg { display: block; width: 100%; min-width: 560px; height: auto; }
-.plotbox .axis { stroke: var(--line); }
+.plotbox .axis { stroke: var(--ink); }
 .plotbox .grid { stroke: var(--line); stroke-dasharray: 2 4; }
 .plotbox .diag { stroke: var(--muted); stroke-dasharray: 6 5; }
 .plotbox text { fill: var(--muted); font-family: var(--font-body); font-size: 12px; font-variant-numeric: tabular-nums; }
-.plotbox .lab { fill: var(--ink); font-weight: 600; font-size: 12px; }
+.plotbox .lab { fill: var(--ink); font-weight: 600; font-size: 12.5px; }
 .plotbox circle { cursor: pointer; }
-.plotbox circle.p { fill: var(--blue); fill-opacity: .45; stroke: var(--blue); stroke-opacity: .7; }
-.plotbox circle.cz { fill: var(--red); fill-opacity: .9; stroke: var(--board); }
+.plotbox circle.p { fill: var(--blue); fill-opacity: .4; stroke: var(--blue); stroke-opacity: .7; }
+.plotbox circle.cz { fill: var(--red); fill-opacity: .95; stroke: var(--board); }
 .plotbox circle:hover { fill-opacity: 1; }
-.src { font-size: 12px; color: var(--muted); }
-.src a { color: var(--blue); }
+.src { font-size: 13px; color: var(--muted); font-style: italic; }
+.src a { color: var(--red-deep); }
 
-/* Shot quality bar */
-.sq { display: flex; height: 22px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); font-size: 12px; font-weight: 600; }
+/* Kvalita střel */
+.sq { display: flex; height: 22px; overflow: hidden; border: 1px solid var(--ink); font-size: 12px; font-weight: 600; }
 .sq span { display: flex; align-items: center; justify-content: center; color: var(--board); min-width: 0; overflow: hidden; white-space: nowrap; }
 .sq .ld { background: var(--bar); color: var(--ink); }
 .sq .md { background: var(--blue); }
 .sq .hd { background: var(--red); }
 .sqleg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); margin-top: 6px; }
-.sqleg i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.sqleg i { display: inline-block; width: 10px; height: 10px; margin-right: 5px; vertical-align: -1px; }
 
-/* Rink maps */
+/* Mapy kluziště */
 .rinksvg { display: block; width: 100%; height: auto; }
 .rinksvg .ice { fill: var(--rink); stroke: var(--rinkline); stroke-width: .5; }
 .rinksvg .ln { stroke: var(--rinkline); stroke-width: .3; fill: none; }
@@ -213,85 +266,96 @@ footer a { color: var(--blue); }
 .rinksvg .net { fill: none; stroke: var(--ink); stroke-width: .4; }
 .rinksvg .dotc { fill: var(--red); opacity: .55; }
 .rinksvg .s-goal { fill: var(--red); stroke: var(--board); stroke-width: .25; }
-.rinksvg .s-on { fill: var(--blue); fill-opacity: .55; stroke: var(--blue); stroke-width: .15; }
+.rinksvg .s-on { fill: var(--blue); fill-opacity: .5; stroke: var(--blue); stroke-width: .15; }
 .rinksvg .s-miss { fill: none; stroke: var(--muted); stroke-width: .25; opacity: .8; }
-.rinksvg circle[data-i] { cursor: default; }
 .maplegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); margin-top: 6px; align-items: center; }
 .maplegend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
 .maplegend .lg-goal { background: var(--red); }
 .maplegend .lg-on { background: var(--blue); opacity: .6; }
 .maplegend .lg-miss { border: 1.5px solid var(--muted); }
-.ramp { display: inline-block; width: 120px; height: 10px; border-radius: 3px; vertical-align: -1px; margin: 0 6px; border: 1px solid var(--line); }
+.ramp { display: inline-block; width: 120px; height: 10px; vertical-align: -1px; margin: 0 6px; border: 1px solid var(--line-strong); }
 .smgrid { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 22px; margin-top: 18px; align-items: start; }
-.rinkfig { margin: 0; background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
-.rinkfig figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.rinkfig { margin: 0; background: var(--board); border: 1px solid var(--ink); border-radius: 2px; padding: 14px; box-shadow: var(--shadow); }
+.rinkfig figcaption { font-size: 13.5px; color: var(--muted); margin-top: 8px; }
 .smside { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-.smside h3 { font-family: var(--font-display); font-weight: 700; font-size: 24px; margin: 0; }
-.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 6px; background: var(--board); }
+.smside h3 { font-family: var(--font-display); font-weight: 900; font-size: 26px; margin: 0; }
+.smside h3.sub3 { font-size: 19px; margin-bottom: 6px; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--ink); border-radius: 2px; background: var(--field); }
 .kpis div { padding: 10px 8px; display: flex; flex-direction: column; gap: 2px; }
 .kpis div + div { border-left: 1px solid var(--line); }
-.kpis b { font-family: var(--font-display); font-size: 26px; line-height: 1; font-variant-numeric: tabular-nums; }
-.kpis span { font-size: 12px; color: var(--muted); }
-.kpis small { font-size: 12px; font-variant-numeric: tabular-nums; }
+.kpis b { font-family: var(--font-display); font-weight: 900; font-size: 26px; line-height: 1; }
+.kpis span { font-family: var(--font-display); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.kpis small { font-size: 12.5px; }
 .typebars { display: flex; flex-direction: column; gap: 6px; }
-.tb { display: grid; grid-template-columns: 100px minmax(0, 1fr) 84px; gap: 8px; align-items: center; font-size: 14px; }
-.tb .trk { height: 12px; background: var(--ice); border: 1px solid var(--line); border-radius: 3px; position: relative; overflow: hidden; }
+.tb { display: grid; grid-template-columns: 100px minmax(0, 1fr) 84px; gap: 8px; align-items: center; font-size: 14.5px; }
+.tb .trk { height: 10px; background: var(--field); border: 1px solid var(--line-strong); position: relative; overflow: hidden; }
 .tb .trk i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--bar); }
 .tb .trk i.g { background: var(--red); }
-.tb .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
-.shooters { border: 1px solid var(--line); border-radius: 6px; background: var(--board); overflow-x: auto; }
+.tb .v { text-align: right; color: var(--muted); }
+.shooters { border: 1px solid var(--ink); border-radius: 2px; background: var(--board); overflow-x: auto; }
 .shooters table { min-width: 0; }
 .shooters td, .shooters th { padding: 6px 10px; }
 .trend svg { display: block; width: 100%; height: auto; }
-.trend .ax { stroke: var(--line); }
+.trend .ax { stroke: var(--ink); }
 .trend .grid { stroke: var(--line); stroke-dasharray: 2 4; }
 .trend text { fill: var(--muted); font-size: 11px; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
 .trend .lg { stroke: var(--red); stroke-width: 2.2; fill: none; }
 .trend .lx { stroke: var(--blue); stroke-width: 2; fill: none; stroke-dasharray: 5 3; }
-.trend .ar { fill: var(--blue); opacity: .08; }
-.drawer .sec h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
-.drawer .sec p { margin: 0 0 8px; color: var(--muted); font-size: 13px; }
+.drawer .sec p { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
 .pl { all: unset; cursor: pointer; font-weight: 600; border-bottom: 1px dotted var(--muted); }
 .pl:hover, .pl:focus-visible { color: var(--red); border-bottom-color: var(--red); }
 .sep { color: var(--muted); margin: 0 5px; }
-.xg5 { display: inline-block; width: 46px; height: 6px; border-radius: 3px; background: var(--ice); border: 1px solid var(--line); position: relative; vertical-align: 1px; margin-left: 6px; overflow: hidden; }
+.xg5 { display: inline-block; width: 46px; height: 6px; background: var(--field); border: 1px solid var(--line-strong); position: relative; vertical-align: 1px; margin-left: 6px; overflow: hidden; }
 .xg5 i { position: absolute; top: 0; bottom: 0; }
 .xg5::after { content: ""; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: var(--muted); }
-.dtab { width: 100%; min-width: 0; font-size: 14px; }
-.dtab th, .dtab td { padding: 5px 6px; }
+.dtab { width: 100%; min-width: 0; font-size: 14.5px; }
+.dtab th, .dtab td { padding: 5px 7px; }
 .dtab tbody tr { cursor: default; }
 .dtab tbody tr:hover td { background: inherit; }
-.gtab { width: 100%; min-width: 0; font-size: 13px; }
-.gtab th, .gtab td { padding: 5px 5px; }
+.gtab { width: 100%; min-width: 0; font-size: 14px; }
+.gtab th, .gtab td { padding: 5px 6px; }
 .gtab tbody tr.grow { cursor: pointer; }
-.gtab tbody tr.grow:hover td, .gtab tbody tr.grow[aria-expanded="true"] td { background: var(--blue-soft); }
+.gtab tbody tr.grow:hover td, .gtab tbody tr.grow[aria-expanded="true"] td { background: var(--red-soft); }
 .gtab tbody tr.grow td:first-child::before { content: "▸"; display: inline-block; width: 12px; color: var(--muted); font-size: 10px; transition: transform .12s; }
 .gtab tbody tr.grow[aria-expanded="true"] td:first-child::before { transform: rotate(90deg); color: var(--red); }
 .gtab td.res-w { color: var(--good); font-weight: 600; }
 .gtab td.res-l { color: var(--bad); font-weight: 600; }
-.gtab tr.gdet > td { background: var(--ice) !important; padding: 10px 10px 14px; white-space: normal; text-align: left; cursor: default; }
+.gtab tr.gdet > td { background: var(--field) !important; padding: 12px 12px 16px; white-space: normal; text-align: left; cursor: default; border-bottom: 1px solid var(--ink); }
 .gd { display: flex; flex-direction: column; gap: 10px; }
 .gd-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
-.gd-head b { font-family: var(--font-display); font-size: 19px; }
-.gd-head a { font-size: 12px; color: var(--blue); }
-.gd .facts { font-size: 13px; gap: 2px 14px; }
-.gd h5 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.evl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
-.evl li { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 8px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
-.evl li .tm2 { color: var(--muted); font-variant-numeric: tabular-nums; }
+.gd-head b { font-family: var(--font-display); font-weight: 900; font-size: 20px; }
+.gd-head a { font-size: 13px; color: var(--red-deep); }
+.gd .facts { font-size: 14px; gap: 2px 16px; }
+.gd h5 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 600; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--red-deep); }
+.evl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; font-size: 14px; }
+.evl li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 8px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.evl li .tm2 { color: var(--muted); }
 .evl li.me { font-weight: 600; }
 .evl li.me .tm2 { color: var(--red); }
-.evl .sc { font-family: var(--font-display); font-weight: 700; margin-right: 6px; }
-.gd .rinksvg { max-width: 300px; }
+.evl .sc { font-family: var(--font-display); font-weight: 900; margin-right: 6px; }
+.gd .rinksvg { max-width: 320px; }
 .ptchart svg { display: block; width: 100%; height: auto; }
 .ptchart rect[data-gi] { cursor: pointer; }
 .ptchart text { fill: var(--muted); font-size: 10px; font-family: var(--font-body); }
-.note { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding: 2px 0 2px 10px; margin-top: 8px; }
+.note { font-size: 13px; color: var(--muted); border-left: 2px solid var(--red); padding: 2px 0 2px 10px; margin-top: 8px; font-style: italic; }
 @media (max-width: 860px) { .smgrid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kpis div:nth-child(3) { border-left: 0; } .kpis div:nth-child(n+3) { border-top: 1px solid var(--line); } .tb { grid-template-columns: 84px minmax(0, 1fr) 74px; } }
+@media (max-width: 920px) {
+  .pd-body { grid-template-columns: minmax(0, 1fr); padding: 18px 16px 24px; }
+  .drawer { top: 0; width: 100vw; max-height: 100vh; height: 100vh; border: 0; box-shadow: none; }
+  .pd-head { padding: 16px 56px 14px 16px; gap: 4px 14px; }
+}
+@media (max-width: 560px) {
+  .pd-num { font-size: 50px; }
+  .pd-head.team .pd-num { font-size: 40px; }
+  .pd-num small { font-size: 9px; letter-spacing: .14em; }
+  .pd-bio { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; }
+  .pd-bio span { border: 0; margin: 0; padding: 0; }
+  .car table, .rost table { font-size: 13px; }
+}
+@media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kpis div:nth-child(3) { border-left: 0; } .kpis div:nth-child(n+3) { border-top: 1px solid var(--line); } .tb { grid-template-columns: 84px minmax(0, 1fr) 74px; } .tmaps { grid-template-columns: 1fr; } }
 
-footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
-.loading { padding: 60px 0; color: var(--muted); }
+footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: italic; border-top: 1px solid var(--ink); padding-top: 12px; }
+.loading { padding: 60px 0; color: var(--muted); font-style: italic; }
 
 @media (max-width: 900px) {
   .leaders { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -302,20 +366,20 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
   .count { margin-left: 0; width: 100%; }
   input[type="search"] { width: 100%; }
   .field.grow { width: 100%; }
-  .tab { font-size: 18px; padding: 8px 10px 10px; }
+  .tab { font-size: 17px; padding: 8px 11px 9px; }
   .big b { font-size: 24px; }
-  .prow { grid-template-columns: 104px minmax(0, 1fr) 48px; }
+  .prow { grid-template-columns: 110px minmax(0, 1fr) 48px; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .drawer { animation: slide .18s ease-out; }
-  @keyframes slide { from { transform: translateX(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+  .drawer { animation: rise .18s ease-out; }
+  @keyframes rise { from { transform: translate(-50%, 14px); opacity: .5; } to { transform: translateX(-50%); opacity: 1; } }
 }
 </style>
 
 <div class="wrap">
   <header>
     <div class="eyebrow">NHL · základní část 2026/27</div>
-    <h1>Statistiky NHL</h1>
+    <h1>Statistiky NHL<span class="dot">.</span></h1>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
   </header>
@@ -415,10 +479,10 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
 
   <section id="view-tymy" hidden>
     <div class="conf" id="conf"></div>
-    <p class="legend">Přerušovaná čára odděluje prvních osm týmů konference (postupová místa). Kliknutím na tým zobrazíte jeho hráče.</p>
+    <p class="legend">Přerušovaná čára odděluje prvních osm týmů konference (postupová místa). Kliknutím na tým otevřete jeho detail: soupisku, výsledky zápasů, mapy střel a formace.</p>
   </section>
 
-  <footer id="foot">Kliknutím na hráče nebo brankáře otevřete detail s porovnáním vůči ostatním a se seznamem všech jeho zápasů; každý zápas jde rozkliknout. Data jsou snímek ze statistik NHL; čísla se mění po každém hracím dni. Údaje o tom, kam do branky střely míří, veřejně dostupné nejsou, proto mapy ukazují místo, odkud se střílelo.</footer>
+  <footer id="foot">Kliknutím na hráče, brankáře nebo tým otevřete detail v barvách klubu: číslo dresu, kariéru po sezonách, porovnání s ligou a seznam zápasů; každý zápas jde rozkliknout. Data jsou snímek ze statistik NHL; čísla se mění po každém hracím dni. Údaje o tom, kam do branky střely míří, veřejně dostupné nejsou, proto mapy ukazují místo, odkud se střílelo.</footer>
 </div>
 
 <div class="scrim" id="scrim" hidden></div>
@@ -551,9 +615,10 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
   function load(data, mp, ln, gm) {
     D = data;
     data.tm.forEach(t => TM[t[0]] = { ab: t[0], name: t[1], place: t[2], conf: t[3], div: t[4], gp: t[5], w: t[6], l: t[7], otl: t[8], pts: t[9], gf: t[10], ga: t[11], streak: t[12] });
-    SK = data.sk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], pos: r[4], gp: r[5], g: r[6], a: r[7], p: r[8], pm: r[9], pim: r[10], ppg: r[11], shg: r[12], gwg: r[13], otg: r[14], s: r[15], shp: r[16], toi: r[17], fo: r[18], nat: r[19] }));
+    Object.values(TM).forEach(t => { if (t.name && t.place.endsWith(" " + t.name)) t.place = t.place.slice(0, -t.name.length - 1); });
+    SK = data.sk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], pos: r[4], gp: r[5], g: r[6], a: r[7], p: r[8], pm: r[9], pim: r[10], ppg: r[11], shg: r[12], gwg: r[13], otg: r[14], s: r[15], shp: r[16], toi: r[17], fo: r[18], nat: r[19], num: r[20] }));
     SK.forEach(r => { r.name = r.first + " " + r.last; r.key = norm(r.name); r.ppgp = r.gp ? r.p / r.gp : 0; r.F = r.pos !== "D"; });
-    GK = data.gk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], gp: r[4], gs: r[5], w: r[6], l: r[7], otl: r[8], gaa: r[9], svp: r[10], sa: r[11], sv: r[12], ga: r[13], so: r[14], toi: r[15], nat: r[16] }));
+    GK = data.gk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], gp: r[4], gs: r[5], w: r[6], l: r[7], otl: r[8], gaa: r[9], svp: r[10], sa: r[11], sv: r[12], ga: r[13], so: r[14], toi: r[15], nat: r[16], num: r[17] }));
     GK.forEach(r => { r.name = r.first + " " + r.last; r.key = norm(r.name); });
     try { loadMP(mp); } catch (e) { HAS_MP = false; }
     if (!HAS_MP) skState.mode = "basic";
@@ -601,7 +666,7 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     const cz = SK.filter(r => r.nat === "CZE");
     if (cz.length) L.push({ lbl: "Nejlepší Čech", r: top(cz, r => r.p, byGoalsTie), v: r => r.p + " b.", cz: true });
     $("#leaders").innerHTML = L.map(x => `<button type="button" class="lead${x.cz ? " cz" : ""}" data-id="${x.r.id}" data-team="${x.r.team}">
-      <span class="lbl">${x.lbl}</span><span class="val num">${x.v(x.r)}</span><span class="who">${esc(x.r.name)}</span><span class="tm">${esc(TM[x.r.team]?.place || "")} ${esc(TM[x.r.team]?.name || x.r.team)}</span></button>`).join("");
+      <span class="lbl">${x.lbl}</span><span class="val num">${x.v(x.r)}</span><span class="who">${esc(x.r.name)}</span><span class="tm">${tdot(x.r.team)}${esc(TM[x.r.team]?.place || "")} ${esc(TM[x.r.team]?.name || x.r.team)}</span></button>`).join("");
   }
 
   function sorter(state, cols) {
@@ -634,7 +699,7 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     const maxX = Math.max(0.1, ...rows.map(r => r.ixg));
     $("#tablebox").innerHTML = `<table style="min-width:1240px">${thead(ADV_COLS, advState, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
-      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
+      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
       ${ADV_COLS.map(c => c.k === "ixg" ? `<td class="pts">${nf(r.ixg, 1)}<span class="bar"><i style="width:${(r.ixg / maxX * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>
       <div class="src" style="padding:8px 10px">Data: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>, všechny herní situace, pokud není uvedeno 5 na 5. Hráč vyměněný během sezony je uveden u současného týmu se součtem za celou sezonu.</div>`;
   }
@@ -682,7 +747,7 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný hráč neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
     $("#tablebox").innerHTML = `<table>${thead(SK_COLS, s, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
-      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
+      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
       ${SK_COLS.map(c => c.k === "p" ? `<td class="pts">${r.p}<span class="bar"><i style="width:${(r.p / maxP * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
   }
 
@@ -694,7 +759,7 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný brankář neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
     $("#tablebox").innerHTML = `<table style="min-width:${HAS_MP ? 1120 : 900}px">${thead(GK_COLS, s, "Brankář")}<tbody>${rows.map((r, i) => `<tr data-gid="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
-      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${r.team}</td>
+      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td>
       ${GK_COLS.map(c => `<td${c.k === "svp" ? ' style="font-weight:700"' : ""}>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
   }
 
@@ -707,7 +772,7 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
       return `<div><h2>${title}</h2><div class="tablebox" style="max-height:none"><table><thead><tr>
         <th class="stick1 l">#</th><th class="stick2 l">Tým</th><th class="l">Divize</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="Prohry v prodloužení / nájezdech">PP</th><th title="Body">B</th><th title="Procento bodů">B %</th><th title="Skóre">Skóre</th><th title="Rozdíl skóre">+/−</th>${HAS_MP ? '<th title="Hra 5 na 5: podíl očekávaných gólů týmu (MoneyPuck)">xGF %</th><th title="Hra 5 na 5: Corsi, podíl střeleckých pokusů (MoneyPuck)">CF %</th><th title="Očekávané góly vstřelené : obdržené, všechny situace (MoneyPuck)">xG</th>' : ""}<th class="l">Série</th><th class="l">Nejlepší střelec</th></tr></thead><tbody>
         ${teams.map((t, i) => { const d = t.gf - t.ga, ts = topScorer[t.ab]; return `<tr data-teamrow="${t.ab}" tabindex="0" class="${i === 7 ? "cut" : ""}">
-          <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="team">${t.ab}</span> <span class="name">${esc(t.place)} ${esc(t.name)}</span></td>
+          <td class="stick1 l">${i + 1}</td><td class="stick2 l">${tdot(t.ab)}<span class="team">${t.ab}</span> <span class="name">${esc(t.place)} ${esc(t.name)}</span></td>
           <td class="l dim">${DIV[t.div] || esc(t.div)}</td><td>${t.gp}</td><td>${t.w}</td><td>${t.l}</td><td>${t.otl}</td><td style="font-weight:700">${t.pts}</td>
           <td>${nf(t.pts / (2 * t.gp) * 100, 1)}</td><td>${t.gf}:${t.ga}</td><td class="${d > 0 ? "pos" : d < 0 ? "neg" : "dim"}">${signed(d)}</td>${HAS_MP ? `<td class="${t.xgp5 == null ? "dim" : tone(t.xgp5, .5, .005)}">${t.xgp5 == null ? "–" : pctf(t.xgp5, 0)}</td><td class="${t.cf5 == null ? "dim" : tone(t.cf5, .5, .005)}">${t.cf5 == null ? "–" : pctf(t.cf5, 0)}</td><td>${t.xgf == null ? "–" : nf(t.xgf, 1) + ":" + nf(t.xga, 1)}</td>` : ""}<td class="l">${streak(t.streak)}</td>
           <td class="l">${ts ? `${esc(ts.name)} <span class="dim">${ts.p} b.</span>` : "–"}</td></tr>`; }).join("")}
@@ -756,17 +821,155 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     return `<div class="prow"><div>${label}<small>${sub}</small></div><div class="track" role="img" aria-label="${label}: ${p}. percentil"><i style="width:${Math.max(3, p)}%;background:${hue}"></i></div><div class="v">${val}</div></div>`;
   }
 
-  let lastFocus = null;
-  function openDrawer(html) {
-    lastFocus = document.activeElement;
+  /* ===== Team colours ===== */
+  const TC = { ANA: ["#111111", "#F47A38"], BOS: ["#111111", "#FFB81C"], BUF: ["#003087", "#FFB81C"], CAR: ["#CE1126", "#111111"], CBJ: ["#002654", "#CE1126"], CGY: ["#C8102E", "#F1BE48"], CHI: ["#CF0A2C", "#111111"], COL: ["#6F263D", "#236192"], DAL: ["#006847", "#8F8F8C"], DET: ["#CE1126", "#FFFFFF"], EDM: ["#041E42", "#FF4C00"], FLA: ["#C8102E", "#041E42"], LAK: ["#111111", "#A2AAAD"], MIN: ["#154734", "#A6192E"], MTL: ["#AF1E2D", "#192168"], NJD: ["#CE1126", "#111111"], NSH: ["#FFB81C", "#041E42"], NYI: ["#00539B", "#F47D30"], NYR: ["#0038A8", "#CE1126"], OTT: ["#C52032", "#C2912C"], PHI: ["#F74902", "#111111"], PIT: ["#111111", "#FCB514"], SEA: ["#001628", "#99D9D9"], SJS: ["#006D75", "#EA7200"], STL: ["#002F87", "#FCB514"], TBL: ["#002868", "#FFFFFF"], TOR: ["#00205B", "#FFFFFF"], UTA: ["#010101", "#6CACE4"], VAN: ["#00205B", "#00843D"], VGK: ["#333F42", "#B4975A"], WPG: ["#041E42", "#AC162C"], WSH: ["#041E42", "#C8102E"] };
+  const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+  const rgbHex = a => "#" + a.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
+  const lum = h => { const [r, g, b] = hexRgb(h).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * r + .7152 * g + .0722 * b; };
+  const contrast = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
+  const mix = (a, b, t) => { const x = hexRgb(a), y = hexRgb(b); return rgbHex(x.map((v, i) => v + (y[i] - v) * t)); };
+  const chroma = h => { const a = hexRgb(h); return (Math.max(...a) - Math.min(...a)) / 255; };
+  function readable(c1, c2, bg, toward) {
+    if (contrast(c1, bg) >= 3.2) return c1;
+    if (chroma(c2) > .25 && contrast(c2, bg) >= 3.2) return c2;
+    for (let t = .1; t <= 1; t += .1) { const m = mix(c1, toward, t); if (contrast(m, bg) >= 3.2) return m; }
+    return toward;
+  }
+  function teamStyle(ab) {
+    const [c1, c2] = TC[ab] || ["#171511", "#bb3a22"];
+    const on = contrast(c1, "#ffffff") >= 3 ? "#ffffff" : "#171511";
+    return `--tc1:${c1};--tc2:${c2};--tc-on:${on};--tcl:${readable(c1, c2, "#f6f1e6", "#000000")};--tcd:${readable(c1, c2, "#1f1b16", "#ffffff")}`;
+  }
+  const tdot = ab => { const c = TC[ab]; return c ? `<i class="tdot" style="--c1:${c[0]};--c2:${c[1]}" aria-hidden="true"></i>` : ""; };
+  const teamName = ab => { const t = TM[ab]; return t ? t.place + " " + t.name : ab; };
+
+  /* ===== Careers (NHL player landing pages, loaded on demand) ===== */
+  let CAREERS = null, CR_REQ = null;
+  const loadCareers = () => CR_REQ || (CR_REQ = opt("careers.json").then(c => (CAREERS = c || {})));
+  const LEAGUE = { Czechia: "Extraliga ČR", Czechia2: "1. liga ČR", Czechia3: "2. liga ČR", "Czechia U20": "ČR U20", "Czechia U20 2": "ČR U20 (2. liga)", "Czechia U19": "ČR U19", "Czechia U18": "ČR U18", "Czechia U18 2": "ČR U18 (2. liga)", "Czechia U16": "ČR U16", "Czech": "Extraliga ČR", "Czech2": "1. liga ČR", "Czech U20": "ČR U20", Slovakia: "Extraliga SR", Slovakia2: "1. liga SR", WC: "MS", "WC-A": "MS", OG: "OH", "WJC-20": "MS U20", "WJC-A": "MS U20", "WJC-18": "MS U18", "WJ18-A": "MS U18", WCup: "Světový pohár", "Champions HL": "Liga mistrů", Sweden: "SHL", "Swe-Jr.": "Švédsko U20", "Swe-U18": "Švédsko U18", International: "Mezinárodní", "Hlinka Gretzky Cup": "Hlinka Gretzky Cup", "Ivan Hlinka Memorial": "Memoriál I. Hlinky" };
+  const seasonTxt = s => { const y = Math.floor(s / 10000); return y + "/" + String((y + 1) % 100).padStart(2, "0"); };
+  const carState = { f: store.get("car", "all") };
+
+  function bioHTML(c, goalie) {
+    if (!c) return "";
+    const out = [];
+    if (c.b) {
+      const b = new Date(c.b + "T12:00:00"), now = new Date();
+      let age = now.getFullYear() - b.getFullYear(); if (now.getMonth() < b.getMonth() || (now.getMonth() === b.getMonth() && now.getDate() < b.getDate())) age--;
+      out.push(["Věk", `${age} let <span style="opacity:.75">(nar. ${b.getDate()}. ${b.getMonth() + 1}. ${b.getFullYear()})</span>`]);
+    }
+    if (c.h) out.push(["Výška", c.h + " cm"]);
+    if (c.w) out.push(["Váha", c.w + " kg"]);
+    if (c.s) out.push([goalie ? "Lapačka" : "Hůl", goalie ? (c.s === "L" ? "na levé ruce" : "na pravé ruce") : (c.s === "L" ? "levá" : "pravá")]);
+    if (c.c) out.push(["Narozen", esc(c.c) + (c.co ? ", " + esc(COUNTRY[c.co] || c.co) : "")]);
+    out.push(["Draft", c.d ? `${c.d[0]} · ${esc(c.d[1])} · ${c.d[2]}. kolo, ${c.d[4]}. celkově` : "nedraftován"]);
+    return out.map(([k, v]) => `<span><b>${k}</b>${v}</span>`).join("");
+  }
+
+  function careerChart(rows, goalie) {
+    const by = {};
+    rows.filter(r => r[1] === 2 && r[2] === "NHL").forEach(r => {
+      const o = by[r[0]] = by[r[0]] || { s: r[0], gp: 0, g: 0, a: 0, sv: 0, sa: 0 };
+      o.gp += r[4] || 0;
+      if (goalie) { if (r[9] != null && r[4]) { o.sv += r[9] * r[4]; o.sa += r[4]; } } else { o.g += r[5] || 0; o.a += r[6] || 0; }
+    });
+    const list = Object.values(by).sort((a, b) => a.s - b.s);
+    if (list.length < 2) return "";
+    const W = 560, H = 150, L = 26, R = 6, T = 14, B = 22, n = list.length, bw = (W - L - R) / n;
+    let svg = "";
+    if (goalie) {
+      const vals = list.map(o => o.sa ? o.sv / o.sa : null), lo = .86, hi = Math.max(.93, ...vals.filter(v => v != null));
+      const sy = v => H - B - (Math.max(lo, v) - lo) / (hi - lo) * (H - T - B);
+      [.88, .9, .92].forEach(v => svg += `<line x1="${L}" x2="${W - R}" y1="${sy(v)}" y2="${sy(v)}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${L - 4}" y="${sy(v) + 3}" text-anchor="end">${nf(v * 100, 0)}</text>`);
+      list.forEach((o, i) => { const v = vals[i]; if (v == null) return; const x = L + i * bw + bw * .18, w = bw * .64; svg += `<rect x="${x.toFixed(1)}" y="${sy(v).toFixed(1)}" width="${w.toFixed(1)}" height="${(H - B - sy(v)).toFixed(1)}" fill="var(--tc-text)"><title>${seasonTxt(o.s)}: ${pctf(v, 1)} % v ${o.gp} zápasech</title></rect>`; });
+    } else {
+      const mx = Math.max(10, ...list.map(o => o.g + o.a)), u = (H - T - B) / mx, step = mx > 80 ? 40 : mx > 40 ? 20 : 10;
+      for (let v = step; v <= mx; v += step) svg += `<line x1="${L}" x2="${W - R}" y1="${H - B - v * u}" y2="${H - B - v * u}" stroke="var(--line)" stroke-dasharray="2 4"/><text x="${L - 4}" y="${H - B - v * u + 3}" text-anchor="end">${v}</text>`;
+      list.forEach((o, i) => {
+        const x = L + i * bw + bw * .18, w = bw * .64, tt = `${seasonTxt(o.s)}: ${o.g} G + ${o.a} A = ${o.g + o.a} b. v ${o.gp} zápasech`;
+        svg += `<rect x="${x.toFixed(1)}" y="${(H - B - o.g * u).toFixed(1)}" width="${w.toFixed(1)}" height="${(o.g * u).toFixed(1)}" fill="var(--tc-text)"><title>${tt}</title></rect>`;
+        svg += `<rect x="${x.toFixed(1)}" y="${(H - B - (o.g + o.a) * u).toFixed(1)}" width="${w.toFixed(1)}" height="${(o.a * u).toFixed(1)}" fill="var(--tc-text)" opacity=".42"><title>${tt}</title></rect>`;
+        if (n <= 14) svg += `<text x="${(x + w / 2).toFixed(1)}" y="${(H - B - (o.g + o.a) * u - 3).toFixed(1)}" text-anchor="middle" style="fill:var(--ink);font-weight:600">${o.g + o.a}</text>`;
+      });
+    }
+    svg += `<line x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" stroke="var(--ink)"/>`;
+    const every = Math.ceil(n / 9);
+    list.forEach((o, i) => { if (i % every === 0 || i === n - 1) svg += `<text x="${(L + i * bw + bw / 2).toFixed(1)}" y="${H - 7}" text-anchor="middle">${String(Math.floor(o.s / 10000) % 100).padStart(2, "0")}/${String((Math.floor(o.s / 10000) + 1) % 100).padStart(2, "0")}</text>`; });
+    const leg = goalie ? `<span>úspěšnost zákroků v NHL po sezonách (%)</span>` : `<span><i style="background:var(--tc-text);border-radius:1px"></i>góly</span><span><i style="background:var(--tc-text);opacity:.42;border-radius:1px"></i>asistence</span><span>body v základní části NHL po sezonách</span>`;
+    return `<div class="carchart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${goalie ? "Úspěšnost" : "Body"} po sezonách v NHL">${svg}</svg><div class="maplegend">${leg}</div></div>`;
+  }
+
+  function careerHTML(id, goalie) {
+    if (!CAREERS) return `<p class="dim">Načítám kariéru…</p>`;
+    const c = CAREERS[id];
+    if (!c || !c.t || !c.t.length) return `<p class="dim">Kariérní statistiky pro tohoto hráče nejsou k dispozici.</p>`;
+    const f = carState.f;
+    const rows = c.t.filter(r => f === "po" ? r[1] === 3 : r[1] === 2 && (f !== "nhl" || r[2] === "NHL")).sort((a, b) => b[0] - a[0] || (b[2] === "NHL") - (a[2] === "NHL"));
+    const head = goalie
+      ? `<th class="l">Sezona</th><th class="l">Soutěž</th><th class="l">Tým</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="Prohry po prodloužení (u starších sezon remízy)">PP</th><th title="Průměr obdržených gólů">POG</th><th title="Úspěšnost zákroků">Úsp. %</th><th title="Čistá konta">ČK</th>`
+      : `<th class="l">Sezona</th><th class="l">Soutěž</th><th class="l">Tým</th><th title="Zápasy">Z</th><th title="Góly">G</th><th title="Asistence">A</th><th title="Body">B</th><th title="Plus/minus">+/−</th><th title="Trestné minuty">TM</th>`;
+    const v = x => x == null ? `<span class="dim">–</span>` : x;
+    const line = r => goalie
+      ? `<td>${v(r[4])}</td><td>${v(r[5])}</td><td>${v(r[6])}</td><td>${v(r[7])}</td><td>${r[8] == null ? v(null) : nf(r[8], 2)}</td><td style="font-weight:700">${r[9] == null ? v(null) : pctf(r[9], 1)}</td><td>${v(r[10])}</td>`
+      : `<td>${v(r[4])}</td><td>${v(r[5])}</td><td>${v(r[6])}</td><td style="font-weight:700">${v(r[7])}</td><td>${r[8] == null ? v(null) : `<span class="${r[8] > 0 ? "pos" : r[8] < 0 ? "neg" : "dim"}">${signed(r[8])}</span>`}</td><td>${v(r[9])}</td>`;
+    const nhl = rows.filter(r => r[2] === "NHL");
+    let tot = "";
+    if (nhl.length > 1) {
+      const sum = k => nhl.reduce((a, r) => a + (r[k] || 0), 0);
+      if (goalie) {
+        const gp = sum(4), svw = nhl.reduce((a, r) => a + (r[9] != null ? r[9] * r[4] : 0), 0), gaw = nhl.reduce((a, r) => a + (r[8] != null ? r[8] * r[4] : 0), 0);
+        tot = `<tr class="tot"><td class="l" colspan="3">NHL celkem${f === "po" ? " (play-off)" : ""} · ${new Set(nhl.map(r => r[0])).size} sezon</td><td>${gp}</td><td>${sum(5)}</td><td>${sum(6)}</td><td>${sum(7)}</td><td>${gp ? nf(gaw / gp, 2) : "–"}</td><td>${gp ? pctf(svw / gp, 1) : "–"}</td><td>${sum(10)}</td></tr>`;
+      } else {
+        const pm = sum(8);
+        tot = `<tr class="tot"><td class="l" colspan="3">NHL celkem${f === "po" ? " (play-off)" : ""} · ${new Set(nhl.map(r => r[0])).size} sezon</td><td>${sum(4)}</td><td>${sum(5)}</td><td>${sum(6)}</td><td>${sum(7)}</td><td class="${pm > 0 ? "pos" : pm < 0 ? "neg" : "dim"}">${signed(pm)}</td><td>${sum(9)}</td></tr>`;
+      }
+    }
+    const btn = (k, l) => `<button type="button" data-car="${k}" aria-pressed="${f === k}">${l}</button>`;
+    return `<div class="seg" role="group" aria-label="Výběr soutěží" style="margin-bottom:10px">${btn("all", "Všechny soutěže")}${btn("nhl", "Jen NHL")}${btn("po", "Play-off NHL")}</div>
+      ${f !== "po" ? careerChart(c.t, goalie) : ""}
+      ${rows.length ? `<div class="scroll"><table class="dtab"><thead><tr>${head}</tr></thead><tbody>${tot}${rows.map(r => `<tr class="${r[2] === "NHL" ? "nhl" : ""}"><td class="l">${seasonTxt(r[0])}</td><td class="l lg">${esc(LEAGUE[r[2]] || r[2])}</td><td class="l" style="white-space:normal">${esc(r[3])}</td>${line(r)}</tr>`).join("")}</tbody></table></div>` : `<p class="dim">${f === "po" ? "V play-off NHL zatím nehrál." : "Žádné záznamy."}</p>`}
+      <div class="src">Kariéra: <a href="https://www.nhl.com/player/${id}" target="_blank" rel="noopener">NHL.com</a>. Juniorské a evropské soutěže podle údajů NHL, u nižších soutěží mohou chybět některá čísla.</div>`;
+  }
+  const careerBlock = (id, goalie) => `<div class="sec car" id="car" data-pid="${id}" data-g="${goalie ? 1 : 0}"><h4>Kariéra po sezonách</h4>${careerHTML(id, goalie)}</div>`;
+
+  let lastFocus = null, drawerKey = "";
+  function openDrawer(html, team, key) {
+    if ($("#drawer").hidden) lastFocus = document.activeElement;
     const dr = $("#drawer");
+    drawerKey = key || "";
+    dr.setAttribute("style", teamStyle(team));
     dr.innerHTML = `<button type="button" class="close" id="d-close" aria-label="Zavřít">×</button>` + html;
     dr.hidden = false; $("#scrim").hidden = false;
-    $("#d-close").focus();
+    dr.scrollTop = 0;
+    document.body.style.overflow = "hidden";
+    $("#d-close").focus({ preventScroll: true });
+    if (!CAREERS && key && key[0] !== "t") loadCareers().then(() => fillCareer(key));
+  }
+  function fillCareer(key) {
+    if (drawerKey !== key || $("#drawer").hidden) return;
+    const box = $("#car"); if (!box) return;
+    const id = +box.dataset.pid, g = box.dataset.g === "1", c = CAREERS[id];
+    box.innerHTML = `<h4>Kariéra po sezonách</h4>${careerHTML(id, g)}`;
+    const bio = $("#pd-bio"); if (bio && c) bio.innerHTML = bioHTML(c, g);
+    const num = $("#pd-num-v"); if (num && c && c.n && !num.textContent.trim()) num.textContent = c.n;
   }
   function closeDrawer() {
-    $("#drawer").hidden = true; $("#scrim").hidden = true;
+    $("#drawer").hidden = true; $("#scrim").hidden = true; drawerKey = "";
+    document.body.style.overflow = "";
     if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  }
+
+  function playerHead(r, label, goalie) {
+    const t = TM[r.team] || {}, c = CAREERS && CAREERS[r.id];
+    const num = r.num || (c && c.n) || "";
+    const other = (goalie ? GK : SK).filter(x => x.id === r.id && x.team !== r.team);
+    return `<header class="pd-head">
+      <div class="pd-num"><span id="pd-num-v">${num}</span><small>${num ? "číslo dresu" : ""}</small></div>
+      <div class="pd-id"><div class="eyebrow">${label} · <button type="button" class="tlink" data-team="${r.team}">${esc(t.place || "")} ${esc(t.name || r.team)}</button></div>
+        <h3 id="d-name">${esc(r.name)}</h3>
+        <div class="sub">${r.nat ? esc(COUNTRY[r.nat] || r.nat) : "Národnost neuvedena"}${other.length ? ` · v sezoně také za ${other.map(o => `<button type="button" class="tlink" data-team="${o.team}">${o.team}</button>`).join(", ")}` : ""}</div></div>
+      <div class="pd-bio" id="pd-bio">${bioHTML(c, goalie)}</div>
+    </header>`;
   }
 
   function playerDetail(id, team) {
@@ -774,8 +977,6 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     if (!r) return;
     const peers = SK.filter(x => x.F === r.F && x.gp >= 5);
     const per = (k) => peers.map(x => x[k] / x.gp);
-    const t = TM[r.team] || {};
-    const role = r.F ? "útočníky" : "obránci";
     const rows = [
       ["Body na zápas", "kanadské body", nf(r.ppgp, 2), pctRank(per("p"), r.p / r.gp)],
       ["Góly na zápas", "góly", nf(r.g / r.gp, 2), pctRank(per("g"), r.g / r.gp)],
@@ -785,30 +986,33 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
       ["Plus/minus", "celkem", signed(r.pm), pctRank(peers.map(x => x.pm), r.pm)],
     ];
     if (r.F && r.fo) rows.push(["Vhazování", "úspěšnost", pctf(r.fo) + " %", pctRank(peers.filter(x => x.fo).map(x => x.fo), r.fo)]);
-    const other = SK.filter(x => x.id === r.id && x.team !== r.team);
-    openDrawer(`
-      <div><div class="eyebrow">${POS[r.pos]} · ${esc(t.place || "")} ${esc(t.name || r.team)}</div>
-      <h3 id="d-name">${esc(r.name)}</h3>
-      <div class="sub">${r.nat ? esc(COUNTRY[r.nat] || r.nat) : "Národnost neuvedena"}${other.length ? ` · v sezoně také za ${other.map(o => o.team).join(", ")}` : ""}</div></div>
-      <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.g}</b><span>Góly</span></div><div><b>${r.a}</b><span>Asist.</span></div><div><b>${r.p}</b><span>Body</span></div><div><b class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : ""}">${signed(r.pm)}</b><span>+/−</span></div></div>
-      ${gamesBlock(r.id)}
-      ${shotsBlock(r.id)}
-      <div class="pct"><h4>Porovnání s ligou</h4>
-        ${r.gp >= 5 ? `<p>Percentil mezi ${peers.length} ${r.F ? "útočníky" : "obránci"} s alespoň 5 zápasy. Delší pruh znamená lepší výkon než u většiny hráčů.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Hráč odehrál méně než 5 zápasů, porovnání by zatím nebylo vypovídající.</p>`}
-      </div>
-      <div class="facts">
-        <div><span>Přesilovkové góly</span><b class="num">${r.ppg}</b></div>
-        <div><span>Góly v oslabení</span><b class="num">${r.shg}</b></div>
-        <div><span>Vítězné góly</span><b class="num">${r.gwg}</b></div>
-        <div><span>Góly v prodloužení</span><b class="num">${r.otg}</b></div>
-        <div><span>Střely</span><b class="num">${r.s}</b></div>
-        <div><span>Úspěšnost střelby</span><b class="num">${r.s ? pctf(r.shp) + " %" : "–"}</b></div>
-        <div><span>Trestné minuty</span><b class="num">${r.pim}</b></div>
-        <div><span>Čas na ledě</span><b class="num">${toi(r.toi)}</b></div>
-      </div>
-      ${advBlock(r.id)}
-      ${linesBlock(r.id)}
-      <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil hráče na NHL.com ↗</a>`);
+    openDrawer(`${playerHead(r, POS[r.pos], false)}
+      <div class="pd-body">
+        <div class="pd-col">
+          <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.g}</b><span>Góly</span></div><div><b>${r.a}</b><span>Asist.</span></div><div><b>${r.p}</b><span>Body</span></div><div><b class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : ""}">${signed(r.pm)}</b><span>+/−</span></div></div>
+          <div class="pct"><h4>Porovnání s ligou</h4>
+            ${r.gp >= 5 ? `<p>Percentil mezi ${peers.length} ${r.F ? "útočníky" : "obránci"} s alespoň 5 zápasy. Delší pruh znamená lepší výkon než u většiny hráčů.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Hráč odehrál méně než 5 zápasů, porovnání by zatím nebylo vypovídající.</p>`}
+          </div>
+          <div class="facts">
+            <div><span>Přesilovkové góly</span><b class="num">${r.ppg}</b></div>
+            <div><span>Góly v oslabení</span><b class="num">${r.shg}</b></div>
+            <div><span>Vítězné góly</span><b class="num">${r.gwg}</b></div>
+            <div><span>Góly v prodloužení</span><b class="num">${r.otg}</b></div>
+            <div><span>Střely</span><b class="num">${r.s}</b></div>
+            <div><span>Úspěšnost střelby</span><b class="num">${r.s ? pctf(r.shp) + " %" : "–"}</b></div>
+            <div><span>Trestné minuty</span><b class="num">${r.pim}</b></div>
+            <div><span>Čas na ledě</span><b class="num">${toi(r.toi)}</b></div>
+          </div>
+          ${careerBlock(r.id, false)}
+          ${advBlock(r.id)}
+        </div>
+        <div class="pd-col">
+          ${gamesBlock(r.id)}
+          ${shotsBlock(r.id)}
+          ${linesBlock(r.id)}
+          <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil hráče na NHL.com ↗</a>
+        </div>
+      </div>`, r.team, "p" + r.id);
   }
 
   function advBlock(id) {
@@ -846,7 +1050,6 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     const r = GK.find(x => x.id === id && (!team || x.team === team)) || GK.find(x => x.id === id);
     if (!r) return;
     const peers = GK.filter(x => x.gp >= 3);
-    const t = TM[r.team] || {};
     const rows = [
       ["Úspěšnost zákroků", "procento", pctf(r.svp) + " %", pctRank(peers.map(x => x.svp), r.svp)],
       ["Průměr obdržených gólů", "na zápas, nižší je lepší", nf(r.gaa, 2), pctRank(peers.map(x => x.gaa), r.gaa, true)],
@@ -858,27 +1061,105 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
       rows.splice(1, 0, ["GSAx", "góly ušetřené nad očekáváním", s1(r.gsax), pctRank(mp.map(x => x.gsax), r.gsax)]);
       if (r.hdsv != null) rows.splice(2, 0, ["Nebezpečné střely", "úspěšnost zákroků", pctf(r.hdsv) + " %", pctRank(mp.filter(x => x.hdsv != null).map(x => x.hdsv), r.hdsv)]);
     }
-    openDrawer(`
-      <div><div class="eyebrow">Brankář · ${esc(t.place || "")} ${esc(t.name || r.team)}</div>
-      <h3 id="d-name">${esc(r.name)}</h3>
-      <div class="sub">${r.nat ? esc(COUNTRY[r.nat] || r.nat) : "Národnost neuvedena"}</div></div>
-      <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.w}</b><span>Výhry</span></div><div><b>${pctf(r.svp)}</b><span>Úsp. %</span></div><div><b>${nf(r.gaa, 2)}</b><span>POG</span></div><div><b>${r.so}</b><span>ČK</span></div></div>
-      ${goalieGamesBlock(r.id)}
-      <div class="pct"><h4>Porovnání s ligou</h4>
-        ${r.gp >= 3 ? `<p>Percentil mezi ${peers.length} brankáři s alespoň 3 zápasy. U počtu střel proti znamená delší pruh víc práce, ne lepší výkon.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Brankář odehrál méně než 3 zápasy, porovnání by zatím nebylo vypovídající.</p>`}
-      </div>
-      ${goalieShotsBlock(r.id)}
-      <div class="facts">
-        <div><span>Starty</span><b class="num">${r.gs}</b></div>
-        <div><span>Prohry</span><b class="num">${r.l}</b></div>
-        <div><span>Prohry po prodl.</span><b class="num">${r.otl}</b></div>
-        <div><span>Střely proti</span><b class="num">${r.sa}</b></div>
-        <div><span>Zákroky</span><b class="num">${r.sv}</b></div>
-        <div><span>Obdržené góly</span><b class="num">${r.ga}</b></div>
-        ${r.xga != null ? `<div><span>Očekávané OG (xOG)</span><b class="num">${nf(r.xga, 1)}</b></div><div><span>Nebezp. střely proti</span><b class="num">${r.hdsa}</b></div>` : ""}
-      </div>
-      ${r.xga != null ? `<div class="src">GSAx a xOG: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>. Kladné GSAx znamená, že brankář pustil méně gólů, než by čekal průměrný gólman ze stejných střel.</div>` : ""}
-      <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil brankáře na NHL.com ↗</a>`);
+    openDrawer(`${playerHead(r, "Brankář", true)}
+      <div class="pd-body">
+        <div class="pd-col">
+          <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.w}</b><span>Výhry</span></div><div><b>${pctf(r.svp)}</b><span>Úsp. %</span></div><div><b>${nf(r.gaa, 2)}</b><span>POG</span></div><div><b>${r.so}</b><span>ČK</span></div></div>
+          <div class="pct"><h4>Porovnání s ligou</h4>
+            ${r.gp >= 3 ? `<p>Percentil mezi ${peers.length} brankáři s alespoň 3 zápasy. U počtu střel proti znamená delší pruh víc práce, ne lepší výkon.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Brankář odehrál méně než 3 zápasy, porovnání by zatím nebylo vypovídající.</p>`}
+          </div>
+          <div class="facts">
+            <div><span>Starty</span><b class="num">${r.gs}</b></div>
+            <div><span>Prohry</span><b class="num">${r.l}</b></div>
+            <div><span>Prohry po prodl.</span><b class="num">${r.otl}</b></div>
+            <div><span>Střely proti</span><b class="num">${r.sa}</b></div>
+            <div><span>Zákroky</span><b class="num">${r.sv}</b></div>
+            <div><span>Obdržené góly</span><b class="num">${r.ga}</b></div>
+            ${r.xga != null ? `<div><span>Očekávané OG (xOG)</span><b class="num">${nf(r.xga, 1)}</b></div><div><span>Nebezp. střely proti</span><b class="num">${r.hdsa}</b></div>` : ""}
+          </div>
+          ${r.xga != null ? `<div class="src">GSAx a xOG: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>. Kladné GSAx znamená, že brankář pustil méně gólů, než by čekal průměrný gólman ze stejných střel.</div>` : ""}
+          ${careerBlock(r.id, true)}
+        </div>
+        <div class="pd-col">
+          ${goalieGamesBlock(r.id)}
+          ${goalieShotsBlock(r.id)}
+          <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil brankáře na NHL.com ↗</a>
+        </div>
+      </div>`, r.team, "g" + r.id);
+  }
+
+  /* ===== Team detail ===== */
+  function teamHeat(T, side) {
+    if (!SHOTS) return "";
+    const gp = TEAM_GP[T] || 1, list = SHOTS.filter(s => side === "for" ? s.team === T : s.opp === T);
+    if (!LEAGUE_GRID) { const allG = densityGrid(SHOTS), teamGames = SH_GAMES.length * 2; LEAGUE_GRID = allG.map(v => v / teamGames); LEAGUE_MAX = Math.max(...LEAGUE_GRID); }
+    const g = densityGrid(list).map((v, i) => v / gp - LEAGUE_GRID[i]);
+    return rinkSVG(heatLayer(g, "diff", LEAGUE_MAX * 0.45), side === "for" ? "Odkud tým střílí" : "Odkud střílejí soupeři");
+  }
+
+  function teamGameDetail(ab, gi) {
+    const g = GM[gi], home = g.home === ab, opp = home ? g.away : g.home;
+    const mine = Object.entries(PLG).flatMap(([pid, rows]) => rows.filter(r => r.gi === gi && r.team === ab).map(r => ({ pid: +pid, ...r })));
+    const theirs = Object.values(PLG).flatMap(rows => rows.filter(r => r.gi === gi && r.team === opp));
+    const sum = (a, k) => a.reduce((t, r) => t + (r[k] || 0), 0);
+    const gks = Object.entries(GKG).flatMap(([pid, rows]) => rows.filter(r => r.gi === gi && r.team === ab).map(r => ({ pid: +pid, ...r })));
+    const shots = SHOTS ? SHOTS.filter(s => s.gid === g.sid && s.team === ab && !s.en) : [];
+    const oshots = SHOTS ? SHOTS.filter(s => s.gid === g.sid && s.team === opp && !s.en) : [];
+    const fw = sum(mine, "fw"), fl = sum(mine, "fl");
+    const facts = [
+      ["Střely na branku", `${sum(mine, "sog")} : ${sum(theirs, "sog")}`],
+      ["Očekávané góly (xG)", shots.length || oshots.length ? `${nf(shots.reduce((a, s) => a + s.xg, 0), 2)} : ${nf(oshots.reduce((a, s) => a + s.xg, 0), 2)}` : "–"],
+      ["Hity", `${sum(mine, "hit")} : ${sum(theirs, "hit")}`], ["Zblokované střely", `${sum(mine, "blk")} : ${sum(theirs, "blk")}`],
+      ["Vhazování", fw + fl ? `${fw}–${fl} (${nf(fw / (fw + fl) * 100, 0)} %)` : "–"], ["Trestné minuty", `${sum(mine, "pim")} : ${sum(theirs, "pim")}`],
+    ];
+    const pts = mine.filter(r => r.g || r.a).sort((a, b) => (b.g + b.a) - (a.g + a.a) || b.g - a.g).map(r => `${esc(nmOf(r.pid))} ${r.g}+${r.a}`).join(", ");
+    const extra = (gks.length ? `<p style="margin:0"><span class="dim">Brankář:</span> ${gks.map(k => `${esc(nmOf(k.pid))} (${k.sv} zákroků z ${k.sa})`).join(", ")}</p>` : "") + (pts ? `<p style="margin:0"><span class="dim">Bodovali:</span> ${pts}</p>` : "");
+    const map = shots.length ? `<h5>Střely ${esc(ab)} v zápase</h5>${rinkSVG(dotsLayer(shots), "Střely týmu v zápase")}${dotsLegend(shots)}` : "";
+    return `<div class="gd">${gameHead(g)}
+      <div class="facts">${facts.map(([k, v]) => `<div><span>${k}</span><b class="num">${v}</b></div>`).join("")}</div>${extra}
+      <h5>Góly zápasu</h5>${goalList(gi, e => (e.side ? g.home : g.away) === ab)}${map}</div>`;
+  }
+
+  function teamDetail(ab) {
+    const t = TM[ab]; if (!t) return;
+    const confTeams = Object.values(TM).filter(x => x.conf === t.conf).sort((a, b) => b.pts - a.pts || (b.gf - b.ga) - (a.gf - a.ga));
+    const rank = confTeams.findIndex(x => x.ab === ab) + 1;
+    const streak = (() => { const m = /^([A-Z]+)(\d+)$/.exec(t.streak || ""); if (!m) return "–"; return m[2] + "× " + (m[1] === "W" ? "výhra" : m[1] === "L" ? "prohra" : "prohra po prodl."); })();
+    const sk = SK.filter(r => r.team === ab).sort((a, b) => b.p - a.p || b.g - a.g || b.gp - a.gp);
+    const gk = GK.filter(r => r.team === ab).sort((a, b) => b.gp - a.gp);
+    const bio = [["Bilance", `${t.w}–${t.l}–${t.otl}`], ["Body", `${t.pts} <span style="opacity:.75">(${nf(t.pts / (2 * t.gp) * 100, 1)} %)</span>`], ["Pořadí", `${rank}. na ${t.conf === "E" ? "Východě" : "Západě"}`], ["Skóre", `${t.gf}:${t.ga}`], ["Série", streak]];
+    if (t.xgp5 != null) bio.push(["xGF % (5 na 5)", pctf(t.xgp5, 1) + " %"], ["Corsi", pctf(t.cf5, 1) + " %"]);
+    const skRows = sk.map(r => `<tr class="rrow" data-id="${r.id}" data-team="${ab}" tabindex="0"><td class="jn">${r.num || ""}</td><td class="l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td><td class="l dim">${POS_SHORT[r.pos]}</td><td>${r.gp}</td><td>${r.g}</td><td>${r.a}</td><td style="font-weight:700">${r.p}</td><td class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : "dim"}">${signed(r.pm)}</td><td>${toi(r.toi)}</td></tr>`).join("");
+    const gkRows = gk.map(r => `<tr class="rrow" data-gid="${r.id}" data-team="${ab}" tabindex="0"><td class="jn">${r.num || ""}</td><td class="l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td><td>${r.gp}</td><td>${r.w}</td><td style="font-weight:700">${pctf(r.svp, 1)}</td><td>${nf(r.gaa, 2)}</td><td>${r.gsax == null ? "–" : `<span class="${tone(r.gsax, 0, .05)}">${s1(r.gsax)}</span>`}</td></tr>`).join("");
+    const games = GM ? GM.filter(g => g.home === ab || g.away === ab).sort((a, b) => b.i - a.i) : [];
+    const gRows = games.map(g => { const home = g.home === ab, res = gameRes(g, home); return `<tr class="grow" data-gi="${g.i}" tabindex="0" aria-expanded="false"><td class="l">${g.d}</td><td class="l">${home ? "vs" : "@"} ${tdot(home ? g.away : g.home)}<span class="team">${esc(home ? g.away : g.home)}</span></td><td class="l ${res.w ? "res-w" : "res-l"}">${res.txt}</td></tr>`; }).join("");
+    const lines = LINES ? LINES.filter(l => l.team === ab) : [];
+    const lineTab = (kind, n) => {
+      const a = lines.filter(l => l.kind === kind).sort((x, y) => y.toi - x.toi).slice(0, n);
+      if (!a.length) return "";
+      return `<div class="shooters" style="margin-bottom:10px"><table class="dtab"><thead><tr><th class="l">${kind === "L" ? "Útočné trojice" : "Obranné dvojice"}</th><th title="Společný čas 5 na 5">Čas</th><th title="Podíl očekávaných gólů">xGF %</th><th title="Góly pro : proti">Góly</th></tr></thead><tbody>${a.map(l => `<tr><td class="l" style="white-space:normal">${l.pl.map(plName).join('<span class="sep">–</span>')}</td><td>${toi(l.toi)}</td><td class="${tone(l.xgp, .5, .005)}" style="font-weight:700">${pctf(l.xgp, 0)}</td><td>${l.gf}:${l.ga}</td></tr>`).join("")}</tbody></table></div>`;
+    };
+    const lt = lineTab("L", 4) + lineTab("D", 3);
+    openDrawer(`<header class="pd-head team">
+        <div class="pd-num"><span>${esc(ab)}</span><small>${t.conf === "E" ? "Východ" : "Západ"} · ${DIV[t.div] || esc(t.div)}</small></div>
+        <div class="pd-id"><div class="eyebrow">Tým · ${t.gp} zápasů</div><h3 id="d-name">${esc(t.place)} ${esc(t.name)}</h3><div class="sub">${DIV[t.div] || esc(t.div)} divize, ${t.conf === "E" ? "Východní" : "Západní"} konference</div></div>
+        <div class="pd-bio">${bio.map(([k, v]) => `<span><b>${k}</b>${v}</span>`).join("")}</div>
+      </header>
+      <div class="pd-body">
+        <div class="pd-col">
+          <div class="sec rost"><h4>Soupiska · hráči</h4><p>Seřazeno podle bodů. Kliknutím otevřete detail hráče.</p>
+            <div class="shooters"><table class="dtab"><thead><tr><th title="Číslo dresu">#</th><th class="l">Hráč</th><th class="l" title="Pozice">Poz.</th><th title="Zápasy">Z</th><th title="Góly">G</th><th title="Asistence">A</th><th title="Body">B</th><th title="Plus/minus">+/−</th><th title="Průměrný čas na ledě">Čas</th></tr></thead><tbody>${skRows}</tbody></table></div></div>
+          ${gkRows ? `<div class="sec rost"><h4>Soupiska · brankáři</h4><div class="shooters"><table class="dtab"><thead><tr><th title="Číslo dresu">#</th><th class="l">Brankář</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Úspěšnost zákroků">Úsp. %</th><th title="Průměr obdržených gólů">POG</th><th title="Góly ušetřené nad očekáváním (MoneyPuck)">GSAx</th></tr></thead><tbody>${gkRows}</tbody></table></div></div>` : ""}
+        </div>
+        <div class="pd-col">
+          ${gRows ? `<div class="sec tres" id="glog" data-kind="t" data-team="${ab}"><h4>Výsledky zápasů</h4><p>Kliknutím na zápas zobrazíte góly, střely, hity, vhazování a mapu střel.</p>
+            <div class="shooters"><table class="gtab dtab"><thead><tr><th class="l">Datum</th><th class="l">Soupeř</th><th class="l">Výsledek</th></tr></thead><tbody>${gRows}</tbody></table></div></div>` : ""}
+          ${SHOTS ? `<div class="sec"><h4>Mapy střel proti průměru ligy</h4><p>Červeně místa, odkud se střílí víc než v průměrném zápase ligy, modře méně.</p>
+            <div class="tmaps"><figure><figcaption>Útok · střely týmu</figcaption>${teamHeat(ab, "for")}</figure><figure><figcaption>Obrana · střely soupeřů</figcaption>${teamHeat(ab, "against")}</figure></div>
+            <div class="maplegend"><span>méně než liga</span><span class="ramp" style="background:linear-gradient(90deg, rgba(var(--cool),.85), rgba(var(--cool),.05) 45%, rgba(var(--heat),.05) 55%, rgba(var(--heat),.85))"></span><span>víc než liga</span></div></div>` : ""}
+          ${lt ? `<div class="sec"><h4>Formace (5 na 5)</h4><p>Nejvytíženější kombinace. xGF % nad 50 znamená víc šancí než soupeř.</p>${lt}<div class="src">Formace a mapy: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></div></div>` : ""}
+        </div>
+      </div>`, ab, "t" + ab);
   }
 
   /* ===== Shots (MoneyPuck shot-level data) ===== */
@@ -1268,10 +1549,10 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
     if (nx && nx.classList.contains("gdet")) nx.remove();
     tr.setAttribute("aria-expanded", String(!open));
     if (open) return;
-    const id = +box.dataset.pid, gi = +tr.dataset.gi;
+    const id = +box.dataset.pid, gi = +tr.dataset.gi, cols = tr.children.length;
+    if (box.dataset.kind === "t") { tr.insertAdjacentHTML("afterend", `<tr class="gdet"><td colspan="${cols}">${teamGameDetail(box.dataset.team, gi)}</td></tr>`); return; }
     const r = (box.dataset.kind === "g" ? GKG[id] : PLG[id]).find(x => x.gi === gi);
     if (!r) return;
-    const cols = tr.children.length;
     tr.insertAdjacentHTML("afterend", `<tr class="gdet"><td colspan="${cols}">${box.dataset.kind === "g" ? goalieGameDetail(id, r) : skaterGameDetail(id, r)}</td></tr>`);
   }
 
@@ -1359,9 +1640,7 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
   $("#tablebox").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("tr")) e.target.click(); });
   $("#leaders").addEventListener("click", e => { const b = e.target.closest(".lead"); if (b) playerDetail(+b.dataset.id, b.dataset.team); });
   $("#conf").addEventListener("click", e => {
-    const tr = e.target.closest("tr[data-teamrow]"); if (!tr) return;
-    Object.assign(skState, { team: tr.dataset.teamrow, q: "", pos: "all", nat: "", gp: 0 }); syncControls(); store.set("sk", skState);
-    setView("hraci"); window.scrollTo({ top: $(".tabs").offsetTop - 8, behavior: "smooth" });
+    const tr = e.target.closest("tr[data-teamrow]"); if (tr) teamDetail(tr.dataset.teamrow);
   });
   $("#conf").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("tr")) e.target.click(); });
   $("#scrim").addEventListener("click", closeDrawer);
@@ -1385,17 +1664,25 @@ footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
   $("#drawer").addEventListener("click", e => {
     if (e.target.closest("a")) return;
     const p = e.target.closest(".pl"); if (p) { playerDetail(+p.dataset.id, p.dataset.team); return; }
+    const tl = e.target.closest(".tlink"); if (tl) { teamDetail(tl.dataset.team); return; }
+    const rr = e.target.closest("tr.rrow"); if (rr) { if (rr.dataset.gid) goalieDetail(+rr.dataset.gid, rr.dataset.team); else playerDetail(+rr.dataset.id, rr.dataset.team); return; }
+    const cb = e.target.closest("[data-car]");
+    if (cb) { carState.f = cb.dataset.car; store.set("car", carState.f); const box = $("#car"); if (box) box.innerHTML = `<h4>Kariéra po sezonách</h4>${careerHTML(+box.dataset.pid, box.dataset.g === "1")}`; return; }
     const tr = e.target.closest("tr.grow"); if (tr) { toggleGame(tr); return; }
     const bar = e.target.closest(".ptchart rect[data-gi]");
     if (bar) { const row = $(`#glog tr.grow[data-gi="${bar.dataset.gi}"]`); if (row) { if (row.getAttribute("aria-expanded") !== "true") toggleGame(row); row.scrollIntoView({ block: "start", behavior: "smooth" }); row.focus({ preventScroll: true }); } }
   });
-  $("#drawer").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("tr.grow")) { e.preventDefault(); toggleGame(e.target); } });
+  $("#drawer").addEventListener("keydown", e => {
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches("tr.grow")) { e.preventDefault(); toggleGame(e.target); }
+    else if (e.key === "Enter" && e.target.matches("tr.rrow")) e.target.click();
+  });
 
   const opt = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
   const mpReq = opt("mp.json"), shReq = opt("shots.json"), gsReq = opt("goalies_shots.json"), lnReq = opt("lines.json"), gmReq = opt("games.json");
   fetch("data.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => Promise.all([mpReq, shReq, gsReq, lnReq, gmReq]).then(([mp, sh, gs, ln, gm]) => {
     try { loadShots(sh, gs); } catch (e) { SHOTS = null; HAS_GOALIE_SHOTS = false; }
     load(d, mp, ln, gm);
+    setTimeout(loadCareers, 1500);
   })).catch(() => {
     $("#asof").textContent = "Data se nepodařilo načíst";
     $("#tablebox").innerHTML = `<div class="empty">Soubor se statistikami se nenačetl. Obnovte stránku; pokud problém trvá, požádejte Clauda o nové publikování dat.</div>`;
