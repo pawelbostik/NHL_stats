@@ -1,0 +1,1404 @@
+<title>Statistiky NHL 2026/27</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: kluziště – světlý "led", tenké modro-červené čáry jako motiv, souhrn lídrů nahoře, pod ním přepínač Hráči / Brankáři / Týmy a řaditelná tabulka. */
+:root {
+  --ice: #f2f5f8;
+  --board: #ffffff;
+  --ink: #0f1b2a;
+  --muted: #5a6a7c;
+  --line: #d5dde6;
+  --row: #f7f9fb;
+  --red: #c8102e;
+  --blue: #1d4e9e;
+  --blue-soft: #e4ecf8;
+  --red-soft: #fbe6e9;
+  --good: #1f7a4d;
+  --bad: #b3261e;
+  --bar: #c9d8ee;
+  --rink: #fbfdff;
+  --rinkline: #b9c7d6;
+  --heat: 200, 16, 46;
+  --cool: 29, 78, 158;
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ice: #0b131d; --board: #111c29; --ink: #e5ecf4; --muted: #8d9db0; --line: #22324a; --row: #142130;
+    --red: #ff5a68; --blue: #7aa8ff; --blue-soft: #1a2a44; --red-soft: #3a1820; --good: #5fd39a; --bad: #ff7b72; --bar: #24406b;
+    --rink: #0e1824; --rinkline: #33465e; --heat: 255, 90, 104; --cool: 122, 168, 255;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ice: #0b131d; --board: #111c29; --ink: #e5ecf4; --muted: #8d9db0; --line: #22324a; --row: #142130;
+  --red: #ff5a68; --blue: #7aa8ff; --blue-soft: #1a2a44; --red-soft: #3a1820; --good: #5fd39a; --bad: #ff7b72; --bar: #24406b;
+  --rink: #0e1824; --rinkline: #33465e; --heat: 255, 90, 104; --cool: 122, 168, 255;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--ice); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Header */
+header { padding-top: 28px; display: flex; flex-direction: column; gap: 6px; }
+.rink { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; height: 4px; margin-top: 12px; }
+.rink span:nth-child(1), .rink span:nth-child(3) { background: var(--blue); }
+.rink span:nth-child(2) { background: linear-gradient(90deg, transparent 0 46%, var(--red) 46% 54%, transparent 54%); }
+.rink span { opacity: .9; }
+.eyebrow { font-family: var(--font-display); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; color: var(--red); }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(40px, 7vw, 64px); line-height: .95; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.meta { color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.meta a { color: var(--blue); }
+
+/* Leaders */
+.leaders { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.lead {
+  background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; text-align: left;
+  font: inherit; color: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 2px; min-width: 0;
+}
+.lead:hover { border-color: var(--blue); }
+.lead:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, th button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.lead .lbl { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; color: var(--muted); }
+.lead .val { font-family: var(--font-display); font-weight: 700; font-size: 40px; line-height: 1; color: var(--ink); }
+.lead .who { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lead .tm { color: var(--muted); font-size: 13px; }
+.lead.cz .lbl { color: var(--red); }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; box-shadow: inset 0 -2px 0 var(--line); overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.tabs::-webkit-scrollbar { display: none; }
+.tab { white-space: nowrap; flex: none; }
+.tab {
+  font-family: var(--font-display); font-weight: 600; font-size: 20px; letter-spacing: .02em; padding: 8px 16px 10px; background: none; border: 0;
+  color: var(--muted); cursor: pointer; border-bottom: 3px solid transparent;
+}
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--red); }
+.tab:hover { color: var(--ink); }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field > span { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+input[type="search"], select, input[type="number"] {
+  font: inherit; color: var(--ink); background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 7px 10px; min-height: 38px;
+}
+input[type="search"] { width: 220px; max-width: 100%; }
+input[type="number"] { width: 76px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--board); }
+.seg button { font: inherit; font-weight: 500; border: 0; background: none; color: var(--muted); padding: 7px 12px; min-height: 38px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button[aria-pressed="true"] { background: var(--blue); color: var(--board); }
+.count { margin-left: auto; color: var(--muted); font-size: 14px; align-self: center; }
+.reset { font: inherit; font-size: 14px; color: var(--blue); background: none; border: 0; cursor: pointer; padding: 8px 4px; text-decoration: underline; }
+
+/* Table */
+.tablebox { background: var(--board); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; max-height: 72vh; overflow-y: auto; }
+table { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 980px; }
+th, td { padding: 7px 10px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line); }
+thead th { position: sticky; top: 0; z-index: 2; background: var(--board); font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: .04em; color: var(--muted); border-bottom: 2px solid var(--line); }
+th button { all: unset; cursor: pointer; display: inline-flex; gap: 3px; align-items: center; }
+th button:hover { color: var(--ink); }
+th.sorted { color: var(--ink); }
+th.sorted button::after { content: "▼"; font-size: 9px; color: var(--red); }
+th.sorted.asc button::after { content: "▲"; }
+td { font-variant-numeric: tabular-nums; }
+tbody tr { cursor: pointer; }
+tbody tr:nth-child(even) td { background: var(--row); }
+tbody tr td { background: var(--board); }
+tbody tr:hover td { background: var(--blue-soft); }
+.l { text-align: left; }
+.stick1 { position: sticky; left: 0; z-index: 1; width: 44px; color: var(--muted); }
+.stick2 { position: sticky; left: 44px; z-index: 1; box-shadow: 1px 0 0 var(--line); }
+thead .stick1, thead .stick2 { z-index: 3; }
+.name { font-weight: 600; }
+.chip { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .04em; padding: 1px 5px; border-radius: 3px; background: var(--ice); color: var(--muted); margin-left: 6px; vertical-align: 1px; }
+.chip.cze { background: var(--red-soft); color: var(--red); }
+.chip.svk { background: var(--blue-soft); color: var(--blue); }
+.team { font-family: var(--font-display); font-weight: 600; letter-spacing: .04em; }
+.pts { font-weight: 700; position: relative; }
+.pts .bar { position: absolute; left: 6px; right: 6px; bottom: 3px; height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.pts .bar i { display: block; height: 100%; background: var(--blue); }
+.pos { color: var(--good); }
+.neg { color: var(--bad); }
+.dim { color: var(--muted); }
+.hl td { font-weight: 600; }
+.empty { padding: 40px 16px; text-align: center; color: var(--muted); }
+
+/* Teams */
+.conf { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+.conf h2 { font-family: var(--font-display); font-weight: 700; font-size: 26px; margin: 0 0 8px; }
+.conf table { min-width: 1060px; }
+footer a { color: var(--blue); }
+.cut td { border-bottom: 2px dashed var(--red); }
+.streak { font-family: var(--font-display); font-weight: 600; padding: 1px 6px; border-radius: 3px; }
+.streak.w { background: color-mix(in srgb, var(--good) 15%, transparent); color: var(--good); }
+.streak.l { background: color-mix(in srgb, var(--bad) 15%, transparent); color: var(--bad); }
+.streak.o { background: var(--ice); color: var(--muted); }
+.legend { color: var(--muted); font-size: 13px; }
+
+/* Player drawer */
+.scrim { position: fixed; inset: 0; background: rgb(8 14 22 / .45); z-index: 20; }
+.drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; width: min(440px, 100%); z-index: 21; background: var(--board); border-left: 1px solid var(--line);
+  overflow-y: auto; padding: calc(20px + env(safe-area-inset-top, 0px)) max(20px, env(safe-area-inset-right, 0px)) calc(28px + env(safe-area-inset-bottom, 0px)) 20px;
+  display: flex; flex-direction: column; gap: 18px;
+}
+.drawer .close { position: absolute; top: calc(12px + env(safe-area-inset-top, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); font: inherit; font-size: 22px; line-height: 1; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--board); color: var(--ink); cursor: pointer; }
+.drawer h3 { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1; margin: 0; padding-right: 44px; text-wrap: balance; }
+.drawer .sub { color: var(--muted); }
+.big { display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid var(--line); border-radius: 6px; }
+.big div { padding: 10px 6px; text-align: center; display: flex; flex-direction: column; }
+.big div + div { border-left: 1px solid var(--line); }
+.big b { font-family: var(--font-display); font-size: 30px; line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; }
+.big span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.pct h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+.pct p { margin: 0 0 10px; color: var(--muted); font-size: 13px; }
+.prow { display: grid; grid-template-columns: 128px minmax(0, 1fr) 52px; gap: 10px; align-items: center; padding: 5px 0; font-size: 14px; }
+.prow .track { height: 10px; background: var(--ice); border-radius: 5px; position: relative; overflow: hidden; border: 1px solid var(--line); }
+.prow .track i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; }
+.prow .v { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+.prow small { display: block; color: var(--muted); font-size: 12px; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 14px; }
+.facts div { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 4px 0; gap: 8px; }
+.facts span { color: var(--muted); }
+.drawer a.ext { color: var(--blue); font-weight: 600; }
+
+/* Shot plot */
+.plot { margin: 18px 0 0; background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.plot h2 { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin: 0; }
+.plot p { margin: 4px 0 0; color: var(--muted); font-size: 14px; max-width: 80ch; }
+.key { display: inline-flex; gap: 6px; align-items: center; margin-left: 6px; white-space: nowrap; }
+.key .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); opacity: .7; margin-left: 6px; }
+.key .dot.cz { background: var(--red); opacity: 1; }
+.plotbox { overflow-x: auto; }
+.plotbox svg { display: block; width: 100%; min-width: 560px; height: auto; }
+.plotbox .axis { stroke: var(--line); }
+.plotbox .grid { stroke: var(--line); stroke-dasharray: 2 4; }
+.plotbox .diag { stroke: var(--muted); stroke-dasharray: 6 5; }
+.plotbox text { fill: var(--muted); font-family: var(--font-body); font-size: 12px; font-variant-numeric: tabular-nums; }
+.plotbox .lab { fill: var(--ink); font-weight: 600; font-size: 12px; }
+.plotbox circle { cursor: pointer; }
+.plotbox circle.p { fill: var(--blue); fill-opacity: .45; stroke: var(--blue); stroke-opacity: .7; }
+.plotbox circle.cz { fill: var(--red); fill-opacity: .9; stroke: var(--board); }
+.plotbox circle:hover { fill-opacity: 1; }
+.src { font-size: 12px; color: var(--muted); }
+.src a { color: var(--blue); }
+
+/* Shot quality bar */
+.sq { display: flex; height: 22px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); font-size: 12px; font-weight: 600; }
+.sq span { display: flex; align-items: center; justify-content: center; color: var(--board); min-width: 0; overflow: hidden; white-space: nowrap; }
+.sq .ld { background: var(--bar); color: var(--ink); }
+.sq .md { background: var(--blue); }
+.sq .hd { background: var(--red); }
+.sqleg { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+.sqleg i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+/* Rink maps */
+.rinksvg { display: block; width: 100%; height: auto; }
+.rinksvg .ice { fill: var(--rink); stroke: var(--rinkline); stroke-width: .5; }
+.rinksvg .ln { stroke: var(--rinkline); stroke-width: .3; fill: none; }
+.rinksvg .gl { stroke: var(--red); stroke-width: .3; opacity: .7; fill: none; }
+.rinksvg .bl { stroke: var(--blue); stroke-width: 1; opacity: .55; }
+.rinksvg .crease { fill: var(--blue-soft); stroke: var(--red); stroke-width: .3; opacity: .9; }
+.rinksvg .net { fill: none; stroke: var(--ink); stroke-width: .4; }
+.rinksvg .dotc { fill: var(--red); opacity: .55; }
+.rinksvg .s-goal { fill: var(--red); stroke: var(--board); stroke-width: .25; }
+.rinksvg .s-on { fill: var(--blue); fill-opacity: .55; stroke: var(--blue); stroke-width: .15; }
+.rinksvg .s-miss { fill: none; stroke: var(--muted); stroke-width: .25; opacity: .8; }
+.rinksvg circle[data-i] { cursor: default; }
+.maplegend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); margin-top: 6px; align-items: center; }
+.maplegend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+.maplegend .lg-goal { background: var(--red); }
+.maplegend .lg-on { background: var(--blue); opacity: .6; }
+.maplegend .lg-miss { border: 1.5px solid var(--muted); }
+.ramp { display: inline-block; width: 120px; height: 10px; border-radius: 3px; vertical-align: -1px; margin: 0 6px; border: 1px solid var(--line); }
+.smgrid { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 22px; margin-top: 18px; align-items: start; }
+.rinkfig { margin: 0; background: var(--board); border: 1px solid var(--line); border-radius: 6px; padding: 14px; }
+.rinkfig figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+.smside { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.smside h3 { font-family: var(--font-display); font-weight: 700; font-size: 24px; margin: 0; }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 6px; background: var(--board); }
+.kpis div { padding: 10px 8px; display: flex; flex-direction: column; gap: 2px; }
+.kpis div + div { border-left: 1px solid var(--line); }
+.kpis b { font-family: var(--font-display); font-size: 26px; line-height: 1; font-variant-numeric: tabular-nums; }
+.kpis span { font-size: 12px; color: var(--muted); }
+.kpis small { font-size: 12px; font-variant-numeric: tabular-nums; }
+.typebars { display: flex; flex-direction: column; gap: 6px; }
+.tb { display: grid; grid-template-columns: 100px minmax(0, 1fr) 84px; gap: 8px; align-items: center; font-size: 14px; }
+.tb .trk { height: 12px; background: var(--ice); border: 1px solid var(--line); border-radius: 3px; position: relative; overflow: hidden; }
+.tb .trk i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--bar); }
+.tb .trk i.g { background: var(--red); }
+.tb .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.shooters { border: 1px solid var(--line); border-radius: 6px; background: var(--board); overflow-x: auto; }
+.shooters table { min-width: 0; }
+.shooters td, .shooters th { padding: 6px 10px; }
+.trend svg { display: block; width: 100%; height: auto; }
+.trend .ax { stroke: var(--line); }
+.trend .grid { stroke: var(--line); stroke-dasharray: 2 4; }
+.trend text { fill: var(--muted); font-size: 11px; font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+.trend .lg { stroke: var(--red); stroke-width: 2.2; fill: none; }
+.trend .lx { stroke: var(--blue); stroke-width: 2; fill: none; stroke-dasharray: 5 3; }
+.trend .ar { fill: var(--blue); opacity: .08; }
+.drawer .sec h4 { font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+.drawer .sec p { margin: 0 0 8px; color: var(--muted); font-size: 13px; }
+.pl { all: unset; cursor: pointer; font-weight: 600; border-bottom: 1px dotted var(--muted); }
+.pl:hover, .pl:focus-visible { color: var(--red); border-bottom-color: var(--red); }
+.sep { color: var(--muted); margin: 0 5px; }
+.xg5 { display: inline-block; width: 46px; height: 6px; border-radius: 3px; background: var(--ice); border: 1px solid var(--line); position: relative; vertical-align: 1px; margin-left: 6px; overflow: hidden; }
+.xg5 i { position: absolute; top: 0; bottom: 0; }
+.xg5::after { content: ""; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: var(--muted); }
+.dtab { width: 100%; min-width: 0; font-size: 14px; }
+.dtab th, .dtab td { padding: 5px 6px; }
+.dtab tbody tr { cursor: default; }
+.dtab tbody tr:hover td { background: inherit; }
+.gtab { width: 100%; min-width: 0; font-size: 13px; }
+.gtab th, .gtab td { padding: 5px 5px; }
+.gtab tbody tr.grow { cursor: pointer; }
+.gtab tbody tr.grow:hover td, .gtab tbody tr.grow[aria-expanded="true"] td { background: var(--blue-soft); }
+.gtab tbody tr.grow td:first-child::before { content: "▸"; display: inline-block; width: 12px; color: var(--muted); font-size: 10px; transition: transform .12s; }
+.gtab tbody tr.grow[aria-expanded="true"] td:first-child::before { transform: rotate(90deg); color: var(--red); }
+.gtab td.res-w { color: var(--good); font-weight: 600; }
+.gtab td.res-l { color: var(--bad); font-weight: 600; }
+.gtab tr.gdet > td { background: var(--ice) !important; padding: 10px 10px 14px; white-space: normal; text-align: left; cursor: default; }
+.gd { display: flex; flex-direction: column; gap: 10px; }
+.gd-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; align-items: baseline; }
+.gd-head b { font-family: var(--font-display); font-size: 19px; }
+.gd-head a { font-size: 12px; color: var(--blue); }
+.gd .facts { font-size: 13px; gap: 2px 14px; }
+.gd h5 { margin: 4px 0 0; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.evl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; font-size: 13px; }
+.evl li { display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 8px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.evl li .tm2 { color: var(--muted); font-variant-numeric: tabular-nums; }
+.evl li.me { font-weight: 600; }
+.evl li.me .tm2 { color: var(--red); }
+.evl .sc { font-family: var(--font-display); font-weight: 700; margin-right: 6px; }
+.gd .rinksvg { max-width: 300px; }
+.ptchart svg { display: block; width: 100%; height: auto; }
+.ptchart rect[data-gi] { cursor: pointer; }
+.ptchart text { fill: var(--muted); font-size: 10px; font-family: var(--font-body); }
+.note { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding: 2px 0 2px 10px; margin-top: 8px; }
+@media (max-width: 860px) { .smgrid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .kpis div:nth-child(3) { border-left: 0; } .kpis div:nth-child(n+3) { border-top: 1px solid var(--line); } .tb { grid-template-columns: 84px minmax(0, 1fr) 74px; } }
+
+footer { color: var(--muted); font-size: 13px; max-width: 70ch; }
+.loading { padding: 60px 0; color: var(--muted); }
+
+@media (max-width: 900px) {
+  .leaders { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .leaders { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lead .val { font-size: 32px; }
+  .count { margin-left: 0; width: 100%; }
+  input[type="search"] { width: 100%; }
+  .field.grow { width: 100%; }
+  .tab { font-size: 18px; padding: 8px 10px 10px; }
+  .big b { font-size: 24px; }
+  .prow { grid-template-columns: 104px minmax(0, 1fr) 48px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .drawer { animation: slide .18s ease-out; }
+  @keyframes slide { from { transform: translateX(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">NHL · základní část 2026/27</div>
+    <h1>Statistiky NHL</h1>
+    <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span></div>
+    <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
+  </header>
+
+  <section class="leaders" id="leaders" aria-label="Lídři ligy"></section>
+
+  <nav class="tabs" role="tablist" aria-label="Přehled">
+    <button class="tab" role="tab" id="tab-hraci" data-view="hraci" aria-selected="true">Hráči</button>
+    <button class="tab" role="tab" id="tab-brankari" data-view="brankari" aria-selected="false">Brankáři</button>
+    <button class="tab" role="tab" id="tab-tymy" data-view="tymy" aria-selected="false">Týmy</button>
+    <button class="tab" role="tab" id="tab-strely" data-view="strely" aria-selected="false" hidden>Mapy střel</button>
+    <button class="tab" role="tab" id="tab-formace" data-view="formace" aria-selected="false" hidden>Formace</button>
+  </nav>
+
+  <section id="view-hraci">
+    <div class="filters">
+      <div class="field" id="sk-mode-wrap" hidden><span>Zobrazení</span>
+        <div class="seg" id="sk-mode" role="group" aria-label="Zobrazení statistik">
+          <button type="button" data-v="basic" aria-pressed="true">Základní</button>
+          <button type="button" data-v="adv" aria-pressed="false">Střelba a xG</button>
+        </div>
+      </div>
+      <label class="field grow"><span>Hledat hráče</span><input type="search" id="sk-q" placeholder="Jméno, např. Pastrňák" autocomplete="off"></label>
+      <label class="field"><span>Tým</span><select id="sk-team"></select></label>
+      <div class="field"><span>Pozice</span>
+        <div class="seg" id="sk-pos" role="group" aria-label="Pozice">
+          <button type="button" data-v="all" aria-pressed="true">Vše</button>
+          <button type="button" data-v="F" aria-pressed="false">Útočníci</button>
+          <button type="button" data-v="D" aria-pressed="false">Obránci</button>
+        </div>
+      </div>
+      <label class="field"><span>Národnost</span><select id="sk-nat"></select></label>
+      <label class="field"><span>Min. zápasů</span><input type="number" id="sk-gp" min="0" max="82" value="0"></label>
+      <button type="button" class="reset" id="sk-reset">Zrušit filtry</button>
+      <div class="count" id="sk-count"></div>
+    </div>
+    <figure class="plot" id="shotplot" hidden>
+      <figcaption>
+        <h2>Góly proti očekávaným gólům</h2>
+        <p>Každá tečka je hráč (aspoň 3 zápasy). Vodorovně xG, tedy kolik gólů by z jeho střel dal průměrný hráč podle místa a typu střely. Svisle skutečné góly. Nad čarou střílí lépe, než odpovídá kvalitě šancí, pod čarou hůř. <span class="key"><i class="dot"></i>hráč <i class="dot cz"></i>Čech</span></p>
+      </figcaption>
+      <div class="plotbox" id="plotbox"></div>
+    </figure>
+  </section>
+
+  <section id="view-brankari" hidden>
+    <div class="filters">
+      <label class="field grow"><span>Hledat brankáře</span><input type="search" id="gk-q" placeholder="Jméno, např. Vejmelka" autocomplete="off"></label>
+      <label class="field"><span>Tým</span><select id="gk-team"></select></label>
+      <label class="field"><span>Národnost</span><select id="gk-nat"></select></label>
+      <label class="field"><span>Min. zápasů</span><input type="number" id="gk-gp" min="0" max="82" value="1"></label>
+      <button type="button" class="reset" id="gk-reset">Zrušit filtry</button>
+      <div class="count" id="gk-count"></div>
+    </div>
+  </section>
+
+  <div class="tablebox" id="tablebox"><div class="loading">Načítám statistiky…</div></div>
+
+  <section id="view-strely" hidden>
+    <div class="filters">
+      <label class="field"><span>Tým</span><select id="sm-team"></select></label>
+      <div class="field"><span>Střely</span>
+        <div class="seg" id="sm-side" role="group" aria-label="Čí střely">
+          <button type="button" data-v="for" aria-pressed="true">Střely týmu</button>
+          <button type="button" data-v="against" aria-pressed="false">Střely soupeřů</button>
+        </div>
+      </div>
+      <div class="field"><span>Barvy</span>
+        <div class="seg" id="sm-mode" role="group" aria-label="Zobrazení mapy">
+          <button type="button" data-v="diff" aria-pressed="true">Proti průměru ligy</button>
+          <button type="button" data-v="dens" aria-pressed="false">Hustota</button>
+          <button type="button" data-v="dots" aria-pressed="false">Jednotlivé střely</button>
+        </div>
+      </div>
+    </div>
+    <div class="smgrid">
+      <figure class="rinkfig" id="sm-map"></figure>
+      <div class="smside" id="sm-side-panel"></div>
+    </div>
+  </section>
+
+  <section id="view-formace" hidden>
+    <div class="filters">
+      <label class="field"><span>Tým</span><select id="fl-team"></select></label>
+      <div class="field"><span>Typ</span>
+        <div class="seg" id="fl-kind" role="group" aria-label="Typ formace">
+          <button type="button" data-v="L" aria-pressed="true">Útočné trojice</button>
+          <button type="button" data-v="D" aria-pressed="false">Obranné dvojice</button>
+        </div>
+      </div>
+      <label class="field"><span>Min. minut spolu</span><input type="number" id="fl-min" min="0" max="999" value="10"></label>
+      <div class="count" id="fl-count"></div>
+    </div>
+    <p class="legend" style="margin:0 0 12px">Jen hra 5 na 5, kdy byli na ledě všichni hráči formace současně. <b>xGF %</b> je podíl očekávaných gólů: nad 50 % formace vytváří víc šancí, než jich pouští. <b>CF %</b> (Corsi) je podíl všech střeleckých pokusů, tedy kdo má víc puk. Kliknutím na jméno otevřete detail hráče. Zdroj: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></p>
+    <div class="tablebox" id="fl-box"></div>
+  </section>
+
+  <section id="view-tymy" hidden>
+    <div class="conf" id="conf"></div>
+    <p class="legend">Přerušovaná čára odděluje prvních osm týmů konference (postupová místa). Kliknutím na tým zobrazíte jeho hráče.</p>
+  </section>
+
+  <footer id="foot">Kliknutím na hráče nebo brankáře otevřete detail s porovnáním vůči ostatním a se seznamem všech jeho zápasů; každý zápas jde rozkliknout. Data jsou snímek ze statistik NHL; čísla se mění po každém hracím dni. Údaje o tom, kam do branky střely míří, veřejně dostupné nejsou, proto mapy ukazují místo, odkud se střílelo.</footer>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog" aria-labelledby="d-name"></aside>
+
+<script>
+(() => {
+  const COUNTRY = { CZE: "Česko", SVK: "Slovensko", CAN: "Kanada", USA: "USA", SWE: "Švédsko", FIN: "Finsko", RUS: "Rusko", DEU: "Německo", CHE: "Švýcarsko", DNK: "Dánsko", LVA: "Lotyšsko", AUT: "Rakousko", NOR: "Norsko", FRA: "Francie", AUS: "Austrálie", BLR: "Bělorusko", SVN: "Slovinsko", GBR: "Velká Británie", UKR: "Ukrajina", KAZ: "Kazachstán", NLD: "Nizozemsko", ITA: "Itálie", POL: "Polsko", JPN: "Japonsko" };
+  const POS = { C: "Centr", L: "Levé křídlo", R: "Pravé křídlo", D: "Obránce" };
+  const POS_SHORT = { C: "C", L: "LK", R: "PK", D: "O" };
+  const DIV = { Atlantic: "Atlantická", Metropolitan: "Metropolitní", Central: "Centrální", Pacific: "Pacifická" };
+
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const nf = (v, d = 0) => v == null || Number.isNaN(v) ? "–" : v.toLocaleString("cs-CZ", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const pctf = (v, d = 1) => v == null ? "–" : nf(v * 100, d);
+  const toi = s => { if (!s && s !== 0) return "–"; s = Math.round(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+  const signed = v => v > 0 ? "+" + v : String(v);
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+  let D = null, SK = [], GK = [], TM = {}, view = "hraci";
+  let ADV = [], ADVMAP = {}, HAS_MP = false;
+  const s1 = v => v == null || Number.isNaN(v) ? "–" : (v > 0 ? "+" : v < 0 ? "−" : "") + nf(Math.abs(v), 1);
+  const tone = (v, mid = 0, eps = 0) => v > mid + eps ? "pos" : v < mid - eps ? "neg" : "dim";
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem("nhlstat:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem("nhlstat:" + k, JSON.stringify(v)); } catch {} }
+  };
+
+  const skState = Object.assign({ q: "", team: "", pos: "all", nat: "", gp: 0, sort: "p", asc: false, mode: "basic" }, store.get("sk", {}));
+  const advState = Object.assign({ sort: "ixg", asc: false }, store.get("adv", {}));
+  const gkState = Object.assign({ q: "", team: "", nat: "", gp: 1, sort: "svp", asc: false }, store.get("gk2", {}));
+  skState.q = ""; gkState.q = "";
+
+  const SK_COLS = [
+    { k: "gp", l: "Z", t: "Odehrané zápasy" },
+    { k: "g", l: "G", t: "Góly" },
+    { k: "a", l: "A", t: "Asistence" },
+    { k: "p", l: "B", t: "Kanadské body (G+A)", cls: "pts" },
+    { k: "pm", l: "+/−", t: "Plus/minus", f: r => `<span class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : "dim"}">${signed(r.pm)}</span>` },
+    { k: "pim", l: "TM", t: "Trestné minuty" },
+    { k: "ppg", l: "PPG", t: "Góly v přesilovce" },
+    { k: "shg", l: "SHG", t: "Góly v oslabení" },
+    { k: "gwg", l: "VG", t: "Vítězné góly" },
+    { k: "s", l: "Střely", t: "Střely na branku" },
+    { k: "shp", l: "S %", t: "Úspěšnost střelby", f: r => r.s ? pctf(r.shp) : "–" },
+    { k: "toi", l: "Čas/z", t: "Průměrný čas na ledě za zápas", f: r => toi(r.toi) },
+    { k: "ppgp", l: "B/z", t: "Body na zápas", f: r => nf(r.ppgp, 2) },
+    { k: "fo", l: "Vhaz. %", t: "Úspěšnost na vhazování", f: r => r.fo ? pctf(r.fo) : "–" }
+  ];
+  const ADV_COLS = [
+    { k: "gp", l: "Z", t: "Odehrané zápasy" },
+    { k: "toig", l: "Čas/z", t: "Průměrný čas na ledě za zápas", f: r => toi(r.toig) },
+    { k: "ixg", l: "xG", t: "Očekávané góly: kolik gólů by z hráčových střel dal průměrný hráč podle místa a typu střely", f: r => nf(r.ixg, 1), cls: "pts" },
+    { k: "mg", l: "G", t: "Skutečné góly (podle MoneyPuck)" },
+    { k: "gax", l: "G − xG", t: "Góly nad očekáváním: kladné číslo znamená lepší zakončení, než odpovídá kvalitě šancí", f: r => `<span class="${tone(r.gax, 0, .05)}">${s1(r.gax)}</span>` },
+    { k: "att", l: "Pokusy", t: "Všechny pokusy o střelu (na branku, mimo i zblokované)" },
+    { k: "hd", l: "Nebezp.", t: "Střely z vysoce nebezpečných pozic (podle modelu MoneyPuck)" },
+    { k: "hdg", l: "G z nebezp.", t: "Góly z vysoce nebezpečných střel" },
+    { k: "ixg60", l: "xG/60", t: "Očekávané góly na 60 minut na ledě", f: r => nf(r.ixg60, 2) },
+    { k: "xgp5", l: "xGF %", t: "Hra 5 na 5: podíl očekávaných gólů týmu, když je hráč na ledě (nad 50 % = jeho tým má víc šancí)", f: r => r.xgp5 == null ? "–" : `<span class="${tone(r.xgp5, .5, .005)}">${pctf(r.xgp5, 0)}</span>` },
+    { k: "cf5", l: "CF %", t: "Hra 5 na 5: Corsi, podíl všech střeleckých pokusů týmu, když je hráč na ledě (držení puku)", f: r => r.cf5 == null ? "–" : `<span class="${tone(r.cf5, .5, .005)}">${pctf(r.cf5, 0)}</span>` },
+    { k: "relxg", l: "Rel. xGF", t: "O kolik procentních bodů je xGF % týmu lepší s hráčem na ledě než bez něj (5 na 5)", f: r => r.relxg == null ? "–" : `<span class="${tone(r.relxg, 0, .5)}">${s1(r.relxg)}</span>` },
+    { k: "gsg", l: "GS/z", t: "Game Score na zápas: souhrnné hodnocení výkonu od MoneyPuck", f: r => nf(r.gsg, 2) },
+    { k: "hits", l: "Hity", t: "Bodyčeky" },
+    { k: "blk", l: "Bloky", t: "Zblokované střely soupeře" },
+    { k: "take", l: "Zisky", t: "Získané puky" },
+    { k: "give", l: "Ztráty", t: "Ztracené puky", asc: true }
+  ];
+  const GK_MP_COLS = [
+    { k: "xga", l: "xOG", t: "Očekávané obdržené góly podle kvality střel, které brankář dostal", f: r => r.xga == null ? "–" : nf(r.xga, 1) },
+    { k: "gsax", l: "GSAx", t: "Góly ušetřené nad očekáváním (xOG − obdržené góly). Kladné číslo = brankář chytá víc, než by chytal průměrný gólman", f: r => r.gsax == null ? "–" : `<span class="${tone(r.gsax, 0, .05)}">${s1(r.gsax)}</span>`, cls: "pts" },
+    { k: "hdsv", l: "Nebezp. %", t: "Úspěšnost zákroků proti střelám z vysoce nebezpečných pozic", f: r => r.hdsv == null ? "–" : pctf(r.hdsv, 1) }
+  ];
+  const GK_COLS = [
+    { k: "gp", l: "Z", t: "Odehrané zápasy" },
+    { k: "gs", l: "ZvZ", t: "Zápasy v základní sestavě" },
+    { k: "w", l: "V", t: "Výhry" },
+    { k: "l", l: "P", t: "Prohry v základní hrací době" },
+    { k: "otl", l: "PP", t: "Prohry v prodloužení nebo nájezdech" },
+    { k: "svp", l: "Úsp. %", t: "Úspěšnost zákroků", f: r => pctf(r.svp, 1), cls: "pts" },
+    { k: "gaa", l: "POG", t: "Průměr obdržených gólů na zápas (nižší je lepší)", f: r => nf(r.gaa, 2), asc: true },
+    { k: "sa", l: "Střely", t: "Střely proti" },
+    { k: "sv", l: "Zákroky", t: "Zákroky" },
+    { k: "ga", l: "OG", t: "Obdržené góly", asc: true },
+    { k: "so", l: "ČK", t: "Čistá konta" },
+    { k: "toi", l: "Čas", t: "Celkový čas v brankovišti (h:min)", f: r => { const m = Math.round(r.toi / 60); return Math.floor(m / 60) + ":" + String(m % 60).padStart(2, "0"); } }
+  ];
+
+  function loadMP(mp) {
+    if (!mp || !mp.sk) return;
+    HAS_MP = true;
+    const info = {};
+    SK.forEach(r => { if (!info[r.id]) info[r.id] = r; });
+    ADV = mp.sk.map(m => {
+      const b = info[m[0]];
+      if (!b) return null;
+      const r = { id: m[0], team: m[1], gp: m[2], toiAll: m[3], gs: m[4], ixg: m[5], mg: m[6], sog: m[7], att: m[8], hd: m[9], hdg: m[10], hdxg: m[11], md: m[12], ld: m[13], reb: m[14], hits: m[15], take: m[16], give: m[17], blk: m[18], pdrawn: m[19], oixgf: m[20], oixga: m[21], oigf: m[22], oiga: m[23], xgp5: m[24], cf5: m[25], offxgp5: m[26], toi5: m[27], a1: m[28] };
+      Object.assign(r, { first: b.first, last: b.last, name: b.name, key: b.key, pos: b.pos, F: b.F, nat: b.nat });
+      r.toig = r.gp ? r.toiAll / r.gp : 0;
+      r.gax = Math.round((r.mg - r.ixg) * 10) / 10;
+      r.ixg60 = r.toiAll ? r.ixg / (r.toiAll / 3600) : 0;
+      r.hd60 = r.toiAll ? r.hd / (r.toiAll / 3600) : 0;
+      r.gsg = r.gp ? r.gs / r.gp : 0;
+      r.relxg = r.xgp5 != null && r.offxgp5 != null && r.toi5 > 0 ? Math.round((r.xgp5 - r.offxgp5) * 1000) / 10 : null;
+      return r;
+    }).filter(Boolean);
+    ADV.forEach(r => ADVMAP[r.id] = r);
+    const gmp = {};
+    (mp.gk || []).forEach(m => gmp[m[0]] = m);
+    GK.forEach(r => {
+      const m = gmp[r.id];
+      if (!m) return;
+      r.xga = m[4]; r.mga = m[5]; r.gsax = Math.round((m[4] - m[5]) * 10) / 10;
+      r.hdsa = m[7]; r.hdga = m[9]; r.hdsv = m[7] ? 1 - m[9] / m[7] : null;
+      r.mdsa = m[10]; r.mdga = m[12]; r.ldsa = m[13]; r.ldga = m[15];
+      r.gsax60 = r.toi ? r.gsax / (r.toi / 3600) : 0;
+    });
+    (mp.tm || []).forEach(m => {
+      const t = TM[m[0]];
+      if (t) Object.assign(t, { xgp5: m[1], cf5: m[2], xgf: m[7], xga: m[8], hdsf: m[11], hdsa: m[12] });
+    });
+    const gi = GK_COLS.findIndex(c => c.k === "gaa");
+    GK_COLS.splice(gi + 1, 0, ...GK_MP_COLS);
+    $("#mpcredit").hidden = false;
+    $("#sk-mode-wrap").hidden = false;
+    $("#foot").insertAdjacentHTML("beforeend", ` Pokročilé statistiky (xG, Corsi, GSAx, Game Score) pocházejí z <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a> a mohou se od oficiálních čísel NHL lišit o jednotky gólů kvůli dodatečným opravám zápisu.`);
+  }
+
+  function load(data, mp, ln, gm) {
+    D = data;
+    data.tm.forEach(t => TM[t[0]] = { ab: t[0], name: t[1], place: t[2], conf: t[3], div: t[4], gp: t[5], w: t[6], l: t[7], otl: t[8], pts: t[9], gf: t[10], ga: t[11], streak: t[12] });
+    SK = data.sk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], pos: r[4], gp: r[5], g: r[6], a: r[7], p: r[8], pm: r[9], pim: r[10], ppg: r[11], shg: r[12], gwg: r[13], otg: r[14], s: r[15], shp: r[16], toi: r[17], fo: r[18], nat: r[19] }));
+    SK.forEach(r => { r.name = r.first + " " + r.last; r.key = norm(r.name); r.ppgp = r.gp ? r.p / r.gp : 0; r.F = r.pos !== "D"; });
+    GK = data.gk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], gp: r[4], gs: r[5], w: r[6], l: r[7], otl: r[8], gaa: r[9], svp: r[10], sa: r[11], sv: r[12], ga: r[13], so: r[14], toi: r[15], nat: r[16] }));
+    GK.forEach(r => { r.name = r.first + " " + r.last; r.key = norm(r.name); });
+    try { loadMP(mp); } catch (e) { HAS_MP = false; }
+    if (!HAS_MP) skState.mode = "basic";
+    try { loadLines(ln); } catch (e) { LINES = null; }
+    SK.forEach(r => { NM[r.id] = (r.first ? r.first[0] + ". " : "") + r.last; });
+    GK.forEach(r => { NM[r.id] = (r.first ? r.first[0] + ". " : "") + r.last; });
+    try { loadGames(gm); } catch (e) { GM = null; }
+
+    const d = new Date(data.updated + "T12:00:00");
+    $("#asof").textContent = "Stav po zápasech " + d.toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" });
+
+    const teamOpts = '<option value="">Všechny týmy</option>' + Object.values(TM).sort((a, b) => (a.place + a.name).localeCompare(b.place + b.name, "cs")).map(t => `<option value="${t.ab}">${esc(t.place)} ${esc(t.name)}</option>`).join("");
+    $("#sk-team").innerHTML = teamOpts; $("#gk-team").innerHTML = teamOpts;
+    const nats = {};
+    [...SK, ...GK].forEach(r => { if (r.nat) nats[r.nat] = (nats[r.nat] || 0) + 1; });
+    const natOpts = '<option value="">Všechny země</option>' + ["CZE", "SVK"].filter(c => nats[c]).concat(Object.keys(nats).filter(c => c !== "CZE" && c !== "SVK").sort((a, b) => (COUNTRY[a] || a).localeCompare(COUNTRY[b] || b, "cs"))).map(c => `<option value="${c}">${esc(COUNTRY[c] || c)}</option>`).join("");
+    $("#sk-nat").innerHTML = natOpts; $("#gk-nat").innerHTML = natOpts;
+
+    syncControls();
+    renderLeaders();
+    route();
+  }
+
+  function syncControls() {
+    $("#sk-team").value = skState.team; $("#sk-nat").value = skState.nat; $("#sk-gp").value = skState.gp; $("#sk-q").value = skState.q;
+    document.querySelectorAll("#sk-pos button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === skState.pos)));
+    document.querySelectorAll("#sk-mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === skState.mode)));
+    $("#gk-team").value = gkState.team; $("#gk-nat").value = gkState.nat; $("#gk-gp").value = gkState.gp; $("#gk-q").value = gkState.q;
+  }
+
+  function chip(nat) {
+    if (!nat) return "";
+    return `<span class="chip ${nat === "CZE" ? "cze" : nat === "SVK" ? "svk" : ""}" title="${esc(COUNTRY[nat] || nat)}">${esc(nat)}</span>`;
+  }
+
+  function renderLeaders() {
+    const top = (arr, f, tie) => arr.slice().sort((a, b) => f(b) - f(a) || (tie ? tie(a, b) : 0))[0];
+    const byGoalsTie = (a, b) => b.g - a.g || a.gp - b.gp;
+    const L = [
+      { lbl: "Body", r: top(SK, r => r.p, byGoalsTie), v: r => r.p },
+      { lbl: "Góly", r: top(SK, r => r.g, (a, b) => b.p - a.p || a.gp - b.gp), v: r => r.g },
+      { lbl: "Asistence", r: top(SK, r => r.a, byGoalsTie), v: r => r.a },
+      { lbl: "Plus/minus", r: top(SK, r => r.pm, byGoalsTie), v: r => signed(r.pm) },
+    ];
+    const cz = SK.filter(r => r.nat === "CZE");
+    if (cz.length) L.push({ lbl: "Nejlepší Čech", r: top(cz, r => r.p, byGoalsTie), v: r => r.p + " b.", cz: true });
+    $("#leaders").innerHTML = L.map(x => `<button type="button" class="lead${x.cz ? " cz" : ""}" data-id="${x.r.id}" data-team="${x.r.team}">
+      <span class="lbl">${x.lbl}</span><span class="val num">${x.v(x.r)}</span><span class="who">${esc(x.r.name)}</span><span class="tm">${esc(TM[x.r.team]?.place || "")} ${esc(TM[x.r.team]?.name || x.r.team)}</span></button>`).join("");
+  }
+
+  function sorter(state, cols) {
+    const col = cols.find(c => c.k === state.sort);
+    const dir = state.asc ? 1 : -1;
+    return (a, b) => {
+      const av = a[state.sort] ?? -Infinity, bv = b[state.sort] ?? -Infinity;
+      if (av !== bv) return (av > bv ? 1 : -1) * dir;
+      if (cols === SK_COLS) return b.p - a.p || b.g - a.g || a.gp - b.gp || a.last.localeCompare(b.last, "cs");
+      if (cols === ADV_COLS) return b.ixg - a.ixg || a.last.localeCompare(b.last, "cs");
+      return b.w - a.w || a.last.localeCompare(b.last, "cs");
+    };
+  }
+
+  function thead(cols, state, lead) {
+    return `<thead><tr><th class="stick1 l">#</th><th class="stick2 l">${lead}</th><th class="l">Tým</th>${cols === SK_COLS || cols === ADV_COLS ? '<th class="l" title="Pozice">Poz.</th>' : ""}${cols.map(c => `<th class="${state.sort === c.k ? "sorted" + (state.asc ? " asc" : "") : ""}" title="${esc(c.t)}" aria-sort="${state.sort === c.k ? (state.asc ? "ascending" : "descending") : "none"}"><button type="button" data-sort="${c.k}">${c.l}</button></th>`).join("")}</tr></thead>`;
+  }
+
+  const skFilter = (s, q) => r => (!q || r.key.includes(q)) && (!s.team || r.team === s.team) && (s.pos === "all" || (s.pos === "D" ? r.pos === "D" : r.pos !== "D")) && (!s.nat || r.nat === s.nat) && (!!q || r.gp >= (+s.gp || 0));
+  const countLabel = n => n === 1 ? "1 hráč" : n + (n >= 2 && n <= 4 ? " hráči" : " hráčů");
+
+  function renderAdv() {
+    const s = skState, q = norm(s.q.trim());
+    const rows = ADV.filter(skFilter(s, q));
+    rows.sort(sorter(advState, ADV_COLS));
+    $("#sk-count").textContent = countLabel(rows.length);
+    $("#shotplot").hidden = false;
+    renderPlot(rows.filter(r => r.gp >= Math.max(3, +s.gp || 0)));
+    if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný hráč neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
+    const maxX = Math.max(0.1, ...rows.map(r => r.ixg));
+    $("#tablebox").innerHTML = `<table style="min-width:1240px">${thead(ADV_COLS, advState, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
+      <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
+      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
+      ${ADV_COLS.map(c => c.k === "ixg" ? `<td class="pts">${nf(r.ixg, 1)}<span class="bar"><i style="width:${(r.ixg / maxX * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>
+      <div class="src" style="padding:8px 10px">Data: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>, všechny herní situace, pokud není uvedeno 5 na 5. Hráč vyměněný během sezony je uveden u současného týmu se součtem za celou sezonu.</div>`;
+  }
+
+  function renderPlot(rows) {
+    const box = $("#plotbox");
+    if (!rows.length) { box.innerHTML = `<div class="empty">Pro vybrané filtry není co zobrazit.</div>`; return; }
+    const W = 820, H = 380, L = 44, R = 16, T = 14, B = 40;
+    const max = Math.max(2, Math.ceil(Math.max(...rows.map(r => Math.max(r.ixg, r.mg))) + 0.5));
+    const sx = v => L + v / max * (W - L - R), sy = v => H - B - v / max * (H - T - B);
+    const step = max <= 6 ? 1 : max <= 12 ? 2 : 5;
+    let g = "";
+    for (let v = 0; v <= max; v += step) {
+      g += `<line class="grid" x1="${sx(v)}" x2="${sx(v)}" y1="${T}" y2="${H - B}"/><line class="grid" x1="${L}" x2="${W - R}" y1="${sy(v)}" y2="${sy(v)}"/>`;
+      g += `<text x="${sx(v)}" y="${H - B + 16}" text-anchor="middle">${v}</text><text x="${L - 8}" y="${sy(v) + 4}" text-anchor="end">${v}</text>`;
+    }
+    g += `<line class="axis" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/><line class="axis" x1="${L}" x2="${L}" y1="${T}" y2="${H - B}"/>`;
+    g += `<line class="diag" x1="${sx(0)}" y1="${sy(0)}" x2="${sx(max)}" y2="${sy(max)}"/>`;
+    g += `<text x="${(L + W - R) / 2}" y="${H - 6}" text-anchor="middle">Očekávané góly (xG)</text>`;
+    g += `<text transform="translate(12 ${(T + H - B) / 2}) rotate(-90)" text-anchor="middle">Skutečné góly</text>`;
+    const order = rows.slice().sort((a, b) => (a.nat === "CZE") - (b.nat === "CZE"));
+    g += order.map(r => `<circle class="${r.nat === "CZE" ? "cz" : "p"}" cx="${sx(r.ixg).toFixed(1)}" cy="${sy(r.mg).toFixed(1)}" r="${r.nat === "CZE" ? 5 : 4}" data-id="${r.id}" data-team="${r.team}"><title>${esc(r.name)} (${r.team}): ${r.mg} G, ${nf(r.ixg, 1)} xG, ${s1(r.gax)}</title></circle>`).join("");
+    const byGax = rows.slice().sort((a, b) => b.gax - a.gax);
+    const pick = [...byGax.slice(0, 4), ...byGax.slice(-3).filter(r => r.gax < 0), ...rows.filter(r => r.ixg === Math.max(...rows.map(x => x.ixg))).slice(0, 1)];
+    const seen = new Set(), placed = [];
+    pick.forEach(r => {
+      if (seen.has(r.id)) return; seen.add(r.id);
+      let x = sx(r.ixg) + 8, y = sy(r.mg) + 4, anchor = "start";
+      if (x > W - 140) { x = sx(r.ixg) - 8; anchor = "end"; }
+      while (placed.some(p => Math.abs(p.y - y) < 14 && Math.abs(p.x - x) < 120)) y += 14;
+      placed.push({ x, y });
+      g += `<text class="lab" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${anchor}">${esc(r.last)} ${s1(r.gax)}</text>`;
+    });
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bodový graf: skutečné góly proti očekávaným gólům">${g}</svg>`;
+  }
+
+  function renderSkaters() {
+    if (skState.mode === "adv" && HAS_MP) return renderAdv();
+    $("#shotplot").hidden = true;
+    const s = skState, q = norm(s.q.trim());
+    let rows = SK.filter(r => (!q || r.key.includes(q)) && (!s.team || r.team === s.team) && (s.pos === "all" || (s.pos === "D" ? r.pos === "D" : r.pos !== "D")) && (!s.nat || r.nat === s.nat) && (!!q || r.gp >= (+s.gp || 0)));
+    rows.sort(sorter(s, SK_COLS));
+    const maxP = Math.max(1, ...rows.map(r => r.p));
+    $("#sk-count").textContent = rows.length === 1 ? "1 hráč" : rows.length + (rows.length >= 2 && rows.length <= 4 ? " hráči" : " hráčů");
+    if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný hráč neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
+    $("#tablebox").innerHTML = `<table>${thead(SK_COLS, s, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
+      <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
+      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
+      ${SK_COLS.map(c => c.k === "p" ? `<td class="pts">${r.p}<span class="bar"><i style="width:${(r.p / maxP * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+
+  function renderGoalies() {
+    const s = gkState, q = norm(s.q.trim());
+    let rows = GK.filter(r => (!q || r.key.includes(q)) && (!s.team || r.team === s.team) && (!s.nat || r.nat === s.nat) && (!!q || r.gp >= (+s.gp || 0)));
+    rows.sort(sorter(s, GK_COLS));
+    $("#gk-count").textContent = rows.length === 1 ? "1 brankář" : rows.length + (rows.length >= 2 && rows.length <= 4 ? " brankáři" : " brankářů");
+    if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný brankář neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
+    $("#tablebox").innerHTML = `<table style="min-width:${HAS_MP ? 1120 : 900}px">${thead(GK_COLS, s, "Brankář")}<tbody>${rows.map((r, i) => `<tr data-gid="${r.id}" data-team="${r.team}" tabindex="0">
+      <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
+      <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${r.team}</td>
+      ${GK_COLS.map(c => `<td${c.k === "svp" ? ' style="font-weight:700"' : ""}>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+
+  function renderTeams() {
+    const topScorer = {};
+    SK.forEach(r => { const t = topScorer[r.team]; if (!t || r.p > t.p || (r.p === t.p && r.g > t.g)) topScorer[r.team] = r; });
+    const streak = s => { const m = /^([A-Z]+)(\d+)$/.exec(s || ""); if (!m) return "–"; const [, k, n] = m; return k === "W" ? `<span class="streak w">${n}× V</span>` : k === "L" ? `<span class="streak l">${n}× P</span>` : `<span class="streak o">${n}× PP</span>`; };
+    const conf = (c, title) => {
+      const teams = Object.values(TM).filter(t => t.conf === c).sort((a, b) => b.pts - a.pts || (b.pts / (2 * b.gp)) - (a.pts / (2 * a.gp)) || (b.gf - b.ga) - (a.gf - a.ga));
+      return `<div><h2>${title}</h2><div class="tablebox" style="max-height:none"><table><thead><tr>
+        <th class="stick1 l">#</th><th class="stick2 l">Tým</th><th class="l">Divize</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="Prohry v prodloužení / nájezdech">PP</th><th title="Body">B</th><th title="Procento bodů">B %</th><th title="Skóre">Skóre</th><th title="Rozdíl skóre">+/−</th>${HAS_MP ? '<th title="Hra 5 na 5: podíl očekávaných gólů týmu (MoneyPuck)">xGF %</th><th title="Hra 5 na 5: Corsi, podíl střeleckých pokusů (MoneyPuck)">CF %</th><th title="Očekávané góly vstřelené : obdržené, všechny situace (MoneyPuck)">xG</th>' : ""}<th class="l">Série</th><th class="l">Nejlepší střelec</th></tr></thead><tbody>
+        ${teams.map((t, i) => { const d = t.gf - t.ga, ts = topScorer[t.ab]; return `<tr data-teamrow="${t.ab}" tabindex="0" class="${i === 7 ? "cut" : ""}">
+          <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="team">${t.ab}</span> <span class="name">${esc(t.place)} ${esc(t.name)}</span></td>
+          <td class="l dim">${DIV[t.div] || esc(t.div)}</td><td>${t.gp}</td><td>${t.w}</td><td>${t.l}</td><td>${t.otl}</td><td style="font-weight:700">${t.pts}</td>
+          <td>${nf(t.pts / (2 * t.gp) * 100, 1)}</td><td>${t.gf}:${t.ga}</td><td class="${d > 0 ? "pos" : d < 0 ? "neg" : "dim"}">${signed(d)}</td>${HAS_MP ? `<td class="${t.xgp5 == null ? "dim" : tone(t.xgp5, .5, .005)}">${t.xgp5 == null ? "–" : pctf(t.xgp5, 0)}</td><td class="${t.cf5 == null ? "dim" : tone(t.cf5, .5, .005)}">${t.cf5 == null ? "–" : pctf(t.cf5, 0)}</td><td>${t.xgf == null ? "–" : nf(t.xgf, 1) + ":" + nf(t.xga, 1)}</td>` : ""}<td class="l">${streak(t.streak)}</td>
+          <td class="l">${ts ? `${esc(ts.name)} <span class="dim">${ts.p} b.</span>` : "–"}</td></tr>`; }).join("")}
+        </tbody></table></div></div>`;
+    };
+    $("#conf").innerHTML = conf("E", "Východní konference") + conf("W", "Západní konference");
+  }
+
+  function render() {
+    if (!D) return;
+    if (view === "hraci") renderSkaters();
+    else if (view === "brankari") renderGoalies();
+    else if (view === "strely") renderShotMap();
+    else if (view === "formace") renderLines();
+    else renderTeams();
+  }
+
+  function setView(v, push = true) {
+    const views = ["hraci", "brankari", "tymy"].concat(SHOTS ? ["strely"] : [], LINES ? ["formace"] : []);
+    view = views.includes(v) ? v : "hraci";
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.view === view)));
+    const tabs = $(".tabs"), at = $(`.tab[data-view="${view}"]`);
+    if (at && (at.offsetLeft < tabs.scrollLeft || at.offsetLeft + at.offsetWidth > tabs.scrollLeft + tabs.clientWidth)) tabs.scrollLeft = at.offsetLeft - 8;
+    $("#view-hraci").hidden = view !== "hraci";
+    $("#view-brankari").hidden = view !== "brankari";
+    $("#view-tymy").hidden = view !== "tymy";
+    $("#view-strely").hidden = view !== "strely";
+    $("#view-formace").hidden = view !== "formace";
+    $("#tablebox").hidden = view === "tymy" || view === "strely" || view === "formace";
+    if (push && location.hash !== "#" + view) { try { history.replaceState(null, "", "#" + view); } catch { location.hash = view; } }
+    render();
+  }
+  function route() { setView((location.hash || "").slice(1) || "hraci", false); }
+  window.addEventListener("hashchange", route);
+
+  /* Percentile helpers */
+  function pctRank(arr, v, lowerBetter) {
+    if (!arr.length) return 0;
+    let below = 0, eq = 0;
+    for (const x of arr) { if (x < v) below++; else if (x === v) eq++; }
+    let p = (below + eq / 2) / arr.length;
+    return Math.round((lowerBetter ? 1 - p : p) * 100);
+  }
+  function bar(label, sub, val, p) {
+    const hue = p >= 67 ? "var(--good)" : p >= 34 ? "var(--blue)" : "var(--bad)";
+    return `<div class="prow"><div>${label}<small>${sub}</small></div><div class="track" role="img" aria-label="${label}: ${p}. percentil"><i style="width:${Math.max(3, p)}%;background:${hue}"></i></div><div class="v">${val}</div></div>`;
+  }
+
+  let lastFocus = null;
+  function openDrawer(html) {
+    lastFocus = document.activeElement;
+    const dr = $("#drawer");
+    dr.innerHTML = `<button type="button" class="close" id="d-close" aria-label="Zavřít">×</button>` + html;
+    dr.hidden = false; $("#scrim").hidden = false;
+    $("#d-close").focus();
+  }
+  function closeDrawer() {
+    $("#drawer").hidden = true; $("#scrim").hidden = true;
+    if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  }
+
+  function playerDetail(id, team) {
+    const r = SK.find(x => x.id === id && (!team || x.team === team)) || SK.find(x => x.id === id);
+    if (!r) return;
+    const peers = SK.filter(x => x.F === r.F && x.gp >= 5);
+    const per = (k) => peers.map(x => x[k] / x.gp);
+    const t = TM[r.team] || {};
+    const role = r.F ? "útočníky" : "obránci";
+    const rows = [
+      ["Body na zápas", "kanadské body", nf(r.ppgp, 2), pctRank(per("p"), r.p / r.gp)],
+      ["Góly na zápas", "góly", nf(r.g / r.gp, 2), pctRank(per("g"), r.g / r.gp)],
+      ["Asistence na zápas", "nahrávky", nf(r.a / r.gp, 2), pctRank(per("a"), r.a / r.gp)],
+      ["Střely na zápas", "na branku", nf(r.s / r.gp, 1), pctRank(per("s"), r.s / r.gp)],
+      ["Čas na ledě", "průměr za zápas", toi(r.toi), pctRank(peers.map(x => x.toi), r.toi)],
+      ["Plus/minus", "celkem", signed(r.pm), pctRank(peers.map(x => x.pm), r.pm)],
+    ];
+    if (r.F && r.fo) rows.push(["Vhazování", "úspěšnost", pctf(r.fo) + " %", pctRank(peers.filter(x => x.fo).map(x => x.fo), r.fo)]);
+    const other = SK.filter(x => x.id === r.id && x.team !== r.team);
+    openDrawer(`
+      <div><div class="eyebrow">${POS[r.pos]} · ${esc(t.place || "")} ${esc(t.name || r.team)}</div>
+      <h3 id="d-name">${esc(r.name)}</h3>
+      <div class="sub">${r.nat ? esc(COUNTRY[r.nat] || r.nat) : "Národnost neuvedena"}${other.length ? ` · v sezoně také za ${other.map(o => o.team).join(", ")}` : ""}</div></div>
+      <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.g}</b><span>Góly</span></div><div><b>${r.a}</b><span>Asist.</span></div><div><b>${r.p}</b><span>Body</span></div><div><b class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : ""}">${signed(r.pm)}</b><span>+/−</span></div></div>
+      ${gamesBlock(r.id)}
+      ${shotsBlock(r.id)}
+      <div class="pct"><h4>Porovnání s ligou</h4>
+        ${r.gp >= 5 ? `<p>Percentil mezi ${peers.length} ${r.F ? "útočníky" : "obránci"} s alespoň 5 zápasy. Delší pruh znamená lepší výkon než u většiny hráčů.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Hráč odehrál méně než 5 zápasů, porovnání by zatím nebylo vypovídající.</p>`}
+      </div>
+      <div class="facts">
+        <div><span>Přesilovkové góly</span><b class="num">${r.ppg}</b></div>
+        <div><span>Góly v oslabení</span><b class="num">${r.shg}</b></div>
+        <div><span>Vítězné góly</span><b class="num">${r.gwg}</b></div>
+        <div><span>Góly v prodloužení</span><b class="num">${r.otg}</b></div>
+        <div><span>Střely</span><b class="num">${r.s}</b></div>
+        <div><span>Úspěšnost střelby</span><b class="num">${r.s ? pctf(r.shp) + " %" : "–"}</b></div>
+        <div><span>Trestné minuty</span><b class="num">${r.pim}</b></div>
+        <div><span>Čas na ledě</span><b class="num">${toi(r.toi)}</b></div>
+      </div>
+      ${advBlock(r.id)}
+      ${linesBlock(r.id)}
+      <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil hráče na NHL.com ↗</a>`);
+  }
+
+  function advBlock(id) {
+    const m = ADVMAP[id];
+    if (!m) return "";
+    const peers = ADV.filter(x => x.F === m.F && x.gp >= 5);
+    const rows = [
+      ["Očekávané góly", "xG na 60 minut", nf(m.ixg60, 2), pctRank(peers.map(x => x.ixg60), m.ixg60)],
+      ["Zakončení", "góly nad očekáváním", s1(m.gax), pctRank(peers.map(x => x.gax), m.gax)],
+      ["Nebezpečné střely", "na 60 minut", nf(m.hd60, 1), pctRank(peers.map(x => x.hd60), m.hd60)],
+      ["xGF % (5 na 5)", "podíl šancí týmu s ním na ledě", m.xgp5 == null ? "–" : pctf(m.xgp5, 0) + " %", pctRank(peers.filter(x => x.xgp5 != null).map(x => x.xgp5), m.xgp5)],
+      ["Corsi (5 na 5)", "podíl střeleckých pokusů", m.cf5 == null ? "–" : pctf(m.cf5, 0) + " %", pctRank(peers.filter(x => x.cf5 != null).map(x => x.cf5), m.cf5)],
+      ["Game Score", "na zápas", nf(m.gsg, 2), pctRank(peers.map(x => x.gsg), m.gsg)],
+    ];
+    const tot = m.ld + m.md + m.hd;
+    const w = v => tot ? (v / tot * 100).toFixed(1) : 0;
+    return `<div class="pct"><h4>Pokročilé statistiky</h4>
+      ${m.gp >= 5 ? `<p>Percentil mezi ${peers.length} ${m.F ? "útočníky" : "obránci"} s alespoň 5 zápasy, podle dat MoneyPuck.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Hráč odehrál méně než 5 zápasů, porovnání by zatím nebylo vypovídající.</p>`}
+    </div>
+    ${tot ? `<div class="pct"><h4>Odkud střílí</h4><p>Střely na branku a mimo (bez zblokovaných) podle nebezpečnosti pozice. ${m.mg} gólů z ${nf(m.ixg, 1)} očekávaných.</p>
+      <div class="sq" role="img" aria-label="Málo nebezpečné ${m.ld}, středně ${m.md}, vysoce ${m.hd}"><span class="ld" style="width:${w(m.ld)}%">${m.ld || ""}</span><span class="md" style="width:${w(m.md)}%">${m.md || ""}</span><span class="hd" style="width:${w(m.hd)}%">${m.hd || ""}</span></div>
+      <div class="sqleg"><span><i style="background:var(--bar)"></i>málo nebezpečné</span><span><i style="background:var(--blue)"></i>středně</span><span><i style="background:var(--red)"></i>vysoce nebezpečné (${m.hdg} G)</span></div></div>` : ""}
+    <div class="facts">
+      <div><span>Hity</span><b class="num">${m.hits}</b></div>
+      <div><span>Bloky</span><b class="num">${m.blk}</b></div>
+      <div><span>Zisky puku</span><b class="num">${m.take}</b></div>
+      <div><span>Ztráty puku</span><b class="num">${m.give}</b></div>
+      <div><span>Vybojované tresty</span><b class="num">${m.pdrawn}</b></div>
+      <div><span>Primární asistence</span><b class="num">${m.a1}</b></div>
+    </div>
+    <div class="src">Pokročilá data: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></div>`;
+  }
+
+  function goalieDetail(id, team) {
+    const r = GK.find(x => x.id === id && (!team || x.team === team)) || GK.find(x => x.id === id);
+    if (!r) return;
+    const peers = GK.filter(x => x.gp >= 3);
+    const t = TM[r.team] || {};
+    const rows = [
+      ["Úspěšnost zákroků", "procento", pctf(r.svp) + " %", pctRank(peers.map(x => x.svp), r.svp)],
+      ["Průměr obdržených gólů", "na zápas, nižší je lepší", nf(r.gaa, 2), pctRank(peers.map(x => x.gaa), r.gaa, true)],
+      ["Výhry na start", "podíl výher", r.gs ? nf(r.w / r.gs * 100, 0) + " %" : "–", pctRank(peers.map(x => x.gs ? x.w / x.gs : 0), r.gs ? r.w / r.gs : 0)],
+      ["Střely proti", "na 60 minut", nf(r.sa / (r.toi / 3600), 1), pctRank(peers.map(x => x.sa / (x.toi / 3600)), r.sa / (r.toi / 3600))],
+    ];
+    if (r.gsax != null) {
+      const mp = peers.filter(x => x.gsax != null);
+      rows.splice(1, 0, ["GSAx", "góly ušetřené nad očekáváním", s1(r.gsax), pctRank(mp.map(x => x.gsax), r.gsax)]);
+      if (r.hdsv != null) rows.splice(2, 0, ["Nebezpečné střely", "úspěšnost zákroků", pctf(r.hdsv) + " %", pctRank(mp.filter(x => x.hdsv != null).map(x => x.hdsv), r.hdsv)]);
+    }
+    openDrawer(`
+      <div><div class="eyebrow">Brankář · ${esc(t.place || "")} ${esc(t.name || r.team)}</div>
+      <h3 id="d-name">${esc(r.name)}</h3>
+      <div class="sub">${r.nat ? esc(COUNTRY[r.nat] || r.nat) : "Národnost neuvedena"}</div></div>
+      <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.w}</b><span>Výhry</span></div><div><b>${pctf(r.svp)}</b><span>Úsp. %</span></div><div><b>${nf(r.gaa, 2)}</b><span>POG</span></div><div><b>${r.so}</b><span>ČK</span></div></div>
+      ${goalieGamesBlock(r.id)}
+      <div class="pct"><h4>Porovnání s ligou</h4>
+        ${r.gp >= 3 ? `<p>Percentil mezi ${peers.length} brankáři s alespoň 3 zápasy. U počtu střel proti znamená delší pruh víc práce, ne lepší výkon.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Brankář odehrál méně než 3 zápasy, porovnání by zatím nebylo vypovídající.</p>`}
+      </div>
+      ${goalieShotsBlock(r.id)}
+      <div class="facts">
+        <div><span>Starty</span><b class="num">${r.gs}</b></div>
+        <div><span>Prohry</span><b class="num">${r.l}</b></div>
+        <div><span>Prohry po prodl.</span><b class="num">${r.otl}</b></div>
+        <div><span>Střely proti</span><b class="num">${r.sa}</b></div>
+        <div><span>Zákroky</span><b class="num">${r.sv}</b></div>
+        <div><span>Obdržené góly</span><b class="num">${r.ga}</b></div>
+        ${r.xga != null ? `<div><span>Očekávané OG (xOG)</span><b class="num">${nf(r.xga, 1)}</b></div><div><span>Nebezp. střely proti</span><b class="num">${r.hdsa}</b></div>` : ""}
+      </div>
+      ${r.xga != null ? `<div class="src">GSAx a xOG: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>. Kladné GSAx znamená, že brankář pustil méně gólů, než by čekal průměrný gólman ze stejných střel.</div>` : ""}
+      <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil brankáře na NHL.com ↗</a>`);
+  }
+
+  /* ===== Shots (MoneyPuck shot-level data) ===== */
+  const SHOT_TYPES = ["Zápěstím", "Švihem", "Golfák", "Bekhend", "Tečovaná", "Zpoza branky", "Neurčeno"];
+  let SHOTS = null, SH_BY_P = {}, SH_GAMES = [], TEAM_GP = {};
+  const smState = Object.assign({ team: "BOS", side: "for", mode: "diff" }, store.get("sm", {}));
+
+  let HAS_GOALIE_SHOTS = false;
+  function loadShots(raw, gks) {
+    if (!raw || !raw.p) return;
+    const A = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    const ix = {}; for (let i = 0; i < 64; i++) ix[A[i]] = i;
+    SH_GAMES = raw.g.map((g, i) => ({ i, id: g[0], home: g[1], away: g[2] }));
+    SH_GAMES.forEach(g => { TEAM_GP[g.home] = (TEAM_GP[g.home] || 0) + 1; TEAM_GP[g.away] = (TEAM_GP[g.away] || 0) + 1; });
+    const GKM = gks && gks.gk || null, GD = new Set(gks && gks.gd || []), GXS = gks && gks.gx || {};
+    const out = [];
+    for (const pid in raw.p) {
+      const id = +pid, arr = SH_BY_P[id] = [], dig = GXS[pid] || "";
+      let dp = 0;
+      for (const blk of raw.p[pid].split(",")) {
+        const home = blk.includes("."), [gs, body] = blk.split(home ? "." : ":"), gi = parseInt(gs, 36), g = SH_GAMES[gi];
+        const team = home ? g.home : g.away, opp = home ? g.away : g.home;
+        const gkey = gi + "-" + opp, glist = GKM ? GKM[gkey] || [] : [], per = GD.has(gkey);
+        for (let k = 0; k + 4 <= body.length; k += 4) {
+          let v = ((ix[body[k]] * 64 + ix[body[k + 1]]) * 64 + ix[body[k + 2]]) * 64 + ix[body[k + 3]];
+          const t = v % 8; v = (v - t) / 8; const ev = v % 3; v = (v - ev) / 3; const q = v % 64; v = (v - q) / 64; const y = v % 85 - 42, x = (v - (v % 85)) / 85;
+          const s = { pid: id, gi, gid: g.id, team, opp, x, y, xg: (q / 63) * (q / 63), goal: ev === 2, on: ev !== 1, en: t === 7, type: t === 7 ? 6 : t, goalie: null };
+          if (GKM) { const d = per ? dig[dp++] : "0"; s.goalie = d == null || d === "9" ? null : glist[+d] ?? null; }
+          out.push(s); arr.push(s);
+        }
+      }
+    }
+    SHOTS = out;
+    HAS_GOALIE_SHOTS = !!GKM;
+    $("#tab-strely").hidden = false;
+  }
+
+  /* Half rink, attacking zone on top. Coordinates in feet: X = lateral (0..85), Y = 100 − distance from centre line. */
+  const RX = s => s.y + 42.5, RY = s => 100 - s.x;
+  let rinkSeq = 0;
+  function rinkSVG(inner, label) {
+    const W = 85, H = 77, cid = "rc" + (++rinkSeq);
+    const ice = `M0,${H} L0,28 A28,28 0 0 1 28,0 L57,0 A28,28 0 0 1 85,28 L85,${H} Z`;
+    let lines = `<path class="ice" d="${ice}"/>`;
+    lines += `<line class="gl" x1="5.75" x2="79.25" y1="11" y2="11"/>`;
+    lines += `<path class="crease" d="M38.5,11 L38.5,15.5 A4.5,4.5 0 0 0 46.5,15.5 L46.5,11 Z"/>`;
+    lines += `<path class="net" d="M39.5,11 L39.5,8 Q42.5,6.6 45.5,8 L45.5,11"/>`;
+    for (const cx of [20.5, 64.5]) lines += `<circle class="gl" cx="${cx}" cy="31" r="15"/><circle class="dotc" cx="${cx}" cy="31" r="1"/>`;
+    lines += `<line class="bl" x1="0" x2="85" y1="75" y2="75"/>`;
+    return `<svg class="rinksvg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(label)}"><defs><clipPath id="${cid}"><path d="${ice}"/></clipPath></defs>${lines}<g clip-path="url(#${cid})">${inner}</g><path d="${ice}" fill="none" stroke="var(--rinkline)" stroke-width=".6"/></svg>`;
+  }
+  const mapable = s => !s.en && s.x >= 23;
+
+  function dotsLayer(list) {
+    const ord = list.filter(mapable).sort((a, b) => (a.goal - b.goal) || (b.xg - a.xg));
+    return ord.map(s => {
+      const r = (0.75 + Math.sqrt(s.xg) * 2.6).toFixed(2), cls = s.goal ? "s-goal" : s.on ? "s-on" : "s-miss";
+      return `<circle class="${cls}" cx="${RX(s).toFixed(1)}" cy="${RY(s).toFixed(1)}" r="${r}"><title>${s.goal ? "Gól" : s.on ? "Střela na branku" : "Mimo branku"} · ${SHOT_TYPES[s.type]} · xG ${nf(s.xg * 100, 0)} %</title></circle>`;
+    }).join("");
+  }
+  const dotsLegend = list => {
+    const m = list.filter(mapable);
+    return `<div class="maplegend"><span><i class="lg-goal"></i>gól (${m.filter(s => s.goal).length})</span><span><i class="lg-on"></i>na branku (${m.filter(s => !s.goal && s.on).length})</span><span><i class="lg-miss"></i>mimo (${m.filter(s => !s.on).length})</span><span>větší tečka = nebezpečnější střela</span></div>`;
+  };
+
+  /* Kernel density on a 2-ft grid over the attacking half (Gaussian, sigma 4 ft) */
+  const CS = 2, GX = 43, GY = 39, KR = 5;
+  const KW = (() => { const w = []; for (let dy = -KR; dy <= KR; dy++) for (let dx = -KR; dx <= KR; dx++) w.push(Math.exp(-(dx * dx + dy * dy) * CS * CS / (2 * 16))); return w; })();
+  function densityGrid(list) {
+    const g = new Float64Array(GX * GY);
+    for (const s of list) {
+      if (!mapable(s)) continue;
+      const cx = Math.floor(RX(s) / CS), cy = Math.floor(RY(s) / CS);
+      let k = 0;
+      for (let dy = -KR; dy <= KR; dy++) for (let dx = -KR; dx <= KR; dx++, k++) {
+        const x = cx + dx, y = cy + dy;
+        if (x >= 0 && x < GX && y >= 0 && y < GY) g[y * GX + x] += KW[k];
+      }
+    }
+    return g;
+  }
+  let heatSeq = 0;
+  function heatLayer(grid, mode, scale) {
+    if (!scale) return "";
+    let r = "";
+    for (let y = 0; y < GY; y++) for (let x = 0; x < GX; x++) {
+      const v = grid[y * GX + x], a = Math.min(1, Math.abs(v) / scale);
+      if (a < 0.1) continue;
+      const col = mode === "diff" && v < 0 ? "var(--cool)" : "var(--heat)";
+      r += `<rect x="${x * CS}" y="${y * CS}" width="${CS + .1}" height="${CS + .1}" style="fill:rgba(${col},${(Math.pow(a, 0.85) * 0.8).toFixed(2)})"/>`;
+    }
+    const fid = "hb" + (++heatSeq);
+    return `<filter id="${fid}" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur stdDeviation="1.1"/></filter><g filter="url(#${fid})">${r}</g>`;
+  }
+  let LEAGUE_GRID = null, LEAGUE_MAX = 0;
+
+  function renderShotMap() {
+    if (!SHOTS) return;
+    if (!$("#sm-team").options.length) {
+      $("#sm-team").innerHTML = Object.values(TM).sort((a, b) => (a.place + a.name).localeCompare(b.place + b.name, "cs")).map(t => `<option value="${t.ab}">${esc(t.place)} ${esc(t.name)}</option>`).join("");
+    }
+    if (!TM[smState.team]) smState.team = "BOS";
+    $("#sm-team").value = smState.team;
+    document.querySelectorAll("#sm-side button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === smState.side)));
+    document.querySelectorAll("#sm-mode button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === smState.mode)));
+    const T = smState.team, t = TM[T] || { place: T, name: "" }, gp = TEAM_GP[T] || 1;
+    const list = SHOTS.filter(s => smState.side === "for" ? s.team === T : s.opp === T);
+    let inner, caption;
+    if (smState.mode === "dots") {
+      inner = dotsLayer(list); caption = dotsLegend(list);
+    } else if (smState.mode === "dens") {
+      const g = densityGrid(list); let mx = 0; for (const v of g) mx = Math.max(mx, v); inner = heatLayer(g, "dens", mx * 0.85);
+      caption = `<div class="maplegend"><span>méně</span><span class="ramp" style="background:linear-gradient(90deg, rgba(var(--heat),.05), rgba(var(--heat),.85))"></span><span>víc střel</span></div>`;
+    } else {
+      if (!LEAGUE_GRID) { const allG = densityGrid(SHOTS), teamGames = SH_GAMES.length * 2; LEAGUE_GRID = allG.map(v => v / teamGames); LEAGUE_MAX = Math.max(...LEAGUE_GRID); }
+      const g = densityGrid(list).map((v, i) => v / gp - LEAGUE_GRID[i]);
+      inner = heatLayer(g, "diff", LEAGUE_MAX * 0.45);
+      caption = `<div class="maplegend"><span>méně než liga</span><span class="ramp" style="background:linear-gradient(90deg, rgba(var(--cool),.85), rgba(var(--cool),.05) 45%, rgba(var(--heat),.05) 55%, rgba(var(--heat),.85))"></span><span>víc než liga</span></div>`;
+    }
+    const who = smState.side === "for" ? `Střely týmu ${t.place} ${t.name}` : `Střely soupeřů proti týmu ${t.place} ${t.name}`;
+    $("#sm-map").innerHTML = rinkSVG(inner, who) + `<figcaption>${caption}<div style="margin-top:6px">${esc(who)} v ${gp} zápasech. Střely na branku i mimo, bez zblokovaných a bez střel do prázdné branky. Zdroj: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></div></figcaption>`;
+
+    const mine = list.filter(s => !s.en), goals = mine.filter(s => s.goal).length, xg = mine.reduce((a, s) => a + s.xg, 0);
+    const hd = mine.filter(s => s.xg >= 0.2).length;
+    const lgPerGame = SHOTS.filter(s => !s.en).length / (SH_GAMES.length * 2), lgXg = SHOTS.filter(s => !s.en).reduce((a, s) => a + s.xg, 0) / (SH_GAMES.length * 2);
+    const rel = (v, l) => { const d = (v / l - 1) * 100; return `<small class="${smState.side === "for" ? tone(d, 0, 2) : tone(-d, 0, 2)}">${d >= 0 ? "+" : "−"}${nf(Math.abs(d), 0)} % proti lize</small>`; };
+    const types = SHOT_TYPES.map((n, i) => { const a = mine.filter(s => s.type === i); return { n, c: a.length, g: a.filter(s => s.goal).length }; }).filter(x => x.c);
+    const maxC = Math.max(1, ...types.map(x => x.c));
+    let shooters = "";
+    if (smState.side === "for") {
+      const by = {};
+      mine.forEach(s => { const o = by[s.pid] = by[s.pid] || { pid: s.pid, n: 0, g: 0, xg: 0 }; o.n++; o.g += s.goal; o.xg += s.xg; });
+      const top = Object.values(by).sort((a, b) => b.xg - a.xg).slice(0, 8);
+      const nm = id => { const r = SK.find(x => x.id === id); return r ? r.name : "Hráč " + id; };
+      shooters = `<div><h3 style="font-size:20px;margin-bottom:6px">Nejnebezpečnější střelci</h3><div class="shooters"><table><thead><tr><th class="l">Hráč</th><th title="Střely na branku i mimo">Střely</th><th title="Góly">G</th><th title="Očekávané góly">xG</th><th title="Góly nad očekáváním">G − xG</th></tr></thead><tbody>${top.map(o => `<tr data-id="${o.pid}" data-team="${T}" tabindex="0"><td class="l"><span class="name">${esc(nm(o.pid))}</span></td><td>${o.n}</td><td>${o.g}</td><td>${nf(o.xg, 1)}</td><td class="${tone(o.g - o.xg, 0, .05)}">${s1(o.g - o.xg)}</td></tr>`).join("")}</tbody></table></div></div>`;
+    }
+    $("#sm-side-panel").innerHTML = `
+      <h3>${esc(t.place)} ${esc(t.name)} · ${smState.side === "for" ? "útok" : "obrana"}</h3>
+      <div class="kpis">
+        <div><span>Střely / zápas</span><b>${nf(mine.length / gp, 1)}</b>${rel(mine.length / gp, lgPerGame)}</div>
+        <div><span>xG / zápas</span><b>${nf(xg / gp, 2)}</b>${rel(xg / gp, lgXg)}</div>
+        <div><span>${smState.side === "for" ? "Góly" : "Obdržené góly"}</span><b>${goals}</b><small class="${tone(smState.side === "for" ? goals - xg : xg - goals, 0, .5)}">${s1(goals - xg)} proti xG</small></div>
+        <div><span>Nebezpečné střely</span><b>${nf(hd / gp, 1)}</b><small>na zápas (xG ≥ 20 %)</small></div>
+      </div>
+      <div><h3 style="font-size:20px;margin-bottom:8px">Typy střel</h3><div class="typebars">${types.map(x => `<div class="tb"><span>${x.n}</span><span class="trk"><i style="width:${(x.c / maxC * 100).toFixed(1)}%"></i><i class="g" style="width:${(x.g / maxC * 100).toFixed(1)}%"></i></span><span class="v">${x.c} / ${x.g} G</span></div>`).join("")}</div>
+      <div class="maplegend"><span><i style="background:var(--bar);border-radius:2px"></i>střely</span><span><i style="background:var(--red);border-radius:2px"></i>z toho góly</span></div></div>
+      ${shooters}`;
+  }
+
+  function trendSVG(list) {
+    const games = [...new Set(list.map(s => s.gi))].sort((a, b) => a - b);
+    if (games.length < 2) return "";
+    let cg = 0, cx = 0; const pts = [[0, 0, 0]];
+    games.forEach(gi => { const a = list.filter(s => s.gi === gi); cg += a.filter(s => s.goal).length; cx += a.reduce((t, s) => t + s.xg, 0); pts.push([pts.length, cg, cx]); });
+    const W = 400, H = 170, L = 28, R = 24, T = 10, B = 26, n = pts.length - 1, max = Math.max(1, Math.ceil(Math.max(cg, cx)));
+    const sx = i => L + i / n * (W - L - R), sy = v => H - B - v / max * (H - T - B);
+    const step = max <= 5 ? 1 : max <= 12 ? 2 : 5;
+    let s = "";
+    for (let v = 0; v <= max; v += step) s += `<line class="grid" x1="${L}" x2="${W - R}" y1="${sy(v)}" y2="${sy(v)}"/><text x="${L - 6}" y="${sy(v) + 4}" text-anchor="end">${v}</text>`;
+    s += `<line class="ax" x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}"/>`;
+    [1, Math.ceil(n / 2), n].filter((v, i, a) => a.indexOf(v) === i).forEach(i => s += `<text x="${sx(i)}" y="${H - 8}" text-anchor="middle">${i}. z.</text>`);
+    const lx = pts.map(p => `${sx(p[0]).toFixed(1)},${sy(p[2]).toFixed(1)}`).join(" ");
+    let lg = `M${sx(0)},${sy(0)}`; pts.slice(1).forEach(p => { lg += ` H${sx(p[0]).toFixed(1)} V${sy(p[1]).toFixed(1)}`; });
+    s += `<polyline class="lx" points="${lx}"/><path class="lg" d="${lg}"/>`;
+    const last = pts[n];
+    s += `<circle cx="${sx(n)}" cy="${sy(last[1])}" r="3.5" fill="var(--red)"/><circle cx="${sx(n)}" cy="${sy(last[2])}" r="3" fill="var(--blue)"/>`;
+    return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kumulativní góly a xG po zápasech">${s}</svg>`;
+  }
+
+  function shotsBlock(id) {
+    const list = (SH_BY_P[id] || []).filter(s => !s.en);
+    if (!list.length) return "";
+    const goals = list.filter(s => s.goal).length, xg = list.reduce((a, s) => a + s.xg, 0);
+    const types = SHOT_TYPES.map((n, i) => { const a = list.filter(s => s.type === i); return { n, c: a.length, g: a.filter(s => s.goal).length, xg: a.reduce((t, s) => t + s.xg, 0) }; }).filter(x => x.c);
+    const maxC = Math.max(1, ...types.map(x => x.c));
+    const tr = trendSVG(list);
+    return `<div class="sec"><h4>Mapa střel</h4><p>${list.length} střel na branku i mimo, ${goals} gólů z ${nf(xg, 1)} očekávaných. Bez zblokovaných a do prázdné branky.</p>
+      ${rinkSVG(dotsLayer(list), "Mapa střel hráče")}${dotsLegend(list)}${NET_NOTE}</div>
+      ${tr ? `<div class="sec trend"><h4>Vývoj sezony</h4><p>Součet gólů (plná čára) proti součtu xG (čárkovaně) v zápasech, ve kterých hráč vystřelil. Když plná čára utíká nahoru, proměňuje víc, než odpovídá šancím.</p>${tr}<div class="maplegend"><span><i style="background:var(--red);border-radius:2px;height:3px;width:14px"></i>góly ${goals}</span><span><i style="background:var(--blue);border-radius:2px;height:3px;width:14px"></i>xG ${nf(xg, 1)}</span></div></div>` : ""}
+      <div class="sec"><h4>Typy střel</h4><div class="typebars">${types.map(x => `<div class="tb"><span>${x.n}</span><span class="trk"><i style="width:${(x.c / maxC * 100).toFixed(1)}%"></i><i class="g" style="width:${(x.g / maxC * 100).toFixed(1)}%"></i></span><span class="v">${x.c} / ${x.g} G</span></div>`).join("")}</div>
+      <div class="maplegend"><span><i style="background:var(--bar);border-radius:2px"></i>střely</span><span><i style="background:var(--red);border-radius:2px"></i>z toho góly</span></div></div>`;
+  }
+
+  const NET_NOTE = `<div class="note">Kam přesně do branky puk letěl (lapačka, vyrážečka, mezi betony, nahoru či dolů), veřejná data NHL ani MoneyPuck neobsahují. Sledují ho jen placené analytické firmy. Mapa proto ukazuje, odkud se střílelo.</div>`;
+  const DANGER = [["Málo nebezpečné", s => s.xg < 0.08], ["Středně nebezpečné", s => s.xg >= 0.08 && s.xg < 0.2], ["Vysoce nebezpečné", s => s.xg >= 0.2]];
+  let LG_SV = null;
+  function leagueSv() {
+    if (LG_SV) return LG_SV;
+    const on = SHOTS.filter(s => s.on && !s.en && s.goalie);
+    const sv = a => a.length ? 1 - a.filter(s => s.goal).length / a.length : null;
+    LG_SV = { danger: DANGER.map(([, f]) => sv(on.filter(f))), type: SHOT_TYPES.map((_, i) => sv(on.filter(s => s.type === i))) };
+    return LG_SV;
+  }
+  function goalieShotsBlock(id) {
+    if (!HAS_GOALIE_SHOTS) return "";
+    const list = SHOTS.filter(s => s.goalie === id && !s.en);
+    const on = list.filter(s => s.on);
+    if (on.length < 10) return "";
+    const ga = on.filter(s => s.goal).length, xga = list.reduce((a, s) => a + s.xg, 0), lg = leagueSv();
+    const svRow = (label, a, l) => {
+      if (!a.length) return "";
+      const g = a.filter(s => s.goal).length, sv = 1 - g / a.length, d = l == null ? null : (sv - l) * 100;
+      return `<tr><td class="l">${label}</td><td>${a.length}</td><td>${g}</td><td style="font-weight:700">${pctf(sv, 1)}</td><td class="dim">${l == null ? "–" : pctf(l, 1)}</td><td class="${d == null ? "dim" : tone(d, 0, .3)}">${d == null ? "–" : s1(d)}</td></tr>`;
+    };
+    const head = first => `<thead><tr><th class="l">${first}</th><th title="Střely na branku">Střely</th><th title="Obdržené góly">OG</th><th title="Úspěšnost zákroků">Úsp. %</th><th title="Průměr ligy u stejných střel">Liga</th><th title="Rozdíl proti lize v procentních bodech">±</th></tr></thead>`;
+    const dRows = DANGER.map(([n, f], i) => svRow(n, on.filter(f), lg.danger[i])).join("");
+    const tRows = SHOT_TYPES.map((n, i) => ({ n, i, a: on.filter(s => s.type === i) })).filter(x => x.a.length >= 5).sort((a, b) => b.a.length - a.a.length).map(x => svRow(x.n, x.a, lg.type[x.i])).join("");
+    const tr = trendSVG(list);
+    const m = on.filter(mapable);
+    return `<div class="sec"><h4>Odkud dostává góly</h4><p>${on.length} střel na branku, ${ga} gólů. Červeně góly, modře zákroky; větší tečka znamená nebezpečnější střelu. Bez střel do prázdné branky.</p>
+      ${rinkSVG(dotsLayer(on), "Mapa střel na brankáře")}
+      <div class="maplegend"><span><i class="lg-goal"></i>gól (${m.filter(s => s.goal).length})</span><span><i class="lg-on"></i>zákrok (${m.filter(s => !s.goal).length})</span><span>větší tečka = nebezpečnější střela</span></div>${NET_NOTE}</div>
+      <div class="sec"><h4>Úspěšnost podle nebezpečnosti</h4><p>Nebezpečnost podle modelu xG: málo pod 8 %, středně 8 až 20 %, vysoce nad 20 % šance na gól.</p>
+        <div class="shooters"><table class="dtab">${head("Nebezpečnost")}<tbody>${dRows}</tbody></table></div></div>
+      ${tRows ? `<div class="sec"><h4>Úspěšnost podle typu střely</h4><div class="shooters"><table class="dtab">${head("Typ")}<tbody>${tRows}</tbody></table></div></div>` : ""}
+      ${tr ? `<div class="sec trend"><h4>Vývoj sezony</h4><p>Součet obdržených gólů (plná čára) proti očekávaným (čárkovaně) v zápasech, kdy chytal. Když je plná čára pod čárkovanou, chytá nad očekávání.</p>${tr}<div class="maplegend"><span><i style="background:var(--red);border-radius:2px;height:3px;width:14px"></i>obdržené góly ${ga}</span><span><i style="background:var(--blue);border-radius:2px;height:3px;width:14px"></i>xOG ${nf(xga, 1)}</span></div></div>` : ""}
+      <div class="src">Data o střelách: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></div>`;
+  }
+
+  /* ===== Game logs (NHL boxscores + play-by-play) ===== */
+  let GM = null, PLG = {}, GKG = {}, GGOALS = {}, GPENS = {}, PDESC = [], GPID = [];
+  const PEN_CZ = { "delaying-game-puck-over-glass": "zdržování hry (puk mimo hřiště)", hooking: "hákování", fighting: "bitka", tripping: "podrážení", holding: "držení", "interference-goalkeeper": "bránění brankáři", roughing: "hrubost", "too-many-men-on-the-ice": "příliš mnoho hráčů na ledě", "unsportsmanlike-conduct": "nesportovní chování", interference: "bránění ve hře", "high-sticking": "vysoká hůl", "cross-checking": "krosček", slashing: "sekání", boarding: "napadení na hrazení", "holding-the-stick": "držení hole", "high-sticking-double-minor": "vysoká hůl (2+2)", misconduct: "osobní trest", kneeing: "zásah kolenem", "game-misconduct": "osobní trest do konce utkání", "delaying-game-unsuccessful-challenge": "neúspěšná trenérská výzva", "delaying-game": "zdržování hry", "abuse-of-officials": "urážka rozhodčích", elbowing: "zásah loktem", "broken-stick": "hra se zlomenou holí", "match-penalty": "trest ve hře", "ps-tripping-on-breakaway": "podrážení při úniku (trestné střílení)", "delaying-game-face-off-violation": "zdržování hry při vhazování", "ps-slash-on-breakaway": "sekání při úniku (trestné střílení)", instigator: "vyvolání bitky", "instigator-misconduct": "osobní trest za vyvolání bitky", "ps-holding-on-breakaway": "držení při úniku (trestné střílení)", "illegal-check-to-head": "nedovolený zásah do hlavy", "roughing-removing-opponents-helmet": "hrubost (sundání helmy soupeři)", embellishment: "filmování", "unsportsmanlike-conduct-bench": "nesportovní chování na střídačce", "ps-hooking-on-breakaway": "hákování při úniku (trestné střílení)", "ps-throwing-object-at-puck": "hození předmětu na puk (trestné střílení)", "delaying-game-illegal-play-by-goalie": "zdržování hry brankářem" };
+  const SIT = ["", "přesilovka", "oslabení", "do prázdné branky", "trestné střílení"];
+  const GSHT = ["zápěstím", "švihem", "golfák", "bekhend", "teč", "teč", "zpoza branky", "dorážka", "z voleje", "mezi nohama", "lakros"];
+  const NM = {};
+  const nmOf = id => NM[id] || "#" + id;
+  const perTxt = (p, t) => (p <= 3 ? p + ". tř." : p === 4 ? "prodl." : p - 3 + ". prodl.") + " " + Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0");
+
+  function loadGames(raw) {
+    if (!raw || !raw.g) return;
+    const A = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    const ix = {}; for (let i = 0; i < 64; i++) ix[A[i]] = i;
+    const d2 = (s, i) => ix[s[i]] * 64 + ix[s[i + 1]];
+    const P = GPID = raw.P; PDESC = raw.D || [];
+    GM = raw.g.map((s, i) => {
+      const [dt, hs, as, lt, away, home, gid] = s.split("|");
+      const long = dt.length === 8, y = long ? dt.slice(0, 4) : "2026", md = long ? dt.slice(4) : dt;
+      const id = gid ? +gid : 2026020001 + i;
+      return { i, id, sid: id % 1000000, d: +md.slice(2) + ". " + +md.slice(0, 2) + ".", y, md, hs: +hs, as: +as, lt, away, home };
+    });
+    const go = raw.go || "";
+    for (let k = 0; k + 15 <= go.length; k += 15) {
+      const gi = d2(go, k), sx = ix[go[k + 5]];
+      const e = { gi, per: ix[go[k + 2]], t: d2(go, k + 3), st: sx >> 1, side: sx & 1, sc: P[d2(go, k + 6)], a1: P[d2(go, k + 8)], a2: P[d2(go, k + 10)], gk: P[d2(go, k + 12)], ty: ix[go[k + 14]] };
+      (GGOALS[gi] = GGOALS[gi] || []).push(e);
+    }
+    for (const gi in GGOALS) { let h = 0, a = 0; GGOALS[gi].sort((x, y) => x.per - y.per || x.t - y.t).forEach(e => { if (e.side) h++; else a++; e.h = h; e.a = a; }); }
+    const pe = raw.pe || "";
+    for (let k = 0; k + 13 <= pe.length; k += 13) {
+      const gi = d2(pe, k);
+      (GPENS[gi] = GPENS[gi] || []).push({ gi, per: ix[pe[k + 2]], t: d2(pe, k + 3), side: ix[pe[k + 5]], who: P[d2(pe, k + 6)], drawn: P[d2(pe, k + 8)], dur: ix[pe[k + 10]], desc: PDESC[ix[pe[k + 11]]] || "", bench: ix[pe[k + 12]] });
+    }
+    for (const blk of (raw.s || "").split(",")) {
+      if (blk.length < 18) continue;
+      const pid = P[d2(blk, 0)], rows = [];
+      for (let k = 2; k + 16 <= blk.length; k += 16) {
+        const gs = d2(blk, k), v = i => ix[blk[k + 2 + i]], toiS = d2(blk, k + 14);
+        if (!toiS) continue;
+        const gi = gs >> 1, home = gs & 1, g = GM[gi];
+        rows.push({ gi, home, team: home ? g.home : g.away, opp: home ? g.away : g.home, pm: v(0) - 32, pim: v(1), sog: v(2), mis: v(3), sb: v(4), hit: v(5), blk: v(6), give: v(7), take: v(8), fw: v(9), fl: v(10), sh: v(11), toi: toiS, g: 0, a: 0 });
+      }
+      PLG[pid] = rows;
+    }
+    for (const blk of (raw.k || "").split(",")) {
+      if (blk.length < 15) continue;
+      const pid = P[d2(blk, 0)], rows = [];
+      for (let k = 2; k + 13 <= blk.length; k += 13) {
+        const gs = d2(blk, k), toiS = d2(blk, k + 2), v = i => ix[blk[k + 4 + i]];
+        if (!toiS) continue;
+        const gi = gs >> 1, home = gs & 1, g = GM[gi];
+        rows.push({ gi, home, team: home ? g.home : g.away, opp: home ? g.away : g.home, toi: toiS, sa: v(0), sv: v(1), evA: v(2), evS: v(3), ppA: v(4), ppS: v(5), shA: v(6), shS: v(7), dec: v(8) >> 1, starter: v(8) & 1, ga: 0 });
+      }
+      GKG[pid] = rows;
+    }
+    Object.values(GGOALS).flat().forEach(e => {
+      const f = (id, k) => { const r = (PLG[id] || []).find(x => x.gi === e.gi); if (r) r[k]++; };
+      f(e.sc, "g"); if (e.a1) f(e.a1, "a"); if (e.a2) f(e.a2, "a");
+      const gr = (GKG[e.gk] || []).find(x => x.gi === e.gi); if (gr) gr.ga++;
+    });
+  }
+
+  function gameRes(g, home) {
+    const my = home ? g.hs : g.as, op = home ? g.as : g.hs, w = my > op;
+    return { w, txt: (w ? "V" : "P") + " " + my + ":" + op + (g.lt === "OT" ? " p." : g.lt === "SO" ? " sn." : "") };
+  }
+  const gameHead = (g, extra = "") => `<div class="gd-head"><b>${esc(g.away)} ${g.as}:${g.hs} ${esc(g.home)}</b><span class="dim">${g.d} ${g.y}${g.lt === "OT" ? " · po prodloužení" : g.lt === "SO" ? " · po nájezdech" : ""}${extra}</span><a href="https://www.nhl.com/gamecenter/${g.id}" target="_blank" rel="noopener">Zápas na NHL.com ↗</a></div>`;
+
+  function goalList(gi, mine) {
+    const g = GM[gi], list = GGOALS[gi] || [];
+    if (!list.length) return `<p class="dim" style="margin:0">V základní době ani prodloužení nepadl gól.</p>`;
+    return `<ul class="evl">${list.map(e => {
+      const who = mine(e), team = e.side ? g.home : g.away;
+      const as = [e.a1, e.a2].filter(Boolean).map(nmOf);
+      const tags = [SIT[e.st], GSHT[e.ty]].filter(Boolean).join(", ");
+      return `<li class="${who ? "me" : ""}"><span class="tm2">${perTxt(e.per, e.t)}</span><span><span class="sc">${e.a}:${e.h}</span>${esc(team)} · ${esc(nmOf(e.sc))}${as.length ? ` <span class="dim">(${esc(as.join(", "))})</span>` : ` <span class="dim">(bez asistence)</span>`}${tags ? ` <span class="dim">· ${esc(tags)}</span>` : ""}</span></li>`;
+    }).join("")}</ul>`;
+  }
+
+  function penList(gi, id) {
+    const list = (GPENS[gi] || []).filter(p => p.who === id || p.drawn === id);
+    if (!list.length) return "";
+    return `<h5>Tresty</h5><ul class="evl">${list.sort((a, b) => a.per - b.per || a.t - b.t).map(p => p.who === id
+      ? `<li class="me"><span class="tm2">${perTxt(p.per, p.t)}</span><span>${p.dur} min · ${esc(PEN_CZ[p.desc] || p.desc.replace(/-/g, " "))}${p.bench ? " (odpykával za tým)" : ""}${p.drawn ? ` <span class="dim">· faul na ${esc(nmOf(p.drawn))}</span>` : ""}</span></li>`
+      : `<li><span class="tm2">${perTxt(p.per, p.t)}</span><span>Vybojoval trest: ${esc(nmOf(p.who))}, ${p.dur} min · ${esc(PEN_CZ[p.desc] || p.desc.replace(/-/g, " "))}</span></li>`).join("")}</ul>`;
+  }
+
+  function skaterGameDetail(id, r) {
+    const g = GM[r.gi];
+    const shots = (SH_BY_P[id] || []).filter(s => s.gid === GM[r.gi].sid && !s.en);
+    const xg = shots.reduce((a, s) => a + s.xg, 0);
+    const fo = r.fw + r.fl;
+    const facts = [
+      ["Góly", r.g], ["Asistence", r.a], ["Body", r.g + r.a], ["Plus/minus", signed(r.pm)],
+      ["Čas na ledě", toi(r.toi)], ["Střídání", r.sh], ["Střely na branku", r.sog], ["Střely mimo", r.mis],
+      ["Zblokované pokusy", r.sb], ["Očekávané góly (xG)", shots.length ? nf(xg, 2) : "–"],
+      ["Hity", r.hit], ["Zblokované střely", r.blk], ["Zisky puku", r.take], ["Ztráty puku", r.give],
+      ["Vhazování", fo ? `${r.fw}–${r.fl} (${nf(r.fw / fo * 100, 0)} %)` : "–"], ["Trestné minuty", r.pim]
+    ];
+    const map = shots.length && SHOTS ? `<h5>Střely v zápase</h5>${rinkSVG(dotsLayer(shots), "Střely hráče v zápase")}${dotsLegend(shots)}` : "";
+    return `<div class="gd">${gameHead(g)}
+      <div class="facts">${facts.map(([k, v]) => `<div><span>${k}</span><b class="num">${v}</b></div>`).join("")}</div>
+      <h5>Góly zápasu</h5>${goalList(r.gi, e => e.sc === id || e.a1 === id || e.a2 === id)}
+      ${penList(r.gi, id)}${map}</div>`;
+  }
+
+  function goalieGameDetail(id, r) {
+    const g = GM[r.gi];
+    const shots = HAS_GOALIE_SHOTS ? SHOTS.filter(s => s.goalie === id && s.gid === GM[r.gi].sid && !s.en) : [];
+    const xga = shots.reduce((a, s) => a + s.xg, 0), sga = shots.filter(s => s.goal).length;
+    const sp = (s, a) => a ? `${s}/${a} (${nf(s / a * 100, 1)} %)` : "–";
+    const facts = [
+      ["Střely proti", r.sa], ["Zákroky", r.sv], ["Obdržené góly", r.ga], ["Úspěšnost", r.sa ? pctf(r.sv / r.sa, 1) + " %" : "–"],
+      ["Čas v brance", toi(r.toi)], ["Nastoupil", r.starter ? "od začátku" : "jako náhradník"],
+      ["Vyrovnaný počet hráčů", sp(r.evS, r.evA)], ["Soupeř v přesilovce", sp(r.ppS, r.ppA)], ["Tým v přesilovce", sp(r.shS, r.shA)],
+      ["Rozhodnutí", ["bez rozhodnutí", "výhra", "prohra", "prohra po prodl."][r.dec] || "–"]
+    ];
+    if (shots.length) facts.push(["Očekávané OG (xOG)", nf(xga, 2)], ["GSAx", `<span class="${tone(xga - sga, 0, .05)}">${s1(xga - sga)}</span>`]);
+    const on = shots.filter(s => s.on);
+    const map = on.length ? `<h5>Střely na branku</h5>${rinkSVG(dotsLayer(on), "Střely na brankáře v zápase")}<div class="maplegend"><span><i class="lg-goal"></i>gól</span><span><i class="lg-on"></i>zákrok</span></div>` : "";
+    return `<div class="gd">${gameHead(g)}
+      <div class="facts">${facts.map(([k, v]) => `<div><span>${k}</span><b class="num">${v}</b></div>`).join("")}</div>
+      <h5>Góly zápasu</h5>${goalList(r.gi, e => e.gk === id)}${penList(r.gi, id)}${map}</div>`;
+  }
+
+  function ptChart(rows) {
+    const n = rows.length; if (n < 2) return "";
+    const W = 400, H = 96, L = 4, R = 4, T = 8, B = 16, mx = Math.max(2, ...rows.map(r => r.g + r.a));
+    const bw = (W - L - R) / n, u = (H - T - B) / mx;
+    let s = `<line x1="${L}" x2="${W - R}" y1="${H - B}" y2="${H - B}" stroke="var(--line)"/>`;
+    rows.forEach((r, i) => {
+      const x = L + i * bw + bw * .15, w = Math.max(1.5, bw * .7), gm = GM[r.gi];
+      const tt = `${gm.d} ${r.home ? "vs" : "@"} ${r.opp}: ${r.g} G, ${r.a} A`;
+      if (r.g) s += `<rect data-gi="${r.gi}" x="${x.toFixed(1)}" y="${(H - B - r.g * u).toFixed(1)}" width="${w.toFixed(1)}" height="${(r.g * u).toFixed(1)}" fill="var(--red)" rx="1"><title>${esc(tt)}</title></rect>`;
+      if (r.a) s += `<rect data-gi="${r.gi}" x="${x.toFixed(1)}" y="${(H - B - (r.g + r.a) * u).toFixed(1)}" width="${w.toFixed(1)}" height="${(r.a * u).toFixed(1)}" fill="var(--blue)" rx="1"><title>${esc(tt)}</title></rect>`;
+      if (!r.g && !r.a) s += `<rect data-gi="${r.gi}" x="${x.toFixed(1)}" y="${H - B - 2}" width="${w.toFixed(1)}" height="2" fill="var(--line)"><title>${esc(tt)}</title></rect>`;
+    });
+    [0, n - 1].forEach(i => s += `<text x="${(L + i * bw + bw / 2).toFixed(1)}" y="${H - 3}" text-anchor="${i ? "end" : "start"}">${GM[rows[i].gi].d}</text>`);
+    return `<div class="ptchart"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Body v jednotlivých zápasech">${s}</svg><div class="maplegend"><span><i style="background:var(--red);border-radius:2px"></i>góly</span><span><i style="background:var(--blue);border-radius:2px"></i>asistence</span><span>kliknutím na sloupec otevřete zápas</span></div></div>`;
+  }
+
+  function gamesBlock(id) {
+    const rows = PLG[id];
+    if (!GM || !rows || !rows.length) return "";
+    const list = rows.slice().sort((a, b) => b.gi - a.gi);
+    return `<div class="sec" id="glog" data-kind="s" data-pid="${id}"><h4>Zápasy</h4><p>Kliknutím na zápas zobrazíte podrobné statistiky: čas na ledě, střídání, střely, hity, vhazování, góly s časem a situací, tresty i mapu střel.</p>
+      ${ptChart(rows)}
+      <div class="shooters"><table class="gtab dtab"><thead><tr><th class="l">Datum</th><th class="l">Soupeř</th><th class="l">Výsl.</th><th title="Góly">G</th><th title="Asistence">A</th><th title="Body">B</th><th title="Plus/minus">+/−</th><th title="Střely na branku">S</th><th title="Čas na ledě">Čas</th></tr></thead><tbody>
+      ${list.map(r => { const g = GM[r.gi], res = gameRes(g, r.home); return `<tr class="grow" data-gi="${r.gi}" tabindex="0" aria-expanded="false"><td class="l">${g.d}</td><td class="l">${r.home ? "vs" : "@"} <span class="team">${esc(r.opp)}</span></td><td class="l ${res.w ? "res-w" : "res-l"}">${res.txt}</td><td>${r.g || ""}</td><td>${r.a || ""}</td><td style="font-weight:700">${r.g + r.a || ""}</td><td class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : "dim"}">${signed(r.pm)}</td><td>${r.sog}</td><td>${toi(r.toi)}</td></tr>`; }).join("")}
+      </tbody></table></div><div class="src">Zápasová data: <a href="https://www.nhl.com" target="_blank" rel="noopener">NHL.com</a> (oficiální zápis a záznam událostí)${SHOTS ? ", xG a mapy: MoneyPuck.com" : ""}</div></div>`;
+  }
+
+  function goalieGamesBlock(id) {
+    const rows = GKG[id];
+    if (!GM || !rows || !rows.length) return "";
+    const list = rows.slice().sort((a, b) => b.gi - a.gi);
+    const dec = ["–", "V", "P", "PP"];
+    return `<div class="sec" id="glog" data-kind="g" data-pid="${id}"><h4>Zápasy</h4><p>Kliknutím na zápas zobrazíte zákroky podle herní situace, všechny obdržené góly s časem a střelcem a mapu střel.</p>
+      <div class="shooters"><table class="gtab dtab"><thead><tr><th class="l">Datum</th><th class="l">Soupeř</th><th class="l">Výsl.</th><th title="Rozhodnutí: V výhra, P prohra, PP prohra po prodloužení">Rozh.</th><th title="Střely proti">SP</th><th title="Obdržené góly">OG</th><th title="Úspěšnost zákroků">Úsp. %</th><th title="Čas v brance">Čas</th></tr></thead><tbody>
+      ${list.map(r => { const g = GM[r.gi], res = gameRes(g, r.home); return `<tr class="grow" data-gi="${r.gi}" tabindex="0" aria-expanded="false"><td class="l">${g.d}</td><td class="l">${r.home ? "vs" : "@"} <span class="team">${esc(r.opp)}</span></td><td class="l ${res.w ? "res-w" : "res-l"}">${res.txt}</td><td>${dec[r.dec]}</td><td>${r.sa}</td><td>${r.ga}</td><td style="font-weight:700">${r.sa ? pctf(r.sv / r.sa, 1) : "–"}</td><td>${toi(r.toi)}</td></tr>`; }).join("")}
+      </tbody></table></div><div class="src">Zápasová data: <a href="https://www.nhl.com" target="_blank" rel="noopener">NHL.com</a>${HAS_GOALIE_SHOTS ? ", xOG a mapy: MoneyPuck.com" : ""}</div></div>`;
+  }
+
+  function toggleGame(tr) {
+    const box = tr.closest("#glog"); if (!box) return;
+    const open = tr.getAttribute("aria-expanded") === "true";
+    const nx = tr.nextElementSibling;
+    if (nx && nx.classList.contains("gdet")) nx.remove();
+    tr.setAttribute("aria-expanded", String(!open));
+    if (open) return;
+    const id = +box.dataset.pid, gi = +tr.dataset.gi;
+    const r = (box.dataset.kind === "g" ? GKG[id] : PLG[id]).find(x => x.gi === gi);
+    if (!r) return;
+    const cols = tr.children.length;
+    tr.insertAdjacentHTML("afterend", `<tr class="gdet"><td colspan="${cols}">${box.dataset.kind === "g" ? goalieGameDetail(id, r) : skaterGameDetail(id, r)}</td></tr>`);
+  }
+
+  /* ===== Lines and pairings (MoneyPuck, 5 on 5) ===== */
+  let LINES = null;
+  const flState = Object.assign({ team: "", kind: "L", min: 10, sort: "toi", asc: false }, store.get("fl", {}));
+  const FL_COLS = [
+    { k: "gp", l: "Z", t: "Zápasy, ve kterých formace hrála spolu" },
+    { k: "toi", l: "Čas spolu", t: "Společný čas na ledě při hře 5 na 5 (minuty:sekundy)", f: r => toi(r.toi) },
+    { k: "xgp", l: "xGF %", t: "Podíl očekávaných gólů formace (nad 50 % = víc šancí než soupeř)", f: r => `<span class="${tone(r.xgp, .5, .005)}" style="font-weight:700">${pctf(r.xgp, 0)}</span><span class="xg5" aria-hidden="true"><i style="${r.xgp >= .5 ? `left:50%;width:${Math.min(50, (r.xgp - .5) * 200).toFixed(1)}%;background:var(--good)` : `right:50%;width:${Math.min(50, (.5 - r.xgp) * 200).toFixed(1)}%;background:var(--bad)`}"></i></span>` },
+    { k: "cfp", l: "CF %", t: "Corsi: podíl všech střeleckých pokusů formace", f: r => `<span class="${tone(r.cfp, .5, .005)}">${pctf(r.cfp, 0)}</span>` },
+    { k: "gd", l: "Góly", t: "Vstřelené : obdržené góly s formací na ledě", f: r => `${r.gf}:${r.ga}` },
+    { k: "xgd", l: "xG", t: "Očekávané góly vstřelené : obdržené", f: r => `${nf(r.xgf, 1)}:${nf(r.xga, 1)}` },
+    { k: "xgf60", l: "xGF/60", t: "Očekávané vstřelené góly na 60 minut", f: r => nf(r.xgf60, 2) },
+    { k: "xga60", l: "xGA/60", t: "Očekávané obdržené góly na 60 minut (nižší je lepší)", f: r => nf(r.xga60, 2), asc: true },
+    { k: "hdd", l: "Nebezp.", t: "Vysoce nebezpečné střely pro : proti", f: r => `${r.hdf}:${r.hda}` }
+  ];
+  const posOrder = { L: 0, C: 1, R: 2, D: 3 };
+  function loadLines(raw) {
+    if (!raw || !raw.l) return;
+    const info = {}; SK.forEach(r => { if (!info[r.id]) info[r.id] = r; });
+    LINES = raw.l.map(a => {
+      const ids = a[0].split("-").map(Number);
+      const pl = ids.map(id => ({ id, r: SK.find(x => x.id === id && x.team === a[1]) || info[id] })).sort((p, q) => (posOrder[p.r?.pos] ?? 9) - (posOrder[q.r?.pos] ?? 9));
+      const h = a[4] / 3600;
+      return { ids, pl, team: a[1], kind: a[2], gp: a[3], toi: a[4], xgp: a[5], cfp: a[6], gf: a[7], ga: a[8], xgf: a[9], xga: a[10], af: a[11], aa: a[12], hdf: a[13], hda: a[14],
+        gd: a[7] - a[8], xgd: a[9] - a[10], hdd: a[13] - a[14], xgf60: h ? a[9] / h : 0, xga60: h ? a[10] / h : 0, key: pl.map(p => p.r ? norm(p.r.name) : "").join(" ") };
+    });
+    $("#tab-formace").hidden = false;
+    $("#fl-team").innerHTML = '<option value="">Celá liga</option>' + Object.values(TM).sort((a, b) => (a.place + a.name).localeCompare(b.place + b.name, "cs")).map(t => `<option value="${t.ab}">${esc(t.place)} ${esc(t.name)}</option>`).join("");
+  }
+  const plName = p => p.r ? `<button type="button" class="pl" data-id="${p.id}" data-team="${p.r.team}" title="${esc(p.r.name)}">${esc(p.r.last)}</button>` : `<span class="dim">#${p.id}</span>`;
+  function renderLines() {
+    if (!LINES) return;
+    const s = flState;
+    $("#fl-team").value = s.team; $("#fl-min").value = s.min;
+    document.querySelectorAll("#fl-kind button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === s.kind)));
+    const rows = LINES.filter(r => r.kind === s.kind && (!s.team || r.team === s.team) && r.toi >= (+s.min || 0) * 60);
+    const dir = s.asc ? 1 : -1;
+    rows.sort((a, b) => (a[s.sort] !== b[s.sort] ? (a[s.sort] > b[s.sort] ? 1 : -1) * dir : b.toi - a.toi));
+    const n = rows.length, w = s.kind === "L" ? ["trojice", "trojice", "trojic"] : ["dvojice", "dvojice", "dvojic"];
+    $("#fl-count").textContent = n + " " + (n === 1 ? w[0] : n >= 2 && n <= 4 ? w[1] : w[2]);
+    if (!n) { $("#fl-box").innerHTML = `<div class="empty">Žádná formace neodpovídá filtrům. Zkuste snížit minimum společných minut.</div>`; return; }
+    $("#fl-box").innerHTML = `<table style="min-width:${s.kind === "L" ? 1060 : 960}px"><thead><tr><th class="stick1 l">#</th><th class="stick2 l">${s.kind === "L" ? "Útočná trojice" : "Obranná dvojice"}</th><th class="l">Tým</th>${FL_COLS.map(c => `<th class="${s.sort === c.k ? "sorted" + (s.asc ? " asc" : "") : ""}" title="${esc(c.t)}" aria-sort="${s.sort === c.k ? (s.asc ? "ascending" : "descending") : "none"}"><button type="button" data-sort="${c.k}">${c.l}</button></th>`).join("")}</tr></thead><tbody>${rows.map((r, i) => `<tr>
+      <td class="stick1 l">${i + 1}</td><td class="stick2 l">${r.pl.map(plName).join('<span class="sep">–</span>')}</td>
+      <td class="l team" title="${esc((TM[r.team]?.place || "") + " " + (TM[r.team]?.name || ""))}">${r.team}</td>
+      ${FL_COLS.map(c => `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+  function linesBlock(id) {
+    if (!LINES) return "";
+    const mine = LINES.filter(l => l.ids.includes(id)).sort((a, b) => b.toi - a.toi).slice(0, 4);
+    if (!mine.length) return "";
+    return `<div class="sec"><h4>${mine[0].kind === "D" ? "Obranné dvojice" : "Formace"} (5 na 5)</h4><p>S kým hraje nejvíc a jak se jim daří. xGF % nad 50 znamená víc šancí než soupeř.</p>
+      <div class="shooters"><table class="dtab"><thead><tr><th class="l">Spoluhráči</th><th title="Společný čas">Čas</th><th title="Podíl očekávaných gólů">xGF %</th><th title="Góly pro : proti">Góly</th></tr></thead><tbody>${mine.map(l => `<tr><td class="l" style="white-space:normal">${l.pl.filter(p => p.id !== id).map(plName).join('<span class="sep">+</span>')}</td><td>${toi(l.toi)}</td><td class="${tone(l.xgp, .5, .005)}" style="font-weight:700">${pctf(l.xgp, 0)}</td><td>${l.gf}:${l.ga}</td></tr>`).join("")}</tbody></table></div>
+      <div class="src">Formace: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>, jen kombinace s aspoň 10 minutami spolu.</div></div>`;
+  }
+
+  /* Events */
+  document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => setView(t.dataset.view)));
+  const bindSk = (sel, key, ev = "input", num = false) => $(sel).addEventListener(ev, e => { skState[key] = num ? (+e.target.value || 0) : e.target.value; store.set("sk", { ...skState, q: "" }); renderSkaters(); });
+  const bindGk = (sel, key, ev = "input", num = false) => $(sel).addEventListener(ev, e => { gkState[key] = num ? (+e.target.value || 0) : e.target.value; store.set("gk2", { ...gkState, q: "" }); renderGoalies(); });
+  bindSk("#sk-q", "q"); bindSk("#sk-team", "team", "change"); bindSk("#sk-nat", "nat", "change"); bindSk("#sk-gp", "gp", "input", true);
+  bindGk("#gk-q", "q"); bindGk("#gk-team", "team", "change"); bindGk("#gk-nat", "nat", "change"); bindGk("#gk-gp", "gp", "input", true);
+  $("#sk-pos").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; skState.pos = b.dataset.v; syncControls(); store.set("sk", { ...skState, q: "" }); renderSkaters(); });
+  $("#sk-mode").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; skState.mode = b.dataset.v; syncControls(); store.set("sk", { ...skState, q: "" }); renderSkaters(); });
+  $("#plotbox").addEventListener("click", e => { const c = e.target.closest("circle[data-id]"); if (c) playerDetail(+c.dataset.id, c.dataset.team); });
+  $("#sk-reset").addEventListener("click", () => { Object.assign(skState, { q: "", team: "", pos: "all", nat: "", gp: 0 }); syncControls(); store.set("sk", skState); renderSkaters(); });
+  $("#gk-reset").addEventListener("click", () => { Object.assign(gkState, { q: "", team: "", nat: "", gp: 1 }); syncControls(); store.set("gk2", gkState); renderGoalies(); });
+
+  $("#tablebox").addEventListener("click", e => {
+    const sb = e.target.closest("[data-sort]");
+    if (sb) {
+      const adv = view === "hraci" && skState.mode === "adv" && HAS_MP;
+      const st = adv ? advState : view === "hraci" ? skState : gkState, cols = adv ? ADV_COLS : view === "hraci" ? SK_COLS : GK_COLS;
+      const col = cols.find(c => c.k === sb.dataset.sort);
+      if (!col) return;
+      if (st.sort === col.k) st.asc = !st.asc; else { st.sort = col.k; st.asc = !!col.asc; }
+      store.set(adv ? "adv" : view === "hraci" ? "sk" : "gk2", adv ? st : { ...st, q: "" });
+      render(); return;
+    }
+    const tr = e.target.closest("tr[data-id], tr[data-gid]");
+    if (!tr) return;
+    if (tr.dataset.id) playerDetail(+tr.dataset.id, tr.dataset.team); else goalieDetail(+tr.dataset.gid, tr.dataset.team);
+  });
+  $("#tablebox").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("tr")) e.target.click(); });
+  $("#leaders").addEventListener("click", e => { const b = e.target.closest(".lead"); if (b) playerDetail(+b.dataset.id, b.dataset.team); });
+  $("#conf").addEventListener("click", e => {
+    const tr = e.target.closest("tr[data-teamrow]"); if (!tr) return;
+    Object.assign(skState, { team: tr.dataset.teamrow, q: "", pos: "all", nat: "", gp: 0 }); syncControls(); store.set("sk", skState);
+    setView("hraci"); window.scrollTo({ top: $(".tabs").offsetTop - 8, behavior: "smooth" });
+  });
+  $("#conf").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("tr")) e.target.click(); });
+  $("#scrim").addEventListener("click", closeDrawer);
+  $("#drawer").addEventListener("click", e => { if (e.target.closest("#d-close")) closeDrawer(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });
+
+  const segBind = (sel, key) => $(sel).addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; smState[key] = b.dataset.v; store.set("sm", smState); renderShotMap(); });
+  segBind("#sm-side", "side"); segBind("#sm-mode", "mode");
+  $("#sm-team").addEventListener("change", e => { smState.team = e.target.value; store.set("sm", smState); renderShotMap(); });
+  $("#sm-side-panel").addEventListener("click", e => { const tr = e.target.closest("tr[data-id]"); if (tr) playerDetail(+tr.dataset.id, tr.dataset.team); });
+  $("#sm-side-panel").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.matches("tr")) e.target.click(); });
+  const saveFl = () => { store.set("fl", flState); renderLines(); };
+  $("#fl-team").addEventListener("change", e => { flState.team = e.target.value; saveFl(); });
+  $("#fl-min").addEventListener("input", e => { flState.min = Math.max(0, +e.target.value || 0); saveFl(); });
+  $("#fl-kind").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; flState.kind = b.dataset.v; saveFl(); });
+  $("#fl-box").addEventListener("click", e => {
+    const sb = e.target.closest("[data-sort]");
+    if (sb) { const c = FL_COLS.find(x => x.k === sb.dataset.sort); if (!c) return; if (flState.sort === c.k) flState.asc = !flState.asc; else { flState.sort = c.k; flState.asc = !!c.asc; } saveFl(); return; }
+    const p = e.target.closest(".pl"); if (p) playerDetail(+p.dataset.id, p.dataset.team);
+  });
+  $("#drawer").addEventListener("click", e => {
+    if (e.target.closest("a")) return;
+    const p = e.target.closest(".pl"); if (p) { playerDetail(+p.dataset.id, p.dataset.team); return; }
+    const tr = e.target.closest("tr.grow"); if (tr) { toggleGame(tr); return; }
+    const bar = e.target.closest(".ptchart rect[data-gi]");
+    if (bar) { const row = $(`#glog tr.grow[data-gi="${bar.dataset.gi}"]`); if (row) { if (row.getAttribute("aria-expanded") !== "true") toggleGame(row); row.scrollIntoView({ block: "start", behavior: "smooth" }); row.focus({ preventScroll: true }); } }
+  });
+  $("#drawer").addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.matches("tr.grow")) { e.preventDefault(); toggleGame(e.target); } });
+
+  const opt = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+  const mpReq = opt("mp.json"), shReq = opt("shots.json"), gsReq = opt("goalies_shots.json"), lnReq = opt("lines.json"), gmReq = opt("games.json");
+  fetch("data.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => Promise.all([mpReq, shReq, gsReq, lnReq, gmReq]).then(([mp, sh, gs, ln, gm]) => {
+    try { loadShots(sh, gs); } catch (e) { SHOTS = null; HAS_GOALIE_SHOTS = false; }
+    load(d, mp, ln, gm);
+  })).catch(() => {
+    $("#asof").textContent = "Data se nepodařilo načíst";
+    $("#tablebox").innerHTML = `<div class="empty">Soubor se statistikami se nenačetl. Obnovte stránku; pokud problém trvá, požádejte Clauda o nové publikování dat.</div>`;
+  });
+})();
+</script>
