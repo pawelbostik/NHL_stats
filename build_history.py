@@ -129,7 +129,25 @@ def build_season(y, ends):
         ed = b.step("EDGE %s" % sid, lambda: b.build_edge(data))
         if ed:
             wj(os.path.join(d, "edge.json"), ed)
+    fix_phx(d, data)
     return sid, data
+
+
+def fix_phx(d, data):
+    """MoneyPuck označuje Phoenix kódem ARI i v sezonách, kdy NHL používala PHX. Sjednotí kódy podle NHL."""
+    if not data or "PHX" not in {t[0] for t in data.get("tm", [])}:
+        return
+    for name in ("mp.json", "lines.json", "shots.json", "goalies_shots.json", "edge.json"):
+        path = os.path.join(d, name)
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            txt = f.read()
+        new = txt.replace('"ARI"', '"PHX"').replace('-ARI"', '-PHX"')
+        if new != txt:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(new)
+            b.log("  %s: ARI -> PHX" % name)
 
 
 def build_careers_hist(all_ids):
