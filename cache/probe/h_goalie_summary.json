@@ -1,0 +1,58 @@
+{
+ "url": "https://api.nhle.com/stats/rest/en/goalie/summary?isAggregate=false&isGame=false&start=0&limit=2&cayenneExp=seasonId=20082009%20and%20gameTypeId=2",
+ "data": {
+  "data": [
+   {
+    "assists": 0,
+    "gamesPlayed": 59,
+    "gamesStarted": 58,
+    "goalieFullName": "Ryan Miller",
+    "goals": 0,
+    "goalsAgainst": 145,
+    "goalsAgainstAverage": 2.52656,
+    "lastName": "Miller",
+    "losses": 18,
+    "otLosses": 6,
+    "penaltyMinutes": 4,
+    "playerId": 8468011,
+    "points": 0,
+    "savePct": 0.91821,
+    "saves": 1628,
+    "seasonId": 20082009,
+    "shootsCatches": "L",
+    "shotsAgainst": 1773,
+    "shutouts": 5,
+    "teamAbbrevs": "BUF",
+    "ties": null,
+    "timeOnIce": 206605,
+    "wins": 34
+   },
+   {
+    "assists": 1,
+    "gamesPlayed": 52,
+    "gamesStarted": 49,
+    "goalieFullName": "Carey Price",
+    "goals": 0,
+    "goalsAgainst": 143,
+    "goalsAgainstAverage": 2.82645,
+    "lastName": "Price",
+    "losses": 16,
+    "otLosses": 10,
+    "penaltyMinutes": 4,
+    "playerId": 8471679,
+    "points": 1,
+    "savePct": 0.90548,
+    "saves": 1370,
+    "seasonId": 20082009,
+    "shootsCatches": "L",
+    "shotsAgainst": 1513,
+    "shutouts": 1,
+    "teamAbbrevs": "MTL",
+    "ties": null,
+    "timeOnIce": 182136,
+    "wins": 23
+   }
+  ],
+  "total": 89
+ }
+}

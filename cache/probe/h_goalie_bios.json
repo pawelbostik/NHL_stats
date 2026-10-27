@@ -1,0 +1,58 @@
+{
+ "url": "https://api.nhle.com/stats/rest/en/goalie/bios?isAggregate=false&isGame=false&start=0&limit=2&cayenneExp=seasonId=20082009%20and%20gameTypeId=2",
+ "data": {
+  "data": [
+   {
+    "birthCity": "Cold Lake",
+    "birthCountryCode": "CAN",
+    "birthDate": "1981-01-07",
+    "birthStateProvinceCode": "AB",
+    "currentTeamAbbrev": null,
+    "draftOverall": 40,
+    "draftRound": 2,
+    "draftYear": 1999,
+    "firstSeasonForGameType": 20012002,
+    "gamesPlayed": 43,
+    "goalieFullName": "Alex Auld",
+    "height": 76,
+    "isInHallOfFameYn": "N",
+    "lastName": "Auld",
+    "losses": 18,
+    "nationalityCode": "CAN",
+    "otLosses": 7,
+    "playerId": 8467913,
+    "shootsCatches": "L",
+    "shutouts": 1,
+    "ties": null,
+    "weight": 215,
+    "wins": 16
+   },
+   {
+    "birthCity": "Regina",
+    "birthCountryCode": "CAN",
+    "birthDate": "1984-06-18",
+    "birthStateProvinceCode": "SK",
+    "currentTeamAbbrev": null,
+    "draftOverall": 38,
+    "draftRound": 2,
+    "draftYear": 2002,
+    "firstSeasonForGameType": 20022003,
+    "gamesPlayed": 19,
+    "goalieFullName": "Josh Harding",
+    "height": 74,
+    "isInHallOfFameYn": "N",
+    "lastName": "Harding",
+    "losses": 9,
+    "nationalityCode": "CAN",
+    "otLosses": 1,
+    "playerId": 8470216,
+    "shootsCatches": "R",
+    "shutouts": 0,
+    "ties": null,
+    "weight": 194,
+    "wins": 3
+   }
+  ],
+  "total": 89
+ }
+}

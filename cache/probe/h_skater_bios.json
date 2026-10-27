@@ -1,0 +1,58 @@
+{
+ "url": "https://api.nhle.com/stats/rest/en/skater/bios?isAggregate=false&isGame=false&start=0&limit=2&cayenneExp=seasonId=20082009%20and%20gameTypeId=2",
+ "data": {
+  "data": [
+   {
+    "assists": 0,
+    "birthCity": "White Rock",
+    "birthCountryCode": "CAN",
+    "birthDate": "1984-11-13",
+    "birthStateProvinceCode": "BC",
+    "currentTeamAbbrev": null,
+    "currentTeamName": null,
+    "draftOverall": null,
+    "draftRound": null,
+    "draftYear": null,
+    "firstSeasonForGameType": 20082009,
+    "gamesPlayed": 1,
+    "goals": 0,
+    "height": 73,
+    "isInHallOfFameYn": "N",
+    "lastName": "Garrison",
+    "nationalityCode": "CAN",
+    "playerId": 8474520,
+    "points": 0,
+    "positionCode": "D",
+    "shootsCatches": "L",
+    "skaterFullName": "Jason Garrison",
+    "weight": 218
+   },
+   {
+    "assists": 0,
+    "birthCity": "Lulea",
+    "birthCountryCode": "SWE",
+    "birthDate": "1978-09-14",
+    "birthStateProvinceCode": null,
+    "currentTeamAbbrev": null,
+    "currentTeamName": null,
+    "draftOverall": null,
+    "draftRound": null,
+    "draftYear": null,
+    "firstSeasonForGameType": 20082009,
+    "gamesPlayed": 3,
+    "goals": 0,
+    "height": 72,
+    "isInHallOfFameYn": "N",
+    "lastName": "Ledin",
+    "nationalityCode": "SWE",
+    "playerId": 8473407,
+    "points": 0,
+    "positionCode": "L",
+    "shootsCatches": "L",
+    "skaterFullName": "Per Ledin",
+    "weight": 194
+   }
+  ],
+  "total": 885
+ }
+}
