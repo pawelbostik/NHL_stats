@@ -74,6 +74,10 @@ h1 .dot { color: var(--red); }
 .meta { color: var(--muted); font-size: 14.5px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .meta a { color: var(--red-deep); }
 /* Čáry z kluziště: modrá čára, led, červená středová čára */
+.seasonbar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: end; margin-top: 4px; }
+.seasonbar select { min-width: 190px; font-weight: 600; }
+.seasonbar a { color: var(--red-deep); font-size: 14.5px; padding-bottom: 8px; }
+body.archive .eyebrow#eyebrow { color: var(--rinkblue); }
 .rink { display: block; height: 14px; margin-top: 8px; background: linear-gradient(180deg, var(--rinkblue) 0 6px, transparent 6px 10px, var(--red) 10px 12px, transparent 12px); }
 .rink span { display: none; }
 
@@ -470,8 +474,9 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">NHL · základní část 2026/27</div>
+    <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
     <h1><a href="#hraci" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
+    <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
   </header>
@@ -616,7 +621,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       </div>
       <div class="count" id="cz-count"></div>
     </div>
-    <p class="legend" style="margin:0 0 12px">Všichni čeští hráči a brankáři v NHL na jednom místě: sezona, forma v posledních zápasech, poslední a příští zápas. Kliknutím na řádek otevřete detail, kliknutím na poslední zápas jeho rozbor.</p>
+    <p class="legend" style="margin:0 0 12px">Všichni čeští hráči a brankáři v NHL na jednom místě: sezona, forma v posledních zápasech, poslední a příští zápas (u aktuální sezony). Kliknutím na řádek otevřete detail, kliknutím na poslední zápas jeho rozbor.</p>
     <div id="cz-box"></div>
   </section>
 
@@ -647,6 +652,24 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 
 <script>
 (() => {
+  const opt = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+  const QS = new URLSearchParams(location.search);
+  const HSEASON = /^\d{8}$/.test(QS.get("s") || "") ? QS.get("s") : null;
+  const BASE = HSEASON ? `hist/${HSEASON}/` : "";
+  const seasonLbl = sid => sid.slice(0, 4) + "/" + sid.slice(6, 8);
+  let HIDX = null;
+  const HIDX_REQ = opt("hist/index.json").then(x => (HIDX = x));
+  function initSeasonBar(ix) {
+    const cur = (ix && ix.current) || "20262027";
+    const list = [cur].concat(ix && ix.seasons ? ix.seasons.filter(x => x !== cur) : []);
+    if (list.length < 2 && !HSEASON) return;
+    $("#season").innerHTML = list.map(sid => `<option value="${sid}">${seasonLbl(sid)}${sid === cur ? " · aktuální" : ""}</option>`).join("");
+    $("#season").value = HSEASON || cur;
+    $("#seasonbar").hidden = false;
+    $("#tocurrent").hidden = !HSEASON;
+    $("#season").addEventListener("change", e => { const v = e.target.value; location.href = location.pathname + (v === cur ? "" : "?s=" + v) + location.hash; });
+  }
+  if (HSEASON) { document.body.classList.add("archive"); }
   const COUNTRY = { CZE: "Česko", SVK: "Slovensko", CAN: "Kanada", USA: "USA", SWE: "Švédsko", FIN: "Finsko", RUS: "Rusko", DEU: "Německo", CHE: "Švýcarsko", DNK: "Dánsko", LVA: "Lotyšsko", AUT: "Rakousko", NOR: "Norsko", FRA: "Francie", AUS: "Austrálie", BLR: "Bělorusko", SVN: "Slovinsko", GBR: "Velká Británie", UKR: "Ukrajina", KAZ: "Kazachstán", NLD: "Nizozemsko", ITA: "Itálie", POL: "Polsko", JPN: "Japonsko" };
   const POS = { C: "Centr", L: "Levé křídlo", R: "Pravé křídlo", D: "Obránce" };
   const POS_SHORT = { C: "C", L: "LK", R: "PK", D: "O" };
@@ -790,7 +813,13 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     if (GM) document.querySelector('#sk-mode [data-v="form"]').hidden = false;
 
     const d = new Date(data.updated + "T12:00:00");
-    $("#asof").textContent = "Stav po zápasech " + d.toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" });
+    const sid = HSEASON || (HIDX && HIDX.current) || "20262027";
+    $("#eyebrow").textContent = (HSEASON ? "Archiv · " : "") + "NHL · základní část " + seasonLbl(sid);
+    document.title = HSEASON ? `Statistiky NHL ${seasonLbl(sid)}` : document.title;
+    $("#asof").textContent = data.final ? `Konečný stav základní části ${seasonLbl(sid)}` + (isNaN(d) ? "" : ` (${d.toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" })})`) : "Stav po zápasech " + d.toLocaleDateString("cs-CZ", { day: "numeric", month: "long", year: "numeric" });
+    if (!GM && skState.mode === "form") skState.mode = "basic";
+    if (!HAS_SP && skState.mode === "st") skState.mode = "basic";
+    if (!GM && gkState.mode === "form") gkState.mode = "basic";
 
     const teamOpts = '<option value="">Všechny týmy</option>' + Object.values(TM).sort((a, b) => (a.place + a.name).localeCompare(b.place + b.name, "cs")).map(t => `<option value="${t.ab}">${esc(t.place)} ${esc(t.name)}</option>`).join("");
     $("#sk-team").innerHTML = teamOpts; $("#gk-team").innerHTML = teamOpts;
@@ -965,8 +994,8 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     SK.forEach(r => { const t = topScorer[r.team]; if (!t || r.p > t.p || (r.p === t.p && r.g > t.g)) topScorer[r.team] = r; });
     const streak = s => { const m = /^([A-Z]+)(\d+)$/.exec(s || ""); if (!m) return "–"; const [, k, n] = m; return k === "W" ? `<span class="streak w">${n}× V</span>` : k === "L" ? `<span class="streak l">${n}× P</span>` : `<span class="streak o">${n}× PP</span>`; };
     const t0 = Object.values(TM)[0] || {};
-    const conf = (c, title) => {
-      const teams = Object.values(TM).filter(t => t.conf === c).sort((a, b) => b.pts - a.pts || (b.pts / (2 * b.gp)) - (a.pts / (2 * a.gp)) || (b.gf - b.ga) - (a.gf - a.ga));
+    const conf = (c, title, dv) => {
+      const teams = Object.values(TM).filter(t => dv ? t.div === dv : t.conf === c).sort((a, b) => b.pts - a.pts || (b.pts / (2 * b.gp)) - (a.pts / (2 * a.gp)) || (b.gf - b.ga) - (a.gf - a.ga));
       return `<div><h2>${title}</h2><div class="tablebox" style="max-height:none"><table><thead><tr>
         <th class="stick1 l">#</th><th class="stick2 l">Tým</th><th class="l">Divize</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="Prohry v prodloužení / nájezdech">PP</th><th title="Body">B</th><th title="Procento bodů">B %</th><th title="Skóre">Skóre</th><th title="Rozdíl skóre">+/−</th>${HAS_SP ? '<th title="Úspěšnost přesilovek">PP %</th><th title="Úspěšnost oslabení">PK %</th>' : ""}${t0.hw != null ? '<th title="Bilance doma: výhry–prohry–prohry po prodl.">Doma</th><th title="Bilance venku">Venku</th><th title="Posledních 10 zápasů">Posl. 10</th>' : ""}${HAS_MP ? '<th title="Hra 5 na 5: podíl očekávaných gólů týmu (MoneyPuck)">xGF %</th><th title="Hra 5 na 5: Corsi, podíl střeleckých pokusů (MoneyPuck)">CF %</th><th title="Očekávané góly vstřelené : obdržené, všechny situace (MoneyPuck)">xG</th>' : ""}<th class="l">Série</th><th class="l">Nejlepší střelec</th></tr></thead><tbody>
         ${teams.map((t, i) => { const d = t.gf - t.ga, ts = topScorer[t.ab]; return `<tr data-teamrow="${t.ab}" tabindex="0" class="${i === 7 ? "cut" : ""}">
@@ -976,7 +1005,9 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           <td class="l">${ts ? `${esc(ts.name)} <span class="dim">${ts.p} b.</span>` : "–"}</td></tr>`; }).join("")}
         </tbody></table></div></div>`;
     };
-    $("#conf").innerHTML = conf("E", "Východní konference") + conf("W", "Západní konference");
+    const T = Object.values(TM);
+    if (T.some(t => t.conf === "E" || t.conf === "W")) $("#conf").innerHTML = conf("E", "Východní konference") + conf("W", "Západní konference");
+    else $("#conf").innerHTML = [...new Set(T.map(t => t.div))].sort().map(dv => conf(null, (DIV[dv] || dv) + " divize", dv)).join("");
   }
 
   function render() {
@@ -1028,7 +1059,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   }
 
   /* ===== Team colours ===== */
-  const TC = { ANA: ["#111111", "#F47A38"], BOS: ["#111111", "#FFB81C"], BUF: ["#003087", "#FFB81C"], CAR: ["#CE1126", "#111111"], CBJ: ["#002654", "#CE1126"], CGY: ["#C8102E", "#F1BE48"], CHI: ["#CF0A2C", "#111111"], COL: ["#6F263D", "#236192"], DAL: ["#006847", "#8F8F8C"], DET: ["#CE1126", "#FFFFFF"], EDM: ["#041E42", "#FF4C00"], FLA: ["#C8102E", "#041E42"], LAK: ["#111111", "#A2AAAD"], MIN: ["#154734", "#A6192E"], MTL: ["#AF1E2D", "#192168"], NJD: ["#CE1126", "#111111"], NSH: ["#FFB81C", "#041E42"], NYI: ["#00539B", "#F47D30"], NYR: ["#0038A8", "#CE1126"], OTT: ["#C52032", "#C2912C"], PHI: ["#F74902", "#111111"], PIT: ["#111111", "#FCB514"], SEA: ["#001628", "#99D9D9"], SJS: ["#006D75", "#EA7200"], STL: ["#002F87", "#FCB514"], TBL: ["#002868", "#FFFFFF"], TOR: ["#00205B", "#FFFFFF"], UTA: ["#010101", "#6CACE4"], VAN: ["#00205B", "#00843D"], VGK: ["#333F42", "#B4975A"], WPG: ["#041E42", "#AC162C"], WSH: ["#041E42", "#C8102E"] };
+  const TC = { ANA: ["#111111", "#F47A38"], BOS: ["#111111", "#FFB81C"], BUF: ["#003087", "#FFB81C"], CAR: ["#CE1126", "#111111"], CBJ: ["#002654", "#CE1126"], CGY: ["#C8102E", "#F1BE48"], CHI: ["#CF0A2C", "#111111"], COL: ["#6F263D", "#236192"], DAL: ["#006847", "#8F8F8C"], DET: ["#CE1126", "#FFFFFF"], EDM: ["#041E42", "#FF4C00"], FLA: ["#C8102E", "#041E42"], LAK: ["#111111", "#A2AAAD"], MIN: ["#154734", "#A6192E"], MTL: ["#AF1E2D", "#192168"], NJD: ["#CE1126", "#111111"], NSH: ["#FFB81C", "#041E42"], NYI: ["#00539B", "#F47D30"], NYR: ["#0038A8", "#CE1126"], OTT: ["#C52032", "#C2912C"], PHI: ["#F74902", "#111111"], PIT: ["#111111", "#FCB514"], SEA: ["#001628", "#99D9D9"], SJS: ["#006D75", "#EA7200"], STL: ["#002F87", "#FCB514"], TBL: ["#002868", "#FFFFFF"], TOR: ["#00205B", "#FFFFFF"], UTA: ["#010101", "#6CACE4"], VAN: ["#00205B", "#00843D"], VGK: ["#333F42", "#B4975A"], WPG: ["#041E42", "#AC162C"], WSH: ["#041E42", "#C8102E"], ATL: ["#041E42", "#5C88DA"], PHX: ["#8C2633", "#E2D6B5"], ARI: ["#8C2633", "#E2D6B5"] };
   const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
   const rgbHex = a => "#" + a.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
   const lum = h => { const [r, g, b] = hexRgb(h).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * r + .7152 * g + .0722 * b; };
@@ -1052,6 +1083,15 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   /* ===== Careers (NHL player landing pages, loaded on demand) ===== */
   let CAREERS = null, CR_REQ = null;
   const loadCareers = () => CR_REQ || (CR_REQ = opt("careers.json").then(c => (CAREERS = c || {})));
+  const SHARD_REQ = {};
+  function ensureCareer(id) {
+    if (CAREERS && CAREERS[id]) return Promise.resolve();
+    const n = (HIDX && HIDX.shards) || 0;
+    if (!n) return Promise.resolve();
+    const k = id % n;
+    return SHARD_REQ[k] || (SHARD_REQ[k] = opt(`hist/careers/${k}.json`).then(c => { if (c) Object.assign(CAREERS || (CAREERS = {}), c); SHARD_REQ[k].done = true; }));
+  }
+  const careerPending = id => !CAREERS || (!CAREERS[id] && HIDX && HIDX.shards && !(SHARD_REQ[id % HIDX.shards] || {}).done);
   const LEAGUE = { Czechia: "Extraliga ČR", Czechia2: "1. liga ČR", Czechia3: "2. liga ČR", "Czechia U20": "ČR U20", "Czechia U20 2": "ČR U20 (2. liga)", "Czechia U19": "ČR U19", "Czechia U18": "ČR U18", "Czechia U18 2": "ČR U18 (2. liga)", "Czechia U16": "ČR U16", "Czech": "Extraliga ČR", "Czech2": "1. liga ČR", "Czech U20": "ČR U20", Slovakia: "Extraliga SR", Slovakia2: "1. liga SR", WC: "MS", "WC-A": "MS", OG: "OH", "WJC-20": "MS U20", "WJC-A": "MS U20", "WJC-18": "MS U18", "WJ18-A": "MS U18", WCup: "Světový pohár", "Champions HL": "Liga mistrů", Sweden: "SHL", "Swe-Jr.": "Švédsko U20", "Swe-U18": "Švédsko U18", International: "Mezinárodní", "Hlinka Gretzky Cup": "Hlinka Gretzky Cup", "Ivan Hlinka Memorial": "Memoriál I. Hlinky" };
   const seasonTxt = s => { const y = Math.floor(s / 10000); return y + "/" + String((y + 1) % 100).padStart(2, "0"); };
   const carState = { f: store.get("car", "all") };
@@ -1106,7 +1146,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   }
 
   function careerHTML(id, goalie) {
-    if (!CAREERS) return `<p class="dim">Načítám kariéru…</p>`;
+    if (careerPending(id)) return `<p class="dim">Načítám kariéru…</p>`;
     const c = CAREERS[id];
     if (!c || !c.t || !c.t.length) return `<p class="dim">Kariérní statistiky pro tohoto hráče nejsou k dispozici.</p>`;
     const f = carState.f;
@@ -1150,7 +1190,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     dr.scrollTop = 0;
     document.body.style.overflow = "hidden";
     $("#d-close").focus({ preventScroll: true });
-    if (!CAREERS && key && (key[0] === "p" || key[0] === "g")) loadCareers().then(() => fillCareer(key));
+    if (key && (key[0] === "p" || key[0] === "g")) { const pid = +key.slice(1).split(":")[0]; if (careerPending(pid)) loadCareers().then(() => HIDX_REQ).then(() => ensureCareer(pid)).then(() => fillCareer(key)); }
   }
   function fillCareer(key) {
     if (drawerKey !== key || $("#drawer").hidden) return;
@@ -1894,11 +1934,11 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const sk = SK.filter(r => r.nat === nat).sort((a, b) => b.p - a.p || b.g - a.g || b.gp - a.gp);
     const gk = GK.filter(r => r.nat === nat).sort((a, b) => b.gp - a.gp);
     $("#cz-count").textContent = `${sk.length} hráčů, ${gk.length} brankářů`;
-    $("#cz-box").innerHTML = `<div class="tablebox" style="max-height:none"><table style="min-width:1180px"><thead><tr><th class="l">Hráč</th><th class="l">Tým</th><th class="l">Poz.</th><th>Z</th><th>G</th><th>A</th><th>B</th><th>+/−</th><th title="Body v přesilovce">PP B</th><th title="Průměrný čas na ledě">Čas</th><th title="Body v posledních 5 zápasech">B (5)</th><th title="Góly a asistence v posledních 10 zápasech">Posl. 10</th><th class="l">Poslední zápas</th><th class="l">Příští zápas</th></tr></thead><tbody>
-      ${sk.map(r => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0"><td class="l"><span class="name">${esc(r.name)}</span></td><td class="l team">${tdot(r.team)}${r.team}</td><td class="l dim">${POS_SHORT[r.pos]}</td><td>${r.gp}</td><td>${r.g}</td><td>${r.a}</td><td style="font-weight:700">${r.p}</td><td class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : "dim"}">${signed(r.pm)}</td><td>${r.ppP ?? "–"}</td><td>${toi(r.toi)}</td><td>${r.f5p ?? "–"}</td><td>${spark(r.spark)}</td><td class="l">${lastGameTxt(r.id, false)}</td><td class="l dim">${nextGameTxt(r.team)}</td></tr>`).join("") || `<tr><td colspan="14" class="empty">Žádný hráč.</td></tr>`}
+    $("#cz-box").innerHTML = `<div class="tablebox" style="max-height:none"><table style="min-width:1180px"><thead><tr><th class="l">Hráč</th><th class="l">Tým</th><th class="l">Poz.</th><th>Z</th><th>G</th><th>A</th><th>B</th><th>+/−</th><th title="Body v přesilovce">PP B</th><th title="Průměrný čas na ledě">Čas</th>${GM ? '<th title="Body v posledních 5 zápasech">B (5)</th><th title="Góly a asistence v posledních 10 zápasech">Posl. 10</th><th class="l">Poslední zápas</th>' : ""}${SCHED ? '<th class="l">Příští zápas</th>' : ""}</tr></thead><tbody>
+      ${sk.map(r => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0"><td class="l"><span class="name">${esc(r.name)}</span></td><td class="l team">${tdot(r.team)}${r.team}</td><td class="l dim">${POS_SHORT[r.pos]}</td><td>${r.gp}</td><td>${r.g}</td><td>${r.a}</td><td style="font-weight:700">${r.p}</td><td class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : "dim"}">${signed(r.pm)}</td><td>${r.ppP ?? "–"}</td><td>${toi(r.toi)}</td>${GM ? `<td>${r.f5p ?? "–"}</td><td>${spark(r.spark)}</td><td class="l">${lastGameTxt(r.id, false)}</td>` : ""}${SCHED ? `<td class="l dim">${nextGameTxt(r.team)}</td>` : ""}</tr>`).join("") || `<tr><td colspan="14" class="empty">Žádný hráč.</td></tr>`}
       </tbody></table></div>
-      ${gk.length ? `<div class="tablebox" style="max-height:none;margin-top:16px"><table style="min-width:1080px"><thead><tr><th class="l">Brankář</th><th class="l">Tým</th><th>Z</th><th>V</th><th>Úsp. %</th><th>POG</th><th>GSAx</th><th title="Úspěšnost v posledních 5 zápasech">Úsp. (5)</th><th title="Úspěšnost v posledních 10 zápasech: zeleně aspoň 90 %">Posl. 10</th><th class="l">Poslední zápas</th><th class="l">Příští zápas</th></tr></thead><tbody>
-      ${gk.map(r => `<tr data-gid="${r.id}" data-team="${r.team}" tabindex="0"><td class="l"><span class="name">${esc(r.name)}</span></td><td class="l team">${tdot(r.team)}${r.team}</td><td>${r.gp}</td><td>${r.w}</td><td style="font-weight:700">${pctf(r.svp, 1)}</td><td>${nf(r.gaa, 2)}</td><td>${r.gsax == null ? "–" : `<span class="${tone(r.gsax, 0, .05)}">${s1(r.gsax)}</span>`}</td><td>${r.g5sv == null ? "–" : pctf(r.g5sv, 1)}</td><td>${gspark(r.gspark)}</td><td class="l">${lastGameTxt(r.id, true)}</td><td class="l dim">${nextGameTxt(r.team)}</td></tr>`).join("")}
+      ${gk.length ? `<div class="tablebox" style="max-height:none;margin-top:16px"><table style="min-width:1080px"><thead><tr><th class="l">Brankář</th><th class="l">Tým</th><th>Z</th><th>V</th><th>Úsp. %</th><th>POG</th><th>GSAx</th>${GM ? '<th title="Úspěšnost v posledních 5 zápasech">Úsp. (5)</th><th title="Úspěšnost v posledních 10 zápasech: zeleně aspoň 90 %">Posl. 10</th><th class="l">Poslední zápas</th>' : ""}${SCHED ? '<th class="l">Příští zápas</th>' : ""}</tr></thead><tbody>
+      ${gk.map(r => `<tr data-gid="${r.id}" data-team="${r.team}" tabindex="0"><td class="l"><span class="name">${esc(r.name)}</span></td><td class="l team">${tdot(r.team)}${r.team}</td><td>${r.gp}</td><td>${r.w}</td><td style="font-weight:700">${pctf(r.svp, 1)}</td><td>${nf(r.gaa, 2)}</td><td>${r.gsax == null ? "–" : `<span class="${tone(r.gsax, 0, .05)}">${s1(r.gsax)}</span>`}</td>${GM ? `<td>${r.g5sv == null ? "–" : pctf(r.g5sv, 1)}</td><td>${gspark(r.gspark)}</td><td class="l">${lastGameTxt(r.id, true)}</td>` : ""}${SCHED ? `<td class="l dim">${nextGameTxt(r.team)}</td>` : ""}</tr>`).join("")}
       </tbody></table></div>` : ""}`;
   }
 
@@ -2507,10 +2547,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     else if (e.key === "Enter" && e.target.matches("tr.rrow")) e.target.click();
   });
 
-  const opt = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
-  const mpReq = opt("mp.json"), shReq = opt("shots.json"), gsReq = opt("goalies_shots.json"), lnReq = opt("lines.json"), gmReq = opt("games.json");
-  const spReq = opt("special.json"), edReq = opt("edge.json"), scReq = opt("schedule.json");
-  fetch("data.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => Promise.all([mpReq, shReq, gsReq, lnReq, gmReq, spReq, edReq, scReq]).then(([mp, sh, gs, ln, gm, sp, ed, sc]) => {
+  const mpReq = opt(BASE + "mp.json"), shReq = opt(BASE + "shots.json"), gsReq = opt(BASE + "goalies_shots.json"), lnReq = opt(BASE + "lines.json"), gmReq = HSEASON ? Promise.resolve(null) : opt("games.json");
+  const spReq = opt(BASE + "special.json"), edReq = opt(BASE + "edge.json"), scReq = HSEASON ? Promise.resolve(null) : opt("schedule.json");
+  HIDX_REQ.then(initSeasonBar);
+  fetch(BASE + "data.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => Promise.all([mpReq, shReq, gsReq, lnReq, gmReq, spReq, edReq, scReq]).then(([mp, sh, gs, ln, gm, sp, ed, sc]) => {
     try { loadShots(sh, gs); } catch (e) { SHOTS = null; HAS_GOALIE_SHOTS = false; }
     load(d, mp, ln, gm, sp, ed, sc);
     setTimeout(loadCareers, 1500);
