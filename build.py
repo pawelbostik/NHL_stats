@@ -117,7 +117,7 @@ def build_nhl():
 
     natf = os.path.join(CACHE, "nat.json")
     nat = rjson(natf, {}) or {}
-    sk, gk = [], []
+    sk, gk, num = [], [], {}
     log("NHL: statistiky a soupisky %d týmů" % len(teams))
     for ab in teams:
         try:
@@ -126,6 +126,8 @@ def build_nhl():
                 for p in ro.get(grp, []):
                     if p.get("birthCountry"):
                         nat[str(p["id"])] = p["birthCountry"]
+                    if p.get("sweaterNumber") is not None:
+                        num[(p["id"], ab)] = p["sweaterNumber"]
         except Exception as e:  # noqa: BLE001
             log("  soupiska %s: %s" % (ab, e))
         cs = jget("%s/club-stats/%s/%s/2" % (NHL, ab, SEASON))
@@ -135,13 +137,14 @@ def build_nhl():
                        p.get("plusMinus", 0), p.get("penaltyMinutes", 0), p.get("powerPlayGoals", 0),
                        p.get("shorthandedGoals", 0), p.get("gameWinningGoals", 0), p.get("overtimeGoals", 0),
                        p.get("shots", 0), r4(p.get("shootingPctg") or 0), round(p.get("avgTimeOnIcePerGame") or 0),
-                       r4(p.get("faceoffWinPctg") or 0), None])
+                       r4(p.get("faceoffWinPctg") or 0), None, num.get((p["playerId"], ab))])
         for p in cs.get("goalies", []):
             gk.append([p["playerId"], p["firstName"]["default"], p["lastName"]["default"], ab,
                        p.get("gamesPlayed", 0), p.get("gamesStarted", 0), p.get("wins", 0), p.get("losses", 0),
                        p.get("overtimeLosses", 0), r4(p.get("goalsAgainstAverage") or 0),
                        round(float(p.get("savePercentage") or 0), 4), p.get("shotsAgainst", 0), p.get("saves", 0),
-                       p.get("goalsAgainst", 0), p.get("shutouts", 0), p.get("timeOnIce", 0), None])
+                       p.get("goalsAgainst", 0), p.get("shutouts", 0), p.get("timeOnIce", 0), None,
+                       num.get((p["playerId"], ab))])
         time.sleep(0.1)
     for rows, ni in ((sk, 19), (gk, 16)):
         for r in rows:
@@ -156,6 +159,64 @@ def build_nhl():
         json.dump(nat, f, separators=(",", ":"))
     log("  hráčů %d, brankářů %d" % (len(sk), len(gk)))
     return {"sk": sk, "gk": gk, "tm": tm}, teams
+
+
+# ---------------------------------------------------------------- NHL: kariéra a osobní údaje
+def _landing(pid):
+    try:
+        return pid, jget("%s/player/%s/landing" % (NHL, pid))
+    except Exception as e:  # noqa: BLE001
+        return pid, e
+
+
+def build_careers(data):
+    from concurrent.futures import ThreadPoolExecutor
+    ids = sorted({r[0] for r in data["sk"]} | {r[0] for r in data["gk"]})
+    goalies = {r[0] for r in data["gk"]}
+    log("NHL: kariéra %d hráčů" % len(ids))
+    out, fails, sample = {}, 0, None
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for pid, L in ex.map(_landing, ids):
+            if isinstance(L, Exception):
+                fails += 1
+                continue
+            if sample is None:
+                sample = L
+            g = pid in goalies or L.get("position") == "G"
+            dd = L.get("draftDetails") or {}
+            rows = []
+            for t in L.get("seasonTotals") or []:
+                gt = t.get("gameTypeId")
+                lg = t.get("leagueAbbrev") or ""
+                if gt != 2 and not (gt == 3 and lg == "NHL"):
+                    continue
+                team = (t.get("teamName") or {}).get("default") or ""
+                base = [t.get("season"), gt, lg, team, t.get("gamesPlayed") or 0]
+                if g:
+                    gaa = t.get("goalsAgainstAvg")
+                    svp = t.get("savePctg")
+                    rows.append(base + [t.get("wins"), t.get("losses"), t.get("otLosses") if t.get("otLosses") is not None else t.get("ties"),
+                                        round(gaa, 2) if isinstance(gaa, (int, float)) else None,
+                                        round(svp, 3) if isinstance(svp, (int, float)) else None, t.get("shutouts")])
+                else:
+                    rows.append(base + [t.get("goals"), t.get("assists"), t.get("points"), t.get("plusMinus"), t.get("pim")])
+            out[str(pid)] = {
+                "n": L.get("sweaterNumber"), "p": L.get("position"), "h": L.get("heightInCentimeters"),
+                "w": L.get("weightInKilograms"), "b": L.get("birthDate"),
+                "c": (L.get("birthCity") or {}).get("default"), "co": L.get("birthCountry"),
+                "s": L.get("shootsCatches"),
+                "d": [dd.get("year"), dd.get("teamAbbrev"), dd.get("round"), dd.get("pickInRound"), dd.get("overallPick")] if dd else None,
+                "g": 1 if g else 0, "t": rows}
+    if sample is not None:
+        with open(os.path.join(CACHE, "sample_landing.json"), "w", encoding="utf-8") as f:
+            json.dump({k: (v if not isinstance(v, list) else v[:3]) for k, v in sample.items()}, f, ensure_ascii=False, indent=1)
+    for rows, ni in ((data["sk"], 20), (data["gk"], 17)):
+        for r in rows:
+            c = out.get(str(r[0]))
+            if r[ni] is None and c and c.get("n") is not None:
+                r[ni] = c["n"]
+    log("  hotovo, neúspěšných %d" % fails)
+    return out
 
 
 # ---------------------------------------------------------------- NHL: zápasy (zápis + události)
@@ -530,6 +591,9 @@ def main():
         else:
             data["updated"] = time.strftime("%Y-%m-%d")
             ok = False
+        cr = step("NHL kariéra", lambda: build_careers(data))
+        if cr:
+            wjson("careers.json", cr)
         wjson("data.json", data)
     else:
         ok = False
