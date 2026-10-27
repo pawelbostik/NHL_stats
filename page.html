@@ -4,52 +4,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
 <style>
-/* Vzhled podle Cadastry: pergamen, inkoust, cihlový akcent, Fraunces + Spectral, ostré rohy, vlasové linky
+/* Vzhled podle Cadastry na ledě: světle modrá ledová plocha se stopami bruslí, inkoust, červená a modrá z čar kluziště, Fraunces + Spectral, ostré rohy, vlasové linky
    a tabulky jako katastrální výpis. Detaily hráče a týmu přebírají barvy klubu (--tc1, --tc2). */
 :root {
-  --ice: #ece6d6;          /* papír */
-  --board: #f6f1e6;        /* plocha karet */
-  --row: #f0e9d8;
-  --field: #faf5ea;
-  --ink: #171511;
-  --muted: #6b655a;
-  --faint: #9a9180;
-  --line: #d8cfba;
-  --line-strong: #b6aa8e;
-  --red: #bb3a22;
-  --red-deep: #9c2e19;
-  --blue: #33536b;
-  --blue-soft: #e6dfcd;
-  --red-soft: #ecd6cd;
-  --good: #4d6b3f;
-  --bad: #9c2e19;
-  --bar: #d8cfba;
-  --rink: #faf5ea;
-  --rinkline: #b6aa8e;
-  --heat: 187, 58, 34;
-  --cool: 51, 83, 107;
-  --shadow: 3px 3px 0 rgba(36, 28, 20, .14);
+  --ice: #e6eff5;          /* led */
+  --board: #f5f9fc;        /* plocha karet: čerstvě upravený led */
+  --row: #ebf2f7;
+  --field: #fafcfe;
+  --ink: #13202b;
+  --muted: #566573;
+  --faint: #8797a5;
+  --line: #ccdae5;
+  --line-strong: #9fb3c3;
+  --red: #c0302a;
+  --red-deep: #a2241f;
+  --blue: #2a5788;
+  --blue-soft: #dce8f2;
+  --red-soft: #f6dedb;
+  --good: #3f6d3a;
+  --bad: #a2241f;
+  --bar: #cbd9e4;
+  --rink: #fafcfe;
+  --rinkline: #9fb3c3;
+  --rinkblue: #1d4f91;
+  --heat: 192, 48, 42;
+  --cool: 42, 87, 136;
+  --shadow: 3px 3px 0 rgba(19, 40, 60, .13);
+  --scrim: rgb(13 27 40 / .5);
+  --page-bg: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27560%27 height=%27560%27 viewBox=%270 0 560 560%27%3E%3Cg fill=%27none%27 stroke-opacity=%270.13%27%3E%3Ccircle cx=%27280%27 cy=%27280%27 r=%27225%27 stroke=%27%23c8102e%27 stroke-width=%275%27/%3E%3Ccircle cx=%27280%27 cy=%27280%27 r=%2714%27 fill=%27%23c8102e%27 fill-opacity=%270.13%27 stroke=%27none%27/%3E%3Cpath d=%27M200 236h40v-20M360 236h-40v-20M200 324h40v20M360 324h-40v20%27 stroke=%27%23c8102e%27 stroke-width=%274%27/%3E%3C/g%3E%3C/svg%3E") right -140px top -150px / 620px no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27420%27%3E%3Cg fill=%27none%27 stroke=%27%23ffffff%27 stroke-opacity=%270.75%27 stroke-linecap=%27round%27%3E%3Cpath d=%22M177 63 q125 3 250 -51%22 stroke-width=%221%22/%3E%3Cpath d=%22M358 382 q81 -7 163 -50%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M13 178 q143 -22 285 -45%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M354 167 q158 29 315 -54%22 stroke-width=%221%22/%3E%3Cpath d=%22M243 227 q117 15 234 7%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M357 268 q97 -35 194 6%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M383 208 q113 -3 226 33%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M203 104 q78 -33 156 34%22 stroke-width=%221%22/%3E%3Cpath d=%22M318 368 q133 38 266 -25%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M308 69 q94 -6 188 52%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M485 241 q148 16 295 -22%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M356 192 q144 -2 288 53%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M-8 295 q125 26 249 59%22 stroke-width=%221%22/%3E%3Cpath d=%22M452 373 q95 -12 189 53%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M296 92 q89 -8 177 29%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M6 189 q115 26 230 46%22 stroke-width=%221%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / 600px 420px, linear-gradient(180deg, #eef5fa 0, #e3edf4 60%, #dfe9f1 100%);
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
   --font-body: "Spectral", Georgia, "Times New Roman", serif;
-  --tc1: var(--ink); --tc2: var(--red); --tc-on: #f6f1e6; --tc-text: var(--red-deep);
+  --tc1: var(--ink); --tc2: var(--red); --tc-on: #f5f9fc; --tc-text: var(--red-deep);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --ice: #16130f; --board: #1f1b16; --row: #25211b; --field: #1b1813; --ink: #ece6d6; --muted: #a39a88; --faint: #7b7365;
-    --line: #3a342b; --line-strong: #5a5143; --red: #e0674b; --red-deep: #e98a72; --blue: #8fb0c9; --blue-soft: #2a2620; --red-soft: #3a221b;
-    --good: #93b47f; --bad: #e98a72; --bar: #3e382e; --rink: #1b1813; --rinkline: #5a5143; --heat: 224, 103, 75; --cool: 143, 176, 201;
-    --shadow: 3px 3px 0 rgba(0, 0, 0, .35); --tc-on: #f6f1e6; color-scheme: dark;
+    --ice: #0f1922; --board: #16222d; --row: #1a2834; --field: #132029; --ink: #e5eef5; --muted: #9db0bf; --faint: #6f8292;
+    --line: #2a3a48; --line-strong: #44596b; --red: #e8664f; --red-deep: #f08a75; --blue: #8fb9de; --blue-soft: #1d3040; --red-soft: #3a2328;
+    --good: #93c08a; --bad: #f08a75; --bar: #34495b; --rink: #132029; --rinkline: #4a6275; --rinkblue: #6f9fd0; --heat: 232, 102, 79; --cool: 143, 185, 222;
+    --shadow: 3px 3px 0 rgba(0, 0, 0, .4); --scrim: rgb(4 10 16 / .65); --page-bg: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27560%27 height=%27560%27 viewBox=%270 0 560 560%27%3E%3Cg fill=%27none%27 stroke-opacity=%270.09%27%3E%3Ccircle cx=%27280%27 cy=%27280%27 r=%27225%27 stroke=%27%23e0674b%27 stroke-width=%275%27/%3E%3Ccircle cx=%27280%27 cy=%27280%27 r=%2714%27 fill=%27%23e0674b%27 fill-opacity=%270.09%27 stroke=%27none%27/%3E%3Cpath d=%27M200 236h40v-20M360 236h-40v-20M200 324h40v20M360 324h-40v20%27 stroke=%27%23e0674b%27 stroke-width=%274%27/%3E%3C/g%3E%3C/svg%3E") right -140px top -150px / 620px no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27420%27%3E%3Cg fill=%27none%27 stroke=%27%23a9cbe3%27 stroke-opacity=%270.06%27 stroke-linecap=%27round%27%3E%3Cpath d=%22M444 414 q128 -22 257 -14%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M73 97 q83 7 167 -2%22 stroke-width=%221%22/%3E%3Cpath d=%22M147 61 q113 -15 227 13%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M433 217 q122 -36 244 21%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M229 166 q108 -25 216 -12%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M258 46 q120 5 240 -48%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M614 258 q67 -10 134 -35%22 stroke-width=%221%22/%3E%3Cpath d=%22M619 253 q107 -1 215 -46%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M286 131 q74 19 149 30%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M530 68 q62 2 125 54%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M433 384 q136 11 272 -24%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M437 110 q97 22 193 -40%22 stroke-width=%221%22/%3E%3Cpath d=%22M396 258 q139 -24 278 31%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M523 311 q83 -12 165 2%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M643 332 q107 8 214 -37%22 stroke-width=%221%22/%3E%3Cpath d=%22M263 394 q159 -11 318 55%22 stroke-width=%220.8%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / 600px 420px, linear-gradient(180deg, #111c26 0, #0d1720 100%); color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --ice: #16130f; --board: #1f1b16; --row: #25211b; --field: #1b1813; --ink: #ece6d6; --muted: #a39a88; --faint: #7b7365;
-  --line: #3a342b; --line-strong: #5a5143; --red: #e0674b; --red-deep: #e98a72; --blue: #8fb0c9; --blue-soft: #2a2620; --red-soft: #3a221b;
-  --good: #93b47f; --bad: #e98a72; --bar: #3e382e; --rink: #1b1813; --rinkline: #5a5143; --heat: 224, 103, 75; --cool: 143, 176, 201;
-  --shadow: 3px 3px 0 rgba(0, 0, 0, .35); --tc-on: #f6f1e6; color-scheme: dark;
+    --ice: #0f1922; --board: #16222d; --row: #1a2834; --field: #132029; --ink: #e5eef5; --muted: #9db0bf; --faint: #6f8292;
+    --line: #2a3a48; --line-strong: #44596b; --red: #e8664f; --red-deep: #f08a75; --blue: #8fb9de; --blue-soft: #1d3040; --red-soft: #3a2328;
+    --good: #93c08a; --bad: #f08a75; --bar: #34495b; --rink: #132029; --rinkline: #4a6275; --rinkblue: #6f9fd0; --heat: 232, 102, 79; --cool: 143, 185, 222;
+    --shadow: 3px 3px 0 rgba(0, 0, 0, .4); --scrim: rgb(4 10 16 / .65); --page-bg: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27560%27 height=%27560%27 viewBox=%270 0 560 560%27%3E%3Cg fill=%27none%27 stroke-opacity=%270.09%27%3E%3Ccircle cx=%27280%27 cy=%27280%27 r=%27225%27 stroke=%27%23e0674b%27 stroke-width=%275%27/%3E%3Ccircle cx=%27280%27 cy=%27280%27 r=%2714%27 fill=%27%23e0674b%27 fill-opacity=%270.09%27 stroke=%27none%27/%3E%3Cpath d=%27M200 236h40v-20M360 236h-40v-20M200 324h40v20M360 324h-40v20%27 stroke=%27%23e0674b%27 stroke-width=%274%27/%3E%3C/g%3E%3C/svg%3E") right -140px top -150px / 620px no-repeat, url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27420%27%3E%3Cg fill=%27none%27 stroke=%27%23a9cbe3%27 stroke-opacity=%270.06%27 stroke-linecap=%27round%27%3E%3Cpath d=%22M444 414 q128 -22 257 -14%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M73 97 q83 7 167 -2%22 stroke-width=%221%22/%3E%3Cpath d=%22M147 61 q113 -15 227 13%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M433 217 q122 -36 244 21%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M229 166 q108 -25 216 -12%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M258 46 q120 5 240 -48%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M614 258 q67 -10 134 -35%22 stroke-width=%221%22/%3E%3Cpath d=%22M619 253 q107 -1 215 -46%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M286 131 q74 19 149 30%22 stroke-width=%221.3%22/%3E%3Cpath d=%22M530 68 q62 2 125 54%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M433 384 q136 11 272 -24%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M437 110 q97 22 193 -40%22 stroke-width=%221%22/%3E%3Cpath d=%22M396 258 q139 -24 278 31%22 stroke-width=%220.8%22/%3E%3Cpath d=%22M523 311 q83 -12 165 2%22 stroke-width=%220.6%22/%3E%3Cpath d=%22M643 332 q107 8 214 -37%22 stroke-width=%221%22/%3E%3Cpath d=%22M263 394 q159 -11 318 55%22 stroke-width=%220.8%22/%3E%3C/g%3E%3C/svg%3E") 0 0 / 600px 420px, linear-gradient(180deg, #111c26 0, #0d1720 100%); color-scheme: dark;
 }
 * { box-sizing: border-box; }
 body {
-  background: var(--ice); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.45;
+  background: var(--page-bg); background-color: var(--ice); background-attachment: scroll; color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.45;
   padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
   padding-block: 0 48px; -webkit-font-smoothing: antialiased;
 }
@@ -58,13 +61,15 @@ body {
 a { color: var(--red-deep); }
 
 /* Záhlaví */
-header { padding-top: 34px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid var(--ink); padding-bottom: 16px; }
+header { padding-top: 34px; display: flex; flex-direction: column; gap: 8px; }
 .eyebrow { font-family: var(--font-display); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; font-size: 12px; color: var(--red-deep); }
 h1 { font-family: var(--font-display); font-weight: 900; font-size: clamp(38px, 7vw, 64px); line-height: .98; margin: 0; letter-spacing: -.015em; text-wrap: balance; font-optical-sizing: auto; }
 h1 .dot { color: var(--red); }
 .meta { color: var(--muted); font-size: 14.5px; display: flex; flex-wrap: wrap; gap: 4px 16px; }
 .meta a { color: var(--red-deep); }
-.rink { display: none; }
+/* Čáry z kluziště: modrá čára, led, červená středová čára */
+.rink { display: block; height: 14px; margin-top: 8px; background: linear-gradient(180deg, var(--rinkblue) 0 6px, transparent 6px 10px, var(--red) 10px 12px, transparent 12px); }
+.rink span { display: none; }
 
 /* Lídři */
 .leaders { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
@@ -72,7 +77,7 @@ h1 .dot { color: var(--red); }
   background: var(--board); border: 1px solid var(--ink); border-radius: 2px; padding: 12px 14px 13px; text-align: left; box-shadow: var(--shadow);
   font: inherit; color: inherit; cursor: pointer; display: flex; flex-direction: column; gap: 2px; min-width: 0; transition: transform .08s, box-shadow .08s;
 }
-.lead:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 rgba(36, 28, 20, .2); }
+.lead:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 rgba(19, 40, 60, .2); }
 .lead:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, th button:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
 .lead .lbl { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: .16em; font-size: 10.5px; color: var(--red-deep); }
 .lead .val { font-family: var(--font-display); font-weight: 900; font-size: 40px; line-height: 1.02; color: var(--ink); }
@@ -152,11 +157,11 @@ footer a { color: var(--red-deep); }
 .legend { color: var(--muted); font-size: 14px; font-style: italic; }
 
 /* Široký panel hráče / týmu */
-.scrim { position: fixed; inset: 0; background: rgb(23 21 17 / .5); z-index: 20; }
+.scrim { position: fixed; inset: 0; background: var(--scrim); z-index: 20; }
 .drawer {
   position: fixed; z-index: 21; left: 50%; top: max(2.5vh, env(safe-area-inset-top, 0px)); transform: translateX(-50%);
   width: min(1220px, calc(100vw - 32px)); max-height: calc(100vh - 5vh); overflow-y: auto; overscroll-behavior: contain;
-  background: var(--board); border: 1px solid var(--ink); border-radius: 2px; box-shadow: 6px 6px 0 rgba(23, 21, 17, .28);
+  background: var(--board); border: 1px solid var(--ink); border-radius: 2px; box-shadow: 6px 6px 0 rgba(13, 27, 40, .3);
   display: flex; flex-direction: column;
 }
 .drawer[hidden], .scrim[hidden] { display: none; }
@@ -361,6 +366,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   .leaders { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 560px) {
+  body { background-size: 340px, 600px 420px, auto; background-position: right -110px top -100px, 0 0, 0 0; }
   .leaders { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lead .val { font-size: 32px; }
   .count { margin-left: 0; width: 100%; }
@@ -838,7 +844,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   function teamStyle(ab) {
     const [c1, c2] = TC[ab] || ["#171511", "#bb3a22"];
     const on = contrast(c1, "#ffffff") >= 3 ? "#ffffff" : "#171511";
-    return `--tc1:${c1};--tc2:${c2};--tc-on:${on};--tcl:${readable(c1, c2, "#f6f1e6", "#000000")};--tcd:${readable(c1, c2, "#1f1b16", "#ffffff")}`;
+    return `--tc1:${c1};--tc2:${c2};--tc-on:${on};--tcl:${readable(c1, c2, "#f5f9fc", "#000000")};--tcd:${readable(c1, c2, "#16222d", "#ffffff")}`;
   }
   const tdot = ab => { const c = TC[ab]; return c ? `<i class="tdot" style="--c1:${c[0]};--c2:${c[1]}" aria-hidden="true"></i>` : ""; };
   const teamName = ab => { const t = TM[ab]; return t ? t.place + " " + t.name : ab; };
