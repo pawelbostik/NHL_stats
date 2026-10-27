@@ -231,6 +231,9 @@ footer a { color: var(--red-deep); }
 .car tbody tr { cursor: default; }
 .car tbody tr:hover td { background: inherit; }
 .car tr.nhl td { font-weight: 600; }
+.car tbody tr.clink { cursor: pointer; }
+.car tbody tr.clink:hover td, .car tbody tr.clink:focus-visible td { background: var(--red-soft); }
+.car .carr { color: var(--tc-text); font-weight: 700; margin-left: 2px; }
 .car tr.nhl td.lg { color: var(--tc-text); }
 .car tr.tot td { border-top: 1px solid var(--ink); font-weight: 700; background: var(--field); }
 .car td.lg { font-family: var(--font-display); font-size: 12.5px; letter-spacing: .04em; }
@@ -1173,8 +1176,22 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const btn = (k, l) => `<button type="button" data-car="${k}" aria-pressed="${f === k}">${l}</button>`;
     return `<div class="seg" role="group" aria-label="Výběr soutěží" style="margin-bottom:10px">${btn("all", "Všechny soutěže")}${btn("nhl", "Jen NHL")}${btn("po", "Play-off NHL")}</div>
       ${f !== "po" ? careerChart(c.t, goalie) : ""}
-      ${rows.length ? `<div class="scroll"><table class="dtab"><thead><tr>${head}</tr></thead><tbody>${tot}${rows.map(r => `<tr class="${r[2] === "NHL" ? "nhl" : ""}"><td class="l">${seasonTxt(r[0])}</td><td class="l lg">${esc(LEAGUE[r[2]] || r[2])}</td><td class="l" style="white-space:normal">${esc(r[3])}</td>${line(r)}</tr>`).join("")}</tbody></table></div>` : `<p class="dim">${f === "po" ? "V play-off NHL zatím nehrál." : "Žádné záznamy."}</p>`}
+      ${rows.length ? `<div class="scroll"><table class="dtab"><thead><tr>${head}</tr></thead><tbody>${tot}${rows.map(r => { const lk = seasonLink(r); return `<tr class="${r[2] === "NHL" ? "nhl" : ""}${lk ? " clink" : ""}"${lk ? ` data-season="${lk}" data-pid="${id}" data-gk="${goalie ? 1 : 0}" tabindex="0" title="Otevřít jeho sezonu ${seasonTxt(r[0])}"` : ""}><td class="l">${seasonTxt(r[0])}${lk ? ' <span class="carr">›</span>' : ""}</td><td class="l lg">${esc(LEAGUE[r[2]] || r[2])}</td><td class="l" style="white-space:normal">${esc(r[3])}</td>${line(r)}</tr>`; }).join("")}</tbody></table></div>` : `<p class="dim">${f === "po" ? "V play-off NHL zatím nehrál." : "Žádné záznamy."}</p>`}
       <div class="src">Kariéra: <a href="https://www.nhl.com/player/${id}" target="_blank" rel="noopener">NHL.com</a>. Juniorské a evropské soutěže podle údajů NHL, u nižších soutěží mohou chybět některá čísla.</div>`;
+  }
+  /* Odkaz z kariéry na danou sezonu (archiv od 2007/08 nebo aktuální sezona), ne na právě zobrazenou */
+  function seasonLink(r) {
+    if (r[2] !== "NHL" || r[1] !== 2) return null;
+    const sid = String(r[0]), cur = (HIDX && HIDX.current) || "20262027";
+    if (sid === (HSEASON || cur)) return null;
+    if (sid === cur || (HIDX && HIDX.seasons && HIDX.seasons.includes(sid))) return sid;
+    return null;
+  }
+  function openSeason(sid, pid, gk) {
+    const cur = (HIDX && HIDX.current) || "20262027", q = new URLSearchParams();
+    if (sid !== cur) q.set("s", sid);
+    q.set(gk ? "g" : "p", pid);
+    location.href = location.pathname + "?" + q.toString() + (gk ? "#brankari" : "#hraci");
   }
   const careerBlock = (id, goalie) => `<div class="sec car" id="car" data-pid="${id}" data-g="${goalie ? 1 : 0}"><h4>Kariéra po sezonách</h4>${careerHTML(id, goalie)}</div>`;
 
@@ -2537,6 +2554,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const gs = e.target.closest("[data-gside]");
     if (gs) { gmState.side = gs.dataset.gside; const m = $("#gmap"); if (m) m.innerHTML = gameMapHTML(+m.dataset.gi); return; }
     const rr = e.target.closest("tr.rrow"); if (rr) { if (rr.dataset.gid) goalieDetail(+rr.dataset.gid, rr.dataset.team); else playerDetail(+rr.dataset.id, rr.dataset.team); return; }
+    const cl = e.target.closest("tr.clink"); if (cl) { openSeason(cl.dataset.season, cl.dataset.pid, cl.dataset.gk === "1"); return; }
     const cb = e.target.closest("[data-car]");
     if (cb) { carState.f = cb.dataset.car; store.set("car", carState.f); const box = $("#car"); if (box) box.innerHTML = `<h4>Kariéra po sezonách</h4>${careerHTML(+box.dataset.pid, box.dataset.g === "1")}`; return; }
     const tr = e.target.closest("tr.grow"); if (tr) { toggleGame(tr); return; }
@@ -2545,7 +2563,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   });
   $("#drawer").addEventListener("keydown", e => {
     if ((e.key === "Enter" || e.key === " ") && e.target.matches("tr.grow")) { e.preventDefault(); toggleGame(e.target); }
-    else if (e.key === "Enter" && e.target.matches("tr.rrow")) e.target.click();
+    else if (e.key === "Enter" && e.target.matches("tr.rrow, tr.clink")) e.target.click();
   });
 
   const mpReq = opt(BASE + "mp.json"), shReq = opt(BASE + "shots.json"), gsReq = opt(BASE + "goalies_shots.json"), lnReq = opt(BASE + "lines.json"), gmReq = HSEASON ? Promise.resolve(null) : opt("games.json");
@@ -2555,6 +2573,11 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     try { loadShots(sh, gs); } catch (e) { SHOTS = null; HAS_GOALIE_SHOTS = false; }
     load(d, mp, ln, gm, sp, ed, sc);
     setTimeout(loadCareers, 1500);
+    const qp = +QS.get("p"), qg = +QS.get("g");
+    if (qp || qg) {
+      HIDX_REQ.then(() => { if (qg) goalieDetail(qg); else playerDetail(qp); });
+      try { QS.delete("p"); QS.delete("g"); history.replaceState(null, "", location.pathname + (QS.toString() ? "?" + QS : "") + location.hash); } catch {}
+    }
   })).catch(() => {
     $("#asof").textContent = "Data se nepodařilo načíst";
     $("#tablebox").innerHTML = `<div class="empty">Soubor se statistikami se nenačetl. Obnovte stránku; pokud problém trvá, požádejte Clauda o nové publikování dat.</div>`;
