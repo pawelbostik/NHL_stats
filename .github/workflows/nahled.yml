@@ -21,6 +21,9 @@ jobs:
       - name: Sestavení dat
         if: hashFiles('probe.py') == ''
         run: python build.py
+      - name: Historické sezony (stahují se jen chybějící)
+        if: hashFiles('probe.py') == '' && hashFiles('build_history.py') != ''
+        run: python build_history.py
       - name: Uložení do větve náhledu
         run: |
           git config user.name "github-actions[bot]"
