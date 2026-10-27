@@ -1,0 +1,245 @@
+{
+ "url": "https://api-web.nhle.com/v1/edge/goalie-detail/8485545/20262027/2",
+ "data": {
+  "player": {
+   "id": 8485545,
+   "firstName": {
+    "default": "Michal"
+   },
+   "lastName": {
+    "default": "Postava"
+   },
+   "birthDate": "2002-02-28",
+   "shootsCatches": "L",
+   "sweaterNumber": 35,
+   "slug": "michal-postava-8485545",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20262027/DET/8485545.png",
+   "wins": 1,
+   "losses": 0,
+   "overtimeLosses": 0,
+   "goalsAgainstAvg": 2.890986,
+   "savePctg": 0.885714,
+   "gamesPlayed": 2,
+   "team": {
+    "commonName": {
+     "default": "Red Wings"
+    },
+    "placeNameWithPreposition": {
+     "default": "Detroit",
+     "fr": "de Detroit"
+    },
+    "abbrev": "DET",
+    "teamLogo": {
+     "light": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg",
+     "dark": "https://assets.nhle.com/logos/nhl/svg/DET_dark.svg"
+    }
+   }
+  },
+  "seasonsWithEdgeStats": [
+   {
+    "id": 20262027,
+    "gameTypes": [
+     2
+    ]
+   }
+  ],
+  "stats": {
+   "goalsAgainstAvg": {
+    "value": 2.89098,
+    "percentile": 0.5283,
+    "leagueAvg": 3.0255
+   },
+   "gamesAbove900": {
+    "value": 0.0,
+    "percentile": 0.0377,
+    "leagueAvg": 0.4786
+   },
+   "goalDifferentialPer60": {
+    "value": -0.72274,
+    "percentile": 0.1887,
+    "leagueAvg": 0.0773
+   },
+   "goalSupportAvg": {
+    "value": 2.16824,
+    "percentile": 0.1321,
+    "leagueAvg": 3.0255
+   },
+   "pointPctg": {
+    "value": 0.5,
+    "percentile": 0.4906,
+    "leagueAvg": 0.4968
+   }
+  },
+  "shotLocationSummary": [
+   {
+    "locationCode": "all",
+    "goalsAgainst": 4,
+    "goalsAgainstPercentile": 1.0,
+    "goalsAgainstLeagueAvg": 2.8066,
+    "saves": 32,
+    "savesPercentile": 0.0,
+    "savesLeagueAvg": 23.1043,
+    "savePctg": 0.888889,
+    "savePctgPercentile": 0.4151,
+    "savePctgLeagueAvg": 0.891682
+   },
+   {
+    "locationCode": "high",
+    "goalsAgainst": 2,
+    "goalsAgainstPercentile": 0.981132,
+    "goalsAgainstLeagueAvg": 1.4224,
+    "saves": 8,
+    "savesPercentile": 0.0,
+    "savesLeagueAvg": 6.0483,
+    "savePctg": 0.8,
+    "savePctgPercentile": 0.4151,
+    "savePctgLeagueAvg": 0.809605
+   },
+   {
+    "locationCode": "long",
+    "goalsAgainst": 0,
+    "goalsAgainstPercentile": 0.754717,
+    "goalsAgainstLeagueAvg": 0.1908,
+    "saves": 10,
+    "savesPercentile": 0.0189,
+    "savesLeagueAvg": 4.8575,
+    "savePctg": 1.0,
+    "savePctgPercentile": 0.7547,
+    "savePctgLeagueAvg": 0.962198
+   },
+   {
+    "locationCode": "mid",
+    "goalsAgainst": 2,
+    "goalsAgainstPercentile": 0.90566,
+    "goalsAgainstLeagueAvg": 0.8906,
+    "saves": 6,
+    "savesPercentile": 0.0,
+    "savesLeagueAvg": 6.7583,
+    "savePctg": 0.75,
+    "savePctgPercentile": 0.0,
+    "savePctgLeagueAvg": 0.883566
+   }
+  ],
+  "shotLocationDetails": [
+   {
+    "area": "Behind the Net",
+    "saves": null,
+    "savesPercentile": null,
+    "savePctg": null,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "Beyond Red Line",
+    "saves": null,
+    "savesPercentile": null,
+    "savePctg": null,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "Center Point",
+    "saves": 3,
+    "savesPercentile": 0.5294,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   },
+   {
+    "area": "Crease",
+    "saves": 1,
+    "savesPercentile": 0.7692,
+    "savePctg": 0.5,
+    "savePctgPercentile": 0.2308
+   },
+   {
+    "area": "High Slot",
+    "saves": 2,
+    "savesPercentile": 0.4,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   },
+   {
+    "area": "L Circle",
+    "saves": 1,
+    "savesPercentile": 0.2353,
+    "savePctg": 0.5,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "L Corner",
+    "saves": null,
+    "savesPercentile": null,
+    "savePctg": null,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "L Net Side",
+    "saves": null,
+    "savesPercentile": null,
+    "savePctg": null,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "L Point",
+    "saves": 2,
+    "savesPercentile": 0.5,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   },
+   {
+    "area": "Low Slot",
+    "saves": 7,
+    "savesPercentile": 0.3529,
+    "savePctg": 0.875,
+    "savePctgPercentile": 0.7925
+   },
+   {
+    "area": "Offensive Neutral Zone",
+    "saves": 1,
+    "savesPercentile": 0.6,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   },
+   {
+    "area": "Outside L",
+    "saves": 2,
+    "savesPercentile": 0.5714,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   },
+   {
+    "area": "Outside R",
+    "saves": 5,
+    "savesPercentile": 0.8571,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   },
+   {
+    "area": "R Circle",
+    "saves": 3,
+    "savesPercentile": 0.3125,
+    "savePctg": 0.75,
+    "savePctgPercentile": 0.0566
+   },
+   {
+    "area": "R Corner",
+    "saves": null,
+    "savesPercentile": null,
+    "savePctg": null,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "R Net Side",
+    "saves": null,
+    "savesPercentile": null,
+    "savePctg": null,
+    "savePctgPercentile": null
+   },
+   {
+    "area": "R Point",
+    "saves": 5,
+    "savesPercentile": 1.0,
+    "savePctg": 1.0,
+    "savePctgPercentile": 1.0
+   }
+  ]
+ }
+}

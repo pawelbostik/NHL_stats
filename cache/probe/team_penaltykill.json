@@ -1,0 +1,54 @@
+{
+ "url": "https://api.nhle.com/stats/rest/en/team/penaltykill?isAggregate=false&isGame=false&start=0&limit=2&cayenneExp=seasonId=20262027%20and%20gameTypeId=2",
+ "data": {
+  "data": [
+   {
+    "gamesPlayed": 13,
+    "losses": 4,
+    "otLosses": 1,
+    "penaltyKillNetPct": 0.774193,
+    "penaltyKillPct": 0.67742,
+    "pkNetGoals": -7,
+    "pkNetGoalsPerGame": -0.53846,
+    "pkTimeOnIcePerGame": 200.0,
+    "points": 17,
+    "pointsPct": 0.65384,
+    "ppGoalsAgainst": 10,
+    "ppGoalsAgainstPerGame": 0.76923,
+    "seasonId": 20262027,
+    "shGoalsFor": 3,
+    "shGoalsForPerGame": 0.230769,
+    "teamFullName": "Vegas Golden Knights",
+    "teamId": 54,
+    "ties": null,
+    "timesShorthanded": 31,
+    "timesShorthandedPerGame": 2.38461,
+    "wins": 8
+   },
+   {
+    "gamesPlayed": 11,
+    "losses": 4,
+    "otLosses": 2,
+    "penaltyKillNetPct": 0.916666,
+    "penaltyKillPct": 0.86111,
+    "pkNetGoals": -3,
+    "pkNetGoalsPerGame": -0.27272,
+    "pkTimeOnIcePerGame": 342.181818,
+    "points": 12,
+    "pointsPct": 0.54545,
+    "ppGoalsAgainst": 5,
+    "ppGoalsAgainstPerGame": 0.45454,
+    "seasonId": 20262027,
+    "shGoalsFor": 2,
+    "shGoalsForPerGame": 0.181818,
+    "teamFullName": "New York Islanders",
+    "teamId": 2,
+    "ties": null,
+    "timesShorthanded": 36,
+    "timesShorthandedPerGame": 3.27272,
+    "wins": 5
+   }
+  ],
+  "total": 32
+ }
+}

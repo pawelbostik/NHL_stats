@@ -1,0 +1,536 @@
+{
+ "url": "https://api-web.nhle.com/v1/edge/skater-shot-speed-detail/8478402/20262027/2",
+ "data": {
+  "hardestShots": [
+   {
+    "gameCenterLink": "/gamecenter/edm-vs-sjs/2026/10/10/2026020072",
+    "gameDate": "2026-10-10",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 77.81,
+     "metric": 125.22
+    },
+    "timeInPeriod": "18:50",
+    "periodDescriptor": {
+     "number": 1,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Sharks"
+     },
+     "placeNameWithPreposition": {
+      "default": "San Jose",
+      "fr": "de San Jose"
+     },
+     "abbrev": "SJS",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/SJS_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/SJS_dark.svg"
+     },
+     "slug": "san-jose-sharks-28"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/edm-vs-lak/2026/10/13/2026020104",
+    "gameDate": "2026-10-13",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 77.5,
+     "metric": 124.72
+    },
+    "timeInPeriod": "05:26",
+    "periodDescriptor": {
+     "number": 3,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Kings"
+     },
+     "placeNameWithPreposition": {
+      "default": "Los Angeles",
+      "fr": "de Los Angeles"
+     },
+     "abbrev": "LAK",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/LAK_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/LAK_dark.svg"
+     },
+     "slug": "los-angeles-kings-26"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/car-vs-edm/2026/10/22/2026020163",
+    "gameDate": "2026-10-22",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 76.38,
+     "metric": 122.92
+    },
+    "timeInPeriod": "00:26",
+    "periodDescriptor": {
+     "number": 3,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Hurricanes"
+     },
+     "placeNameWithPreposition": {
+      "default": "Carolina",
+      "fr": "de la Caroline"
+     },
+     "abbrev": "CAR",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/CAR_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/CAR_dark.svg"
+     },
+     "slug": "carolina-hurricanes-12"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/edm-vs-ana/2026/10/07/2026020055",
+    "gameDate": "2026-10-07",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 75.71,
+     "metric": 121.84
+    },
+    "timeInPeriod": "19:08",
+    "periodDescriptor": {
+     "number": 2,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Ducks"
+     },
+     "placeNameWithPreposition": {
+      "default": "Anaheim",
+      "fr": "d'Anaheim"
+     },
+     "abbrev": "ANA",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/ANA_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/ANA_dark.svg"
+     },
+     "slug": "anaheim-ducks-24"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/tor-vs-edm/2026/10/24/2026020176",
+    "gameDate": "2026-10-24",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 73.64,
+     "metric": 118.51
+    },
+    "timeInPeriod": "16:15",
+    "periodDescriptor": {
+     "number": 3,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Maple Leafs"
+     },
+     "placeNameWithPreposition": {
+      "default": "Toronto",
+      "fr": "de Toronto"
+     },
+     "abbrev": "TOR",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/TOR_dark.svg"
+     },
+     "slug": "toronto-maple-leafs-10"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/edm-vs-lak/2026/10/13/2026020104",
+    "gameDate": "2026-10-13",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 70.09,
+     "metric": 112.8
+    },
+    "timeInPeriod": "08:13",
+    "periodDescriptor": {
+     "number": 1,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Kings"
+     },
+     "placeNameWithPreposition": {
+      "default": "Los Angeles",
+      "fr": "de Los Angeles"
+     },
+     "abbrev": "LAK",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/LAK_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/LAK_dark.svg"
+     },
+     "slug": "los-angeles-kings-26"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/edm-vs-van/2026/10/01/2026020015",
+    "gameDate": "2026-10-01",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 69.68,
+     "metric": 112.14
+    },
+    "timeInPeriod": "15:23",
+    "periodDescriptor": {
+     "number": 1,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Canucks"
+     },
+     "placeNameWithPreposition": {
+      "default": "Vancouver",
+      "fr": "de Vancouver"
+     },
+     "abbrev": "VAN",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/VAN_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/VAN_dark.svg"
+     },
+     "slug": "vancouver-canucks-23"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/uta-vs-edm/2026/10/15/2026020117",
+    "gameDate": "2026-10-15",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 68.29,
+     "metric": 109.9
+    },
+    "timeInPeriod": "09:27",
+    "periodDescriptor": {
+     "number": 3,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Mammoth"
+     },
+     "placeNameWithPreposition": {
+      "default": "Utah",
+      "fr": "de l'Utah"
+     },
+     "abbrev": "UTA",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/UTA_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/UTA_dark.svg"
+     },
+     "slug": "utah-mammoth-68"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/min-vs-edm/2026/10/20/2026020148",
+    "gameDate": "2026-10-20",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 67.68,
+     "metric": 108.92
+    },
+    "timeInPeriod": "03:21",
+    "periodDescriptor": {
+     "number": 4,
+     "periodType": "OT",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Wild"
+     },
+     "placeNameWithPreposition": {
+      "default": "Minnesota",
+      "fr": "du Minnesota"
+     },
+     "abbrev": "MIN",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/MIN_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/MIN_dark.svg"
+     },
+     "slug": "minnesota-wild-30"
+    }
+   },
+   {
+    "gameCenterLink": "/gamecenter/uta-vs-edm/2026/10/15/2026020117",
+    "gameDate": "2026-10-15",
+    "gameType": 2,
+    "playerOnHomeTeam": false,
+    "shotSpeed": {
+     "imperial": 67.3,
+     "metric": 108.31
+    },
+    "timeInPeriod": "15:08",
+    "periodDescriptor": {
+     "number": 3,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "homeTeam": {
+     "commonName": {
+      "default": "Oilers"
+     },
+     "placeNameWithPreposition": {
+      "default": "Edmonton",
+      "fr": "d'Edmonton"
+     },
+     "abbrev": "EDM",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/EDM_dark.svg"
+     },
+     "slug": "edmonton-oilers-22"
+    },
+    "awayTeam": {
+     "commonName": {
+      "default": "Mammoth"
+     },
+     "placeNameWithPreposition": {
+      "default": "Utah",
+      "fr": "de l'Utah"
+     },
+     "abbrev": "UTA",
+     "teamLogo": {
+      "light": "https://assets.nhle.com/logos/nhl/svg/UTA_light.svg",
+      "dark": "https://assets.nhle.com/logos/nhl/svg/UTA_dark.svg"
+     },
+     "slug": "utah-mammoth-68"
+    }
+   }
+  ],
+  "shotSpeedDetails": {
+   "topShotSpeed": {
+    "imperial": 77.81,
+    "metric": 125.2231,
+    "percentile": 0.3057,
+    "leagueAvg": {
+     "imperial": 79.518,
+     "metric": 127.9718
+    },
+    "overlay": {
+     "player": {
+      "firstName": {
+       "default": "Connor"
+      },
+      "lastName": {
+       "default": "McDavid"
+      }
+     },
+     "gameDate": "2026-10-10",
+     "awayTeam": {
+      "abbrev": "EDM",
+      "score": 3
+     },
+     "homeTeam": {
+      "abbrev": "SJS",
+      "score": 1
+     },
+     "gameOutcome": {
+      "lastPeriodType": "REG"
+     },
+     "periodDescriptor": {
+      "maxRegulationPeriods": 3,
+      "number": 1,
+      "periodType": "REG"
+     },
+     "timeInPeriod": "18:50",
+     "gameType": 2
+    }
+   },
+   "avgShotSpeed": {
+    "imperial": 49.1088,
+    "metric": 79.033,
+    "percentile": 0.2569,
+    "leagueAvg": {
+     "imperial": 55.2186,
+     "metric": 88.8656
+    }
+   },
+   "shotAttemptsOver100": {
+    "value": 0,
+    "percentile": 0.0,
+    "leagueAvg": 0.0021
+   },
+   "shotAttempts90To100": {
+    "value": 0,
+    "percentile": 0.0,
+    "leagueAvg": 0.0911
+   },
+   "shotAttempts80To90": {
+    "value": 0,
+    "percentile": 0.0,
+    "leagueAvg": 1.7585
+   },
+   "shotAttempts70To80": {
+    "value": 6,
+    "percentile": 0.6688,
+    "leagueAvg": 4.822
+   }
+  }
+ }
+}

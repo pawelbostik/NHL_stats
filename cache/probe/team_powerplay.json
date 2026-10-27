@@ -1,0 +1,54 @@
+{
+ "url": "https://api.nhle.com/stats/rest/en/team/powerplay?isAggregate=false&isGame=false&start=0&limit=2&cayenneExp=seasonId=20262027%20and%20gameTypeId=2",
+ "data": {
+  "data": [
+   {
+    "gamesPlayed": 13,
+    "losses": 4,
+    "otLosses": 1,
+    "pointPct": 0.65384,
+    "points": 17,
+    "powerPlayGoalsFor": 10,
+    "powerPlayNetPct": 0.195121,
+    "powerPlayPct": 0.2439,
+    "ppGoalsPerGame": 0.76923,
+    "ppNetGoals": 8,
+    "ppNetGoalsPerGame": 0.61538,
+    "ppOpportunities": 41,
+    "ppOpportunitiesPerGame": 3.15384,
+    "ppTimeOnIcePerGame": 313.846153,
+    "seasonId": 20262027,
+    "shGoalsAgainst": 2,
+    "shGoalsAgainstPerGame": 0.153846,
+    "teamFullName": "Vegas Golden Knights",
+    "teamId": 54,
+    "ties": null,
+    "wins": 8
+   },
+   {
+    "gamesPlayed": 11,
+    "losses": 4,
+    "otLosses": 2,
+    "pointPct": 0.54545,
+    "points": 12,
+    "powerPlayGoalsFor": 6,
+    "powerPlayNetPct": 0.181818,
+    "powerPlayPct": 0.18181,
+    "ppGoalsPerGame": 0.54545,
+    "ppNetGoals": 6,
+    "ppNetGoalsPerGame": 0.54545,
+    "ppOpportunities": 33,
+    "ppOpportunitiesPerGame": 3.0,
+    "ppTimeOnIcePerGame": 294.818181,
+    "seasonId": 20262027,
+    "shGoalsAgainst": 0,
+    "shGoalsAgainstPerGame": 0.0,
+    "teamFullName": "New York Islanders",
+    "teamId": 2,
+    "ties": null,
+    "wins": 5
+   }
+  ],
+  "total": 32
+ }
+}

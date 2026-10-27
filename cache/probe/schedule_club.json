@@ -1,0 +1,284 @@
+{
+ "url": "https://api-web.nhle.com/v1/club-schedule-season/DET/20262027",
+ "data": {
+  "previousSeason": 20252026,
+  "currentSeason": 20262027,
+  "howToWatch": {
+   "url": "https://www.nhl.com/redwings/tickets/broadcast#schedule",
+   "text": "How to Watch"
+  },
+  "clubTimezone": "America/Detroit",
+  "clubUTCOffset": "-04:00",
+  "games": [
+   {
+    "id": 2026010017,
+    "season": 20262027,
+    "gameType": 1,
+    "gameDate": "2026-09-21",
+    "venue": {
+     "default": "Nationwide Arena"
+    },
+    "neutralSite": false,
+    "startTimeUTC": "2026-09-21T23:00:00Z",
+    "easternUTCOffset": "-04:00",
+    "venueUTCOffset": "-04:00",
+    "venueTimezone": "US/Eastern",
+    "gameState": "FINAL",
+    "gameScheduleState": "OK",
+    "tvBroadcasts": [],
+    "awayTeam": {
+     "id": 17,
+     "commonName": {
+      "default": "Red Wings"
+     },
+     "placeName": {
+      "default": "Detroit"
+     },
+     "placeNameWithPreposition": {
+      "default": "Detroit",
+      "fr": "de Detroit"
+     },
+     "abbrev": "DET",
+     "logo": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg",
+     "darkLogo": "https://assets.nhle.com/logos/nhl/svg/DET_dark.svg",
+     "awaySplitSquad": false,
+     "score": 0
+    },
+    "homeTeam": {
+     "id": 29,
+     "commonName": {
+      "default": "Blue Jackets"
+     },
+     "placeName": {
+      "default": "Columbus"
+     },
+     "placeNameWithPreposition": {
+      "default": "Columbus",
+      "fr": "de Columbus"
+     },
+     "abbrev": "CBJ",
+     "logo": "https://assets.nhle.com/logos/nhl/svg/CBJ_light.svg",
+     "darkLogo": "https://assets.nhle.com/logos/nhl/svg/CBJ_dark.svg",
+     "homeSplitSquad": false,
+     "hotelLink": "https://www.sonesta.com/sonesta-hotels-resorts/oh/columbus/sonesta-columbus-downtown?isGroupCode=false&promoCode=CBJPROMO",
+     "hotelDesc": "Stay at Sonesta Columbus Downtown",
+     "score": 1
+    },
+    "periodDescriptor": {
+     "number": 5,
+     "periodType": "SO",
+     "maxRegulationPeriods": 3
+    },
+    "gameOutcome": {
+     "lastPeriodType": "SO"
+    },
+    "winningGoalie": {
+     "playerId": 8477831,
+     "firstInitial": {
+      "default": "P."
+     },
+     "lastName": {
+      "default": "Copley"
+     }
+    },
+    "gameCenterLink": "/gamecenter/det-vs-cbj/2026/09/21/2026010017"
+   },
+   {
+    "id": 2026010025,
+    "season": 20262027,
+    "gameType": 1,
+    "gameDate": "2026-09-22",
+    "venue": {
+     "default": "PPG Paints Arena"
+    },
+    "neutralSite": false,
+    "startTimeUTC": "2026-09-22T23:00:00Z",
+    "easternUTCOffset": "-04:00",
+    "venueUTCOffset": "-04:00",
+    "venueTimezone": "US/Eastern",
+    "gameState": "FINAL",
+    "gameScheduleState": "OK",
+    "tvBroadcasts": [
+     {
+      "id": 645,
+      "market": "A",
+      "countryCode": "US",
+      "network": "DSN",
+      "sequenceNumber": 1
+     },
+     {
+      "id": 543,
+      "market": "H",
+      "countryCode": "US",
+      "network": "SN-PIT+",
+      "sequenceNumber": 374
+     }
+    ],
+    "awayTeam": {
+     "id": 17,
+     "commonName": {
+      "default": "Red Wings"
+     },
+     "placeName": {
+      "default": "Detroit"
+     },
+     "placeNameWithPreposition": {
+      "default": "Detroit",
+      "fr": "de Detroit"
+     },
+     "abbrev": "DET",
+     "logo": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg",
+     "darkLogo": "https://assets.nhle.com/logos/nhl/svg/DET_dark.svg",
+     "awaySplitSquad": false,
+     "score": 7
+    },
+    "homeTeam": {
+     "id": 5,
+     "commonName": {
+      "default": "Penguins"
+     },
+     "placeName": {
+      "default": "Pittsburgh"
+     },
+     "placeNameWithPreposition": {
+      "default": "Pittsburgh",
+      "fr": "de Pittsburgh"
+     },
+     "abbrev": "PIT",
+     "logo": "https://assets.nhle.com/logos/nhl/svg/PIT_light.svg",
+     "darkLogo": "https://assets.nhle.com/logos/nhl/svg/PIT_dark.svg",
+     "homeSplitSquad": false,
+     "score": 4
+    },
+    "periodDescriptor": {
+     "number": 3,
+     "periodType": "REG",
+     "maxRegulationPeriods": 3
+    },
+    "gameOutcome": {
+     "lastPeriodType": "REG"
+    },
+    "winningGoalie": {
+     "playerId": 8484141,
+     "firstInitial": {
+      "default": "T."
+     },
+     "lastName": {
+      "default": "Augustine"
+     }
+    },
+    "winningGoalScorer": {
+     "playerId": 8484836,
+     "firstInitial": {
+      "default": "O."
+     },
+     "lastName": {
+      "default": "Becher"
+     }
+    },
+    "threeMinRecap": "/video/det-at-pit-recap-6405458857112",
+    "threeMinRecapFr": "/fr/video/det-vs-pit-22-09-2026-resume-6405460207112",
+    "condensedGame": "/video/det-at-pit-condensed-game-6405460406112",
+    "gameCenterLink": "/gamecenter/det-vs-pit/2026/09/22/2026010025"
+   },
+   {
+    "id": 2026010041,
+    "season": 20262027,
+    "gameType": 1,
+    "gameDate": "2026-09-24",
+    "venue": {
+     "default": "Little Caesars Arena"
+    },
+    "neutralSite": false,
+    "startTimeUTC": "2026-09-24T23:00:00Z",
+    "easternUTCOffset": "-04:00",
+    "venueUTCOffset": "-04:00",
+    "venueTimezone": "America/Detroit",
+    "gameState": "FINAL",
+    "gameScheduleState": "OK",
+    "tvBroadcasts": [
+     {
+      "id": 645,
+      "market": "H",
+      "countryCode": "US",
+      "network": "DSN",
+      "sequenceNumber": 1
+     },
+     {
+      "id": 28,
+      "market": "A",
+      "countryCode": "US",
+      "network": "MSG-B",
+      "sequenceNumber": 392
+     }
+    ],
+    "awayTeam": {
+     "id": 7,
+     "commonName": {
+      "default": "Sabres"
+     },
+     "placeName": {
+      "default": "Buffalo"
+     },
+     "placeNameWithPreposition": {
+      "default": "Buffalo",
+      "fr": "de Buffalo"
+     },
+     "abbrev": "BUF",
+     "logo": "https://assets.nhle.com/logos/nhl/svg/BUF_light.svg",
+     "darkLogo": "https://assets.nhle.com/logos/nhl/svg/BUF_dark.svg",
+     "awaySplitSquad": false,
+     "score": 2
+    },
+    "homeTeam": {
+     "id": 17,
+     "commonName": {
+      "default": "Red Wings"
+     },
+     "placeName": {
+      "default": "Detroit"
+     },
+     "placeNameWithPreposition": {
+      "default": "Detroit",
+      "fr": "de Detroit"
+     },
+     "abbrev": "DET",
+     "logo": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg",
+     "darkLogo": "https://assets.nhle.com/logos/nhl/svg/DET_dark.svg",
+     "homeSplitSquad": false,
+     "score": 3
+    },
+    "periodDescriptor": {
+     "number": 4,
+     "periodType": "OT",
+     "maxRegulationPeriods": 3
+    },
+    "gameOutcome": {
+     "lastPeriodType": "OT"
+    },
+    "winningGoalie": {
+     "playerId": 8480193,
+     "firstInitial": {
+      "default": "D."
+     },
+     "lastName": {
+      "default": "Tarasov"
+     }
+    },
+    "winningGoalScorer": {
+     "playerId": 8479337,
+     "firstInitial": {
+      "default": "A."
+     },
+     "lastName": {
+      "default": "DeBrincat"
+     }
+    },
+    "threeMinRecap": "/video/buf-at-det-recap-6405599150112",
+    "threeMinRecapFr": "/fr/video/buf-vs-det-24-09-2026-resume-6405600992112",
+    "condensedGame": "/video/buf-at-det-condensed-game-6405600132112",
+    "gameCenterLink": "/gamecenter/buf-vs-det/2026/09/24/2026010041"
+   }
+  ]
+ }
+}
