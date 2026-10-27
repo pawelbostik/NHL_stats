@@ -1740,32 +1740,33 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   const AREA_CZ = { "Crease": "Brankoviště", "Low Slot": "Dolní slot", "High Slot": "Horní slot", "L Net Side": "Vlevo u branky", "R Net Side": "Vpravo u branky", "L Circle": "Levý kruh", "R Circle": "Pravý kruh", "L Corner": "Levý roh", "R Corner": "Pravý roh", "Behind the Net": "Za brankou", "Outside L": "Vlevo u mantinelu", "Outside R": "Vpravo u mantinelu", "L Point": "Levá modrá", "Center Point": "Střed modré", "R Point": "Pravá modrá", "Offensive Neutral Zone": "Střední pásmo", "Beyond Red Line": "Za červenou čarou" };
   /* Approximate zones on the half rink used by rinkSVG (net at top, x 0–85 lateral, y = feet from end boards: goal line 11, blue line 75). Orientační nákres. */
   const AREA_POLY = {
-    "Crease": "38.5,11 46.5,11 46.5,15.5 42.5,18 38.5,15.5",
-    "Low Slot": "33,18 52,18 52,31 33,31 38.5,15.5 42.5,18 46.5,15.5",
-    "High Slot": "33,31 52,31 55,48 30,48",
-    "L Net Side": "20,11 38.5,11 38.5,15.5 33,18 33,31 20,24",
-    "R Net Side": "46.5,11 65,11 65,24 52,31 52,18 46.5,15.5",
-    "L Circle": "6,24 20,24 33,31 30,48 6,46",
-    "R Circle": "65,24 79,24 79,46 55,48 52,31",
-    "L Corner": "0,0 20,0 20,24 6,24 0,24",
-    "R Corner": "65,0 85,0 85,24 79,24 65,24",
-    "Behind the Net": "20,0 65,0 65,11 20,11",
-    "Outside L": "0,24 6,24 6,46 22,62 0,62",
-    "Outside R": "79,24 85,24 85,62 63,62 79,46",
-    "L Point": "0,62 22,62 30,48 32,75 0,75",
-    "Center Point": "30,48 55,48 53,75 32,75",
-    "R Point": "55,48 63,62 85,62 85,75 53,75"
+    "Behind the Net": ["20,0 65,0 65,11 20,11", 42.5, 7],
+    "L Corner": ["0,0 20,0 20,22 0,22", 10, 13],
+    "R Corner": ["65,0 85,0 85,22 65,22", 75, 13],
+    "L Net Side": ["20,11 36,11 36,22 20,22", 28, 18],
+    "R Net Side": ["49,11 65,11 65,22 49,22", 57, 18],
+    "Crease": ["36,11 49,11 49,18 36,18", 42.5, 16],
+    "Low Slot": ["36,18 49,18 49,22 51,22 51,34 34,34 34,22 36,22", 42.5, 29],
+    "L Circle": ["6,22 34,22 34,46 6,46", 20, 41],
+    "R Circle": ["51,22 79,22 79,46 51,46", 65, 41],
+    "Outside L": ["0,22 6,22 6,46 20,46 20,62 0,62", 9, 55],
+    "Outside R": ["79,22 85,22 85,62 65,62 65,46 79,46", 76, 55],
+    "High Slot": ["34,34 51,34 51,46 65,46 65,62 20,62 20,46 34,46", 42.5, 52],
+    "L Point": ["0,62 28,62 28,75 0,75", 14, 70],
+    "Center Point": ["28,62 57,62 57,75 28,75", 42.5, 70],
+    "R Point": ["57,62 85,62 85,75 57,75", 71, 70]
   };
   function areaMap(vals, pcts, mode, counts) {
     const A = EDGE.areas, lg = (EDGE.avg && EDGE.avg.gk && EDGE.avg.gk[0]) || .9;
+    const vmax = Math.max(1, ...vals.slice(0, 15).map(v => v || 0));
     let inner = "";
     A.forEach((a, i) => {
-      const poly = AREA_POLY[a]; if (!poly) return;
+      const def = AREA_POLY[a]; if (!def) return;
+      const [poly, cx, cy] = def;
       const p = pcts ? pcts[i] : null, v = vals[i], d = mode === "gk" && v != null ? v - lg : null;
-      const col = mode === "gk" ? (d == null ? "transparent" : d >= 0 ? `rgba(var(--cool),${Math.min(.85, .18 + d * 6).toFixed(2)})` : `rgba(var(--heat),${Math.min(.85, .18 - d * 4).toFixed(2)})`) : p == null ? "transparent" : `rgba(var(--heat),${(.08 + p * .72).toFixed(2)})`;
-      const pts = poly.split(" ").map(q => q.split(",").map(Number)), cx = pts.reduce((t, q) => t + q[0], 0) / pts.length, cy = pts.reduce((t, q) => t + q[1], 0) / pts.length;
+      const col = mode === "gk" ? (d == null ? "transparent" : d >= 0 ? `rgba(var(--cool),${Math.min(.85, .18 + d * 6).toFixed(2)})` : `rgba(var(--heat),${Math.min(.85, .18 - d * 4).toFixed(2)})`) : p == null ? "transparent" : (v ? `rgba(var(--heat),${(.12 + v / vmax * .72).toFixed(2)})` : "rgba(var(--heat),.04)");
       const lab = mode === "gk" ? (v == null ? "" : pctf(v, 0)) : (v ?? "");
-      inner += `<polygon points="${poly}" style="fill:${col};stroke:var(--board);stroke-width:.5"><title>${AREA_CZ[a] || a}: ${mode === "gk" ? (v == null ? "bez střel" : "úspěšnost " + pctf(v, 1) + " %" + (counts && counts[i] != null ? `, ${counts[i]} zákroků` : "")) : (v ?? 0) + " střel na branku"}${p == null ? "" : " · " + Math.round(p * 100) + ". percentil"}</title></polygon>`;
+      inner += `<polygon points="${poly}" style="fill:${col};stroke:var(--board);stroke-width:.6;stroke-linejoin:round"><title>${AREA_CZ[a] || a}: ${mode === "gk" ? (v == null ? "bez střel" : "úspěšnost " + pctf(v, 1) + " %" + (counts && counts[i] != null ? `, ${counts[i]} zákroků` : "")) : (v ?? 0) + " střel na branku"}${p == null ? "" : " · " + Math.round(p * 100) + ". percentil"}</title></polygon>`;
       if (lab !== "" && lab != null) inner += `<text x="${cx.toFixed(1)}" y="${(cy + 1.4).toFixed(1)}" text-anchor="middle" style="font:600 3.6px var(--font-display);fill:var(--ink);pointer-events:none">${lab}</text>`;
     });
     const far = [15, 16].map(i => vals[i] ? `${AREA_CZ[A[i]]}: ${mode === "gk" ? pctf(vals[i], 1) + " %" : vals[i]}` : "").filter(Boolean).join(" · ");
@@ -1784,7 +1785,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       ${pbar("Nejtvrdší střela", av[3] ? `liga průměrně ${nf(av[3], 0)} km/h` : "km/h", r.eShot == null ? "–" : nf(r.eShot, 1) + " km/h", r.eShotP)}
       ${zone ? `<h5 class="h5">Kde tráví čas na ledě</h5>${zone}` : ""}
       ${loc ? `<h5 class="h5">Střely na branku podle vzdálenosti</h5>${loc}` : ""}
-      ${r.eArea ? `<h5 class="h5">Odkud střílí na branku</h5>${areaMap(r.eArea, r.eAreaP, "sk")}<div class="note">Čísla jsou počty střel na branku z dané oblasti, barva je percentil proti ostatním hráčům. Rozdělení oblastí je orientační.</div>` : ""}
+      ${r.eArea ? `<h5 class="h5">Odkud střílí na branku</h5>${areaMap(r.eArea, r.eAreaP, "sk")}<div class="note">Čísla jsou počty střel na branku z dané oblasti, čím tmavší, tím víc střel. Po najetí myší uvidíte i percentil proti ostatním hráčům. Hranice oblastí jsou orientační.</div>` : ""}
       <div class="src">Zdroj: NHL EDGE (<a href="https://www.nhl.com/stats/edge" target="_blank" rel="noopener">nhl.com/stats/edge</a>)</div></div>`;
   }
   const lg0 = () => (EDGE.avg && EDGE.avg.gk && EDGE.avg.gk[0]) || .9;
