@@ -30,6 +30,8 @@ GCACHE = os.path.join(CACHE, "games")
 NHL = "https://api-web.nhle.com/v1"
 REST = "https://api.nhle.com/stats/rest/en"
 TID, FUT, TNAME = {}, {}, {}
+GT = 2            # 2 = základní část, 3 = play-off (pro NHL stats REST)
+SHOTS_PO = False  # True = z MoneyPuck střel brát jen play-off
 MP = "https://moneypuck.com/moneypuck/playerData/seasonSummary/%s/regular/" % MP_YEAR
 MP_SHOTS = "https://peter-tanner.com/moneypuck/downloads/shots_%s.zip" % MP_YEAR
 UA = "Mozilla/5.0 (compatible; nhl-statistiky/1.0; personal non-commercial stats page)"
@@ -222,7 +224,10 @@ def build_careers(data):
                 "c": (L.get("birthCity") or {}).get("default"), "co": L.get("birthCountry"),
                 "s": L.get("shootsCatches"),
                 "d": [dd.get("year"), dd.get("teamAbbrev"), dd.get("round"), dd.get("pickInRound"), dd.get("overallPick")] if dd else None,
-                "g": 1 if g else 0, "t": rows}
+                "g": 1 if g else 0, "t": rows,
+                "aw": [[(a.get("trophy") or {}).get("default", ""), sorted({x.get("seasonId") for x in a.get("seasons") or [] if x.get("seasonId")})]
+                       for a in L.get("awards") or []],
+                "hof": 1 if L.get("inHHOF") else 0, "t100": 1 if L.get("inTop100AllTime") else 0}
     if sample is not None:
         with open(os.path.join(CACHE, "sample_landing.json"), "w", encoding="utf-8") as f:
             json.dump({k: (v if not isinstance(v, list) else v[:3]) for k, v in sample.items()}, f, ensure_ascii=False, indent=1)
@@ -332,8 +337,10 @@ def build_schedule():
         if now - dt.timedelta(hours=6) <= t <= now + dt.timedelta(days=21):
             out.append(g)
     out.sort(key=lambda g: (g[1], g[0]))
-    log("  nadcházejících zápasů %d" % len(out))
-    return {"updated": now.strftime("%Y-%m-%dT%H:%MZ"), "g": out}
+    rest_ = sorted(FUT.values(), key=lambda g: (g[1], g[0]))
+    log("  nadcházejících zápasů %d (do konce sezony %d)" % (len(out), len(rest_)))
+    return {"updated": now.strftime("%Y-%m-%dT%H:%MZ"), "g": out,
+            "rest": ",".join("%s-%s" % (g[2], g[3]) for g in rest_ if g[2] and g[3])}
 
 
 def build_games(teams):
@@ -406,8 +413,8 @@ def build_games(teams):
 
 # ---------------------------------------------------------------- NHL stats REST: speciální formace, tresty, vhazování
 def rest(kind, report):
-    url = "%s/%s/%s?isAggregate=false&isGame=false&start=0&limit=-1&cayenneExp=seasonId=%s%%20and%%20gameTypeId=2" % (
-        REST, kind, report, SEASON)
+    url = "%s/%s/%s?isAggregate=false&isGame=false&start=0&limit=-1&cayenneExp=seasonId=%s%%20and%%20gameTypeId=%d" % (
+        REST, kind, report, SEASON, GT)
     return jget(url).get("data", [])
 
 
@@ -555,6 +562,134 @@ def build_edge(data):
                 avg[key] = a
     log("  bruslařů %d, brankářů %d, neúspěšných %d" % (len(sk), len(gk), fails))
     return {"updated": time.strftime("%Y-%m-%d"), "areas": EDGE_AREAS, "avg": avg, "sk": sk, "gk": gk}
+
+
+# ---------------------------------------------------------------- Ceny NHL (records.nhl.com)
+RECORDS = "https://records.nhl.com/site/api"
+
+
+def build_awards():
+    log("NHL: ceny a trofeje")
+    if not TID:
+        try:
+            for t in jget(REST + "/team").get("data", []):
+                if t.get("id") and t.get("triCode"):
+                    TID[t["id"]] = t["triCode"]
+        except Exception as e:  # noqa: BLE001
+            log("  seznam týmů: %s" % e)
+    trophies = jget(RECORDS + "/trophy").get("data", [])
+    out = {"trophies": [], "w": {}, "cup": {}, "team": {}}
+    for t in sorted(trophies, key=lambda t: t.get("id") or 0):
+        tid = t.get("id")
+        out["trophies"].append([tid, t.get("name"), t.get("categoryId"), t.get("briefDescription") or ""])
+        try:
+            rows = jget("%s/award-details?cayenneExp=trophyId=%d&limit=-1" % (RECORDS, tid)).get("data", [])
+        except Exception as e:  # noqa: BLE001
+            log("  trofej %s: %s" % (tid, e))
+            continue
+        if tid == 1:
+            for r in rows:
+                if r.get("status") != "WINNER" or not r.get("seasonId"):
+                    continue
+                c = out["cup"].setdefault(str(r["seasonId"]), [TID.get(r.get("teamId"), ""), []])
+                if r.get("playerId"):
+                    c[1].append(r["playerId"])
+            continue
+        if t.get("categoryId") == 1:
+            for r in rows:
+                if r.get("status") == "WINNER" and r.get("seasonId"):
+                    out["team"].setdefault(str(tid), []).append([r["seasonId"], TID.get(r.get("teamId"), "")])
+            continue
+        lst = []
+        for r in rows:
+            st = {"WINNER": 1, "RUNNER_UP": 2, "FINALIST": 3}.get(r.get("status"))
+            if not st or not r.get("seasonId"):
+                continue
+            lst.append([r["seasonId"], st, r.get("playerId") or 0, r.get("fullName") or "", TID.get(r.get("teamId"), "")])
+        lst.sort(key=lambda x: (-x[0], x[1]))
+        out["w"][str(tid)] = lst
+    log("  trofejí %d, sezon se Stanley Cupem %d" % (len(out["trophies"]), len(out["cup"])))
+    out["updated"] = time.strftime("%Y-%m-%d")
+    return out
+
+
+# ---------------------------------------------------------------- Play-off (pavouk, hráči, pokročilé statistiky, střely)
+def build_bracket(end_year):
+    br = jget("%s/playoff-bracket/%d" % (NHL, end_year))
+    out = []
+    for x in br.get("series", []):
+        top, bot = x.get("topSeedTeam") or {}, x.get("bottomSeedTeam") or {}
+        if not top.get("abbrev") and not bot.get("abbrev"):
+            continue
+        win = TID.get(x.get("winningTeamId")) or (top.get("abbrev") if x.get("winningTeamId") == top.get("id") else
+                                                   bot.get("abbrev") if x.get("winningTeamId") == bot.get("id") else "")
+        out.append([x.get("playoffRound"), x.get("seriesLetter"), top.get("abbrev", ""), bot.get("abbrev", ""),
+                    x.get("topSeedWins") or 0, x.get("bottomSeedWins") or 0, win or "", x.get("topSeedRankAbbrev") or "",
+                    x.get("bottomSeedRankAbbrev") or "", x.get("seriesTitle") or ""])
+    return out
+
+
+def build_playoffs(sid, y, outdir, regular, writer):
+    """Play-off sezony sid do složky outdir. regular = data.json základní části (jména, národnosti, konference)."""
+    global SEASON, MP, MP_SHOTS, GT, SHOTS_PO
+    bracket = build_bracket(y + 1)
+    if not bracket:
+        log("  %s: play-off zatím není" % sid)
+        return False
+    old = (SEASON, MP, MP_SHOTS, GT, SHOTS_PO)
+    SEASON, GT, SHOTS_PO = sid, 3, True
+    MP = "https://moneypuck.com/moneypuck/playerData/seasonSummary/%d/playoffs/" % y
+    MP_SHOTS = "https://peter-tanner.com/moneypuck/downloads/shots_%d.zip" % y
+    try:
+        nat = {r[0]: r[19] for r in regular.get("sk", [])}
+        nat.update({r[0]: r[16] for r in regular.get("gk", [])})
+        tinfo = {t[0]: t for t in regular.get("tm", [])}
+
+        def split(full, last):
+            full, last = full or "", last or ""
+            return (full[:-len(last)].strip() if last and full.endswith(last) else full.split(" ")[0]), last or full
+
+        def team_of(r):
+            return ((r.get("teamAbbrevs") or "").split(",") or [""])[-1].strip()
+        sk = []
+        for r in rest("skater", "summary"):
+            first, last = split(r.get("skaterFullName"), r.get("lastName"))
+            sk.append([r["playerId"], first, last, team_of(r), r.get("positionCode", ""), r.get("gamesPlayed") or 0,
+                       r.get("goals") or 0, r.get("assists") or 0, r.get("points") or 0, r.get("plusMinus") or 0,
+                       r.get("penaltyMinutes") or 0, r.get("ppGoals") or 0, r.get("shGoals") or 0, r.get("gameWinningGoals") or 0,
+                       r.get("otGoals") or 0, r.get("shots") or 0, r4(r.get("shootingPct") or 0), round(r.get("timeOnIcePerGame") or 0),
+                       r4(r.get("faceoffWinPct") or 0), nat.get(r["playerId"]), None])
+        gk = []
+        for r in rest("goalie", "summary"):
+            first, last = split(r.get("goalieFullName"), r.get("lastName"))
+            gk.append([r["playerId"], first, last, team_of(r), r.get("gamesPlayed") or 0, r.get("gamesStarted") or 0,
+                       r.get("wins") or 0, r.get("losses") or 0, r.get("otLosses") or 0,
+                       r4(r.get("goalsAgainstAverage") or 0), round(float(r.get("savePct") or 0), 4), r.get("shotsAgainst") or 0,
+                       r.get("saves") or 0, r.get("goalsAgainst") or 0, r.get("shutouts") or 0, r.get("timeOnIce") or 0,
+                       nat.get(r["playerId"]), None])
+        tm = []
+        for r in rest("team", "summary"):
+            ab = TID.get(r.get("teamId")) or TNAME.get(norm_name(r.get("teamFullName")))
+            if not ab:
+                continue
+            t = tinfo.get(ab) or [ab, ab, "", "", ""]
+            tm.append([ab, t[1], t[2], t[3], t[4], r.get("gamesPlayed") or 0, r.get("wins") or 0, r.get("losses") or 0, 0,
+                       0, r.get("goalsFor") or 0, r.get("goalsAgainst") or 0, ""])
+        data = {"sk": sk, "gk": gk, "tm": tm, "tx": {}, "updated": regular.get("updated"), "season": sid, "final": True,
+                "playoffs": True, "bracket": bracket}
+        writer(os.path.join(outdir, "data.json"), data)
+        for name, fn in (("special.json", build_special), ("mp.json", build_mp), ("lines.json", build_lines)):
+            out = step("play-off %s %s" % (name, sid), fn)
+            if out:
+                writer(os.path.join(outdir, name), out)
+        sh = step("play-off střely %s" % sid, build_shots)
+        if sh:
+            writer(os.path.join(outdir, "shots.json"), sh[0])
+            writer(os.path.join(outdir, "goalies_shots.json"), sh[1])
+        log("  play-off %s: hráčů %d, brankářů %d, sérií %d" % (sid, len(sk), len(gk), len(bracket)))
+        return True
+    finally:
+        SEASON, MP, MP_SHOTS, GT, SHOTS_PO = old
 
 
 # ---------------------------------------------------------------- MoneyPuck
@@ -724,7 +859,10 @@ def build_shots():
     H = {h: i for i, h in enumerate(head)}
     shots, games = [], {}
     for r in rdr:
-        if not r or r[H["isPlayoffGame"]] not in ("0", "0.0"):
+        if not r:
+            continue
+        po = r[H["isPlayoffGame"]] not in ("0", "0.0")
+        if po != SHOTS_PO:
             continue
         ev = EV.get(r[H["event"]])
         pid = int(fnum(r[H["shooterPlayerId"]]))
@@ -831,6 +969,18 @@ def main():
         sc = step("NHL program", build_schedule)
         if sc:
             wjson("schedule.json", sc)
+        aw = step("NHL ceny", build_awards)
+        if aw:
+            wjson("awards.json", aw)
+
+        def _wr(path, obj):
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(obj, f, ensure_ascii=False, separators=(",", ":"))
+            log("  zapsáno %s" % os.path.relpath(path, SITE))
+        y0 = int(SEASON[:4])
+        if time.strftime("%m") in ("04", "05", "06"):
+            step("NHL play-off", lambda: build_playoffs(SEASON, y0, os.path.join(SITE, "po"), data, _wr))
         sp = step("NHL speciální formace", build_special)
         if sp:
             wjson("special.json", sp)

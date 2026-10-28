@@ -130,6 +130,11 @@ def build_season(y, ends):
         if ed:
             wj(os.path.join(d, "edge.json"), ed)
     fix_phx(d, data)
+    po = os.path.join(d, "po")
+    if data and (FORCE or not os.path.exists(os.path.join(po, "data.json"))) and os.environ.get("HIST_PO", "1") == "1":
+        b.SEASON = sid
+        b.step("play-off %s" % sid, lambda: b.build_playoffs(sid, y, po, data, wj))
+        fix_phx(po, data)
     return sid, data
 
 
@@ -157,7 +162,7 @@ def build_careers_hist(all_ids):
     old = {}
     for i in range(SHARDS):
         old.update(b.rjson(os.path.join(cdir, "%d.json" % i), {}) or {})
-    todo = sorted(pid for pid in all_ids if str(pid) not in cur and str(pid) not in old)
+    todo = sorted(pid for pid in all_ids if str(pid) not in cur and (str(pid) not in old or "aw" not in old[str(pid)]))
     b.log("Kariéra historických hráčů: %d nových, %d už staženo" % (len(todo), len(old)))
     if todo:
         fake = {"sk": [[pid] + [None] * 20 for pid in todo], "gk": []}
@@ -168,6 +173,57 @@ def build_careers_hist(all_ids):
         shards[int(k) % SHARDS][k] = v
     for i, sh in enumerate(shards):
         wj(os.path.join(cdir, "%d.json" % i), sh)
+
+
+def build_indexes(seasons):
+    """Pokročilá kariéra po sezonách (z MoneyPuck souhrnů v archivu), nejlepší sezony a čeští hráči."""
+    adv = [{} for _ in range(SHARDS)]
+    best = {"p": [], "g": [], "ixg": [], "gax": [], "gsax": [], "svp": []}
+    czech = {}
+    for sid in seasons:
+        d = os.path.join(HIST, sid)
+        data = b.rjson(os.path.join(d, "data.json"), {}) or {}
+        mp = b.rjson(os.path.join(d, "mp.json"), {}) or {}
+        names = {r[0]: (r[1] + " " + r[2]).strip() for r in data.get("sk", [])}
+        names.update({r[0]: (r[1] + " " + r[2]).strip() for r in data.get("gk", [])})
+        nat = {r[0]: r[19] for r in data.get("sk", [])}
+        nat.update({r[0]: r[16] for r in data.get("gk", [])})
+        for r in data.get("sk", []):
+            best["p"].append([r[8], r[0], names[r[0]], r[3], sid, r[5]])
+            best["g"].append([r[6], r[0], names[r[0]], r[3], sid, r[5]])
+            if nat.get(r[0]) in ("CZE", "SVK"):
+                c = czech.setdefault(r[0], {"n": names[r[0]], "nat": nat[r[0]], "s": [], "g": 0})
+                c["s"].append([sid, r[3], r[5], r[6], r[7], r[8]])
+        for r in data.get("gk", []):
+            if r[4] >= 25:
+                best["svp"].append([r[10], r[0], names[r[0]], r[3], sid, r[4]])
+            if nat.get(r[0]) in ("CZE", "SVK"):
+                c = czech.setdefault(r[0], {"n": names[r[0]], "nat": nat[r[0]], "s": [], "g": 1})
+                c["g"] = 1
+                c["s"].append([sid, r[3], r[4], r[6], r[10], r[14]])
+        for m in mp.get("sk", []):
+            pid, gp = m[0], m[2]
+            if not gp:
+                continue
+            gax = round(m[6] - m[5], 1)
+            adv[pid % SHARDS].setdefault(str(pid), []).append([int(sid), m[1], gp, m[3], m[5], m[6], m[24], m[25], round(m[4] / gp, 2) if gp else 0, m[9], m[10]])
+            if pid in names:
+                best["ixg"].append([m[5], pid, names[pid], m[1], sid, gp])
+                best["gax"].append([gax, pid, names[pid], m[1], sid, gp])
+        for m in mp.get("gk", []):
+            pid, gp = m[0], m[2]
+            if not gp:
+                continue
+            gsax = round(m[4] - m[5], 1)
+            adv[pid % SHARDS].setdefault(str(pid), []).append([int(sid), m[1], gp, m[3], m[4], m[5], m[6], gsax, None, None, None, "g"])
+            if pid in names:
+                best["gsax"].append([gsax, pid, names[pid], m[1], sid, gp])
+    for k in best:
+        best[k] = sorted(best[k], key=lambda x: -(x[0] or 0))[:50]
+    for i, sh in enumerate(adv):
+        wj(os.path.join(HIST, "advc", "%d.json" % i), sh)
+    wj(os.path.join(HIST, "best.json"), best)
+    wj(os.path.join(HIST, "czech.json"), czech)
 
 
 def main():
@@ -183,7 +239,9 @@ def main():
     b.SEASON = os.environ.get("SEASON", "20262027")
     if os.environ.get("HIST_CAREERS", "1") == "1":
         b.step("kariéra historických hráčů", lambda: build_careers_hist(ids))
-    wj(os.path.join(HIST, "index.json"), {"current": b.SEASON, "seasons": seasons, "shards": SHARDS,
+    b.step("indexy archivu", lambda: build_indexes(seasons))
+    po = [sid for sid in seasons if os.path.exists(os.path.join(HIST, sid, "po", "data.json"))]
+    wj(os.path.join(HIST, "index.json"), {"current": b.SEASON, "seasons": seasons, "shards": SHARDS, "po": po,
                                           "edge_from": "20212022", "updated": time.strftime("%Y-%m-%d")})
     b.log("Hotovo za %d s" % (time.time() - t0))
 
