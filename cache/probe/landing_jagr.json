@@ -1,0 +1,231 @@
+{
+ "url": "https://api-web.nhle.com/v1/player/8448208/landing",
+ "data": {
+  "awards": [
+   {
+    "trophy": {
+     "default": "Stanley Cup",
+     "fr": "Coupe Stanley"
+    },
+    "seasons": [
+     {
+      "assists": 13,
+      "gameTypeId": 3,
+      "gamesPlayed": 21,
+      "goals": 11,
+      "pim": 6,
+      "plusMinus": 4,
+      "points": 24,
+      "seasonId": 19911992
+     },
+     {
+      "assists": 10,
+      "gameTypeId": 3,
+      "gamesPlayed": 24,
+      "goals": 3,
+      "pim": 6,
+      "plusMinus": 2,
+      "points": 13,
+      "seasonId": 19901991
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Art Ross Trophy",
+     "fr": "Trophée Art Ross"
+    },
+    "seasons": [
+     {
+      "assists": 69,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 52,
+      "hits": 25,
+      "pim": 42,
+      "plusMinus": 19,
+      "points": 121,
+      "seasonId": 20002001
+     },
+     {
+      "assists": 54,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 63,
+      "goals": 42,
+      "hits": 19,
+      "pim": 50,
+      "plusMinus": 25,
+      "points": 96,
+      "seasonId": 19992000
+     },
+     {
+      "assists": 83,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 44,
+      "hits": 27,
+      "pim": 66,
+      "plusMinus": 17,
+      "points": 127,
+      "seasonId": 19981999
+     },
+     {
+      "assists": 67,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 77,
+      "goals": 35,
+      "hits": 14,
+      "pim": 64,
+      "plusMinus": 17,
+      "points": 102,
+      "seasonId": 19971998
+     },
+     {
+      "assists": 38,
+      "gameTypeId": 2,
+      "gamesPlayed": 48,
+      "goals": 32,
+      "pim": 37,
+      "plusMinus": 23,
+      "points": 70,
+      "seasonId": 19941995
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Bill Masterton Memorial Trophy",
+     "fr": "Trophée Bill Masterton"
+    },
+    "seasons": [
+     {
+      "assists": 39,
+      "blockedShots": 16,
+      "gameTypeId": 2,
+      "gamesPlayed": 79,
+      "goals": 27,
+      "hits": 31,
+      "pim": 48,
+      "plusMinus": 23,
+      "points": 66,
+      "seasonId": 20152016
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Hart Memorial Trophy",
+     "fr": "Trophée Hart"
+    },
+    "seasons": [
+     {
+      "assists": 83,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 44,
+      "hits": 27,
+      "pim": 66,
+      "plusMinus": 17,
+      "points": 127,
+      "seasonId": 19981999
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Ted Lindsay Award",
+     "fr": "Trophée Ted Lindsay"
+    },
+    "seasons": [
+     {
+      "assists": 69,
+      "blockedShots": 13,
+      "gameTypeId": 2,
+      "gamesPlayed": 82,
+      "goals": 54,
+      "hits": 23,
+      "pim": 72,
+      "plusMinus": 34,
+      "points": 123,
+      "seasonId": 20052006
+     },
+     {
+      "assists": 54,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 63,
+      "goals": 42,
+      "hits": 19,
+      "pim": 50,
+      "plusMinus": 25,
+      "points": 96,
+      "seasonId": 19992000
+     },
+     {
+      "assists": 83,
+      "blockedShots": 0,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 44,
+      "hits": 27,
+      "pim": 66,
+      "plusMinus": 17,
+      "points": 127,
+      "seasonId": 19981999
+     }
+    ]
+   }
+  ],
+  "badges": [
+   {
+    "logoUrl": {
+     "default": "https://assets.nhle.com/badges/100_greatest_players.svg"
+    },
+    "title": {
+     "default": "100 Greatest Players"
+    }
+   }
+  ],
+  "inTop100AllTime": 1,
+  "inHHOF": 0,
+  "careerTotals": {
+   "regularSeason": {
+    "assists": 1155,
+    "gameWinningGoals": 135,
+    "gamesPlayed": 1733,
+    "goals": 766,
+    "otGoals": 19,
+    "pim": 1167,
+    "plusMinus": 322,
+    "points": 1921,
+    "powerPlayGoals": 217,
+    "powerPlayPoints": 610,
+    "shootingPctg": 0.1358,
+    "shorthandedGoals": 11,
+    "shorthandedPoints": 15,
+    "shots": 5637
+   },
+   "playoffs": {
+    "assists": 123,
+    "gameWinningGoals": 16,
+    "gamesPlayed": 208,
+    "goals": 78,
+    "otGoals": 4,
+    "pim": 163,
+    "plusMinus": 30,
+    "points": 201,
+    "powerPlayGoals": 24,
+    "powerPlayPoints": 65,
+    "shootingPctg": 0.1143,
+    "shorthandedGoals": 2,
+    "shorthandedPoints": 2,
+    "shots": 682
+   }
+  }
+ }
+}

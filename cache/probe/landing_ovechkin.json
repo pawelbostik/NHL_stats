@@ -1,0 +1,360 @@
+{
+ "url": "https://api-web.nhle.com/v1/player/8471214/landing",
+ "data": {
+  "awards": [
+   {
+    "trophy": {
+     "default": "Stanley Cup",
+     "fr": "Coupe Stanley"
+    },
+    "seasons": [
+     {
+      "assists": 12,
+      "blockedShots": 14,
+      "gameTypeId": 3,
+      "gamesPlayed": 24,
+      "goals": 15,
+      "hits": 81,
+      "pim": 8,
+      "plusMinus": 8,
+      "points": 27,
+      "seasonId": 20172018
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Art Ross Trophy",
+     "fr": "Trophée Art Ross"
+    },
+    "seasons": [
+     {
+      "assists": 47,
+      "blockedShots": 44,
+      "gameTypeId": 2,
+      "gamesPlayed": 82,
+      "goals": 65,
+      "hits": 220,
+      "pim": 40,
+      "plusMinus": 28,
+      "points": 112,
+      "seasonId": 20072008
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Calder Memorial Trophy",
+     "fr": "Trophée Calder"
+    },
+    "seasons": [
+     {
+      "assists": 54,
+      "blockedShots": 20,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 52,
+      "hits": 172,
+      "pim": 52,
+      "plusMinus": 2,
+      "points": 106,
+      "seasonId": 20052006
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Conn Smythe Trophy",
+     "fr": "Trophée Conn Smythe"
+    },
+    "seasons": [
+     {
+      "assists": 12,
+      "blockedShots": 14,
+      "gameTypeId": 3,
+      "gamesPlayed": 24,
+      "goals": 15,
+      "hits": 81,
+      "pim": 8,
+      "plusMinus": 8,
+      "points": 27,
+      "seasonId": 20172018
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Hart Memorial Trophy",
+     "fr": "Trophée Hart"
+    },
+    "seasons": [
+     {
+      "assists": 24,
+      "blockedShots": 18,
+      "gameTypeId": 2,
+      "gamesPlayed": 48,
+      "goals": 32,
+      "hits": 120,
+      "pim": 36,
+      "plusMinus": 2,
+      "points": 56,
+      "seasonId": 20122013
+     },
+     {
+      "assists": 54,
+      "blockedShots": 32,
+      "gameTypeId": 2,
+      "gamesPlayed": 79,
+      "goals": 56,
+      "hits": 243,
+      "pim": 72,
+      "plusMinus": 8,
+      "points": 110,
+      "seasonId": 20082009
+     },
+     {
+      "assists": 47,
+      "blockedShots": 44,
+      "gameTypeId": 2,
+      "gamesPlayed": 82,
+      "goals": 65,
+      "hits": 220,
+      "pim": 40,
+      "plusMinus": 28,
+      "points": 112,
+      "seasonId": 20072008
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Mark Messier NHL Leadership Award",
+     "fr": "Trophée Mark Messier"
+    },
+    "seasons": [
+     {
+      "assists": 29,
+      "blockedShots": 13,
+      "gameTypeId": 2,
+      "gamesPlayed": 65,
+      "goals": 44,
+      "hits": 110,
+      "pim": 14,
+      "plusMinus": 15,
+      "points": 73,
+      "seasonId": 20242025
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Maurice “Rocket” Richard Trophy"
+    },
+    "seasons": [
+     {
+      "assists": 19,
+      "blockedShots": 30,
+      "gameTypeId": 2,
+      "gamesPlayed": 68,
+      "goals": 48,
+      "hits": 184,
+      "pim": 30,
+      "plusMinus": -12,
+      "points": 67,
+      "seasonId": 20192020
+     },
+     {
+      "assists": 38,
+      "blockedShots": 41,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 51,
+      "hits": 223,
+      "pim": 40,
+      "plusMinus": 7,
+      "points": 89,
+      "seasonId": 20182019
+     },
+     {
+      "assists": 38,
+      "blockedShots": 21,
+      "gameTypeId": 2,
+      "gamesPlayed": 82,
+      "goals": 49,
+      "hits": 139,
+      "pim": 32,
+      "plusMinus": 3,
+      "points": 87,
+      "seasonId": 20172018
+     },
+     {
+      "assists": 21,
+      "blockedShots": 34,
+      "gameTypeId": 2,
+      "gamesPlayed": 79,
+      "goals": 50,
+      "hits": 225,
+      "pim": 53,
+      "plusMinus": 21,
+      "points": 71,
+      "seasonId": 20152016
+     },
+     {
+      "assists": 28,
+      "blockedShots": 32,
+      "gameTypeId": 2,
+      "gamesPlayed": 81,
+      "goals": 53,
+      "hits": 259,
+      "pim": 58,
+      "plusMinus": 10,
+      "points": 81,
+      "seasonId": 20142015
+     },
+     {
+      "assists": 28,
+      "blockedShots": 22,
+      "gameTypeId": 2,
+      "gamesPlayed": 78,
+      "goals": 51,
+      "hits": 204,
+      "pim": 48,
+      "plusMinus": -35,
+      "points": 79,
+      "seasonId": 20132014
+     },
+     {
+      "assists": 24,
+      "blockedShots": 18,
+      "gameTypeId": 2,
+      "gamesPlayed": 48,
+      "goals": 32,
+      "hits": 120,
+      "pim": 36,
+      "plusMinus": 2,
+      "points": 56,
+      "seasonId": 20122013
+     },
+     {
+      "assists": 54,
+      "blockedShots": 32,
+      "gameTypeId": 2,
+      "gamesPlayed": 79,
+      "goals": 56,
+      "hits": 243,
+      "pim": 72,
+      "plusMinus": 8,
+      "points": 110,
+      "seasonId": 20082009
+     },
+     {
+      "assists": 47,
+      "blockedShots": 44,
+      "gameTypeId": 2,
+      "gamesPlayed": 82,
+      "goals": 65,
+      "hits": 220,
+      "pim": 40,
+      "plusMinus": 28,
+      "points": 112,
+      "seasonId": 20072008
+     }
+    ]
+   },
+   {
+    "trophy": {
+     "default": "Ted Lindsay Award",
+     "fr": "Trophée Ted Lindsay"
+    },
+    "seasons": [
+     {
+      "assists": 59,
+      "blockedShots": 20,
+      "gameTypeId": 2,
+      "gamesPlayed": 72,
+      "goals": 50,
+      "hits": 185,
+      "pim": 89,
+      "plusMinus": 45,
+      "points": 109,
+      "seasonId": 20092010
+     },
+     {
+      "assists": 54,
+      "blockedShots": 32,
+      "gameTypeId": 2,
+      "gamesPlayed": 79,
+      "goals": 56,
+      "hits": 243,
+      "pim": 72,
+      "plusMinus": 8,
+      "points": 110,
+      "seasonId": 20082009
+     },
+     {
+      "assists": 47,
+      "blockedShots": 44,
+      "gameTypeId": 2,
+      "gamesPlayed": 82,
+      "goals": 65,
+      "hits": 220,
+      "pim": 40,
+      "plusMinus": 28,
+      "points": 112,
+      "seasonId": 20072008
+     }
+    ]
+   }
+  ],
+  "badges": [
+   {
+    "logoUrl": {
+     "default": "https://assets.nhle.com/badges/100_greatest_players.svg"
+    },
+    "title": {
+     "default": "100 Greatest Players"
+    }
+   }
+  ],
+  "inTop100AllTime": 1,
+  "inHHOF": 0,
+  "careerTotals": {
+   "regularSeason": {
+    "assists": 761,
+    "avgToi": "20:25",
+    "faceoffWinningPctg": 0.33840000000000003,
+    "gameWinningGoals": 141,
+    "gamesPlayed": 1583,
+    "goals": 930,
+    "otGoals": 27,
+    "pim": 857,
+    "plusMinus": 57,
+    "points": 1691,
+    "powerPlayGoals": 331,
+    "powerPlayPoints": 622,
+    "shootingPctg": 0.1305,
+    "shorthandedGoals": 5,
+    "shorthandedPoints": 6,
+    "shots": 7122
+   },
+   "playoffs": {
+    "assists": 70,
+    "avgToi": "20:56",
+    "faceoffWinningPctg": 0.7333,
+    "gameWinningGoals": 11,
+    "gamesPlayed": 161,
+    "goals": 77,
+    "otGoals": 1,
+    "pim": 83,
+    "plusMinus": 3,
+    "points": 147,
+    "powerPlayGoals": 31,
+    "powerPlayPoints": 64,
+    "shootingPctg": 0.114,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 675
+   }
+  }
+ }
+}
