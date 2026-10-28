@@ -102,7 +102,9 @@ def build_season(y, ends):
     want = NEED + (["edge.json"] if y >= 2021 else [])
     if not FORCE and all(n in have for n in want):
         b.log("Sezona %s už je stažená" % sid)
-        return sid, json.load(open(os.path.join(d, "data.json"), encoding="utf-8"))
+        data = json.load(open(os.path.join(d, "data.json"), encoding="utf-8"))
+        build_po(sid, y, d, data)
+        return sid, data
     b.log("Sezona %s" % sid)
     b.SEASON, b.MP_YEAR = sid, str(y)
     b.MP = "https://moneypuck.com/moneypuck/playerData/seasonSummary/%d/regular/" % y
@@ -130,12 +132,16 @@ def build_season(y, ends):
         if ed:
             wj(os.path.join(d, "edge.json"), ed)
     fix_phx(d, data)
+    build_po(sid, y, d, data)
+    return sid, data
+
+
+def build_po(sid, y, d, data):
     po = os.path.join(d, "po")
     if data and (FORCE or not os.path.exists(os.path.join(po, "data.json"))) and os.environ.get("HIST_PO", "1") == "1":
         b.SEASON = sid
         b.step("play-off %s" % sid, lambda: b.build_playoffs(sid, y, po, data, wj))
         fix_phx(po, data)
-    return sid, data
 
 
 def fix_phx(d, data):
