@@ -1,38 +1,33 @@
 {
- "playerId": 8470613,
- "isActive": true,
- "currentTeamId": 21,
- "currentTeamAbbrev": "COL",
- "fullTeamName": {
-  "default": "Colorado Avalanche",
-  "fr": "Avalanche du Colorado"
- },
- "teamCommonName": {
-  "default": "Avalanche"
- },
- "teamPlaceNameWithPreposition": {
-  "default": "Colorado",
-  "fr": "du Colorado"
- },
+ "playerId": 8445550,
+ "isActive": false,
  "firstName": {
-  "default": "Brent"
+  "default": "Rob"
  },
  "lastName": {
-  "default": "Burns"
+  "default": "Blake"
  },
- "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/COL_light.svg",
- "sweaterNumber": 84,
+ "badges": [
+  {
+   "logoUrl": {
+    "default": "https://assets.nhle.com/badges/hockey_hof.svg"
+   },
+   "title": {
+    "default": "Hockey Hall of Fame"
+   }
+  }
+ ],
+ "sweaterNumber": 4,
  "position": "D",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/COL/8470613.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8470613.jpg",
- "heightInInches": 77,
- "heightInCentimeters": 196,
- "weightInPounds": 228,
- "weightInKilograms": 103,
- "birthDate": "1985-03-09",
+ "headshot": "https://assets.nhle.com/mugs/nhl/latest/8445550.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8445550.jpg",
+ "heightInInches": 76,
+ "heightInCentimeters": 193,
+ "weightInPounds": 220,
+ "weightInKilograms": 100,
+ "birthDate": "1969-12-10",
  "birthCity": {
-  "default": "Barrie"
+  "default": "Simcoe"
  },
  "birthStateProvince": {
   "default": "Ontario"
@@ -40,88 +35,118 @@
  "birthCountry": "CAN",
  "shootsCatches": "R",
  "draftDetails": {
-  "year": 2003,
-  "teamAbbrev": "MIN",
-  "round": 1,
-  "pickInRound": 20,
-  "overallPick": 20
+  "year": 1988,
+  "teamAbbrev": "LAK",
+  "round": 4,
+  "pickInRound": 7,
+  "overallPick": 70
  },
- "playerSlug": "brent-burns-8470613",
+ "playerSlug": "rob-blake-8445550",
  "inTop100AllTime": 0,
- "inHHOF": 0,
+ "inHHOF": 1,
  "featuredStats": {
-  "season": 20262027,
+  "season": 20092010,
   "regularSeason": {
    "subSeason": {
-    "assists": 3,
-    "gameWinningGoals": 0,
-    "gamesPlayed": 12,
-    "goals": 0,
+    "assists": 23,
+    "gameWinningGoals": 1,
+    "gamesPlayed": 70,
+    "goals": 7,
     "otGoals": 0,
-    "pim": 8,
-    "plusMinus": -2,
-    "points": 3,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
+    "pim": 60,
+    "plusMinus": 14,
+    "points": 30,
+    "powerPlayGoals": 4,
+    "powerPlayPoints": 8,
+    "shootingPctg": 0.0385,
     "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 15
+    "shorthandedPoints": 1,
+    "shots": 182
    },
    "career": {
-    "assists": 675,
-    "gameWinningGoals": 47,
-    "gamesPlayed": 1591,
-    "goals": 273,
-    "otGoals": 16,
-    "pim": 895,
-    "plusMinus": 41,
-    "points": 948,
-    "powerPlayGoals": 88,
-    "powerPlayPoints": 323,
-    "shootingPctg": 0.0644,
-    "shorthandedGoals": 3,
-    "shorthandedPoints": 17,
-    "shots": 4238
+    "assists": 537,
+    "gameWinningGoals": 41,
+    "gamesPlayed": 1270,
+    "goals": 240,
+    "otGoals": 2,
+    "pim": 1679,
+    "plusMinus": -4,
+    "points": 777,
+    "powerPlayGoals": 136,
+    "powerPlayPoints": 379,
+    "shootingPctg": 0.0616,
+    "shorthandedGoals": 4,
+    "shorthandedPoints": 19,
+    "shots": 3896
+   }
+  },
+  "playoffs": {
+   "subSeason": {
+    "assists": 1,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 15,
+    "goals": 1,
+    "otGoals": 0,
+    "pim": 10,
+    "plusMinus": 0,
+    "points": 2,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0263,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 38
+   },
+   "career": {
+    "assists": 47,
+    "gameWinningGoals": 1,
+    "gamesPlayed": 146,
+    "goals": 26,
+    "otGoals": 0,
+    "pim": 166,
+    "plusMinus": 0,
+    "points": 73,
+    "powerPlayGoals": 9,
+    "powerPlayPoints": 30,
+    "shootingPctg": 0.0596,
+    "shorthandedGoals": 1,
+    "shorthandedPoints": 1,
+    "shots": 436
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 675,
-   "avgToi": "22:09",
-   "faceoffWinningPctg": 0.455,
-   "gameWinningGoals": 47,
-   "gamesPlayed": 1591,
-   "goals": 273,
-   "otGoals": 16,
-   "pim": 895,
-   "plusMinus": 41,
-   "points": 948,
-   "powerPlayGoals": 88,
-   "powerPlayPoints": 323,
-   "shootingPctg": 0.0644,
-   "shorthandedGoals": 3,
-   "shorthandedPoints": 17,
-   "shots": 4238
+   "assists": 537,
+   "gameWinningGoals": 41,
+   "gamesPlayed": 1270,
+   "goals": 240,
+   "otGoals": 2,
+   "pim": 1679,
+   "plusMinus": -4,
+   "points": 777,
+   "powerPlayGoals": 136,
+   "powerPlayPoints": 379,
+   "shootingPctg": 0.0616,
+   "shorthandedGoals": 4,
+   "shorthandedPoints": 19,
+   "shots": 3896
   },
   "playoffs": {
-   "assists": 60,
-   "avgToi": "23:41",
-   "faceoffWinningPctg": 0.22219999999999998,
-   "gameWinningGoals": 0,
-   "gamesPlayed": 148,
-   "goals": 24,
+   "assists": 47,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 146,
+   "goals": 26,
    "otGoals": 0,
-   "pim": 123,
-   "plusMinus": 25,
-   "points": 84,
-   "powerPlayGoals": 8,
-   "powerPlayPoints": 32,
-   "shootingPctg": 0.0559,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 429
+   "pim": 166,
+   "plusMinus": 0,
+   "points": 73,
+   "powerPlayGoals": 9,
+   "powerPlayPoints": 30,
+   "shootingPctg": 0.0596,
+   "shorthandedGoals": 1,
+   "shorthandedPoints": 1,
+   "shots": 436
   }
  },
  "shopLink": "#TODO",
@@ -130,110 +155,124 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-10-25",
-   "gameId": 2026020183,
-   "gameTypeId": 2,
+   "gameDate": "2010-05-23",
+   "gameId": 2009030324,
+   "gameTypeId": 3,
    "goals": 0,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "NSH",
-   "pim": 4,
+   "opponentAbbrev": "CHI",
+   "pim": 0,
    "plusMinus": 1,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 17,
+   "shifts": 34,
    "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "COL",
-   "toi": "12:48"
+   "shots": 3,
+   "teamAbbrev": "SJS",
+   "toi": "22:49"
   },
   {
    "assists": 0,
-   "gameDate": "2026-10-23",
-   "gameId": 2026020167,
-   "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "TBL",
-   "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 24,
-   "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "COL",
-   "toi": "18:15"
-  },
-  {
-   "assists": 0,
-   "gameDate": "2026-10-20",
-   "gameId": 2026020142,
-   "gameTypeId": 2,
+   "gameDate": "2010-05-21",
+   "gameId": 2009030323,
+   "gameTypeId": 3,
    "goals": 0,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "NJD",
+   "opponentAbbrev": "CHI",
    "pim": 0,
+   "plusMinus": 0,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 39,
+   "shorthandedGoals": 0,
+   "shots": 2,
+   "teamAbbrev": "SJS",
+   "toi": "26:57"
+  },
+  {
+   "assists": 0,
+   "gameDate": "2010-05-18",
+   "gameId": 2009030322,
+   "gameTypeId": 3,
+   "goals": 0,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "CHI",
+   "pim": 2,
    "plusMinus": -1,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 17,
+   "shifts": 32,
    "shorthandedGoals": 0,
    "shots": 2,
-   "teamAbbrev": "COL",
-   "toi": "15:47"
+   "teamAbbrev": "SJS",
+   "toi": "22:21"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 7,
-   "faceoffWinningPctg": 0.0,
+   "assists": 13,
    "gameTypeId": 2,
-   "gamesPlayed": 46,
-   "goals": 4,
-   "leagueAbbrev": "MTHL",
-   "pim": 16,
-   "points": 11,
-   "season": 20002001,
+   "gamesPlayed": 39,
+   "goals": 3,
+   "leagueAbbrev": "OHA-B",
+   "pim": 43,
+   "points": 16,
+   "season": 19851986,
    "sequence": 1,
    "teamName": {
-    "default": "North York"
+    "default": "Brantford"
    }
   },
   {
-   "assists": 25,
-   "faceoffWinningPctg": 0.0,
+   "assists": 20,
    "gameTypeId": 2,
-   "gamesPlayed": 68,
-   "goals": 15,
-   "leagueAbbrev": "OPJHL",
-   "pim": 14,
-   "points": 40,
-   "season": 20012002,
+   "gamesPlayed": 31,
+   "goals": 11,
+   "leagueAbbrev": "OHA-B",
+   "pim": 115,
+   "points": 31,
+   "season": 19861987,
    "sequence": 1,
    "teamName": {
-    "default": "Couchiching"
+    "default": "Stratford"
    }
   },
   {
-   "assists": 25,
-   "faceoffWinningPctg": 0.0,
+   "assists": 8,
    "gameTypeId": 2,
-   "gamesPlayed": 68,
-   "goals": 15,
-   "leagueAbbrev": "OHL",
-   "pim": 14,
-   "plusMinus": 6,
-   "points": 40,
-   "powerPlayGoals": 4,
-   "season": 20022003,
+   "gamesPlayed": 43,
+   "goals": 5,
+   "leagueAbbrev": "CCHA",
+   "pim": 88,
+   "points": 13,
+   "season": 19871988,
    "sequence": 1,
-   "shorthandedGoals": 2,
    "teamName": {
-    "default": "Brampton"
+    "default": "Bowling Green"
    }
   }
  ],
  "awards": [
+  {
+   "trophy": {
+    "default": "Stanley Cup",
+    "fr": "Coupe Stanley"
+   },
+   "seasons": [
+    {
+     "assists": 13,
+     "blockedShots": 0,
+     "gameTypeId": 3,
+     "gamesPlayed": 23,
+     "goals": 6,
+     "hits": 93,
+     "pim": 16,
+     "plusMinus": 6,
+     "points": 19,
+     "seasonId": 20002001
+    }
+   ]
+  },
   {
    "trophy": {
     "default": "James Norris Memorial Trophy",
@@ -241,69 +280,18 @@
    },
    "seasons": [
     {
-     "assists": 47,
-     "blockedShots": 142,
+     "assists": 27,
+     "blockedShots": 0,
      "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 29,
-     "hits": 69,
-     "pim": 40,
-     "plusMinus": 19,
-     "points": 76,
-     "seasonId": 20162017
+     "gamesPlayed": 81,
+     "goals": 23,
+     "hits": 183,
+     "pim": 94,
+     "plusMinus": -3,
+     "points": 50,
+     "seasonId": 19971998
     }
    ]
-  },
-  {
-   "trophy": {
-    "default": "NHL Foundation Player Award"
-   },
-   "seasons": [
-    {
-     "assists": 43,
-     "blockedShots": 124,
-     "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 17,
-     "hits": 148,
-     "pim": 65,
-     "plusMinus": -9,
-     "points": 60,
-     "seasonId": 20142015
-    }
-   ]
-  }
- ],
- "currentTeamRoster": [
-  {
-   "playerId": 8478406,
-   "lastName": {
-    "default": "Blackwood"
-   },
-   "firstName": {
-    "default": "Mackenzie"
-   },
-   "playerSlug": "mackenzie-blackwood-8478406"
-  },
-  {
-   "playerId": 8470613,
-   "lastName": {
-    "default": "Burns"
-   },
-   "firstName": {
-    "default": "Brent"
-   },
-   "playerSlug": "brent-burns-8470613"
-  },
-  {
-   "playerId": 8486171,
-   "lastName": {
-    "default": "Hughes"
-   },
-   "firstName": {
-    "default": "T.J."
-   },
-   "playerSlug": "t-j-hughes-8486171"
   }
  ]
 }
