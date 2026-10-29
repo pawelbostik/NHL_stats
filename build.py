@@ -664,8 +664,13 @@ def build_bracket(end_year):
 def build_playoffs(sid, y, outdir, regular, writer):
     """Play-off sezony sid do složky outdir. regular = data.json základní části (jména, národnosti, konference)."""
     global SEASON, MP, MP_SHOTS, GT, SHOTS_PO
-    bracket = build_bracket(y + 1)
-    if not bracket:
+    try:
+        bracket = build_bracket(y + 1)
+    except Exception as e:  # noqa: BLE001
+        log("  %s: pavouk play-off nelze stáhnout (%s)" % (sid, e))
+        bracket = []
+    classic = y < 2007
+    if not bracket and not classic:
         log("  %s: play-off zatím není" % sid)
         return False
     old = (SEASON, MP, MP_SHOTS, GT, SHOTS_PO)
@@ -707,8 +712,15 @@ def build_playoffs(sid, y, outdir, regular, writer):
             t = tinfo.get(ab) or [ab, ab, "", "", ""]
             tm.append([ab, t[1], t[2], t[3], t[4], r.get("gamesPlayed") or 0, r.get("wins") or 0, r.get("losses") or 0, 0,
                        0, r.get("goalsFor") or 0, r.get("goalsAgainst") or 0, ""])
+        if not sk:
+            log("  %s: play-off bez dat" % sid)
+            return False
         data = {"sk": sk, "gk": gk, "tm": tm, "tx": {}, "updated": regular.get("updated"), "season": sid, "final": True,
-                "playoffs": True, "bracket": bracket}
+                "playoffs": True, "bracket": bracket, "missing": regular.get("missing", [])}
+        if classic:
+            writer(os.path.join(outdir, "data.json"), data)
+            log("  play-off %s: hráčů %d, brankářů %d, sérií %d" % (sid, len(sk), len(gk), len(bracket)))
+            return True
         writer(os.path.join(outdir, "data.json"), data)
         for name, fn in (("special.json", build_special), ("mp.json", build_mp), ("lines.json", build_lines)):
             out = step("play-off %s %s" % (name, sid), fn)
