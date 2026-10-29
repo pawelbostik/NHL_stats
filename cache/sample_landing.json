@@ -53,57 +53,57 @@
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 3,
+    "assists": 5,
     "gameWinningGoals": 0,
-    "gamesPlayed": 12,
+    "gamesPlayed": 13,
     "goals": 0,
     "otGoals": 0,
-    "pim": 8,
-    "plusMinus": -2,
-    "points": 3,
+    "pim": 10,
+    "plusMinus": 0,
+    "points": 5,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 15
+    "shots": 19
    },
    "career": {
-    "assists": 675,
+    "assists": 677,
     "gameWinningGoals": 47,
-    "gamesPlayed": 1591,
+    "gamesPlayed": 1592,
     "goals": 273,
     "otGoals": 16,
-    "pim": 895,
-    "plusMinus": 41,
-    "points": 948,
+    "pim": 897,
+    "plusMinus": 43,
+    "points": 950,
     "powerPlayGoals": 88,
     "powerPlayPoints": 323,
-    "shootingPctg": 0.0644,
+    "shootingPctg": 0.0643,
     "shorthandedGoals": 3,
     "shorthandedPoints": 17,
-    "shots": 4238
+    "shots": 4242
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 675,
-   "avgToi": "22:09",
+   "assists": 677,
+   "avgToi": "22:08",
    "faceoffWinningPctg": 0.455,
    "gameWinningGoals": 47,
-   "gamesPlayed": 1591,
+   "gamesPlayed": 1592,
    "goals": 273,
    "otGoals": 16,
-   "pim": 895,
-   "plusMinus": 41,
-   "points": 948,
+   "pim": 897,
+   "plusMinus": 43,
+   "points": 950,
    "powerPlayGoals": 88,
    "powerPlayPoints": 323,
-   "shootingPctg": 0.0644,
+   "shootingPctg": 0.0643,
    "shorthandedGoals": 3,
    "shorthandedPoints": 17,
-   "shots": 4238
+   "shots": 4242
   },
   "playoffs": {
    "assists": 60,
@@ -128,6 +128,24 @@
  "twitterLink": "#TODO",
  "watchLink": "#TODO",
  "last5Games": [
+  {
+   "assists": 2,
+   "gameDate": "2026-10-28",
+   "gameId": 2026020201,
+   "gameTypeId": 2,
+   "goals": 0,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "NJD",
+   "pim": 2,
+   "plusMinus": 2,
+   "points": 2,
+   "powerPlayGoals": 0,
+   "shifts": 25,
+   "shorthandedGoals": 0,
+   "shots": 4,
+   "teamAbbrev": "COL",
+   "toi": "17:49"
+  },
   {
    "assists": 0,
    "gameDate": "2026-10-25",
@@ -163,24 +181,6 @@
    "shots": 1,
    "teamAbbrev": "COL",
    "toi": "18:15"
-  },
-  {
-   "assists": 0,
-   "gameDate": "2026-10-20",
-   "gameId": 2026020142,
-   "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "NJD",
-   "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 17,
-   "shorthandedGoals": 0,
-   "shots": 2,
-   "teamAbbrev": "COL",
-   "toi": "15:47"
   }
  ],
  "seasonTotals": [
