@@ -16,12 +16,13 @@ import time
 
 import build as b
 
-FIRST = int(os.environ.get("HIST_FIRST", "2007"))
+FIRST = int(os.environ.get("HIST_FIRST", "1917"))
+MP_FIRST = 2007  # MoneyPuck (xG, střely, formace) začíná sezonou 2007/08
 LAST = int(b.SEASON[:4]) - 1
 FORCE = os.environ.get("HIST_FORCE") == "1"
 HIST = os.path.join(b.SITE, "hist")
 NEED = ["data.json", "mp.json", "lines.json", "shots.json", "goalies_shots.json", "special.json"]
-SHARDS = 32
+SHARDS = 128
 
 
 def wj(path, obj):
@@ -56,8 +57,9 @@ def hist_nhl(sid, end):
         conf = (t.get("conferenceName") or " ")[0].upper()
         streak = (t.get("streakCode") or "") + (str(t.get("streakCount")) if t.get("streakCount") else "")
         tm.append([ab, (t.get("teamCommonName") or {}).get("default", ab), (t.get("placeName") or {}).get("default", ""),
-                   conf if conf in "EW" else "", t.get("divisionName", ""), t.get("gamesPlayed", 0), t.get("wins", 0),
-                   t.get("losses", 0), t.get("otLosses", 0), t.get("points", 0), t.get("goalFor", 0), t.get("goalAgainst", 0), streak])
+                   conf if conf in "EW" else "", t.get("divisionName") or "", t.get("gamesPlayed", 0), t.get("wins", 0),
+                   t.get("losses", 0), (t.get("otLosses") or 0) + (t.get("ties") or 0), t.get("points", 0), t.get("goalFor", 0),
+                   t.get("goalAgainst", 0), streak])
         tx[ab] = [t.get(k) or 0 for k in ("homeWins", "homeLosses", "homeOtLosses", "roadWins", "roadLosses", "roadOtLosses",
                                            "l10Wins", "l10Losses", "l10OtLosses", "regulationWins", "regulationPlusOtWins",
                                            "shootoutWins", "shootoutLosses", "leagueSequence", "conferenceSequence",
@@ -91,15 +93,28 @@ def hist_nhl(sid, end):
                    b.r4(r.get("goalsAgainstAverage") or 0), round(float(r.get("savePct") or 0), 4), r.get("shotsAgainst") or 0,
                    r.get("saves") or 0, r.get("goalsAgainst") or 0, r.get("shutouts") or 0, r.get("timeOnIce") or 0,
                    nat.get(r["playerId"]), None])
-    b.log("  %s: týmů %d, hráčů %d, brankářů %d" % (sid, len(tm), len(sk), len(gk)))
-    return {"sk": sk, "gk": gk, "tm": tm, "tx": tx, "updated": end, "season": sid, "final": True}
+    # Údaje, které NHL pro starší sezony neeviduje (všude prázdné nebo nulové), stránka skryje.
+    missing = []
+    def allzero(rows, i):
+        return rows and all(not r[i] for r in rows)
+    for name, i in (("pm", 9), ("ppg", 11), ("shg", 12), ("gwg", 13), ("otg", 14), ("s", 15), ("toi", 17), ("fo", 18)):
+        if allzero(sk, i):
+            missing.append(name)
+    for name, i in (("gs", 5), ("sa", 11), ("gtoi", 15)):
+        if allzero(gk, i):
+            missing.append("g_" + name)
+    if "g_sa" in missing:
+        missing.append("g_svp")
+    ties = any((t.get("ties") or 0) for t in st)
+    b.log("  %s: týmů %d, hráčů %d, brankářů %d, chybí: %s" % (sid, len(tm), len(sk), len(gk), ",".join(missing) or "nic"))
+    return {"sk": sk, "gk": gk, "tm": tm, "tx": tx, "updated": end, "season": sid, "final": True, "missing": missing, "ties": ties}
 
 
 def build_season(y, ends):
     sid = "%d%d" % (y, y + 1)
     d = os.path.join(HIST, sid)
     have = set(os.listdir(d)) if os.path.isdir(d) else set()
-    want = NEED + (["edge.json"] if y >= 2021 else [])
+    want = (NEED if y >= MP_FIRST else ["data.json"]) + (["edge.json"] if y >= 2021 else [])
     if not FORCE and all(n in have for n in want):
         b.log("Sezona %s už je stažená" % sid)
         data = json.load(open(os.path.join(d, "data.json"), encoding="utf-8"))
@@ -116,6 +131,9 @@ def build_season(y, ends):
             wj(os.path.join(d, "data.json"), data)
     if data is None and os.path.exists(os.path.join(d, "data.json")):
         data = json.load(open(os.path.join(d, "data.json"), encoding="utf-8"))
+    if y < MP_FIRST:
+        build_po(sid, y, d, data)
+        return sid, data
     jobs = [("special.json", b.build_special), ("mp.json", b.build_mp), ("lines.json", b.build_lines)]
     for name, fn in jobs:
         if FORCE or name not in have:
@@ -248,7 +266,7 @@ def main():
     b.step("indexy archivu", lambda: build_indexes(seasons))
     po = [sid for sid in seasons if os.path.exists(os.path.join(HIST, sid, "po", "data.json"))]
     wj(os.path.join(HIST, "index.json"), {"current": b.SEASON, "seasons": seasons, "shards": SHARDS, "po": po,
-                                          "edge_from": "20212022", "updated": time.strftime("%Y-%m-%d")})
+                                          "edge_from": "20212022", "mp_from": "20072008", "updated": time.strftime("%Y-%m-%d")})
     b.log("Hotovo za %d s" % (time.time() - t0))
 
 
