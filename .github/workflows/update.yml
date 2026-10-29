@@ -2,7 +2,7 @@ name: Aktualizace statistik
 
 on:
   schedule:
-    # 6:40 a 11:40 UTC = 7:40 a 12:40 v zimním čase, 8:40 a 13:40 v letním
+    # 6:40 a 11:40 UTC = 7:40 a 12:40 v zimním čase, 8:40 a 13:40 v letním ok
     - cron: "40 6 * * *"
     - cron: "40 11 * * *"
   workflow_dispatch:
