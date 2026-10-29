@@ -394,6 +394,17 @@ tr.fav .name::before { content: "★ "; color: var(--red); }
 .champ b { font-family: var(--font-display); font-weight: 900; }
 @media (min-width: 900px) { .tabs { flex-wrap: wrap; overflow: visible; } }
 
+/* O stránce */
+.about { border-top: 1px solid var(--ink); padding-top: 14px; }
+.about h2 { font-family: var(--font-display); font-weight: 900; font-size: 26px; margin: 0 0 10px; }
+.about-g { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 32px; }
+.about h4 { margin: 0 0 6px; font-family: var(--font-display); font-weight: 600; font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--red-deep); }
+.about p, .about li { font-size: 14.5px; color: var(--muted); margin: 0 0 8px; }
+.about ul { margin: 0 0 8px; padding-left: 18px; }
+.about a { color: var(--red-deep); }
+.aboutlink { all: unset; cursor: pointer; color: var(--red-deep); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 700px) { .about-g { grid-template-columns: 1fr; } }
+
 /* Graf střelby */
 .plot { margin: 18px 0 0; background: var(--board); border: 1px solid var(--ink); border-radius: 2px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
 .plot h2 { font-family: var(--font-display); font-weight: 900; font-size: 24px; margin: 0; }
@@ -553,7 +564,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
     <h1><a href="#hraci" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
     <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><div class="field" id="partbar" hidden><span>Část sezony</span><div class="seg" id="part" role="group" aria-label="Část sezony"><button type="button" data-v="reg" aria-pressed="true">Základní část</button><button type="button" data-v="po" aria-pressed="false">Play-off</button></div></div><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
-    <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span></div>
+    <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span><button type="button" class="aboutlink" id="aboutlink">O stránce</button></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
   </header>
 
@@ -738,6 +749,27 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     <div class="filters" id="tm-mode-wrap" hidden><div class="field"><span>Zobrazení</span><div class="seg" id="tm-mode" role="group" aria-label="Zobrazení týmů"><button type="button" data-v="table" aria-pressed="true">Tabulka</button><button type="button" data-v="out" aria-pressed="false">Výhled a šance na play-off</button></div></div></div>
     <div class="conf" id="conf"></div>
     <p class="legend">Přerušovaná čára odděluje prvních osm týmů konference (postupová místa). Kliknutím na tým otevřete jeho detail: soupisku, výsledky zápasů, mapy střel a formace.</p>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="about-h">
+    <h2 id="about-h">O stránce</h2>
+    <div class="about-g">
+      <div>
+        <h4>Neoficiální a nekomerční</h4>
+        <p>Statistiky NHL v češtině jsou neoficiální fanouškovská stránka. Nejsou nijak spojené s National Hockey League, jejími kluby ani s poskytovateli dat. Stránka je nekomerční: nemá reklamy, předplatné ani jiné příjmy.</p>
+        <p>Názvy týmů a klubové barvy slouží jen k rozlišení týmů. Stránka nepoužívá loga NHL ani klubů a nezobrazuje fotografie hráčů. NHL a názvy klubů jsou ochranné známky svých vlastníků.</p>
+      </div>
+      <div>
+        <h4>Zdroje dat</h4>
+        <ul>
+          <li><a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a>: tabulka, statistiky hráčů a brankářů, zápisy a události zápasů, program, kariéra a osobní údaje</li>
+          <li><a href="https://www.nhl.com/stats/edge" target="_blank" rel="noopener">NHL EDGE</a>: rychlost bruslení, střela, najeté kilometry a místa střel</li>
+          <li><a href="https://records.nhl.com" target="_blank" rel="noopener">NHL Records</a>: trofeje a vítězové cen</li>
+          <li><a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>: očekávané góly (xG), Corsi, GSAx, formace a data jednotlivých střel (zdarma pro nekomerční použití s uvedením zdroje)</li>
+        </ul>
+        <p>Data se stahují automaticky dvakrát denně. Kariéry hráčů se obnovují jednou týdně a sledovací data NHL EDGE jednou denně, aby stránka zbytečně nezatěžovala servery zdrojů. Čísla se od oficiálních mohou drobně lišit kvůli dodatečným opravám zápisů.</p>
+      </div>
+    </div>
   </section>
 
   <footer id="foot">Kliknutím na hráče, brankáře, tým nebo zápas otevřete detail v barvách klubu: číslo dresu, kariéru po sezonách, porovnání s ligou a seznam zápasů; každý zápas jde rozkliknout. Data jsou snímek ze statistik NHL; čísla se mění po každém hracím dni. Údaje o tom, kam do branky střely míří, veřejně dostupné nejsou, proto mapy ukazují místo, odkud se střílelo.</footer>
@@ -2397,8 +2429,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   const MILE_L = { gp: "zápasů", g: "gólů", a: "asistencí", p: "bodů", w: "výher", so: "čistých kont" };
   function careerTotals(id, goalie) {
     const c = CAREERS && CAREERS[id]; if (!c) return null;
-    const rows = (c.t || []).filter(x => x[1] === 2 && x[2] === "NHL"), s = k => rows.reduce((t, x) => t + (x[k] || 0), 0);
-    return goalie ? { gp: s(4), w: s(5), so: s(10) } : { gp: s(4), g: s(5), a: s(6), p: s(7) };
+    const cur = +((HIDX && HIDX.current) || "20262027");
+    const rows = (c.t || []).filter(x => x[1] === 2 && x[2] === "NHL" && x[0] !== cur), s = k => rows.reduce((t, x) => t + (x[k] || 0), 0);
+    const now = (goalie ? GK : SK).filter(x => x.id === id), n = k => now.reduce((t, x) => t + (x[k] || 0), 0);
+    return goalie ? { gp: s(4) + n("gp"), w: s(5) + n("w"), so: s(10) + n("so") } : { gp: s(4) + n("gp"), g: s(5) + n("g"), a: s(6) + n("a"), p: s(7) + n("p") };
   }
   function renderRecords() {
     const box = $("#rk-box");
@@ -3077,6 +3111,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     else if (e.target.closest("#d-share")) doShare();
   });
   $("#home").addEventListener("click", e => { e.preventDefault(); goHome(); });
+  $("#aboutlink").addEventListener("click", () => $("#about").scrollIntoView({ behavior: "smooth", block: "start" }));
   $("#tohome").addEventListener("click", goHome);
   window.addEventListener("scroll", () => { $("#tohome").hidden = window.scrollY < 700; }, { passive: true });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });

@@ -240,6 +240,38 @@ def build_careers(data):
     return out
 
 
+def careers_polite(data):
+    """Kariéry všech hráčů jen jednou týdně; mezi tím jen nově příchozí hráči (šetří servery NHL)."""
+    import datetime as dt
+    meta_f = os.path.join(CACHE, "careers_meta.json")
+    meta = rjson(meta_f, {}) or {}
+    old = rjson(os.path.join(SITE, "careers.json"), {}) or {}
+    today = dt.date.today()
+    try:
+        last = dt.date.fromisoformat(meta.get("full", "2000-01-01"))
+    except Exception:  # noqa: BLE001
+        last = dt.date(2000, 1, 1)
+    if not old or (today - last).days >= 7:
+        out = build_careers(data)
+        if out:
+            with open(meta_f, "w", encoding="utf-8") as f:
+                json.dump({"full": today.isoformat()}, f)
+        return out
+    have = set(old)
+    miss_sk = [r for r in data["sk"] if str(r[0]) not in have]
+    miss_gk = [r for r in data["gk"] if str(r[0]) not in have]
+    log("NHL: kariéra – týdenní obnova proběhla %s, teď jen %d nových hráčů" % (last.isoformat(), len(miss_sk) + len(miss_gk)))
+    if miss_sk or miss_gk:
+        got = build_careers({"sk": miss_sk, "gk": miss_gk}) or {}
+        old.update(got)
+    for rows, ni in ((data["sk"], 20), (data["gk"], 17)):
+        for r in rows:
+            c = old.get(str(r[0]))
+            if r[ni] is None and c and c.get("n") is not None:
+                r[ni] = c["n"]
+    return old
+
+
 # ---------------------------------------------------------------- NHL: zápasy (zápis + události)
 SHT = ["wrist", "snap", "slap", "backhand", "tip-in", "deflected", "wrap-around", "poke", "bat", "between-legs", "cradle"]
 
@@ -963,7 +995,7 @@ def main():
         else:
             data["updated"] = time.strftime("%Y-%m-%d")
             ok = False
-        cr = step("NHL kariéra", lambda: build_careers(data))
+        cr = step("NHL kariéra", lambda: careers_polite(data))
         if cr:
             wjson("careers.json", cr)
         sc = step("NHL program", build_schedule)
@@ -984,9 +1016,13 @@ def main():
         sp = step("NHL speciální formace", build_special)
         if sp:
             wjson("special.json", sp)
-        ed = step("NHL EDGE", lambda: build_edge(data))
-        if ed:
-            wjson("edge.json", ed)
+        old_edge = rjson(os.path.join(SITE, "edge.json"), {}) or {}
+        if old_edge.get("updated") != time.strftime("%Y-%m-%d"):
+            ed = step("NHL EDGE", lambda: build_edge(data))
+            if ed:
+                wjson("edge.json", ed)
+        else:
+            log("NHL EDGE: dnes už staženo, přeskakuji (šetříme servery NHL)")
         wjson("data.json", data)
     else:
         ok = False
