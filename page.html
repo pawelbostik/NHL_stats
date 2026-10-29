@@ -400,6 +400,76 @@ tr.fav .name::before { content: "★ "; color: var(--red); }
 .aboutlink { all: unset; cursor: pointer; color: var(--red-deep); text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 700px) { .about-g { grid-template-columns: 1fr; } }
 
+/* Přehledné uspořádání */
+.hrow { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; }
+.gsearch { position: relative; flex: 0 1 360px; min-width: 220px; margin-bottom: 4px; }
+.gsearch input { width: 100%; min-height: 42px; font-size: 16px; padding-left: 36px; background: var(--field) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23566573' stroke-width='2'%3E%3Ccircle cx='7' cy='7' r='5'/%3E%3Cpath d='M11 11l4 4'/%3E%3C/svg%3E") no-repeat 12px center; border-color: var(--ink); }
+.gres { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 30; background: var(--board); border: 1px solid var(--ink); border-radius: 2px; box-shadow: 6px 6px 0 rgba(13, 27, 40, .2); max-height: 60vh; overflow-y: auto; }
+.gr { all: unset; box-sizing: border-box; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 6px; align-items: baseline; width: 100%; padding: 8px 12px; cursor: pointer; border-bottom: 1px solid var(--line); }
+.gr small { grid-column: 2; color: var(--muted); font-size: 12.5px; }
+.gr .tdot { grid-row: 1; }
+.gr.on, .gr:hover { background: var(--red-soft); }
+.secnav { display: flex; gap: 0; border: 1px solid var(--ink); border-radius: 2px; background: var(--board); box-shadow: var(--shadow); overflow: hidden; }
+.secbtn { flex: 1; font: 600 15px/1 var(--font-display); letter-spacing: .04em; padding: 13px 10px; border: 0; background: none; color: var(--muted); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.secbtn + .secbtn { border-left: 1px solid var(--line-strong); }
+.secbtn[aria-current="true"] { background: var(--ink); color: var(--board); }
+.secbtn:hover:not([aria-current="true"]) { color: var(--ink); background: var(--red-soft); }
+.secbtn .si { font-size: 14px; opacity: .8; }
+.tabs .tab.off { display: none; }
+.tabs.single { display: none; }
+.tabs { margin-top: -8px; }
+.ph-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.card { background: var(--board); border: 1px solid var(--ink); border-radius: 2px; box-shadow: var(--shadow); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; }
+.card h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--red-deep); padding-bottom: 6px; border-bottom: 1px solid var(--ink); }
+.card .more { all: unset; cursor: pointer; align-self: flex-start; font: 600 11px/1 var(--font-display); letter-spacing: .12em; text-transform: uppercase; color: var(--red-deep); padding: 4px 0; border-bottom: 1px dotted currentColor; margin-top: auto; }
+.minis { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; }
+.minis h4 { margin: 0 0 2px; font-family: var(--font-display); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.minis ol { margin: 0; padding-left: 18px; font-size: 14px; }
+.minis li { padding: 2px 0; }
+.minis li span { float: right; font-family: var(--font-display); font-weight: 700; }
+.soon { list-style: none; margin: 0; padding: 0; font-size: 14.5px; }
+.soon li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 10px; padding: 5px 0; border-bottom: 1px dashed var(--line); }
+.soon .when { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: .04em; color: var(--muted); white-space: nowrap; }
+.soon .who { grid-column: 1 / -1; }
+.soon li > span:nth-child(2) { text-align: right; }
+.soon li > span.dim:last-child { grid-column: 1 / -1; font-size: 13px; }
+.szgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.szc { font: inherit; color: inherit; text-align: left; background: var(--board); border: 1px solid var(--line-strong); border-radius: 2px; padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; gap: 3px; position: relative; }
+.szc:hover { border-color: var(--ink); background: var(--red-soft); }
+.szc.on { border-color: var(--ink); box-shadow: var(--shadow); }
+.szc b { font-family: var(--font-display); font-weight: 900; font-size: 20px; }
+.szc small { position: absolute; right: 10px; top: 12px; font-size: 11px; color: var(--red-deep); }
+.szc span { font-size: 13.5px; }
+.szc i { font-style: normal; font-family: var(--font-display); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--rinkblue); }
+.pd-body.tabbed { display: flex; flex-direction: column; gap: 16px; }
+.pd-top { display: flex; flex-direction: column; gap: 10px; }
+.pd-top .big { width: 100%; max-width: 620px; }
+.dtabs { display: flex; flex-wrap: wrap; gap: 2px; box-shadow: inset 0 -1px 0 var(--ink); position: sticky; top: 0; z-index: 2; background: var(--board); padding-top: 4px; }
+.dtabs button { font: 600 15px/1 var(--font-display); padding: 9px 14px 10px; border: 1px solid transparent; border-bottom: 0; background: none; color: var(--muted); cursor: pointer; border-radius: 2px 2px 0 0; }
+.dtabs button[aria-selected="true"] { color: var(--ink); border-color: var(--ink); background: var(--field); box-shadow: inset 0 3px 0 var(--tc-text); }
+.pane-g { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 22px 34px; align-items: start; }
+.pane-g.one { grid-template-columns: minmax(0, 1fr); }
+.pane-g.one > .pd-col { max-width: 900px; }
+.pane > .pd-wide, .pane > .sec { margin-bottom: 18px; }
+.hp { display: none !important; }
+.show-help .hp, .hp.show { display: block !important; }
+.hq { all: unset; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; border: 1px solid currentColor; font: 700 11px/1 var(--font-body); letter-spacing: 0; text-transform: none; vertical-align: 1px; margin-left: 6px; opacity: .7; }
+.hq:hover { opacity: 1; }
+.hq-v { width: auto; height: auto; border-radius: 2px; padding: 4px 8px; font: 600 11px/1 var(--font-display); letter-spacing: .1em; text-transform: uppercase; color: var(--red-deep); margin: 0 0 10px; }
+@media (max-width: 920px) { .pane-g { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 700px) {
+  body { padding-bottom: 76px; }
+  .secnav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 15; border: 0; border-top: 1px solid var(--ink); border-radius: 0; box-shadow: 0 -2px 10px rgba(13, 27, 40, .12); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .secbtn { flex-direction: column; gap: 3px; font-size: 11px; letter-spacing: .06em; padding: 9px 2px 8px; }
+  .secbtn .si { font-size: 16px; }
+  .tabs { margin-top: 0; }
+  .tohome { bottom: calc(70px + env(safe-area-inset-bottom, 0px)); }
+  .gsearch { flex-basis: 100%; }
+  .dtabs button { font-size: 13.5px; padding: 8px 9px 9px; }
+  .minis { grid-template-columns: 1fr; }
+  .drawer { z-index: 25; }
+}
+
 /* Graf střelby */
 .plot { margin: 18px 0 0; background: var(--board); border: 1px solid var(--ink); border-radius: 2px; padding: 16px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
 .plot h2 { font-family: var(--font-display); font-weight: 900; font-size: 24px; margin: 0; }
@@ -554,20 +624,28 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 <div class="wrap">
   <header>
     <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
-    <h1><a href="#hraci" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
+    <div class="hrow"><h1><a href="#prehled" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
+    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div></div>
     <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><div class="field" id="partbar" hidden><span>Část sezony</span><div class="seg" id="part" role="group" aria-label="Část sezony"><button type="button" data-v="reg" aria-pressed="true">Základní část</button><button type="button" data-v="po" aria-pressed="false">Play-off</button></div></div><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span><button type="button" class="aboutlink" id="aboutlink">O stránce</button></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
   </header>
 
-  <section class="night" id="night" hidden aria-label="Poslední hrací den"></section>
+  <nav class="secnav" aria-label="Hlavní oblasti">
+    <button type="button" class="secbtn" data-sec="prehled" aria-current="true"><span class="si" aria-hidden="true">◉</span>Přehled</button>
+    <button type="button" class="secbtn" data-sec="hraci_s" aria-current="false"><span class="si" aria-hidden="true">♟</span>Hráči</button>
+    <button type="button" class="secbtn" data-sec="tymy_s" aria-current="false"><span class="si" aria-hidden="true">▦</span>Týmy</button>
+    <button type="button" class="secbtn" data-sec="analyza" aria-current="false"><span class="si" aria-hidden="true">◎</span>Analýza</button>
+    <button type="button" class="secbtn" data-sec="historie" aria-current="false"><span class="si" aria-hidden="true">⌛</span>Historie</button>
+  </nav>
 
-  <section class="leaders" id="leaders" aria-label="Lídři ligy"></section>
-
-  <nav class="tabs" role="tablist" aria-label="Přehled">
-    <button class="tab" role="tab" id="tab-hraci" data-view="hraci" aria-selected="true">Hráči</button>
+  <nav class="tabs" role="tablist" aria-label="Části oblasti">
+    <button class="tab" role="tab" id="tab-prehled" data-view="prehled" aria-selected="true">Úvod</button>
+    <button class="tab" role="tab" id="tab-sezony" data-view="sezony" aria-selected="false">Sezony</button>
+    <button class="tab" role="tab" id="tab-hraci" data-view="hraci" aria-selected="false">Hráči</button>
     <button class="tab" role="tab" id="tab-brankari" data-view="brankari" aria-selected="false">Brankáři</button>
-    <button class="tab" role="tab" id="tab-tymy" data-view="tymy" aria-selected="false">Týmy</button>
+    <button class="tab" role="tab" id="tab-tymy" data-view="tymy" aria-selected="false">Tabulka</button>
+    <button class="tab" role="tab" id="tab-vyhled" data-view="vyhled" aria-selected="false" hidden>Výhled na play-off</button>
     <button class="tab" role="tab" id="tab-zapasy" data-view="zapasy" aria-selected="false" hidden>Zápasy</button>
     <button class="tab" role="tab" id="tab-program" data-view="program" aria-selected="false" hidden>Program</button>
     <button class="tab" role="tab" id="tab-cesi" data-view="cesi" aria-selected="false" hidden>Češi v NHL</button>
@@ -580,7 +658,15 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     <button class="tab" role="tab" id="tab-formace" data-view="formace" aria-selected="false" hidden>Formace</button>
   </nav>
 
-  <section id="view-hraci">
+  <section id="view-prehled">
+    <section class="night" id="night" hidden aria-label="Poslední hrací den"></section>
+    <section class="leaders" id="leaders" aria-label="Lídři ligy"></section>
+    <div id="ph-box"></div>
+  </section>
+
+  <section id="view-sezony" hidden><div id="sz-box"></div></section>
+
+  <section id="view-hraci" hidden>
     <div class="filters">
       <div class="field" id="sk-mode-wrap" hidden><span>Zobrazení</span>
         <div class="seg" id="sk-mode" role="group" aria-label="Zobrazení statistik">
@@ -602,6 +688,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       <label class="field"><span>Národnost</span><select id="sk-nat"></select></label>
       <label class="field"><span>Min. zápasů</span><input type="number" id="sk-gp" min="0" max="82" value="0"></label>
       <button type="button" class="reset" id="sk-reset">Zrušit filtry</button>
+      <button type="button" class="reset colbtn" aria-pressed="false">Více sloupců</button>
       <div class="count" id="sk-count"></div>
     </div>
     <figure class="plot" id="shotplot" hidden>
@@ -627,6 +714,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       <label class="field"><span>Národnost</span><select id="gk-nat"></select></label>
       <label class="field"><span>Min. zápasů</span><input type="number" id="gk-gp" min="0" max="82" value="1"></label>
       <button type="button" class="reset" id="gk-reset">Zrušit filtry</button>
+      <button type="button" class="reset colbtn" aria-pressed="false">Více sloupců</button>
       <div class="count" id="gk-count"></div>
     </div>
   </section>
@@ -1020,7 +1108,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   }
 
   function thead(cols, state, lead) {
-    const gkLike = cols === GK_COLS || cols === GK_SIT_COLS || cols === GK_FORM_COLS;
+    const bc = cols.base || cols, gkLike = bc === GK_COLS || bc === GK_SIT_COLS || bc === GK_FORM_COLS;
     return `<thead><tr><th class="stick1 l">#</th><th class="stick2 l">${lead}</th><th class="l">Tým</th>${!gkLike ? '<th class="l" title="Pozice">Poz.</th>' : ""}${cols.map(c => c.nosort ? `<th title="${esc(c.t)}">${c.l}</th>` : `<th class="${state.sort === c.k ? "sorted" + (state.asc ? " asc" : "") : ""}" title="${esc(c.t)}" aria-sort="${state.sort === c.k ? (state.asc ? "ascending" : "descending") : "none"}"><button type="button" data-sort="${c.k}">${c.l}</button></th>`).join("")}</tr></thead>`;
   }
 
@@ -1036,10 +1124,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     renderPlot(rows.filter(r => r.gp >= Math.max(3, +s.gp || 0)));
     if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný hráč neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
     const maxX = Math.max(0.1, ...rows.map(r => r.ixg));
-    $("#tablebox").innerHTML = `<table style="min-width:1240px">${thead(ADV_COLS, advState, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
+    $("#tablebox").innerHTML = `<table style="min-width:${colState.all ? 1240 : 900}px">${thead(V(ADV_COLS), advState, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
       <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
-      ${ADV_COLS.map(c => c.k === "ixg" ? `<td class="pts">${nf(r.ixg, 1)}<span class="bar"><i style="width:${(r.ixg / maxX * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>
+      ${V(ADV_COLS).map(c => c.k === "ixg" ? `<td class="pts">${nf(r.ixg, 1)}<span class="bar"><i style="width:${(r.ixg / maxX * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>
       <div class="src" style="padding:8px 10px">Data: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>, všechny herní situace, pokud není uvedeno 5 na 5. Hráč vyměněný během sezony je uveden u současného týmu se součtem za celou sezonu.</div>`;
   }
 
@@ -1098,10 +1186,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     $("#sk-count").textContent = countLabel(rows.length);
     if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný hráč neodpovídá filtrům.</div>`; return; }
     const lead = cols.find(c => c.cls === "pts"), maxV = Math.max(1, ...rows.map(r => r[lead.k] || 0));
-    $("#tablebox").innerHTML = `<table style="min-width:${cols === FORM_COLS ? 1180 : 1240}px">${thead(cols, st, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
+    $("#tablebox").innerHTML = `<table style="min-width:${cols === FORM_COLS ? 1080 : colState.all ? 1240 : 900}px">${thead(V(cols), st, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
       <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
-      ${cols.map(c => c === lead ? `<td class="pts">${c.f ? c.f(r) : r[c.k] ?? "–"}<span class="bar"><i style="width:${((r[c.k] || 0) / maxV * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k] ?? "–"}</td>`).join("")}</tr>`).join("")}</tbody></table>
+      ${V(cols).map(c => c === lead ? `<td class="pts">${c.f ? c.f(r) : r[c.k] ?? "–"}<span class="bar"><i style="width:${((r[c.k] || 0) / maxV * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k] ?? "–"}</td>`).join("")}</tr>`).join("")}</tbody></table>
       <div class="src" style="padding:8px 10px">${cols === ST_COLS ? 'Přesilovky a oslabení: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a>, xG v přesilovce: MoneyPuck.com. PP = přesilovka, SH = oslabení, EV = vyrovnaný počet hráčů.' : "Forma ze zápisů jednotlivých zápasů (NHL.com). Trend: body na zápas v posledních 10 zápasech proti sezonnímu průměru."}</div>`;
   }
   function renderSkaters() {
@@ -1115,10 +1203,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const maxP = Math.max(1, ...rows.map(r => r.p));
     $("#sk-count").textContent = rows.length === 1 ? "1 hráč" : rows.length + (rows.length >= 2 && rows.length <= 4 ? " hráči" : " hráčů");
     if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný hráč neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
-    $("#tablebox").innerHTML = `<table>${thead(SK_COLS, s, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
+    $("#tablebox").innerHTML = `<table${colState.all ? "" : ' style="min-width:860px"'}>${thead(V(SK_COLS), s, "Hráč")}<tbody>${rows.map((r, i) => `<tr data-id="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
       <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td><td class="l dim" title="${POS[r.pos]}">${POS_SHORT[r.pos]}</td>
-      ${SK_COLS.map(c => c.k === "p" ? `<td class="pts">${r.p}<span class="bar"><i style="width:${(r.p / maxP * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+      ${V(SK_COLS).map(c => c.k === "p" ? `<td class="pts">${r.p}<span class="bar"><i style="width:${(r.p / maxP * 100).toFixed(1)}%"></i></span></td>` : `<td>${c.f ? c.f(r) : r[c.k]}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
   }
 
   function renderGoalies() {
@@ -1129,10 +1217,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     rows.sort(sorter(st, cols));
     $("#gk-count").textContent = rows.length === 1 ? "1 brankář" : rows.length + (rows.length >= 2 && rows.length <= 4 ? " brankáři" : " brankářů");
     if (!rows.length) { $("#tablebox").innerHTML = `<div class="empty">Žádný brankář neodpovídá filtrům. Zkuste snížit minimum zápasů nebo zrušit filtry.</div>`; return; }
-    $("#tablebox").innerHTML = `<table style="min-width:${cols !== GK_COLS ? 1120 : HAS_MP ? 1120 : 900}px">${thead(cols, st, "Brankář")}<tbody>${rows.map((r, i) => `<tr data-gid="${r.id}" data-team="${r.team}" tabindex="0">
+    $("#tablebox").innerHTML = `<table style="min-width:${colState.all ? 1120 : 820}px">${thead(V(cols), st, "Brankář")}<tbody>${rows.map((r, i) => `<tr data-gid="${r.id}" data-team="${r.team}" tabindex="0">
       <td class="stick1 l">${i + 1}</td><td class="stick2 l"><span class="name">${esc(r.name)}</span>${chip(r.nat)}</td>
       <td class="l team" title="${esc(TM[r.team]?.place + " " + TM[r.team]?.name)}">${tdot(r.team)}${r.team}</td>
-      ${cols.map(c => `<td${c.cls === "pts" || (cols === GK_COLS && c.k === "svp") ? ' style="font-weight:700"' : ""}>${c.f ? c.f(r) : r[c.k] ?? "–"}</td>`).join("")}</tr>`).join("")}</tbody></table>${cols === GK_SIT_COLS ? `<div class="src" style="padding:8px 10px">Úspěšnost podle situace: NHL.com. GSAx a odražené puky: MoneyPuck.com. Z blízka, střední, z dálky: NHL EDGE.</div>` : ""}`;
+      ${V(cols).map(c => `<td${c.cls === "pts" || (cols === GK_COLS && c.k === "svp") ? ' style="font-weight:700"' : ""}>${c.f ? c.f(r) : r[c.k] ?? "–"}</td>`).join("")}</tr>`).join("")}</tbody></table>${cols === GK_SIT_COLS ? `<div class="src" style="padding:8px 10px">Úspěšnost podle situace: NHL.com. GSAx a odražené puky: MoneyPuck.com. Z blízka, střední, z dálky: NHL EDGE.</div>` : ""}`;
   }
 
   const tmState = { mode: "table" };
@@ -1173,22 +1261,27 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     else if (view === "program") renderProgram();
     else if (view === "cesi") renderCzech();
     else if (view === "zebricky") renderBoards();
+    else if (view === "prehled") renderPrehled();
+    else if (view === "sezony") renderSeasons();
     else if (view === "moji") renderFavs();
     else if (view === "porovnani") renderCompare();
     else if (view === "rekordy") renderRecords();
     else if (view === "ceny") renderAwards();
-    else renderTeams();
+    else if (view === "tymy" || view === "vyhled") renderTeams();
   }
 
   function setView(v, push = true) {
-    const views = ["hraci", "brankari", "tymy", "cesi", "zebricky", "moji", "porovnani", "rekordy", "ceny"].concat(GM ? ["zapasy"] : [], SCHED && SCHED.length ? ["program"] : [], SHOTS ? ["strely"] : [], LINES ? ["formace"] : []);
-    view = views.includes(v) ? v : "hraci";
+    const views = ["prehled", "sezony", "hraci", "brankari", "tymy", "cesi", "zebricky", "moji", "porovnani", "rekordy", "ceny"].concat(SCHED_REST && SCHED_REST.length && !HSEASON && !PO ? ["vyhled"] : []).concat(GM ? ["zapasy"] : [], SCHED && SCHED.length ? ["program"] : [], SHOTS ? ["strely"] : [], LINES ? ["formace"] : []);
+    view = views.includes(v) ? v : "prehled";
+    if (view === "vyhled") tmState.mode = "out"; else if (view === "tymy") tmState.mode = "table";
     document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.view === view)));
     const tabs = $(".tabs"), at = $(`.tab[data-view="${view}"]`);
     if (at && (at.offsetLeft < tabs.scrollLeft || at.offsetLeft + at.offsetWidth > tabs.scrollLeft + tabs.clientWidth)) tabs.scrollLeft = at.offsetLeft - 8;
     $("#view-hraci").hidden = view !== "hraci";
     $("#view-brankari").hidden = view !== "brankari";
-    $("#view-tymy").hidden = view !== "tymy";
+    $("#view-tymy").hidden = view !== "tymy" && view !== "vyhled";
+    $("#view-prehled").hidden = view !== "prehled";
+    $("#view-sezony").hidden = view !== "sezony";
     $("#view-strely").hidden = view !== "strely";
     $("#view-formace").hidden = view !== "formace";
     $("#view-zapasy").hidden = view !== "zapasy";
@@ -1198,9 +1291,11 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     ["moji", "porovnani", "rekordy", "ceny"].forEach(v => $("#view-" + v).hidden = view !== v);
     $("#tablebox").hidden = !(view === "hraci" || view === "brankari");
     if (push && location.hash !== "#" + view) { try { history.replaceState(null, "", "#" + view); } catch { location.hash = view; } }
+    syncSections();
     render();
+    setTimeout(helpifyViews, 0);
   }
-  function route() { setView((location.hash || "").slice(1) || "hraci", false); }
+  function route() { setView((location.hash || "").slice(1) || "prehled", false); }
   window.addEventListener("hashchange", route);
 
   /* Percentile helpers */
@@ -1397,7 +1492,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   }
   function goHome() {
     if (!$("#drawer").hidden) closeDrawer();
-    setView("hraci");
+    setView("prehled");
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
   function closeDrawer() {
@@ -1474,7 +1569,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil hráče na NHL.com ↗</a>
         </div>
       </div>`, r.team, "p" + r.id + ":" + r.team);
-    balanceCols();
+    tabbify("p");
   }
 
   function advBlock(id) {
@@ -1553,7 +1648,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil brankáře na NHL.com ↗</a>
         </div>
       </div>`, r.team, "g" + r.id + ":" + r.team);
-    balanceCols();
+    tabbify("g");
   }
 
   /* ===== Team detail ===== */
@@ -1632,6 +1727,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           ${lt ? `<div class="sec"><h4>Formace (5 na 5)</h4><p>Nejvytíženější kombinace. xGF % nad 50 znamená víc šancí než soupeř.</p>${lt}<div class="src">Formace a mapy: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></div></div>` : ""}
         </div>
       </div>`, ab, "t" + ab);
+    tabbify("t");
   }
 
   /* ===== Full game detail (both teams, full rink) ===== */
@@ -1786,6 +1882,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
         <div class="pd-wide gm-box">${box(A)}${box(H)}</div>
         <div class="pd-wide src">Zápis a události: <a href="https://www.nhl.com/gamecenter/${g.id}" target="_blank" rel="noopener">NHL.com ↗</a>${shots.length ? ', střely a xG: <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>' : ""}. Kliknutím na hráče otevřete jeho detail.</div>
       </div>`, H, "z" + gi);
+    tabbify("z");
   }
 
   /* ===== Games tab ===== */
@@ -1852,7 +1949,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     if (HAS_SP) { $("#sk-mode-wrap").hidden = false; document.querySelector('#sk-mode [data-v="st"]').hidden = false; $("#gk-mode-wrap").hidden = false; }
     if (SCHED && SCHED.length) $("#tab-program").hidden = false;
     $("#tab-cesi").hidden = false; $("#tab-zebricky").hidden = false;
-    if (SCHED_REST && SCHED_REST.length && !HSEASON && !PO) $("#tm-mode-wrap").hidden = false;
+    if (SCHED_REST && SCHED_REST.length && !HSEASON && !PO) $("#tab-vyhled").hidden = false;
   }
 
   /* Form from per-game logs */
@@ -2637,6 +2734,218 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       <div class="bracket">${rounds.map((a, i) => a.length ? `<div class="br-col"><h4>${ROUND_CZ[i + 1]}</h4><div class="br-ser">${a.map(box).join("")}</div></div>` : "").join("")}</div>`;
   }
 
+  /* ===== Přehledné uspořádání: oblasti, záložky v detailu, vyhledávání, nápověda ===== */
+  const SECTIONS = [
+    ["prehled", "Přehled", ["prehled", "cesi", "moji"]],
+    ["hraci_s", "Hráči", ["hraci", "brankari", "zebricky", "porovnani"]],
+    ["tymy_s", "Týmy", ["tymy", "vyhled", "zapasy", "program"]],
+    ["analyza", "Analýza", ["strely", "formace"]],
+    ["historie", "Historie", ["sezony", "rekordy", "ceny"]]
+  ];
+  const secOf = v => (SECTIONS.find(s => s[2].includes(v)) || SECTIONS[0])[0];
+  function syncSections() {
+    const sec = secOf(view);
+    document.querySelectorAll(".secbtn").forEach(b => b.setAttribute("aria-current", String(b.dataset.sec === sec)));
+    document.querySelectorAll(".tabs .tab").forEach(t => { t.classList.toggle("off", secOf(t.dataset.view) !== sec); });
+    const any = [...document.querySelectorAll(".tabs .tab")].filter(t => !t.classList.contains("off") && !t.hidden).length;
+    $(".tabs").classList.toggle("single", any <= 1);
+  }
+  function goSection(sec) {
+    const s = SECTIONS.find(x => x[0] === sec); if (!s) return;
+    const first = s[2].find(v => { const t = $(`.tab[data-view="${v}"]`); return t && !t.hidden; }) || s[2][0];
+    setView(first);
+    window.scrollTo({ top: Math.min(window.scrollY, $(".secnav").offsetTop - 8), behavior: "smooth" });
+  }
+
+  /* --- Přehled (úvod) --- */
+  function miniStandings() {
+    const T = Object.values(TM);
+    const grp = T.some(t => t.conf === "E" || t.conf === "W") ? [["E", "Východ"], ["W", "Západ"]].map(([c, l]) => [l, T.filter(t => t.conf === c)]) : [["Liga", T]];
+    return `<div class="minis">${grp.map(([l, a]) => `<div><h4>${l}</h4><ol>${a.sort((x, y) => y.pts - x.pts || (y.gf - y.ga) - (x.gf - x.ga)).slice(0, 6).map(t => `<li><button type="button" class="tlink2" data-team="${t.ab}">${tdot(t.ab)}<b>${t.ab}</b> ${esc(t.name)}</button><span>${PO ? t.w + " V" : t.pts + " b."}</span></li>`).join("")}</ol></div>`).join("")}</div>`;
+  }
+  function czechSoon() {
+    if (!SCHED) return "";
+    const now = Date.now() - 3 * 3600e3, end = Date.now() + 40 * 3600e3;
+    const g = SCHED.filter(x => x.t.getTime() >= now && x.t.getTime() <= end).map(x => ({ ...x, cz: [...czechIn(x.away, "CZE").map(r => [r, x.away]), ...czechIn(x.home, "CZE").map(r => [r, x.home])] })).filter(x => x.cz.length);
+    if (!g.length) return "";
+    const today = pragueKey(new Date());
+    return `<div class="card"><h3>Češi dnes a zítra</h3><ul class="soon">${g.map(x => `<li><span class="when">${pragueKey(x.t) === today ? "dnes" : "zítra"} ${fmtTime(x.t)}</span><span>${tdot(x.away)}<b>${x.away}</b> @ ${tdot(x.home)}<b>${x.home}</b></span><span class="who">${x.cz.map(([r, ab]) => `<button type="button" class="pl" data-id="${r.id}" data-team="${ab}" data-g="${GK.some(y => y.id === r.id) ? 1 : 0}">${esc(r.last)}</button>`).join(", ")}</span></li>`).join("")}</ul><button type="button" class="more" data-go="program">Celý program ›</button></div>`;
+  }
+  function favMini() {
+    const f = [...SK, ...GK].filter(r => isFav(r.id)).filter((r, i, a) => a.findIndex(x => x.id === r.id) === i);
+    if (!f.length) return `<div class="card"><h3>Moji hráči</h3><p class="dim">Hráče si přidáte v jejich detailu tlačítkem <b>☆ Sledovat</b>. Tady pak uvidíte jejich formu a poslední zápas.</p></div>`;
+    return `<div class="card"><h3>Moji hráči</h3><ul class="soon">${f.slice(0, 8).map(r => { const g = GK.some(x => x.id === r.id); return `<li><span class="who"><button type="button" class="pl" data-id="${r.id}" data-team="${r.team}" data-g="${g ? 1 : 0}">${esc(r.name)}</button> <span class="dim">${r.team}</span></span><span>${g ? `${pctf(r.svp, 1)} % · ${r.w} V` : `${r.g}+${r.a} = <b>${r.p}</b>`}</span><span class="dim">${GM ? lastGameTxt(r.id, g) : ""}</span></li>`; }).join("")}</ul><button type="button" class="more" data-go="moji">Všichni sledovaní ›</button></div>`;
+  }
+  function seasonSummary() {
+    const sid = HSEASON || (HIDX && HIDX.current) || "20262027";
+    if (!AWARDS) { loadAwards().then(() => { if (view === "prehled") renderPrehled(); }); return ""; }
+    const cup = AWARDS.cup && AWARDS.cup[sid];
+    const win = id => (AWARDS.w[id] || []).find(x => String(x[0]) === sid && x[1] === 1);
+    const rows = [[1, "Stanley Cup", cup ? [0, 0, 0, TM[cup[0]] ? TM[cup[0]].place + " " + TM[cup[0]].name : cup[0], cup[0]] : null], [8, "Hart (MVP)", win(8)], [16, "Art Ross (body)", win(16)], [15, "Rocket Richard (góly)", win(15)], [18, "Vezina (brankář)", win(18)], [11, "Norris (obránce)", win(11)], [4, "Calder (nováček)", win(4)], [7, "Conn Smythe (play-off)", win(7)]].filter(x => x[2]);
+    if (!rows.length) return "";
+    return `<div class="card"><h3>Sezona ${seasonLbl(sid)} · vítězové</h3><ul class="soon">${rows.map(([id, l, x]) => `<li><span class="when">${l}</span><span>${tdot(x[4])}${id === 1 ? `<b>${esc(x[3])}</b>` : personLink(x[2], x[3], sid, x[4])}</span></li>`).join("")}</ul><button type="button" class="more" data-go="ceny">Všechny ceny ›</button></div>`;
+  }
+  function renderPrehled() {
+    const box = $("#ph-box");
+    box.innerHTML = `<div class="ph-grid">${czechSoon()}${(HSEASON || PO) ? seasonSummary() : ""}<div class="card"><h3>${PO ? "Týmy v play-off" : "Tabulka"} · nejlepší</h3>${miniStandings()}<button type="button" class="more" data-go="tymy">Celá tabulka ›</button></div>${favMini()}${!(HSEASON || PO) ? seasonSummary() : ""}</div>`;
+  }
+
+  /* --- Historie: přehled sezon --- */
+  function renderSeasons() {
+    const box = $("#sz-box");
+    if (!AWARDS || !HIDX) { box.innerHTML = `<div class="loading">Načítám…</div>`; Promise.all([loadAwards(), HIDX_REQ]).then(() => { if (view === "sezony") renderSeasons(); }); return; }
+    const cur = HIDX.current || "20262027", all = [cur].concat(HIDX.seasons || []);
+    const win = (id, sid) => (AWARDS.w[id] || []).find(x => String(x[0]) === sid && x[1] === 1);
+    const dec = {};
+    all.forEach(sid => { const d = Math.floor(+sid.slice(0, 4) / 10) * 10; (dec[d] = dec[d] || []).push(sid); });
+    box.innerHTML = Object.keys(dec).sort((a, b) => b - a).map(d => `<h3 class="prday">Sezony ${d}–${+d + 9}</h3><div class="szgrid">${dec[d].map(sid => {
+      const cup = AWARDS.cup[sid], ar = win(16, sid), ha = win(8, sid), po = HIDX.po && HIDX.po.includes(sid);
+      return `<button type="button" class="szc${sid === (HSEASON || cur) ? " on" : ""}" data-season="${sid}"><b>${seasonLbl(sid)}</b>${sid === cur ? "<small>aktuální</small>" : ""}
+        <span>${cup ? `🏆 ${tdot(cup[0])}${esc(cup[0])}` : sid === cur ? "hraje se" : "&nbsp;"}</span>
+        <span class="dim">${ar ? "Art Ross: " + esc(ar[3].split(" ").slice(-1)[0]) : ""}${ha ? " · Hart: " + esc(ha[3].split(" ").slice(-1)[0]) : ""}</span>${po ? `<i>play-off</i>` : ""}</button>`;
+    }).join("")}</div>`).join("") + `<p class="legend">Kliknutím na sezonu přepnete celou stránku do ní. Sezona 2004/05 se kvůli výluce nehrála.</p>`;
+  }
+
+  /* --- Záložky uvnitř detailu --- */
+  const PANES = {
+    p: [["sezona", "Sezona"], ["zapasy", "Zápasy"], ["strely", "Střely a rychlost"], ["kariera", "Kariéra"], ["ceny", "Ceny"]],
+    g: [["sezona", "Sezona"], ["zapasy", "Zápasy"], ["strely", "Střely"], ["kariera", "Kariéra"], ["ceny", "Ceny"]],
+    t: [["soupiska", "Soupiska"], ["zapasy", "Zápasy"], ["statistiky", "Statistiky"], ["trofeje", "Trofeje"]],
+    z: [["prehled", "Přehled"], ["hraci", "Hráči"], ["prubeh", "Průběh"]]
+  };
+  const PANE_RULES = [
+    [/^Ceny|Trofeje/, "ceny", "trofeje"],
+    [/^Kariéra|^Pokročilá kariéra/, "kariera"],
+    [/^Zápasy|^Rozdělení|^Výsledky zápasů|^Příští zápasy/, "zapasy"],
+    [/^Mapa střel|^Vývoj sezony|^Typy střel|^Rychlost a střela|^Odkud dostává|^Úspěšnost podle/, "strely"],
+    [/^Soupiska/, "soupiska"],
+    [/^Statistiky týmů|^Skóre po třetinách|^Góly$|^Plánek/, "prehled"],
+    [/^Vývoj zápasu|^Tresty|^Největší šance/, "prubeh"]
+  ];
+  function paneFor(el, kind) {
+    if (el.id === "aw-slot") return kind === "t" ? "trofeje" : "ceny";
+    if (el.id === "tm-aw") return "trofeje";
+    if (el.id === "car" || el.id === "advc") return "kariera";
+    if (el.id === "glog") return "zapasy";
+    if (el.classList.contains("gm-box") || el.classList.contains("rost") && kind === "z") return "hraci";
+    const h = el.querySelector("h4"), txt = h ? h.textContent.trim() : "";
+    if (!txt) return null;
+    for (const [re, a, b] of PANE_RULES) if (re.test(txt)) {
+      if (a === "ceny") return kind === "t" ? "trofeje" : "ceny";
+      if (a === "strely" && kind === "t") return "statistiky";
+      return a;
+    }
+    return kind === "t" ? "statistiky" : kind === "z" ? "prehled" : "sezona";
+  }
+  const paneState = Object.assign({}, store.get("panes", {}));
+  function tabbify(kind) {
+    const body = document.querySelector("#drawer .pd-body"); if (!body || !PANES[kind]) return;
+    const cols = [...body.children];
+    const top = [], items = { };
+    PANES[kind].forEach(([k]) => items[k] = [[], []]);
+    let last = PANES[kind][0][0];
+    cols.forEach((col, ci) => {
+      if (col.classList.contains("pd-wide")) {
+        const p = paneFor(col, kind) || last; last = p; (items[p] || items[PANES[kind][0][0]])[0].push(col); col.dataset.wide = "1"; return;
+      }
+      if (!col.classList.contains("pd-col")) return;
+      [...col.children].forEach(el => {
+        if (el.classList.contains("big") || el.classList.contains("pd-act") || el.querySelector("select.tcmp")) { top.push(el); return; }
+        if (el.matches("a.ext")) { last = last; (items[last] || items[PANES[kind][0][0]])[1].push(el); return; }
+        const p = paneFor(el, kind);
+        if (p) last = p;
+        (items[last] || items[PANES[kind][0][0]])[ci ? 1 : 0].push(el);
+      });
+    });
+    const avail = PANES[kind].filter(([k]) => items[k][0].length + items[k][1].length || (k === "ceny" || k === "trofeje"));
+    const want = paneState[kind] && avail.some(([k]) => k === paneState[kind]) ? paneState[kind] : avail[0][0];
+    body.innerHTML = "";
+    body.classList.add("tabbed");
+    if (top.length) { const t = document.createElement("div"); t.className = "pd-top pd-wide"; top.forEach(e => t.appendChild(e)); body.appendChild(t); }
+    const bar = document.createElement("div"); bar.className = "dtabs pd-wide"; bar.setAttribute("role", "tablist");
+    bar.innerHTML = avail.map(([k, l]) => `<button type="button" role="tab" data-pane="${k}" aria-selected="${k === want}">${l}</button>`).join("");
+    body.appendChild(bar);
+    avail.forEach(([k]) => {
+      const pane = document.createElement("div"); pane.className = "pane pd-wide"; pane.dataset.pane = k; pane.hidden = k !== want;
+      const [L, R] = items[k], wide = [...L, ...R].filter(e => e.dataset && e.dataset.wide);
+      wide.forEach(e => pane.appendChild(e));
+      const l = L.filter(e => !(e.dataset && e.dataset.wide)), r = R.filter(e => !(e.dataset && e.dataset.wide));
+      if (l.length || r.length) {
+        const g = document.createElement("div"); g.className = "pane-g" + (!l.length || !r.length ? " one" : "");
+        [l, r].forEach(a => { if (!a.length) return; const c = document.createElement("div"); c.className = "pd-col"; a.forEach(e => c.appendChild(e)); g.appendChild(c); });
+        pane.appendChild(g);
+      }
+      if (!pane.children.length) pane.innerHTML = `<div class="pd-col"><div class="sec" id="${k === "ceny" ? "aw-slot" : "tm-aw"}"><p class="dim">Načítám…</p></div></div>`;
+      body.appendChild(pane);
+    });
+    helpify(body);
+  }
+  function showPane(k) {
+    const body = document.querySelector("#drawer .pd-body"); if (!body) return;
+    body.querySelectorAll(".dtabs [data-pane]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.pane === k)));
+    body.querySelectorAll(".pane").forEach(p => p.hidden = p.dataset.pane !== k);
+    const kind = (drawerKey || "p")[0];
+    paneState[kind] = k; store.set("panes", paneState);
+  }
+
+  /* --- Nápověda: vysvětlivky schované pod „?“ --- */
+  const HELP_RE = /^(Percentil|Kliknutím|Součet|Data ze sledovacích|Nebezpečnost podle|S kým hraje|Červeně místa|Seřazeno|Odhad vychází|Čísla jsou|Střely na branku a mimo \(bez|Nejvytíženější|Hra 5 na 5|Jen hra 5 na 5|Tučně je lepší|Kariéra v základní|Vítězové trofejí|Hráči, které sledujete|Všichni čeští|Desítka nejlepších|Nadcházející zápasy|Přerušovaná čára|Kliknutím na zápas)/;
+  function helpify(root) {
+    root.querySelectorAll(".sec, .pct, section, .card").forEach(sec => {
+      const h = sec.querySelector(":scope > h4, :scope > summary > h4"); if (!h || h.querySelector(".hq")) return;
+      const ps = [...sec.querySelectorAll(":scope > p, :scope > .note")].filter(p => p.classList.contains("note") || HELP_RE.test(p.textContent.trim()));
+      if (!ps.length) return;
+      ps.forEach(p => p.classList.add("hp"));
+      h.insertAdjacentHTML("beforeend", ` <button type="button" class="hq" aria-label="Jak to číst" title="Jak to číst">?</button>`);
+    });
+  }
+  function helpifyViews() {
+    document.querySelectorAll("section[id^='view-'] > p.legend").forEach(p => {
+      if (p.dataset.h || p.textContent.length < 110) return;
+      p.dataset.h = "1"; p.classList.add("hp");
+      p.insertAdjacentHTML("beforebegin", `<button type="button" class="hq hq-v" aria-label="Jak to číst">? Jak to číst</button>`);
+    });
+  }
+
+  /* --- Vyhledávání --- */
+  let NAMES = null, NAMES_REQ = null;
+  const loadNames = () => NAMES_REQ || (NAMES_REQ = opt("hist/names.json").then(n => (NAMES = (n || []).map(x => ({ id: x[0], n: x[1], k: norm(x[1]), f: x[2], l: x[3], g: x[4], t: x[5] })))));
+  let gsel = -1, gitems = [];
+  function gsearch(q) {
+    const box = $("#gres"); q = norm(q.trim());
+    if (q.length < 2) { box.hidden = true; gitems = []; return; }
+    const cur = (HIDX && HIDX.current) || "20262027", here = HSEASON || cur;
+    const out = [];
+    Object.values(TM).forEach(t => { const k = norm(t.place + " " + t.name + " " + t.ab); if (k.includes(q)) out.push({ type: "t", ab: t.ab, label: `${t.place} ${t.name}`, sub: "tým · " + seasonLbl(here), score: k.startsWith(q) ? 0 : 1 }); });
+    const seen = new Set();
+    [...SK, ...GK].forEach(r => { if (seen.has(r.id) || !r.key.includes(q)) return; seen.add(r.id); out.push({ type: "p", id: r.id, g: GK.some(x => x.id === r.id) && !SK.some(x => x.id === r.id), team: r.team, label: r.name, sub: `${r.team} · ${seasonLbl(here)}${PO ? " play-off" : ""}`, score: norm(r.last).startsWith(q) ? 0 : 2 }); });
+    if (NAMES) NAMES.forEach(x => { if (seen.has(x.id) || !x.k.includes(q)) return; seen.add(x.id); out.push({ type: "h", id: x.id, g: !!x.g, team: x.t, sid: x.l + "" + (x.l + 1), label: x.n, sub: `${x.f === x.l ? x.f + "/" + String((x.f + 1) % 100).padStart(2, "0") : x.f + "–" + (x.l + 1)} · naposledy ${x.t}`, score: x.k.split(" ").some(w => w.startsWith(q)) ? 3 : 4 }); });
+    else loadNames().then(() => { if ($("#gq").value.trim()) gsearch($("#gq").value); });
+    out.sort((a, b) => a.score - b.score || a.label.localeCompare(b.label, "cs"));
+    gitems = out.slice(0, 10); gsel = gitems.length ? 0 : -1;
+    box.innerHTML = gitems.length ? gitems.map((x, i) => `<button type="button" class="gr${i === gsel ? " on" : ""}" data-i="${i}">${x.type === "t" ? tdot(x.ab) : x.team ? tdot(x.team) : ""}<b>${esc(x.label)}</b><small>${esc(x.sub)}</small></button>`).join("") : `<div class="gr dim">Nic nenalezeno.</div>`;
+    box.hidden = false;
+  }
+  function gopen(i) {
+    const x = gitems[i]; if (!x) return;
+    $("#gres").hidden = true; $("#gq").value = ""; $("#gq").blur();
+    if (x.type === "t") return teamDetail(x.ab);
+    if (x.type === "p") return (x.g ? goalieDetail : playerDetail)(x.id, x.team);
+    openSeason(x.sid, x.id, x.g);
+  }
+  function gkey(e) {
+    const box = $("#gres");
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (!gitems.length) return; gsel = (gsel + (e.key === "ArrowDown" ? 1 : -1) + gitems.length) % gitems.length; box.querySelectorAll(".gr").forEach((b, i) => b.classList.toggle("on", i === gsel)); }
+    else if (e.key === "Enter") { e.preventDefault(); if (gsel >= 0) gopen(gsel); }
+    else if (e.key === "Escape") { box.hidden = true; }
+  }
+
+  /* --- Méně sloupců ve výchozím stavu --- */
+  const colState = { all: !!store.get("cols", false) };
+  const CORE = new Set(["gp", "g", "a", "p", "pm", "pim", "s", "toi", "ppgp", "ixg", "mg", "gax", "ixg60", "xgp5", "cf5", "gsg", "w", "l", "otl", "svp", "gaa", "gsax", "so", "ppG", "ppA", "ppP", "ppT", "shP", "shT", "evP", "f5g", "f5a", "f5p", "f5s", "f10p", "trend", "spark", "seasonPpg", "evSv", "ppSv", "shSv", "gsax5", "e_high", "g5n", "g5w", "g5sv", "g10sv", "gtrend", "gspark"]);
+  function V(cols) { if (colState.all) return cols; const a = cols.filter(c => CORE.has(c.k)); a.base = cols; return a; }
+  function syncColBtns() { document.querySelectorAll(".colbtn").forEach(b => { b.textContent = colState.all ? "Méně sloupců" : "Více sloupců"; b.setAttribute("aria-pressed", String(colState.all)); }); }
+
   /* ===== Shots (MoneyPuck shot-level data) ===== */
   const SHOT_TYPES = ["Zápěstím", "Švihem", "Golfák", "Bekhend", "Tečovaná", "Zpoza branky", "Neurčeno"];
   let SHOTS = null, SH_BY_P = {}, SH_GAMES = [], TEAM_GP = {};
@@ -3088,6 +3397,25 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 
   /* Events */
   document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => setView(t.dataset.view)));
+  document.querySelectorAll(".secbtn").forEach(b => b.addEventListener("click", () => goSection(b.dataset.sec)));
+  document.querySelectorAll(".colbtn").forEach(b => b.addEventListener("click", () => { colState.all = !colState.all; store.set("cols", colState.all); syncColBtns(); render(); }));
+  syncColBtns();
+  $("#gq").addEventListener("input", e => gsearch(e.target.value));
+  $("#gq").addEventListener("focus", () => { loadNames(); if ($("#gq").value.trim().length >= 2) gsearch($("#gq").value); });
+  $("#gq").addEventListener("keydown", gkey);
+  $("#gres").addEventListener("mousedown", e => { const b = e.target.closest(".gr[data-i]"); if (b) { e.preventDefault(); gopen(+b.dataset.i); } });
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".gsearch")) $("#gres").hidden = true;
+    const q = e.target.closest(".hq"); if (!q) return;
+    if (q.classList.contains("hq-v")) { const p = q.nextElementSibling; if (p) p.classList.toggle("show"); q.setAttribute("aria-expanded", String(p && p.classList.contains("show"))); return; }
+    const sec = q.closest(".sec, .pct, section, .card"); if (sec) sec.classList.toggle("show-help");
+  });
+  ["#ph-box", "#sz-box"].forEach(sel => $(sel).addEventListener("click", e => {
+    const go = e.target.closest("[data-go]"); if (go) { setView(go.dataset.go); return; }
+    const sz = e.target.closest(".szc[data-season]");
+    if (sz) { const cur = (HIDX && HIDX.current) || "20262027", v = sz.dataset.season; location.href = location.pathname + (v === cur ? "" : "?s=" + v) + "#prehled"; return; }
+    plClick(e);
+  }));
   const bindSk = (sel, key, ev = "input", num = false) => $(sel).addEventListener(ev, e => { skState[key] = num ? (+e.target.value || 0) : e.target.value; store.set("sk", { ...skState, q: "" }); renderSkaters(); });
   const bindGk = (sel, key, ev = "input", num = false) => $(sel).addEventListener(ev, e => { gkState[key] = num ? (+e.target.value || 0) : e.target.value; store.set("gk2", { ...gkState, q: "" }); renderGoalies(); });
   bindSk("#sk-q", "q"); bindSk("#sk-team", "team", "change"); bindSk("#sk-nat", "nat", "change"); bindSk("#sk-gp", "gp", "input", true);
@@ -3182,6 +3510,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const cbn = e.target.closest(".cmpbtn"); if (cbn) { compareStart(+cbn.dataset.cmp, cbn.dataset.g === "1"); return; }
     const pv = e.target.closest(".prev"); if (pv) { compareTeams(pv.dataset.a, pv.dataset.h); return; }
     const tl = e.target.closest(".tlink"); if (tl) { teamDetail(tl.dataset.team); return; }
+    const dt = e.target.closest(".dtabs [data-pane]"); if (dt) { showPane(dt.dataset.pane); return; }
     const gl = e.target.closest(".gmlink"); if (gl) { gameDetail(+gl.dataset.gi); return; }
     const gs = e.target.closest("[data-gside]");
     if (gs) { gmState.side = gs.dataset.gside; const m = $("#gmap"); if (m) m.innerHTML = gameMapHTML(+m.dataset.gi); return; }
