@@ -824,6 +824,8 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
   let D = null, SK = [], GK = [], TM = {}, view = "hraci";
+  let MISS = new Set(), TIES = false;
+  const M = k => MISS.has(k);
   let ADV = [], ADVMAP = {}, HAS_MP = false;
   const s1 = v => v == null || Number.isNaN(v) ? "–" : (v > 0 ? "+" : v < 0 ? "−" : "") + nf(Math.abs(v), 1);
   const tone = (v, mid = 0, eps = 0) => v > mid + eps ? "pos" : v < mid - eps ? "neg" : "dim";
@@ -935,6 +937,17 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 
   function load(data, mp, ln, gm, sp, ed, sc) {
     D = data;
+    MISS = new Set(data.missing || []); TIES = !!data.ties;
+    if (MISS.size) {
+      const skDrop = { pm: ["pm"], ppg: ["ppg"], shg: ["shg"], gwg: ["gwg"], s: ["s", "shp"], toi: ["toi"], fo: ["fo"] };
+      const drop = new Set(Object.entries(skDrop).filter(([k]) => M(k)).flatMap(([, v]) => v));
+      for (let i = SK_COLS.length - 1; i >= 0; i--) if (drop.has(SK_COLS[i].k)) SK_COLS.splice(i, 1);
+      const gDrop = new Set([...(M("g_gs") ? ["gs"] : []), ...(M("g_sa") ? ["sa", "sv", "svp"] : []), ...(M("g_gtoi") ? ["toi"] : [])]);
+      for (let i = GK_COLS.length - 1; i >= 0; i--) if (gDrop.has(GK_COLS[i].k)) GK_COLS.splice(i, 1);
+      if (M("g_sa") && gkState.sort === "svp") gkState.sort = "gaa", gkState.asc = true;
+      if (M("toi") && skState.sort === "toi") skState.sort = "p";
+    }
+    if (TIES) { const c = GK_COLS.find(x => x.k === "otl"); if (c) { c.l = "R/PP"; c.t = "Remízy a prohry v prodloužení"; } }
     data.tm.forEach(t => TM[t[0]] = { ab: t[0], name: t[1], place: t[2], conf: t[3], div: t[4], gp: t[5], w: t[6], l: t[7], otl: t[8], pts: t[9], gf: t[10], ga: t[11], streak: t[12] });
     Object.values(TM).forEach(t => { if (t.name && t.place.endsWith(" " + t.name)) t.place = t.place.slice(0, -t.name.length - 1); });
     SK = data.sk.map(r => ({ id: r[0], first: r[1], last: r[2], team: r[3], pos: r[4], gp: r[5], g: r[6], a: r[7], p: r[8], pm: r[9], pim: r[10], ppg: r[11], shg: r[12], gwg: r[13], otg: r[14], s: r[15], shp: r[16], toi: r[17], fo: r[18], nat: r[19], num: r[20] }));
@@ -993,7 +1006,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       { lbl: "Body", r: top(SK, r => r.p, byGoalsTie), v: r => r.p },
       { lbl: "Góly", r: top(SK, r => r.g, (a, b) => b.p - a.p || a.gp - b.gp), v: r => r.g },
       { lbl: "Asistence", r: top(SK, r => r.a, byGoalsTie), v: r => r.a },
-      { lbl: "Plus/minus", r: top(SK, r => r.pm, byGoalsTie), v: r => signed(r.pm) },
+      M("pm") ? { lbl: "Trestné minuty", r: top(SK, r => r.pim, byGoalsTie), v: r => r.pim } : { lbl: "Plus/minus", r: top(SK, r => r.pm, byGoalsTie), v: r => signed(r.pm) },
     ];
     const cz = SK.filter(r => r.nat === "CZE");
     if (cz.length) L.push({ lbl: "Nejlepší Čech", r: top(cz, r => r.p, byGoalsTie), v: r => r.p + " b.", cz: true });
@@ -1140,9 +1153,9 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const streak = s => { const m = /^([A-Z]+)(\d+)$/.exec(s || ""); if (!m) return "–"; const [, k, n] = m; return k === "W" ? `<span class="streak w">${n}× V</span>` : k === "L" ? `<span class="streak l">${n}× P</span>` : `<span class="streak o">${n}× PP</span>`; };
     const t0 = Object.values(TM)[0] || {};
     const conf = (c, title, dv) => {
-      const teams = Object.values(TM).filter(t => dv ? t.div === dv : t.conf === c).sort((a, b) => b.pts - a.pts || (b.pts / (2 * b.gp)) - (a.pts / (2 * a.gp)) || (b.gf - b.ga) - (a.gf - a.ga));
+      const teams = Object.values(TM).filter(t => dv === "*" ? true : dv ? t.div === dv : t.conf === c).sort((a, b) => b.pts - a.pts || (b.pts / (2 * b.gp)) - (a.pts / (2 * a.gp)) || (b.gf - b.ga) - (a.gf - a.ga));
       return `<div><h2>${title}</h2><div class="tablebox" style="max-height:none"><table><thead><tr>
-        <th class="stick1 l">#</th><th class="stick2 l">Tým</th><th class="l">Divize</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="Prohry v prodloužení / nájezdech">PP</th><th title="Body">B</th><th title="Procento bodů">B %</th><th title="Skóre">Skóre</th><th title="Rozdíl skóre">+/−</th>${HAS_SP ? '<th title="Úspěšnost přesilovek">PP %</th><th title="Úspěšnost oslabení">PK %</th>' : ""}${t0.hw != null ? '<th title="Bilance doma: výhry–prohry–prohry po prodl.">Doma</th><th title="Bilance venku">Venku</th><th title="Posledních 10 zápasů">Posl. 10</th>' : ""}${HAS_MP ? '<th title="Hra 5 na 5: podíl očekávaných gólů týmu (MoneyPuck)">xGF %</th><th title="Hra 5 na 5: Corsi, podíl střeleckých pokusů (MoneyPuck)">CF %</th><th title="Očekávané góly vstřelené : obdržené, všechny situace (MoneyPuck)">xG</th>' : ""}<th class="l">Série</th><th class="l">Nejlepší střelec</th></tr></thead><tbody>
+        <th class="stick1 l">#</th><th class="stick2 l">Tým</th><th class="l">Divize</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="${TIES ? "Remízy a prohry v prodloužení" : "Prohry v prodloužení / nájezdech"}">${TIES ? "R/PP" : "PP"}</th><th title="Body">B</th><th title="Procento bodů">B %</th><th title="Skóre">Skóre</th><th title="Rozdíl skóre">+/−</th>${HAS_SP ? '<th title="Úspěšnost přesilovek">PP %</th><th title="Úspěšnost oslabení">PK %</th>' : ""}${t0.hw != null ? '<th title="Bilance doma: výhry–prohry–prohry po prodl.">Doma</th><th title="Bilance venku">Venku</th><th title="Posledních 10 zápasů">Posl. 10</th>' : ""}${HAS_MP ? '<th title="Hra 5 na 5: podíl očekávaných gólů týmu (MoneyPuck)">xGF %</th><th title="Hra 5 na 5: Corsi, podíl střeleckých pokusů (MoneyPuck)">CF %</th><th title="Očekávané góly vstřelené : obdržené, všechny situace (MoneyPuck)">xG</th>' : ""}<th class="l">Série</th><th class="l">Nejlepší střelec</th></tr></thead><tbody>
         ${teams.map((t, i) => { const d = t.gf - t.ga, ts = topScorer[t.ab]; return `<tr data-teamrow="${t.ab}" tabindex="0" class="${i === 7 ? "cut" : ""}">
           <td class="stick1 l">${i + 1}</td><td class="stick2 l">${tdot(t.ab)}<span class="team">${t.ab}</span> <span class="name">${esc(t.place)} ${esc(t.name)}</span></td>
           <td class="l dim">${DIV[t.div] || esc(t.div)}</td><td>${t.gp}</td><td>${t.w}</td><td>${t.l}</td><td>${t.otl}</td><td style="font-weight:700">${t.pts}</td>
@@ -1152,7 +1165,8 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     };
     const T = Object.values(TM);
     if (T.some(t => t.conf === "E" || t.conf === "W")) $("#conf").innerHTML = conf("E", "Východní konference") + conf("W", "Západní konference");
-    else $("#conf").innerHTML = [...new Set(T.map(t => t.div))].sort().map(dv => conf(null, (DIV[dv] || dv) + " divize", dv)).join("");
+    else if (T.some(t => t.div)) $("#conf").innerHTML = [...new Set(T.map(t => t.div))].sort().map(dv => conf(null, (DIV[dv] || dv) + " divize", dv)).join("");
+    else $("#conf").innerHTML = conf(null, "Tabulka ligy", "*");
   }
 
   function markFavs() { document.querySelectorAll("#tablebox tr[data-id], #tablebox tr[data-gid], #cz-box tr[data-id], #cz-box tr[data-gid]").forEach(tr => tr.classList.toggle("fav", isFav(tr.dataset.id || tr.dataset.gid))); }
@@ -1211,7 +1225,11 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   }
 
   /* ===== Team colours ===== */
-  const TC = { ANA: ["#111111", "#F47A38"], BOS: ["#111111", "#FFB81C"], BUF: ["#003087", "#FFB81C"], CAR: ["#CE1126", "#111111"], CBJ: ["#002654", "#CE1126"], CGY: ["#C8102E", "#F1BE48"], CHI: ["#CF0A2C", "#111111"], COL: ["#6F263D", "#236192"], DAL: ["#006847", "#8F8F8C"], DET: ["#CE1126", "#FFFFFF"], EDM: ["#041E42", "#FF4C00"], FLA: ["#C8102E", "#041E42"], LAK: ["#111111", "#A2AAAD"], MIN: ["#154734", "#A6192E"], MTL: ["#AF1E2D", "#192168"], NJD: ["#CE1126", "#111111"], NSH: ["#FFB81C", "#041E42"], NYI: ["#00539B", "#F47D30"], NYR: ["#0038A8", "#CE1126"], OTT: ["#C52032", "#C2912C"], PHI: ["#F74902", "#111111"], PIT: ["#111111", "#FCB514"], SEA: ["#001628", "#99D9D9"], SJS: ["#006D75", "#EA7200"], STL: ["#002F87", "#FCB514"], TBL: ["#002868", "#FFFFFF"], TOR: ["#00205B", "#FFFFFF"], UTA: ["#010101", "#6CACE4"], VAN: ["#00205B", "#00843D"], VGK: ["#333F42", "#B4975A"], WPG: ["#041E42", "#AC162C"], WSH: ["#041E42", "#C8102E"], ATL: ["#041E42", "#5C88DA"], PHX: ["#8C2633", "#E2D6B5"], ARI: ["#8C2633", "#E2D6B5"] };
+  const TC = { ANA: ["#111111", "#F47A38"], BOS: ["#111111", "#FFB81C"], BUF: ["#003087", "#FFB81C"], CAR: ["#CE1126", "#111111"], CBJ: ["#002654", "#CE1126"], CGY: ["#C8102E", "#F1BE48"], CHI: ["#CF0A2C", "#111111"], COL: ["#6F263D", "#236192"], DAL: ["#006847", "#8F8F8C"], DET: ["#CE1126", "#FFFFFF"], EDM: ["#041E42", "#FF4C00"], FLA: ["#C8102E", "#041E42"], LAK: ["#111111", "#A2AAAD"], MIN: ["#154734", "#A6192E"], MTL: ["#AF1E2D", "#192168"], NJD: ["#CE1126", "#111111"], NSH: ["#FFB81C", "#041E42"], NYI: ["#00539B", "#F47D30"], NYR: ["#0038A8", "#CE1126"], OTT: ["#C52032", "#C2912C"], PHI: ["#F74902", "#111111"], PIT: ["#111111", "#FCB514"], SEA: ["#001628", "#99D9D9"], SJS: ["#006D75", "#EA7200"], STL: ["#002F87", "#FCB514"], TBL: ["#002868", "#FFFFFF"], TOR: ["#00205B", "#FFFFFF"], UTA: ["#010101", "#6CACE4"], VAN: ["#00205B", "#00843D"], VGK: ["#333F42", "#B4975A"], WPG: ["#041E42", "#AC162C"], WSH: ["#041E42", "#C8102E"], ATL: ["#041E42", "#5C88DA"], PHX: ["#8C2633", "#E2D6B5"], ARI: ["#8C2633", "#E2D6B5"],
+    QUE: ["#005BBF", "#E4002B"], HFD: ["#00843D", "#003087"], MNS: ["#006847", "#FFD200"], WIN: ["#002E62", "#C8102E"], CLR: ["#002F87", "#C8102E"], AFM: ["#C8102E", "#FFD200"],
+    KCS: ["#002F87", "#C8102E"], CGS: ["#006A4E", "#FFC72C"], OAK: ["#006A4E", "#FFC72C"], CLE: ["#C8102E", "#111111"], MMR: ["#7A1B2C", "#FFFFFF"], NYA: ["#0033A0", "#C8102E"],
+    BRK: ["#0033A0", "#C8102E"], HAM: ["#FFC72C", "#111111"], SEN: ["#111111", "#C8102E"], TAN: ["#003087", "#FFFFFF"], TSP: ["#006747", "#FFFFFF"], MWN: ["#C8102E", "#FFFFFF"],
+    QBD: ["#003087", "#FFFFFF"], PIR: ["#111111", "#FFC72C"], PHQ: ["#FF6900", "#111111"], DCG: ["#C8102E", "#FFFFFF"], DFL: ["#C8102E", "#FFFFFF"], SLE: ["#C8102E", "#111111"] };
   const hexRgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
   const rgbHex = a => "#" + a.map(v => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, "0")).join("");
   const lum = h => { const [r, g, b] = hexRgb(h).map(v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }); return .2126 * r + .7152 * g + .0722 * b; };
@@ -1396,6 +1414,13 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
   }
 
+  /* Starší sezony nemají zápasy ani střely: kariéru pak přesuneme do prázdného pravého sloupce */
+  function balanceCols() {
+    const cols = document.querySelectorAll("#drawer .pd-body > .pd-col");
+    if (cols.length < 2 || cols[1].querySelector(".sec")) return;
+    const ext = cols[1].querySelector("a.ext");
+    ["#car", "#advc"].forEach(sel => { const el = document.querySelector("#drawer " + sel); if (el) cols[1].insertBefore(el, ext); });
+  }
   function playerHead(r, label, goalie) {
     const t = TM[r.team] || {}, c = CAREERS && CAREERS[r.id];
     const num = r.num || (c && c.n) || "";
@@ -1419,29 +1444,29 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
       ["Body na zápas", "kanadské body", nf(r.ppgp, 2), pctRank(per("p"), r.p / r.gp)],
       ["Góly na zápas", "góly", nf(r.g / r.gp, 2), pctRank(per("g"), r.g / r.gp)],
       ["Asistence na zápas", "nahrávky", nf(r.a / r.gp, 2), pctRank(per("a"), r.a / r.gp)],
-      ["Střely na zápas", "na branku", nf(r.s / r.gp, 1), pctRank(per("s"), r.s / r.gp)],
-      ["Čas na ledě", "průměr za zápas", toi(r.toi), pctRank(peers.map(x => x.toi), r.toi)],
-      ["Plus/minus", "celkem", signed(r.pm), pctRank(peers.map(x => x.pm), r.pm)],
-    ];
+      M("s") ? null : ["Střely na zápas", "na branku", nf(r.s / r.gp, 1), pctRank(per("s"), r.s / r.gp)],
+      M("toi") ? null : ["Čas na ledě", "průměr za zápas", toi(r.toi), pctRank(peers.map(x => x.toi), r.toi)],
+      M("pm") ? null : ["Plus/minus", "celkem", signed(r.pm), pctRank(peers.map(x => x.pm), r.pm)],
+      ["Trestné minuty", "na zápas", nf(r.pim / r.gp, 2), pctRank(per("pim"), r.pim / r.gp)],
+    ].filter(Boolean);
     if (r.F && r.fo) rows.push(["Vhazování", "úspěšnost", pctf(r.fo) + " %", pctRank(peers.filter(x => x.fo).map(x => x.fo), r.fo)]);
     openDrawer(`${playerHead(r, POS[r.pos], false)}
       <div class="pd-body">
         <div class="pd-col">
-          <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.g}</b><span>Góly</span></div><div><b>${r.a}</b><span>Asist.</span></div><div><b>${r.p}</b><span>Body</span></div><div><b class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : ""}">${signed(r.pm)}</b><span>+/−</span></div></div>
+          <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.g}</b><span>Góly</span></div><div><b>${r.a}</b><span>Asist.</span></div><div><b>${r.p}</b><span>Body</span></div>${M("pm") ? `<div><b>${r.pim}</b><span>TM</span></div>` : `<div><b class="${r.pm > 0 ? "pos" : r.pm < 0 ? "neg" : ""}">${signed(r.pm)}</b><span>+/−</span></div>`}</div>
           <div id="aw-slot">${awardsBlock(r.id)}</div>
           ${formBlock(r)}
           <div class="pct"><h4>Porovnání s ligou</h4>
             ${r.gp >= 5 ? `<p>Percentil mezi ${peers.length} ${r.F ? "útočníky" : "obránci"} s alespoň 5 zápasy. Delší pruh znamená lepší výkon než u většiny hráčů.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Hráč odehrál méně než 5 zápasů, porovnání by zatím nebylo vypovídající.</p>`}
           </div>
           <div class="facts">
-            <div><span>Přesilovkové góly</span><b class="num">${r.ppg}</b></div>
-            <div><span>Góly v oslabení</span><b class="num">${r.shg}</b></div>
-            <div><span>Vítězné góly</span><b class="num">${r.gwg}</b></div>
-            <div><span>Góly v prodloužení</span><b class="num">${r.otg}</b></div>
-            <div><span>Střely</span><b class="num">${r.s}</b></div>
-            <div><span>Úspěšnost střelby</span><b class="num">${r.s ? pctf(r.shp) + " %" : "–"}</b></div>
+            ${M("ppg") ? "" : `<div><span>Přesilovkové góly</span><b class="num">${r.ppg}</b></div>`}
+            ${M("shg") ? "" : `<div><span>Góly v oslabení</span><b class="num">${r.shg}</b></div>`}
+            ${M("gwg") ? "" : `<div><span>Vítězné góly</span><b class="num">${r.gwg}</b></div>`}
+            ${M("otg") ? "" : `<div><span>Góly v prodloužení</span><b class="num">${r.otg}</b></div>`}
+            ${M("s") ? "" : `<div><span>Střely</span><b class="num">${r.s}</b></div><div><span>Úspěšnost střelby</span><b class="num">${r.s ? pctf(r.shp) + " %" : "–"}</b></div>`}
             <div><span>Trestné minuty</span><b class="num">${r.pim}</b></div>
-            <div><span>Čas na ledě</span><b class="num">${toi(r.toi)}</b></div>
+            ${M("toi") ? "" : `<div><span>Čas na ledě</span><b class="num">${toi(r.toi)}</b></div>`}
           </div>
           ${specialBlock(r)}
           ${careerBlock(r.id, false)}
@@ -1457,6 +1482,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil hráče na NHL.com ↗</a>
         </div>
       </div>`, r.team, "p" + r.id + ":" + r.team);
+    balanceCols();
   }
 
   function advBlock(id) {
@@ -1495,11 +1521,11 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     if (!r) return;
     const peers = GK.filter(x => x.gp >= 3);
     const rows = [
-      ["Úspěšnost zákroků", "procento", pctf(r.svp) + " %", pctRank(peers.map(x => x.svp), r.svp)],
+      M("g_svp") ? null : ["Úspěšnost zákroků", "procento", pctf(r.svp) + " %", pctRank(peers.map(x => x.svp), r.svp)],
       ["Průměr obdržených gólů", "na zápas, nižší je lepší", nf(r.gaa, 2), pctRank(peers.map(x => x.gaa), r.gaa, true)],
-      ["Výhry na start", "podíl výher", r.gs ? nf(r.w / r.gs * 100, 0) + " %" : "–", pctRank(peers.map(x => x.gs ? x.w / x.gs : 0), r.gs ? r.w / r.gs : 0)],
-      ["Střely proti", "na 60 minut", nf(r.sa / (r.toi / 3600), 1), pctRank(peers.map(x => x.sa / (x.toi / 3600)), r.sa / (r.toi / 3600))],
-    ];
+      M("g_gs") ? ["Výhry", "podíl výher na zápas", nf(r.w / r.gp * 100, 0) + " %", pctRank(peers.map(x => x.w / x.gp), r.w / r.gp)] : ["Výhry na start", "podíl výher", r.gs ? nf(r.w / r.gs * 100, 0) + " %" : "–", pctRank(peers.map(x => x.gs ? x.w / x.gs : 0), r.gs ? r.w / r.gs : 0)],
+      M("g_sa") || M("g_gtoi") ? null : ["Střely proti", "na 60 minut", nf(r.sa / (r.toi / 3600), 1), pctRank(peers.map(x => x.sa / (x.toi / 3600)), r.sa / (r.toi / 3600))],
+    ].filter(Boolean);
     if (r.gsax != null) {
       const mp = peers.filter(x => x.gsax != null);
       rows.splice(1, 0, ["GSAx", "góly ušetřené nad očekáváním", s1(r.gsax), pctRank(mp.map(x => x.gsax), r.gsax)]);
@@ -1508,7 +1534,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     openDrawer(`${playerHead(r, "Brankář", true)}
       <div class="pd-body">
         <div class="pd-col">
-          <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.w}</b><span>Výhry</span></div><div><b>${pctf(r.svp)}</b><span>Úsp. %</span></div><div><b>${nf(r.gaa, 2)}</b><span>POG</span></div><div><b>${r.so}</b><span>ČK</span></div></div>
+          <div class="big"><div><b>${r.gp}</b><span>Zápasy</span></div><div><b>${r.w}</b><span>Výhry</span></div>${M("g_svp") ? `<div><b>${r.l}</b><span>Prohry</span></div>` : `<div><b>${pctf(r.svp)}</b><span>Úsp. %</span></div>`}<div><b>${nf(r.gaa, 2)}</b><span>POG</span></div><div><b>${r.so}</b><span>ČK</span></div></div>
           <div id="aw-slot">${awardsBlock(r.id)}</div>
           ${goalieFormBlock(r)}
           ${goalieSitBlock(r)}
@@ -1516,11 +1542,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
             ${r.gp >= 3 ? `<p>Percentil mezi ${peers.length} brankáři s alespoň 3 zápasy. U počtu střel proti znamená delší pruh víc práce, ne lepší výkon.</p>${rows.map(x => bar(...x)).join("")}` : `<p>Brankář odehrál méně než 3 zápasy, porovnání by zatím nebylo vypovídající.</p>`}
           </div>
           <div class="facts">
-            <div><span>Starty</span><b class="num">${r.gs}</b></div>
+            ${M("g_gs") ? "" : `<div><span>Starty</span><b class="num">${r.gs}</b></div>`}
             <div><span>Prohry</span><b class="num">${r.l}</b></div>
-            <div><span>Prohry po prodl.</span><b class="num">${r.otl}</b></div>
-            <div><span>Střely proti</span><b class="num">${r.sa}</b></div>
-            <div><span>Zákroky</span><b class="num">${r.sv}</b></div>
+            <div><span>${TIES ? "Remízy a prohry po prodl." : "Prohry po prodl."}</span><b class="num">${r.otl}</b></div>
+            ${M("g_sa") ? "" : `<div><span>Střely proti</span><b class="num">${r.sa}</b></div><div><span>Zákroky</span><b class="num">${r.sv}</b></div>`}
             <div><span>Obdržené góly</span><b class="num">${r.ga}</b></div>
             ${r.xga != null ? `<div><span>Očekávané OG (xOG)</span><b class="num">${nf(r.xga, 1)}</b></div><div><span>Nebezp. střely proti</span><b class="num">${r.hdsa}</b></div>` : ""}
           </div>
@@ -1536,6 +1561,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
           <a class="ext" href="https://www.nhl.com/player/${r.id}" target="_blank" rel="noopener">Profil brankáře na NHL.com ↗</a>
         </div>
       </div>`, r.team, "g" + r.id + ":" + r.team);
+    balanceCols();
   }
 
   /* ===== Team detail ===== */
@@ -2459,14 +2485,14 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
     const czs = czl.filter(x => !x.g).sort((a, b) => b.a5 - a.a5).slice(0, 30), czg = czl.filter(x => x.g).sort((a, b) => b.a3 - a.a3).slice(0, 12);
     box.innerHTML = `
       ${miles.length ? `<h3 class="prday">Blíží se milníku</h3><div class="boards">${miles.slice(0, 24).map(([r, k, v, nx, g]) => `<div class="mile"><b>${nx - v}</b><span>do ${nx} ${MILE_L[k]}</span><button type="button" class="pl" data-id="${r.id}" data-team="${r.team}" data-g="${g ? 1 : 0}">${esc(r.name)}</button><small>${tdot(r.team)}${r.team} · teď ${v}</small></div>`).join("")}</div><p class="legend">Kariéra v základní části NHL. Počítáno z údajů NHL.com po poslední aktualizaci.</p>` : ""}
-      <h3 class="prday">Nejlepší sezony od 2007/08</h3><div class="boards">
+      <h3 class="prday">Nejlepší sezony v historii NHL</h3><p class="legend" style="margin:-4px 0 10px">Body, góly a úspěšnost brankářů od 1917/18; xG, góly nad očekáváním a GSAx od 2007/08 (MoneyPuck).</p><div class="boards">
         ${bestT("p", "Nejvíc bodů za sezonu", v => v)}${bestT("g", "Nejvíc gólů za sezonu", v => v)}${bestT("ixg", "Nejvíc očekávaných gólů (xG)", v => nf(v, 1))}${bestT("gax", "Nejvíc gólů nad očekáváním", v => s1(v))}${bestT("gsax", "Brankáři: nejvyšší GSAx", v => s1(v))}${bestT("svp", "Brankáři: úspěšnost (aspoň 25 z.)", v => pctf(v, 1) + " %")}
       </div>
-      <h3 class="prday">${cz === "CZE" ? "Čeští" : "Slovenští"} hráči v NHL od 2007/08</h3>
+      <h3 class="prday">${cz === "CZE" ? "Čeští" : "Slovenští"} hráči v historii NHL</h3>
       <div class="seg" id="rk-nat" role="group" style="margin-bottom:10px"><button type="button" data-v="CZE" aria-pressed="${cz === "CZE"}">Češi</button><button type="button" data-v="SVK" aria-pressed="${cz === "SVK"}">Slováci</button></div>
       <div class="tablebox" style="max-height:none"><table style="min-width:700px"><thead><tr><th class="stick1 l">#</th><th class="l">Hráč</th><th>Sezon</th><th>Z</th><th>G</th><th>A</th><th>B</th><th class="l">Naposledy</th></tr></thead><tbody>${czs.map((x, i) => `<tr><td class="stick1 l">${i + 1}</td><td class="l">${personLink(x.pid, x.n, x.last || ((HIDX && HIDX.current) || "20262027"), x.team)}</td><td>${x.seasons}</td><td>${x.gp}</td><td>${x.a3}</td><td>${x.a4}</td><td style="font-weight:700">${x.a5}</td><td class="l dim">${x.last ? seasonLbl(x.last) : "teď"} ${tdot(x.team)}${x.team}</td></tr>`).join("")}</tbody></table></div>
       ${czg.length ? `<div class="tablebox" style="max-height:none;margin-top:12px"><table style="min-width:600px"><thead><tr><th class="l">Brankář</th><th>Sezon</th><th>Z</th><th>V</th><th>ČK</th><th class="l">Naposledy</th></tr></thead><tbody>${czg.map(x => `<tr><td class="l">${personLink(x.pid, x.n, x.last || ((HIDX && HIDX.current) || "20262027"), x.team)}</td><td>${x.seasons}</td><td>${x.gp}</td><td>${x.a3}</td><td>${x.a5}</td><td class="l dim">${x.last ? seasonLbl(x.last) : "teď"} ${tdot(x.team)}${x.team}</td></tr>`).join("")}</tbody></table></div>` : ""}
-      <p class="legend">Součty jen za sezony od 2007/08 (včetně té letošní), ne za celou kariéru. Celou kariéru najdete v detailu hráče.</p>`;
+      <p class="legend">Součty základní části NHL za všechny sezony od 1917/18 včetně té letošní, podle země narození. Celou kariéru včetně jiných soutěží najdete v detailu hráče.</p>`;
   }
 
   /* ===== Výhled: tempo, odhad bodů a šance na play-off ===== */
