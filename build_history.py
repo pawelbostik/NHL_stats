@@ -244,6 +244,19 @@ def build_indexes(seasons):
                 best["gsax"].append([gsax, pid, names[pid], m[1], sid, gp])
     for k in best:
         best[k] = sorted(best[k], key=lambda x: -(x[0] or 0))[:50]
+    # rejstřík jmen pro vyhledávání napříč historií: [id, jméno, první sezona, poslední sezona, brankář, poslední tým]
+    names = {}
+    for sid in sorted(seasons):
+        data = b.rjson(os.path.join(HIST, sid, "data.json"), {}) or {}
+        for g, rows in ((0, data.get("sk", [])), (1, data.get("gk", []))):
+            for r in rows:
+                n = names.get(r[0])
+                full = (r[1] + " " + r[2]).strip()
+                if not n:
+                    names[r[0]] = [r[0], full, int(sid[:4]), int(sid[:4]), g, r[3]]
+                else:
+                    n[3] = int(sid[:4]); n[5] = r[3]; n[1] = full; n[4] = n[4] or g
+    wj(os.path.join(HIST, "names.json"), sorted(names.values(), key=lambda x: x[1]))
     for i, sh in enumerate(adv):
         wj(os.path.join(HIST, "advc", "%d.json" % i), sh)
     wj(os.path.join(HIST, "best.json"), best)
