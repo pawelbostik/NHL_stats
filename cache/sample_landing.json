@@ -1,127 +1,67 @@
 {
- "playerId": 8470613,
- "isActive": true,
- "currentTeamId": 21,
- "currentTeamAbbrev": "COL",
- "fullTeamName": {
-  "default": "Colorado Avalanche",
-  "fr": "Avalanche du Colorado"
- },
- "teamCommonName": {
-  "default": "Avalanche"
- },
- "teamPlaceNameWithPreposition": {
-  "default": "Colorado",
-  "fr": "du Colorado"
- },
+ "playerId": 8444850,
+ "isActive": false,
  "firstName": {
-  "default": "Brent"
+  "default": "Henry"
  },
  "lastName": {
-  "default": "Burns"
+  "default": "Harris"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/COL_light.svg",
- "sweaterNumber": 84,
- "position": "D",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/COL/8470613.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8470613.jpg",
- "heightInInches": 77,
- "heightInCentimeters": 196,
- "weightInPounds": 228,
- "weightInKilograms": 103,
- "birthDate": "1985-03-09",
+ "sweaterNumber": 12,
+ "position": "R",
+ "headshot": "https://assets.nhle.com/mugs/nhl/latest/8444850.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8444850.jpg",
+ "heightInInches": 71,
+ "heightInCentimeters": 180,
+ "weightInPounds": 185,
+ "weightInKilograms": 84,
+ "birthDate": "1906-04-28",
  "birthCity": {
-  "default": "Barrie"
+  "default": "Kenora"
  },
  "birthStateProvince": {
   "default": "Ontario"
  },
  "birthCountry": "CAN",
- "shootsCatches": "R",
- "draftDetails": {
-  "year": 2003,
-  "teamAbbrev": "MIN",
-  "round": 1,
-  "pickInRound": 20,
-  "overallPick": 20
- },
- "playerSlug": "brent-burns-8470613",
+ "shootsCatches": "L",
+ "playerSlug": "henry-harris-8444850",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
-  "season": 20262027,
+  "season": 19301931,
   "regularSeason": {
    "subSeason": {
-    "assists": 5,
+    "assists": 4,
     "gameWinningGoals": 0,
-    "gamesPlayed": 13,
-    "goals": 0,
+    "gamesPlayed": 32,
+    "goals": 2,
     "otGoals": 0,
-    "pim": 10,
-    "plusMinus": 0,
-    "points": 5,
-    "powerPlayGoals": 0,
+    "pim": 20,
+    "points": 6,
     "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 19
+    "shorthandedPoints": 0
    },
    "career": {
-    "assists": 677,
-    "gameWinningGoals": 47,
-    "gamesPlayed": 1592,
-    "goals": 273,
-    "otGoals": 16,
-    "pim": 897,
-    "plusMinus": 43,
-    "points": 950,
-    "powerPlayGoals": 88,
-    "powerPlayPoints": 323,
-    "shootingPctg": 0.0643,
-    "shorthandedGoals": 3,
-    "shorthandedPoints": 17,
-    "shots": 4242
+    "assists": 4,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 32,
+    "goals": 2,
+    "otGoals": 0,
+    "pim": 20,
+    "points": 6
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 677,
-   "avgToi": "22:08",
-   "faceoffWinningPctg": 0.455,
-   "gameWinningGoals": 47,
-   "gamesPlayed": 1592,
-   "goals": 273,
-   "otGoals": 16,
-   "pim": 897,
-   "plusMinus": 43,
-   "points": 950,
-   "powerPlayGoals": 88,
-   "powerPlayPoints": 323,
-   "shootingPctg": 0.0643,
-   "shorthandedGoals": 3,
-   "shorthandedPoints": 17,
-   "shots": 4242
-  },
-  "playoffs": {
-   "assists": 60,
-   "avgToi": "23:41",
-   "faceoffWinningPctg": 0.22219999999999998,
+   "assists": 4,
    "gameWinningGoals": 0,
-   "gamesPlayed": 148,
-   "goals": 24,
+   "gamesPlayed": 32,
+   "goals": 2,
    "otGoals": 0,
-   "pim": 123,
-   "plusMinus": 25,
-   "points": 84,
-   "powerPlayGoals": 8,
-   "powerPlayPoints": 32,
-   "shootingPctg": 0.0559,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 429
+   "pim": 20,
+   "points": 6
   }
  },
  "shopLink": "#TODO",
@@ -129,181 +69,90 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "assists": 2,
-   "gameDate": "2026-10-28",
-   "gameId": 2026020201,
+   "assists": 0,
+   "gameDate": "1931-02-10",
+   "gameId": 1930020157,
    "gameTypeId": 2,
    "goals": 0,
    "homeRoadFlag": "H",
-   "opponentAbbrev": "NJD",
-   "pim": 2,
-   "plusMinus": 2,
-   "points": 2,
+   "opponentAbbrev": "CHI",
+   "pim": 0,
+   "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 25,
    "shorthandedGoals": 0,
-   "shots": 4,
-   "teamAbbrev": "COL",
-   "toi": "17:49"
+   "teamAbbrev": "BOS"
   },
   {
-   "assists": 0,
-   "gameDate": "2026-10-25",
-   "gameId": 2026020183,
+   "assists": 1,
+   "gameDate": "1931-02-07",
+   "gameId": 1930020152,
    "gameTypeId": 2,
    "goals": 0,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "NSH",
-   "pim": 4,
-   "plusMinus": 1,
-   "points": 0,
+   "opponentAbbrev": "MTL",
+   "pim": 2,
+   "points": 1,
    "powerPlayGoals": 0,
-   "shifts": 17,
    "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "COL",
-   "toi": "12:48"
+   "teamAbbrev": "BOS"
   },
   {
    "assists": 0,
-   "gameDate": "2026-10-23",
-   "gameId": 2026020167,
+   "gameDate": "1931-02-03",
+   "gameId": 1930020146,
    "gameTypeId": 2,
-   "goals": 0,
+   "goals": 1,
    "homeRoadFlag": "H",
-   "opponentAbbrev": "TBL",
+   "opponentAbbrev": "DFL",
    "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
+   "points": 1,
    "powerPlayGoals": 0,
-   "shifts": 24,
    "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "COL",
-   "toi": "18:15"
+   "teamAbbrev": "BOS"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 7,
-   "faceoffWinningPctg": 0.0,
+   "assists": 2,
    "gameTypeId": 2,
-   "gamesPlayed": 46,
-   "goals": 4,
-   "leagueAbbrev": "MTHL",
-   "pim": 16,
+   "gamesPlayed": 23,
+   "goals": 2,
+   "leagueAbbrev": "PrHL",
+   "pim": 12,
+   "points": 4,
+   "season": 19271928,
+   "sequence": 1,
+   "teamName": {
+    "default": "Regina Caps"
+   }
+  },
+  {
+   "assists": 3,
+   "gameTypeId": 2,
+   "gamesPlayed": 36,
+   "goals": 8,
+   "leagueAbbrev": "PCHL",
+   "pim": 138,
    "points": 11,
-   "season": 20002001,
+   "season": 19281929,
    "sequence": 1,
    "teamName": {
-    "default": "North York"
+    "default": "Seattle Eskimos"
    }
   },
   {
-   "assists": 25,
-   "faceoffWinningPctg": 0.0,
-   "gameTypeId": 2,
-   "gamesPlayed": 68,
-   "goals": 15,
-   "leagueAbbrev": "OPJHL",
-   "pim": 14,
-   "points": 40,
-   "season": 20012002,
+   "assists": 0,
+   "gameTypeId": 3,
+   "gamesPlayed": 5,
+   "goals": 1,
+   "leagueAbbrev": "PCHL",
+   "pim": 10,
+   "points": 1,
+   "season": 19281929,
    "sequence": 1,
    "teamName": {
-    "default": "Couchiching"
+    "default": "Seattle Eskimos"
    }
-  },
-  {
-   "assists": 25,
-   "faceoffWinningPctg": 0.0,
-   "gameTypeId": 2,
-   "gamesPlayed": 68,
-   "goals": 15,
-   "leagueAbbrev": "OHL",
-   "pim": 14,
-   "plusMinus": 6,
-   "points": 40,
-   "powerPlayGoals": 4,
-   "season": 20022003,
-   "sequence": 1,
-   "shorthandedGoals": 2,
-   "teamName": {
-    "default": "Brampton"
-   }
-  }
- ],
- "awards": [
-  {
-   "trophy": {
-    "default": "James Norris Memorial Trophy",
-    "fr": "Trophée James Norris"
-   },
-   "seasons": [
-    {
-     "assists": 47,
-     "blockedShots": 142,
-     "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 29,
-     "hits": 69,
-     "pim": 40,
-     "plusMinus": 19,
-     "points": 76,
-     "seasonId": 20162017
-    }
-   ]
-  },
-  {
-   "trophy": {
-    "default": "NHL Foundation Player Award"
-   },
-   "seasons": [
-    {
-     "assists": 43,
-     "blockedShots": 124,
-     "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 17,
-     "hits": 148,
-     "pim": 65,
-     "plusMinus": -9,
-     "points": 60,
-     "seasonId": 20142015
-    }
-   ]
-  }
- ],
- "currentTeamRoster": [
-  {
-   "playerId": 8478406,
-   "lastName": {
-    "default": "Blackwood"
-   },
-   "firstName": {
-    "default": "Mackenzie"
-   },
-   "playerSlug": "mackenzie-blackwood-8478406"
-  },
-  {
-   "playerId": 8470613,
-   "lastName": {
-    "default": "Burns"
-   },
-   "firstName": {
-    "default": "Brent"
-   },
-   "playerSlug": "brent-burns-8470613"
-  },
-  {
-   "playerId": 8486171,
-   "lastName": {
-    "default": "Hughes"
-   },
-   "firstName": {
-    "default": "T.J."
-   },
-   "playerSlug": "t-j-hughes-8486171"
   }
  ]
 }
