@@ -1,67 +1,108 @@
 {
- "playerId": 8444850,
- "isActive": false,
+ "playerId": 8483428,
+ "isActive": true,
+ "currentTeamId": 28,
+ "currentTeamAbbrev": "SJS",
+ "fullTeamName": {
+  "default": "San Jose Sharks",
+  "fr": "Sharks de San Jose"
+ },
+ "teamCommonName": {
+  "default": "Sharks"
+ },
+ "teamPlaceNameWithPreposition": {
+  "default": "San Jose",
+  "fr": "de San Jose"
+ },
  "firstName": {
-  "default": "Henry"
+  "default": "Filip"
  },
  "lastName": {
-  "default": "Harris"
+  "default": "Bystedt"
  },
  "badges": [],
- "sweaterNumber": 12,
- "position": "R",
- "headshot": "https://assets.nhle.com/mugs/nhl/latest/8444850.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8444850.jpg",
- "heightInInches": 71,
- "heightInCentimeters": 180,
- "weightInPounds": 185,
- "weightInKilograms": 84,
- "birthDate": "1906-04-28",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/SJS_light.svg",
+ "sweaterNumber": 18,
+ "position": "C",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/SJS/8483428.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8483428.jpg",
+ "heightInInches": 75,
+ "heightInCentimeters": 191,
+ "weightInPounds": 210,
+ "weightInKilograms": 95,
+ "birthDate": "2004-02-04",
  "birthCity": {
-  "default": "Kenora"
+  "default": "Norrkoping",
+  "fi": "Norrköping",
+  "sv": "Norrköping"
  },
- "birthStateProvince": {
-  "default": "Ontario"
- },
- "birthCountry": "CAN",
+ "birthCountry": "SWE",
  "shootsCatches": "L",
- "playerSlug": "henry-harris-8444850",
+ "draftDetails": {
+  "year": 2022,
+  "teamAbbrev": "SJS",
+  "round": 1,
+  "pickInRound": 27,
+  "overallPick": 27
+ },
+ "playerSlug": "filip-bystedt-8483428",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
-  "season": 19301931,
+  "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 4,
+    "assists": 0,
     "gameWinningGoals": 0,
-    "gamesPlayed": 32,
-    "goals": 2,
+    "gamesPlayed": 1,
+    "goals": 0,
     "otGoals": 0,
-    "pim": 20,
-    "points": 6,
+    "pim": 0,
+    "plusMinus": -1,
+    "points": 0,
+    "powerPlayGoals": 0,
     "powerPlayPoints": 0,
-    "shorthandedPoints": 0
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 2
    },
    "career": {
-    "assists": 4,
+    "assists": 0,
     "gameWinningGoals": 0,
-    "gamesPlayed": 32,
-    "goals": 2,
+    "gamesPlayed": 1,
+    "goals": 0,
     "otGoals": 0,
-    "pim": 20,
-    "points": 6
+    "pim": 0,
+    "plusMinus": -1,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 2
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 4,
+   "assists": 0,
+   "avgToi": "10:28",
+   "faceoffWinningPctg": 0.4285,
    "gameWinningGoals": 0,
-   "gamesPlayed": 32,
-   "goals": 2,
+   "gamesPlayed": 1,
+   "goals": 0,
    "otGoals": 0,
-   "pim": 20,
-   "points": 6
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.0,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 2
   }
  },
  "shopLink": "#TODO",
@@ -70,89 +111,97 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "1931-02-10",
-   "gameId": 1930020157,
+   "gameDate": "2026-10-29",
+   "gameId": 2026020213,
    "gameTypeId": 2,
    "goals": 0,
    "homeRoadFlag": "H",
-   "opponentAbbrev": "CHI",
+   "opponentAbbrev": "VAN",
    "pim": 0,
+   "plusMinus": -1,
    "points": 0,
    "powerPlayGoals": 0,
+   "shifts": 15,
    "shorthandedGoals": 0,
-   "teamAbbrev": "BOS"
-  },
-  {
-   "assists": 1,
-   "gameDate": "1931-02-07",
-   "gameId": 1930020152,
-   "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "MTL",
-   "pim": 2,
-   "points": 1,
-   "powerPlayGoals": 0,
-   "shorthandedGoals": 0,
-   "teamAbbrev": "BOS"
-  },
-  {
-   "assists": 0,
-   "gameDate": "1931-02-03",
-   "gameId": 1930020146,
-   "gameTypeId": 2,
-   "goals": 1,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "DFL",
-   "pim": 0,
-   "points": 1,
-   "powerPlayGoals": 0,
-   "shorthandedGoals": 0,
-   "teamAbbrev": "BOS"
+   "shots": 2,
+   "teamAbbrev": "SJS",
+   "toi": "10:28"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 2,
+   "assists": 4,
    "gameTypeId": 2,
-   "gamesPlayed": 23,
-   "goals": 2,
-   "leagueAbbrev": "PrHL",
-   "pim": 12,
-   "points": 4,
-   "season": 19271928,
-   "sequence": 1,
+   "gamesPlayed": 15,
+   "goals": 5,
+   "leagueAbbrev": "U16 Elit",
+   "pim": 2,
+   "points": 9,
+   "season": 20172018,
+   "sequence": 11,
    "teamName": {
-    "default": "Regina Caps"
+    "default": "Linköping HC U16"
    }
   },
   {
-   "assists": 3,
+   "assists": 1,
    "gameTypeId": 2,
-   "gamesPlayed": 36,
-   "goals": 8,
-   "leagueAbbrev": "PCHL",
-   "pim": 138,
-   "points": 11,
-   "season": 19281929,
-   "sequence": 1,
-   "teamName": {
-    "default": "Seattle Eskimos"
-   }
-  },
-  {
-   "assists": 0,
-   "gameTypeId": 3,
-   "gamesPlayed": 5,
-   "goals": 1,
-   "leagueAbbrev": "PCHL",
-   "pim": 10,
+   "gamesPlayed": 2,
+   "goals": 0,
+   "leagueAbbrev": "U16 Div.1",
+   "pim": 2,
    "points": 1,
-   "season": 19281929,
-   "sequence": 1,
+   "season": 20172018,
+   "sequence": 12,
    "teamName": {
-    "default": "Seattle Eskimos"
+    "default": "Linköping HC U16 3"
    }
+  },
+  {
+   "assists": 1,
+   "gameTypeId": 2,
+   "gamesPlayed": 8,
+   "goals": 0,
+   "leagueAbbrev": "U16 SM",
+   "pim": 0,
+   "points": 1,
+   "season": 20172018,
+   "sequence": 13,
+   "teamName": {
+    "default": "Linköping HC U16"
+   }
+  }
+ ],
+ "currentTeamRoster": [
+  {
+   "playerId": 8482700,
+   "lastName": {
+    "default": "Allan"
+   },
+   "firstName": {
+    "default": "Nolan"
+   },
+   "playerSlug": "nolan-allan-8482700"
+  },
+  {
+   "playerId": 8482137,
+   "lastName": {
+    "default": "Askarov"
+   },
+   "firstName": {
+    "default": "Yaroslav"
+   },
+   "playerSlug": "yaroslav-askarov-8482137"
+  },
+  {
+   "playerId": 8483428,
+   "lastName": {
+    "default": "Bystedt"
+   },
+   "firstName": {
+    "default": "Filip"
+   },
+   "playerSlug": "filip-bystedt-8483428"
   }
  ]
 }
