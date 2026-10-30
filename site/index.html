@@ -875,7 +875,9 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 
 <script>
 (() => {
-  const opt = u => fetch(u).then(r => r.ok ? r.json() : null).catch(() => null);
+  // Aktuální data si prohlížeč vždy ověří na serveru (jinak by mohl až 10 minut ukazovat starou verzi); archiv smí brát z mezipaměti.
+  const fresh = u => /(^|\/)hist\//.test(u) && !/hist\/index\.json/.test(u) ? fetch(u) : fetch(u, { cache: "no-cache" });
+  const opt = u => fresh(u).then(r => r.ok ? r.json() : null).catch(() => null);
   const QS = new URLSearchParams(location.search);
   const HSEASON = /^\d{8}$/.test(QS.get("s") || "") ? QS.get("s") : null;
   const PO = QS.get("po") === "1";
@@ -3545,7 +3547,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   const mpReq = opt(BASE + "mp.json"), shReq = opt(BASE + "shots.json"), gsReq = opt(BASE + "goalies_shots.json"), lnReq = opt(BASE + "lines.json"), gmReq = HSEASON || PO ? Promise.resolve(null) : opt("games.json");
   const spReq = opt(BASE + "special.json"), edReq = opt(BASE + "edge.json"), scReq = HSEASON || PO ? Promise.resolve(null) : opt("schedule.json");
   HIDX_REQ.then(initSeasonBar);
-  fetch(BASE + "data.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => Promise.all([mpReq, shReq, gsReq, lnReq, gmReq, spReq, edReq, scReq]).then(([mp, sh, gs, ln, gm, sp, ed, sc]) => {
+  fresh(BASE + "data.json").then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }).then(d => Promise.all([mpReq, shReq, gsReq, lnReq, gmReq, spReq, edReq, scReq]).then(([mp, sh, gs, ln, gm, sp, ed, sc]) => {
     try { loadShots(sh, gs); } catch (e) { SHOTS = null; HAS_GOALIE_SHOTS = false; }
     load(d, mp, ln, gm, sp, ed, sc);
     setTimeout(loadCareers, 1500);
