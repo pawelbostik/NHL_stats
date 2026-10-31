@@ -1,51 +1,53 @@
 {
- "playerId": 8483428,
+ "playerId": 8480007,
  "isActive": true,
- "currentTeamId": 28,
- "currentTeamAbbrev": "SJS",
+ "currentTeamId": 54,
+ "currentTeamAbbrev": "VGK",
  "fullTeamName": {
-  "default": "San Jose Sharks",
-  "fr": "Sharks de San Jose"
+  "default": "Vegas Golden Knights",
+  "fr": "Golden Knights de Vegas"
  },
  "teamCommonName": {
-  "default": "Sharks"
+  "default": "Golden Knights"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "San Jose",
-  "fr": "de San Jose"
+  "default": "Vegas",
+  "fr": "de Vegas"
  },
  "firstName": {
-  "default": "Filip"
+  "default": "Jonas"
  },
  "lastName": {
-  "default": "Bystedt"
+  "default": "Rondbjerg",
+  "cs": "Röndbjerg",
+  "fi": "Røndbjerg",
+  "sk": "Röndbjerg",
+  "sv": "Røndbjerg"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/SJS_light.svg",
- "sweaterNumber": 18,
- "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/SJS/8483428.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8483428.jpg",
- "heightInInches": 75,
- "heightInCentimeters": 191,
- "weightInPounds": 210,
- "weightInKilograms": 95,
- "birthDate": "2004-02-04",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/VGK_light.svg",
+ "sweaterNumber": 46,
+ "position": "R",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/VGK/8480007.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8480007.jpg",
+ "heightInInches": 74,
+ "heightInCentimeters": 188,
+ "weightInPounds": 202,
+ "weightInKilograms": 92,
+ "birthDate": "1999-03-31",
  "birthCity": {
-  "default": "Norrkoping",
-  "fi": "Norrköping",
-  "sv": "Norrköping"
+  "default": "Horsholm"
  },
- "birthCountry": "SWE",
+ "birthCountry": "DNK",
  "shootsCatches": "L",
  "draftDetails": {
-  "year": 2022,
-  "teamAbbrev": "SJS",
-  "round": 1,
-  "pickInRound": 27,
-  "overallPick": 27
+  "year": 2017,
+  "teamAbbrev": "VGK",
+  "round": 3,
+  "pickInRound": 3,
+  "overallPick": 65
  },
- "playerSlug": "filip-bystedt-8483428",
+ "playerSlug": "jonas-rondbjerg-8480007",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -58,51 +60,51 @@
     "goals": 0,
     "otGoals": 0,
     "pim": 0,
-    "plusMinus": -1,
+    "plusMinus": 0,
     "points": 0,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 2
+    "shots": 0
    },
    "career": {
-    "assists": 0,
+    "assists": 8,
     "gameWinningGoals": 0,
-    "gamesPlayed": 1,
-    "goals": 0,
+    "gamesPlayed": 81,
+    "goals": 3,
     "otGoals": 0,
-    "pim": 0,
-    "plusMinus": -1,
-    "points": 0,
+    "pim": 8,
+    "plusMinus": -9,
+    "points": 11,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
+    "shootingPctg": 0.0344,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 2
+    "shots": 87
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 0,
-   "avgToi": "10:28",
-   "faceoffWinningPctg": 0.4285,
+   "assists": 8,
+   "avgToi": "10:25",
+   "faceoffWinningPctg": 0.1818,
    "gameWinningGoals": 0,
-   "gamesPlayed": 1,
-   "goals": 0,
+   "gamesPlayed": 81,
+   "goals": 3,
    "otGoals": 0,
-   "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
+   "pim": 8,
+   "plusMinus": -9,
+   "points": 11,
    "powerPlayGoals": 0,
    "powerPlayPoints": 0,
-   "shootingPctg": 0.0,
+   "shootingPctg": 0.0344,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 2
+   "shots": 87
   }
  },
  "shopLink": "#TODO",
@@ -111,97 +113,103 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-10-29",
-   "gameId": 2026020213,
+   "gameDate": "2026-10-30",
+   "gameId": 2026020214,
    "gameTypeId": 2,
    "goals": 0,
    "homeRoadFlag": "H",
-   "opponentAbbrev": "VAN",
+   "opponentAbbrev": "NJD",
    "pim": 0,
-   "plusMinus": -1,
+   "plusMinus": 0,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 15,
+   "shifts": 18,
    "shorthandedGoals": 0,
-   "shots": 2,
-   "teamAbbrev": "SJS",
-   "toi": "10:28"
+   "shots": 0,
+   "teamAbbrev": "VGK",
+   "toi": "12:22"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 4,
+   "assists": 9,
    "gameTypeId": 2,
-   "gamesPlayed": 15,
-   "goals": 5,
-   "leagueAbbrev": "U16 Elit",
+   "gamesPlayed": 14,
+   "goals": 9,
+   "leagueAbbrev": "Denmark U17",
    "pim": 2,
-   "points": 9,
-   "season": 20172018,
-   "sequence": 11,
+   "plusMinus": 0,
+   "points": 18,
+   "season": 20122013,
+   "sequence": 131811,
    "teamName": {
-    "default": "Linköping HC U16"
+    "default": "Rungsted U17"
    }
   },
   {
-   "assists": 1,
-   "gameTypeId": 2,
-   "gamesPlayed": 2,
+   "assists": 0,
+   "gameTypeId": 3,
+   "gamesPlayed": 1,
    "goals": 0,
-   "leagueAbbrev": "U16 Div.1",
-   "pim": 2,
-   "points": 1,
-   "season": 20172018,
-   "sequence": 12,
-   "teamName": {
-    "default": "Linköping HC U16 3"
-   }
-  },
-  {
-   "assists": 1,
-   "gameTypeId": 2,
-   "gamesPlayed": 8,
-   "goals": 0,
-   "leagueAbbrev": "U16 SM",
+   "leagueAbbrev": "Denmark U20",
    "pim": 0,
-   "points": 1,
-   "season": 20172018,
-   "sequence": 13,
+   "plusMinus": 0,
+   "points": 0,
+   "season": 20122013,
+   "sequence": 26372,
    "teamName": {
-    "default": "Linköping HC U16"
+    "default": "Rungsted U20"
+   }
+  },
+  {
+   "assists": 0,
+   "gameTypeId": 3,
+   "gamesPlayed": 5,
+   "goals": 0,
+   "leagueAbbrev": "DM U17",
+   "pim": 2,
+   "plusMinus": 0,
+   "points": 0,
+   "season": 20122013,
+   "sequence": 10142454,
+   "teamName": {
+    "default": "Rungsted U17"
    }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8482700,
+   "playerId": 8478397,
    "lastName": {
-    "default": "Allan"
+    "default": "Andersson"
    },
    "firstName": {
-    "default": "Nolan"
+    "default": "Rasmus"
    },
-   "playerSlug": "nolan-allan-8482700"
+   "playerSlug": "rasmus-andersson-8478397"
   },
   {
-   "playerId": 8482137,
+   "playerId": 8477964,
    "lastName": {
-    "default": "Askarov"
+    "default": "Barbashev",
+    "cs": "Barbašev",
+    "fi": "Barbashov",
+    "sk": "Barbašev"
    },
    "firstName": {
-    "default": "Yaroslav"
+    "default": "Ivan"
    },
-   "playerSlug": "yaroslav-askarov-8482137"
+   "playerSlug": "ivan-barbashev-8477964"
   },
   {
-   "playerId": 8483428,
+   "playerId": 8483890,
    "lastName": {
-    "default": "Bystedt"
+    "default": "Bowman"
    },
    "firstName": {
-    "default": "Filip"
+    "default": "Braeden"
    },
-   "playerSlug": "filip-bystedt-8483428"
+   "playerSlug": "braeden-bowman-8483890"
   }
  ]
 }
