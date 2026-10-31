@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="NHL statistiky">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&family=Kalam:wght@400;700&family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&display=swap">
 <style>
 /* Vzhled podle Cadastry na ledě: světle modrá ledová plocha se stopami bruslí, inkoust, červená a modrá z čar kluziště, Fraunces + Spectral, ostré rohy, vlasové linky
    a tabulky jako katastrální výpis. Detaily hráče a týmu přebírají barvy klubu (--tc1, --tc2). */
@@ -631,7 +631,7 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
   @keyframes rise { from { transform: translate(-50%, 14px); opacity: .5; } to { transform: translateX(-50%); opacity: 1; } }
 }
 
-/* ===== Kůže: Kostka (tmavá tabule z haly) a Tabule (trenérská bílá tabule); hráči jako kartičky ===== */
+/* ===== Kůže Kostka (tmavá tabule z haly) s hráči jako kartičkami; Klasika = původní vzhled ===== */
 button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; padding: 0 0 14px; }
 .pd-ct, .pd-back { display: none; }
 .pd-num.flip > :not(.pd-back) { display: none; }
@@ -647,15 +647,6 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
   --page-bg: radial-gradient(#171717 1.1px, transparent 1.5px) 0 0 / 6px 6px, #070707;
   --font-display: "Oswald", "Arial Narrow", sans-serif; --font-body: "Barlow", system-ui, sans-serif; --font-num: "Doto", "Oswald", monospace;
   color-scheme: dark;
-}
-:root[data-skin="tabule"] {
-  --ice: #fbfbf7; --board: #ffffff; --row: #f5f5f0; --field: #ffffff; --ink: #1f2328; --muted: #4b5058; --faint: #767b82;
-  --line: #e4e4dc; --line-strong: #c3c6c0; --frame: #2b2f35; --red: #c8202e; --red-deep: #b01b28; --blue: #1f4fbf; --blue-soft: #e3eafb; --red-soft: #fbe3e5;
-  --amber: #e08a00; --good: #1d7a3e; --bad: #c8202e; --bar: #d9dbe0; --rink: #ffffff; --rinkline: #9aa3ad; --rinkblue: #1f4fbf; --heat: 200, 32, 46; --cool: 31, 79, 191;
-  --shadow: 0 2px 6px rgba(31, 35, 40, .08); --scrim: rgb(40 44 50 / .45); --rad: 6px;
-  --page-bg: linear-gradient(180deg, #fcfcf9 0, #f7f7f2 100%);
-  --font-display: "Kalam", "Comic Sans MS", cursive; --font-body: "Kalam", "Comic Sans MS", cursive; --font-num: "Permanent Marker", "Kalam", cursive; --font-marker: "Permanent Marker", "Kalam", cursive;
-  color-scheme: light;
 }
 /* Kostka */
 :root[data-skin="kostka"] h1 { font-family: var(--font-num); font-weight: 900; color: var(--red); letter-spacing: .04em; }
@@ -674,39 +665,22 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
 :root[data-skin="kostka"] .secbtn:hover:not([aria-current="true"]) { background: #161616; }
 :root[data-skin="kostka"] a { color: var(--amber); }
 :root[data-skin="kostka"] .night, :root[data-skin="kostka"] .secnav, :root[data-skin="kostka"] .card, :root[data-skin="kostka"] .tablebox { border-width: 2px; }
-/* Tabule */
-:root[data-skin="tabule"] body { margin: 10px; border-radius: 8px; box-shadow: inset 0 0 0 1px #aab0b6; min-height: calc(100vh - 20px); }
-:root[data-skin="tabule"] { background: #c9ced3; }
-:root[data-skin="tabule"] h1, :root[data-skin="tabule"] .drawer h3, :root[data-skin="tabule"] .about h2, :root[data-skin="tabule"] .lead .val, :root[data-skin="tabule"] .big b, :root[data-skin="tabule"] .ngame b, :root[data-skin="tabule"] .prday { font-family: var(--font-marker); font-weight: 400; letter-spacing: 0; }
-:root[data-skin="tabule"] h1 { transform: rotate(-1deg); transform-origin: left; }
-:root[data-skin="tabule"] h1 .dot { color: var(--blue); }
-:root[data-skin="tabule"] .lead .val { color: var(--blue); }
-:root[data-skin="tabule"] .card h3, :root[data-skin="tabule"] .drawer h4, :root[data-skin="tabule"] .night h3, :root[data-skin="tabule"] .about h4 { font-family: var(--font-marker); font-weight: 400; text-transform: none; letter-spacing: .01em; font-size: 18px; color: var(--blue); }
-:root[data-skin="tabule"] .drawer h4 { color: var(--tc-text); }
-:root[data-skin="tabule"] thead th, :root[data-skin="tabule"] .lead .lbl, :root[data-skin="tabule"] .field > span, :root[data-skin="tabule"] .big span, :root[data-skin="tabule"] .eyebrow { letter-spacing: .04em; font-weight: 700; }
-:root[data-skin="tabule"] .tab, :root[data-skin="tabule"] .secbtn { font-weight: 700; }
-:root[data-skin="tabule"] .tab { font-size: 19px; }
-:root[data-skin="tabule"] .secbtn[aria-current="true"] { background: var(--ink); color: #fff; }
-:root[data-skin="tabule"] .tdot { width: 12px; height: 12px; border-radius: 50%; vertical-align: -1px; box-shadow: inset -2px -2px 0 rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.35); }
-:root[data-skin="tabule"] .about { background: #fff3a6; border: 0; padding: 18px 20px 14px; transform: rotate(-.4deg); box-shadow: 0 6px 14px rgba(0,0,0,.14); }
-:root[data-skin="tabule"] .about p, :root[data-skin="tabule"] .about li { color: #3a3d42; }
-:root[data-skin="tabule"] .legend { font-style: normal; }
 /* Kartičky hráčů (obě kůže) */
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num {
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-num {
   position: relative; width: 124px; height: 172px; padding: 0; margin: 4px 0 10px; border-radius: 12px; border: 4px solid #f2efe6; background: var(--tc1); color: var(--tc-on);
   box-shadow: inset 0 -12px 0 var(--tc2), 0 10px 20px rgba(0,0,0,.35); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   transform: rotate(-2deg); transition: transform .25s ease;
 }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num:hover { transform: rotate(0deg) translateY(-2px); }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num.flip { transform: rotate(2deg); background: #f7f5ee; color: #1d222a; }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num #pd-num-v { font-family: var(--font-num); font-weight: 900; font-size: 68px; line-height: 1; letter-spacing: -.02em; }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num small { display: none; }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-ct { display: block; position: absolute; left: 8px; top: 7px; font: 700 11px/1 var(--font-body); letter-spacing: .1em; font-style: normal; opacity: .9; }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num.flip .pd-ct { display: none; }
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-num:hover { transform: rotate(0deg) translateY(-2px); }
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-num.flip { transform: rotate(2deg); background: #f7f5ee; color: #1d222a; }
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-num #pd-num-v { font-family: var(--font-num); font-weight: 900; font-size: 68px; line-height: 1; letter-spacing: -.02em; }
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-num small { display: none; }
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-ct { display: block; position: absolute; left: 8px; top: 7px; font: 700 11px/1 var(--font-body); letter-spacing: .1em; font-style: normal; opacity: .9; }
+:root[data-skin="kostka"] .pd-head:not(.team) .pd-num.flip .pd-ct { display: none; }
 .pd-back { flex-direction: column; align-items: center; gap: 4px; padding: 0 8px 12px; font: 600 13px/1.3 var(--font-body); letter-spacing: 0; text-align: center; }
 .pd-back b { font: 700 15px/1.1 var(--font-body); }
 .pd-back i { font-style: normal; font-size: 11px; opacity: .75; }
-:root:is([data-skin="kostka"], [data-skin="tabule"]) .cardset { display: flex; gap: 14px; overflow-x: auto; padding: 8px 4px 16px; margin: 0 0 6px; scrollbar-width: thin; }
+:root[data-skin="kostka"] .cardset { display: flex; gap: 14px; overflow-x: auto; padding: 8px 4px 16px; margin: 0 0 6px; scrollbar-width: thin; }
 .pcard { flex: none; width: 128px; height: 182px; border-radius: 12px; border: 3px solid #f2efe6; background: #f7f5ee; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; padding: 0; font: inherit; text-align: left; color: #1d222a; box-shadow: 0 6px 14px rgba(0,0,0,.3); transition: transform .2s ease; }
 .pcard:hover { transform: translateY(-3px) rotate(-1deg); }
 .pcard .pc-top { height: 104px; background: var(--tc1); color: var(--tc-on); position: relative; display: block; flex: none; }
@@ -717,23 +691,21 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
 .pcard .pc-b b { font-size: 13.5px; line-height: 1.1; font-weight: 700; }
 .pcard .pc-b span { font-size: 12px; color: #4a4f57; }
 @media (max-width: 700px) {
-  :root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num { width: 88px; height: 122px; border-width: 3px; box-shadow: inset 0 -9px 0 var(--tc2), 0 6px 14px rgba(0,0,0,.35); }
-  :root:is([data-skin="kostka"], [data-skin="tabule"]) .pd-head:not(.team) .pd-num #pd-num-v { font-size: 44px; }
-  :root[data-skin="tabule"] body { margin: 6px; min-height: calc(100vh - 12px); }
-  :root[data-skin="tabule"] .ngame { font-size: 13.5px; } :root[data-skin="tabule"] .ngame b { font-size: 16px; }
+  :root[data-skin="kostka"] .pd-head:not(.team) .pd-num { width: 88px; height: 122px; border-width: 3px; box-shadow: inset 0 -9px 0 var(--tc2), 0 6px 14px rgba(0,0,0,.35); }
+  :root[data-skin="kostka"] .pd-head:not(.team) .pd-num #pd-num-v { font-size: 44px; }
   .pcard { width: 112px; height: 164px; } .pcard .pc-top { height: 90px; } .pcard .pc-n { font-size: 48px; }
 }
 </style>
 </head>
 <body>
 
-<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","tabule","klasika"].indexOf(s)<0)s=matchMedia("(prefers-color-scheme: dark)").matches?"kostka":"tabule";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka")r.setAttribute("data-theme","dark");else if(s==="tabule")r.setAttribute("data-theme","light");})();</script>
+<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika"].indexOf(s)<0)s=matchMedia("(prefers-color-scheme: dark)").matches?"kostka":"klasika";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka")r.setAttribute("data-theme","dark");})();</script>
 
 <div class="wrap">
   <header>
     <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
     <div class="hrow"><h1><a href="#prehled" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
-    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button><button type="button" data-skin="tabule" aria-pressed="false">Tabule</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button></div></div>
+    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button></div></div>
     <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><div class="field" id="partbar" hidden><span>Část sezony</span><div class="seg" id="part" role="group" aria-label="Část sezony"><button type="button" data-v="reg" aria-pressed="true">Základní část</button><button type="button" data-v="po" aria-pressed="false">Play-off</button></div></div><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span><button type="button" class="aboutlink" id="aboutlink">O stránce</button></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -3598,16 +3570,16 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     return false;
   };
   ["#pr-box", "#zb-box", "#night", "#rk-box", "#aw-box", "#pc-box"].forEach(sel => $(sel).addEventListener("click", plClick));
-  /* --- Vzhled: Kostka / Tabule / Klasika --- */
+  /* --- Vzhled: Kostka / Klasika --- */
   function applySkin(sk, save) {
     const r = document.documentElement;
     r.setAttribute("data-skin", sk);
-    if (sk === "kostka") r.setAttribute("data-theme", "dark"); else if (sk === "tabule") r.setAttribute("data-theme", "light"); else r.removeAttribute("data-theme");
+    if (sk === "kostka") r.setAttribute("data-theme", "dark"); else r.removeAttribute("data-theme");
     document.querySelectorAll("#skinsw button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.skin === sk)));
-    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" ? "#070707" : sk === "tabule" ? "#fbfbf7" : "#13202b");
+    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" ? "#070707" : "#13202b");
     if (save) store.set("skin", sk);
   }
-  applySkin(document.documentElement.getAttribute("data-skin") || "tabule", false);
+  applySkin(document.documentElement.getAttribute("data-skin") || "klasika", false);
   $("#skinsw").addEventListener("click", e => { const b = e.target.closest("button[data-skin]"); if (b) applySkin(b.dataset.skin, true); });
   $("#drawer").addEventListener("click", e => { const c = e.target.closest(".pd-head:not(.team) .pd-num"); if (c) c.classList.toggle("flip"); });
   $("#mj-box").addEventListener("click", e => {
