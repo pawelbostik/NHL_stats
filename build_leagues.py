@@ -139,10 +139,16 @@ def liiga(jget, idx, nat, log):
         y -= 1
         pl = jget("https://liiga.fi/api/v2/players/stats/summed/%d/%d/runkosarja/true?dataType=basicStats" % (y, y))
     st = jget("https://liiga.fi/api/v2/standings/?season=%d" % y).get("season", [])
-    try:
-        gst = jget("https://liiga.fi/api/v2/players/stats/summed/%d/%d/runkosarja/true?dataType=goalieStats" % (y, y))
-    except Exception:  # noqa: BLE001
-        gst = []
+    gst = []
+    for gu in ("https://liiga.fi/api/v2/goalies/stats/summed/%d/%d/runkosarja/true", "https://liiga.fi/api/v2/goalkeepers/stats/summed/%d/%d/runkosarja/true",
+               "https://liiga.fi/api/v2/players/stats/summed/%d/%d/runkosarja/true?dataType=goalkeeperStats&goalkeeper=true"):
+        try:
+            gst = jget(gu % (y, y))
+        except Exception:  # noqa: BLE001
+            gst = []
+        if isinstance(gst, list) and gst:
+            break
+    pl = list(pl or []) + [g for g in gst or [] if isinstance(g, dict) and g.get("playerId") not in {p.get("playerId") for p in pl or []}]
     gmap = {g.get("playerId"): g for g in gst or [] if isinstance(g, dict)}
     skaters, goalies = [], []
     for p in pl or []:
@@ -151,7 +157,7 @@ def liiga(jget, idx, nat, log):
         nm = "%s %s" % (p.get("firstName", ""), p.get("lastName", ""))
         m, mn = match(nm, idx, nat)
         n = p.get("nationality") if p.get("nationality") in ("CZE", "SVK") else mn
-        if p.get("goalkeeper"):
+        if p.get("goalkeeper") or "saves" in p or "savePercentage" in p:
             g = gmap.get(p.get("playerId"), p)
             sv, ga = g.get("saves"), g.get("goalsAgainst") if g.get("goalsAgainst") is not None else g.get("goalsAllowed")
             svp = g.get("savePercentage")
@@ -172,7 +178,7 @@ def liiga(jget, idx, nat, log):
                             p.get("games") or 0, p.get("goals") or 0, p.get("assists") or 0, p.get("points") or 0, p.get("plusMinus") or 0,
                             p.get("penaltyMinutes") or 0, p.get("powerplayGoals") or 0, p.get("shots") or 0, None, 1 if p.get("rookie") else 0, n,
                             m[0] if m else None, m[1] if m else None, m[2] if m else None, round(p.get("expectedGoals") or 0, 1), toi])
-    table = [[t.get("teamName", ""), t.get("teamName", ""), t.get("games", 0), t.get("wins", 0), t.get("losses", 0),
+    table = [[t.get("teamName", ""), t.get("teamName", ""), t.get("games", 0), (t.get("wins") or 0) + (t.get("overtimeWins") or 0), t.get("losses", 0),
               (t.get("overtimeLosses") or 0), t.get("points", 0), t.get("goals", 0), t.get("goalsAgainst", 0), "", ""] for t in st]
     return {"code": "liiga", "short": "Liiga", "name": "Liiga (Finsko)", "season": "%d/%02d" % (y - 1, y % 100), "kind": "liiga",
             "credit": "Statistiky: Liiga (liiga.fi)", "credit_url": "https://liiga.fi", "st": [{"n": "", "t": table}], "sk": skaters, "gk": goalies,
@@ -180,20 +186,12 @@ def liiga(jget, idx, nat, log):
 
 
 def sihf_table(jget, alias, y, order, extra=""):
-    rows, header, skip = [], None, 0
-    for _ in range(40):
-        u = ("https://data.sihf.ch/Statistic/api/cms/cache300?alias=%s&searchQuery=1/2015-2099/1&filterQuery=%d%s&orderBy=%s&orderByDescending=true"
-             "&take=100&filterBy=Season,Phase&skip=%d&language=de") % (alias, y, extra, order, skip)
-        d = jget(u)
-        if not d or d.get("stub") or not d.get("data"):
-            break
-        header = [h.get("alias") for h in d.get("header") or []]
-        rows += d["data"]
-        if len(d["data"]) < 100:
-            break
-        skip += 100
-        time.sleep(0.4)
-    return header, rows
+    u = ("https://data.sihf.ch/Statistic/api/cms/cache300?alias=%s&searchQuery=1/2015-2099/1&filterQuery=%d%s&orderBy=%s&orderByDescending=true"
+         "&take=1000&filterBy=Season,Phase&skip=0&language=de") % (alias, y, extra, order)
+    d = jget(u)
+    if not d or d.get("stub") or not d.get("data"):
+        return None, []
+    return [h.get("alias") for h in d.get("header") or []], d["data"]
 
 
 def nl(jget, idx, nat, log):
@@ -217,10 +215,7 @@ def nl(jget, idx, nat, log):
                         num(d.get("plusMinus")), num(d.get("penaltyMinutes") or d.get("pim")), num(d.get("powerPlayGoals") or d.get("ppg")),
                         num(d.get("shotsOnGoal") or d.get("sog")), None, 0, n, m[0] if m else None, m[1] if m else None, m[2] if m else None])
     goalies = []
-    for order in ("savePercentage", "gamesPlayed", "rank", "gaa"):
-        hdr2, rows2 = sihf_table(jget, "goalie", y, order)
-        if rows2:
-            break
+    hdr2, rows2 = sihf_table(jget, "goalkeeper", y, "gamesPlayed")
     for r in rows2 if rows2 else []:
         d = dict(zip(hdr2 or [], r))
         nm = d.get("player") or ""
@@ -229,14 +224,16 @@ def nl(jget, idx, nat, log):
         team = d.get("team")
         tcode = team.get("acronym") if isinstance(team, dict) else (team or "")
         m, mn = match(full, idx, nat)
-        svp = d.get("savePercentage") or d.get("svs")
+        svp = d.get("savesPercentage") or d.get("savePercentage")
         try:
             svp = float(str(svp).replace("%", "")) / (100 if float(str(svp).replace("%", "")) > 1 else 1)
         except (TypeError, ValueError):
             svp = None
         gaa = d.get("goalsAgainstAverage") or d.get("gaa")
-        goalies.append([full, tcode or "", num(d.get("gamesPlayed")), num(d.get("wins")), num(d.get("losses")), 0,
-                        num(gaa, float) or None, round(svp, 3) if svp else None, num(d.get("shutouts")), num(d.get("saves")),
+        if not num(d.get("gamesPlayed")):
+            continue
+        goalies.append([full, tcode or "", num(d.get("gamesPlayed")), None, None, None,
+                        num(gaa, float) or None, round(svp, 3) if svp else None, None, num(d.get("saves")),
                         num(d.get("goalsAgainst")), mn, m[0] if m else None, m[1] if m else None, m[2] if m else None])
     d = jget(("https://data.sihf.ch/Statistic/api/cms/cache300?alias=standing&searchQuery=1/2015-2099/1&filterQuery=%d&orderBy=rank"
               "&orderByDescending=false&take=20&filterBy=Season&skip=-1&language=de") % y)
@@ -246,9 +243,9 @@ def nl(jget, idx, nat, log):
         x = dict(zip(hs, r))
         t = x.get("team") or {}
         table.append([t.get("acronym", "") if isinstance(t, dict) else "", t.get("name", "") if isinstance(t, dict) else str(t), num(x.get("gamesPlayed")),
-                      num(x.get("wins")) or num(x.get("w")), num(x.get("losses")) or num(x.get("l")),
-                      num(x.get("otLosses")) + num(x.get("overtimeLosses")) + num(x.get("otl")), num(x.get("points")),
-                      num(x.get("goalsFor")) or num(x.get("gf")), num(x.get("goalsAgainst")) or num(x.get("ga")), "", ""])
+                      num(x.get("gamesWonInTime")) + num(x.get("gamesWonExtraTime")) + num(x.get("gamesWonPenalty")), num(x.get("gamesLostInTime")),
+                      num(x.get("gamesLostExtraTime")) + num(x.get("gamesLostPenalty")), num(x.get("points")),
+                      num(x.get("goalsFor")), num(x.get("goalsAgainst")), x.get("streak") if isinstance(x.get("streak"), str) else "", ""])
     return {"code": "nl", "short": "NL", "name": "National League (Švýcarsko)", "season": "%d/%02d" % (y - 1, y % 100), "kind": "sihf",
             "credit": "Statistiky: Swiss Ice Hockey Federation (sihf.ch)", "credit_url": "https://www.sihf.ch", "st": [{"n": "", "t": table}],
             "sk": skaters, "gk": goalies, "cols": hdr, "gcols": hdr2 if rows2 else None, "scols": hs}
