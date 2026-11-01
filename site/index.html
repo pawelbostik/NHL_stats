@@ -634,6 +634,10 @@ footer { color: var(--muted); font-size: 14px; max-width: 72ch; font-style: ital
 }
 
 
+
+.lgcredit { font-size: 13px; color: var(--muted); margin-top: 8px; }
+#lg-code { flex-wrap: wrap; }
+.lgh td { background: var(--row); font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--red-deep); }
 /* Cesta do NHL, reprezentace, líheň, draft */
 .path { display: flex; flex-wrap: wrap; align-items: stretch; gap: 6px; margin: 2px 0 6px; }
 .pstep { display: flex; flex-direction: column; gap: 1px; padding: 7px 10px 8px; background: var(--field); border: 1px solid var(--line-strong); border-radius: var(--rad, 2px); min-width: 0; max-width: 220px; }
@@ -740,6 +744,7 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     <button type="button" class="secbtn" data-sec="tymy_s" aria-current="false"><span class="si" aria-hidden="true">▦</span>Týmy</button>
     <button type="button" class="secbtn" data-sec="analyza" aria-current="false"><span class="si" aria-hidden="true">◎</span>Analýza</button>
     <button type="button" class="secbtn" data-sec="historie" aria-current="false"><span class="si" aria-hidden="true">⌛</span>Historie</button>
+    <button type="button" class="secbtn" data-sec="ligy_s" aria-current="false"><span class="si" aria-hidden="true">◇</span>Ligy</button>
   </nav>
 
   <nav class="tabs" role="tablist" aria-label="Části oblasti">
@@ -760,6 +765,8 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     <button class="tab" role="tab" id="tab-draft" data-view="draft" aria-selected="false">Draft</button>
     <button class="tab" role="tab" id="tab-rekordy" data-view="rekordy" aria-selected="false">Rekordy</button>
     <button class="tab" role="tab" id="tab-ceny" data-view="ceny" aria-selected="false">Ceny</button>
+    <button class="tab" role="tab" id="tab-ligy" data-view="ligy" aria-selected="false">Ligy</button>
+    <button class="tab" role="tab" id="tab-cesisvet" data-view="cesisvet" aria-selected="false">Češi a Slováci mimo NHL</button>
     <button class="tab" role="tab" id="tab-strely" data-view="strely" aria-selected="false" hidden>Mapy střel</button>
     <button class="tab" role="tab" id="tab-formace" data-view="formace" aria-selected="false" hidden>Formace</button>
   </nav>
@@ -923,6 +930,36 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
   </section>
 
   <section id="view-porovnani" hidden><div id="pc-box"></div></section>
+
+  <section id="view-ligy" hidden>
+    <div class="filters">
+      <div class="field"><span>Liga</span>
+        <div class="seg" id="lg-code" role="group" aria-label="Liga"></div>
+      </div>
+      <div class="field"><span>Zobrazit</span>
+        <div class="seg" id="lg-mode" role="group" aria-label="Co zobrazit">
+          <button type="button" data-v="st" aria-pressed="true">Tabulka</button>
+          <button type="button" data-v="sk" aria-pressed="false">Hráči</button>
+          <button type="button" data-v="gk" aria-pressed="false">Brankáři</button>
+        </div>
+      </div>
+      <label class="field grow" id="lg-q-wrap"><span>Hledat hráče</span><input type="search" id="lg-q" placeholder="Jméno" autocomplete="off"></label>
+      <div class="field" id="lg-cz-wrap"><span>Hráči</span>
+        <div class="seg" id="lg-cz" role="group" aria-label="Kteří hráči">
+          <button type="button" data-v="" aria-pressed="true">Všichni</button>
+          <button type="button" data-v="cz" aria-pressed="false">Češi a Slováci</button>
+        </div>
+      </div>
+      <div class="count" id="lg-count"></div>
+    </div>
+    <div id="lg-box"></div>
+  </section>
+
+  <section id="view-cesisvet" hidden>
+    <p class="legend" style="margin:0 0 12px">Čeští a slovenští hráči v AHL, zámořských juniorských ligách (OHL, WHL, QMJHL, USHL), ve finské Liize a ve švýcarské National League v aktuální sezoně. Národnost podle údajů lig; kde liga národnost neuvádí, podle záznamu NHL. Kdo si už zahrál NHL, má jméno jako odkaz na svůj detail.</p>
+    <div class="count" id="cs-count" style="margin-bottom:8px"></div>
+    <div id="cs-box"></div>
+  </section>
 
   <section id="view-lihen" hidden>
     <div class="filters">
@@ -1428,11 +1465,13 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     else if (view === "lihen") renderLihen();
     else if (view === "repre") renderRepre();
     else if (view === "draft") renderDraft();
+    else if (view === "ligy") renderLigy();
+    else if (view === "cesisvet") renderCesiSvet();
     else if (view === "tymy" || view === "vyhled") renderTeams();
   }
 
   function setView(v, push = true) {
-    const views = ["prehled", "sezony", "hraci", "brankari", "tymy", "cesi", "zebricky", "moji", "porovnani", "rekordy", "ceny", "lihen", "repre", "draft"].concat(SCHED_REST && SCHED_REST.length && !HSEASON && !PO ? ["vyhled"] : []).concat(GM ? ["zapasy"] : [], SCHED && SCHED.length ? ["program"] : [], SHOTS ? ["strely"] : [], LINES ? ["formace"] : []);
+    const views = ["prehled", "sezony", "hraci", "brankari", "tymy", "cesi", "zebricky", "moji", "porovnani", "rekordy", "ceny", "lihen", "repre", "draft", "ligy", "cesisvet"].concat(SCHED_REST && SCHED_REST.length && !HSEASON && !PO ? ["vyhled"] : []).concat(GM ? ["zapasy"] : [], SCHED && SCHED.length ? ["program"] : [], SHOTS ? ["strely"] : [], LINES ? ["formace"] : []);
     view = views.includes(v) ? v : "prehled";
     if (view === "vyhled") tmState.mode = "out"; else if (view === "tymy") tmState.mode = "table";
     document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.view === view)));
@@ -1449,7 +1488,7 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     $("#view-program").hidden = view !== "program";
     $("#view-cesi").hidden = view !== "cesi";
     $("#view-zebricky").hidden = view !== "zebricky";
-    ["moji", "porovnani", "rekordy", "ceny", "lihen", "repre", "draft"].forEach(v => $("#view-" + v).hidden = view !== v);
+    ["moji", "porovnani", "rekordy", "ceny", "lihen", "repre", "draft", "ligy", "cesisvet"].forEach(v => $("#view-" + v).hidden = view !== v);
     $("#tablebox").hidden = !(view === "hraci" || view === "brankari");
     if (push && location.hash !== "#" + view) { try { history.replaceState(null, "", "#" + view); } catch { location.hash = view; } }
     syncSections();
@@ -2628,6 +2667,70 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
       ${rows.map(r => `<tr class="${isCz(r[6]) ? "czr" : ""}"><td>${r[0]}</td><td>${r[1]}</td><td class="l team">${tdot(r[3])}${esc(r[3])}</td><td class="l">${plb(r[9], r[4], r[12], r[13], r[3])}</td><td class="l dim">${POS_D[r[5]] || esc(r[5])}</td><td class="l">${esc(COUNTRY[r[6]] || r[6])}</td><td class="l">${club(r[7], r[8])}</td>${nhlc(r[9], r[10], r[11], r[12])}</tr>`).join("")}</tbody></table></div>`;
   }
 
+
+  /* ===== Další ligy (AHL, zámořští junioři, Liiga, NL) ===== */
+  let LGI = null;
+  const LGD = {};
+  const lgState = Object.assign({ code: "ahl", mode: "st", cz: "", q: "" }, store.get("lg", {}), { q: "" });
+  const POS_L = { C: "C", L: "LK", R: "PK", D: "O", F: "Ú", LW: "LK", RW: "PK", G: "B" };
+  const lgName = (r, g) => { const id = g ? r[12] : r[14]; return id ? plb(id, r[0], g ? 1 : r[15], g ? r[14] : r[16], "") : esc(r[0]); };
+  function loadLgi(then) {
+    if (LGI) return true;
+    $("#lg-box").innerHTML = `<div class="loading">Načítám ligy…</div>`;
+    opt("ligy/index.json").then(x => { LGI = x || { leagues: [], cz: [] }; then(); });
+    return false;
+  }
+  function renderLigy() {
+    if (!loadLgi(() => { if (view === "ligy") renderLigy(); })) return;
+    const L = LGI.leagues || [];
+    if (!L.length) { $("#lg-box").innerHTML = `<div class="empty">Data dalších lig se objeví po příští automatické aktualizaci.</div>`; return; }
+    if (!L.some(l => l[0] === lgState.code)) lgState.code = L[0][0];
+    $("#lg-code").innerHTML = L.map(l => `<button type="button" data-v="${l[0]}" aria-pressed="${l[0] === lgState.code}" title="${esc(l[2])}">${esc(l[1])}</button>`).join("");
+    segSet("#lg-mode", lgState.mode); segSet("#lg-cz", lgState.cz);
+    $("#lg-q-wrap").hidden = $("#lg-cz-wrap").hidden = lgState.mode === "st";
+    const code = lgState.code;
+    if (!LGD[code]) { $("#lg-box").innerHTML = `<div class="loading">Načítám ${esc(code.toUpperCase())}…</div>`; opt(`ligy/${code}.json`).then(x => { LGD[code] = x || { st: [], sk: [], gk: [] }; if (view === "ligy") renderLigy(); }); return; }
+    const D = LGD[code], q = norm(lgState.q || ""), box = $("#lg-box");
+    const credit = `<p class="lgcredit">${esc(D.name)} · ${esc(D.season || "")} · ${D.credit_url ? `<a href="${D.credit_url}" target="_blank" rel="noopener">${esc(D.credit)}</a>` : esc(D.credit)}${D.note ? ` · ${esc(D.note)}` : ""}</p>`;
+    const filt = (rows, ni) => rows.filter(r => (!lgState.cz || r[ni] === "CZE" || r[ni] === "SVK") && (!q || norm(r[0]).includes(q)));
+    if (lgState.mode === "st") {
+      const groups = D.st || [];
+      $("#lg-count").textContent = `${groups.reduce((a, g) => a + g.t.length, 0)} týmů`;
+      box.innerHTML = `<div class="tablebox" style="max-height:none"><table style="min-width:720px"><thead><tr><th>#</th><th class="l">Tým</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry v základní době">P</th><th title="Prohry v prodloužení a nájezdech">PP</th><th title="Body">B</th><th title="Skóre">Skóre</th><th class="l" title="Posledních 10 zápasů (V-P-PP-PN)">Posl. 10</th></tr></thead><tbody>
+        ${groups.map(g => `${g.n ? `<tr class="lgh"><td colspan="9" class="l">${esc(g.n)}</td></tr>` : ""}${g.t.map((t, i) => `<tr><td class="dim">${i + 1}</td><td class="l"><b>${esc(t[1])}</b>${t[0] && t[0] !== t[1] ? ` <span class="dim">${esc(t[0])}</span>` : ""}</td><td>${t[2]}</td><td>${t[3]}</td><td>${t[4]}</td><td>${t[5]}</td><td style="font-weight:700">${t[6]}</td><td>${t[7]}:${t[8]}</td><td class="l dim">${esc(t[10] && t[10] !== "--" ? t[10] : "")}</td></tr>`).join("")}`).join("")}
+        </tbody></table></div>${credit}`;
+      return;
+    }
+    if (lgState.mode === "sk") {
+      const rows = filt(D.sk || [], 13), xg = D.kind === "liiga";
+      $("#lg-count").textContent = `${rows.length} hráčů`;
+      box.innerHTML = rows.length ? `<div class="tablebox"><table style="min-width:${xg ? 980 : 880}px"><thead><tr><th>#</th><th class="l">Hráč</th><th class="l">Tým</th><th class="l">Poz.</th><th title="Zápasy">Z</th><th title="Góly">G</th><th title="Asistence">A</th><th title="Body">B</th><th title="Plus/minus">+/−</th><th title="Trestné minuty">TM</th>${D.kind === "sihf" ? "" : `<th title="Góly v přesilovce">PPG</th><th title="Střely">S</th>`}${xg ? `<th title="Očekávané góly">xG</th><th title="Průměrný čas na ledě">Čas</th>` : ""}</tr></thead><tbody>
+        ${rows.slice(0, 400).map((r, i) => `<tr><td class="dim">${i + 1}</td><td class="l"><span class="name">${lgName(r, false)}</span>${r[13] ? chip(r[13]) : ""}${r[12] ? ` <span class="dim" title="Nováček">N</span>` : ""}</td><td class="l team">${esc(r[1])}</td><td class="l dim">${POS_L[r[2]] || esc(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td style="font-weight:700">${r[6]}</td><td class="${r[7] > 0 ? "pos" : r[7] < 0 ? "neg" : "dim"}">${signed(r[7])}</td><td>${r[8]}</td>${D.kind === "sihf" ? "" : `<td>${r[9]}</td><td>${r[10]}</td>`}${xg ? `<td>${nf(r[17] || 0, 1)}</td><td>${r[18] ? toi(Math.round(r[18])) : "–"}</td>` : ""}</tr>`).join("")}
+        </tbody></table></div>${credit}` : `<div class="empty">Žádný hráč.</div>${credit}`;
+      return;
+    }
+    const rows = filt(D.gk || [], 11).sort((a, b) => b[2] - a[2]);
+    $("#lg-count").textContent = `${rows.length} brankářů`;
+    const v = x => x == null ? `<span class="dim">–</span>` : x;
+    box.innerHTML = rows.length ? `<div class="tablebox"><table style="min-width:820px"><thead><tr><th>#</th><th class="l">Brankář</th><th class="l">Tým</th><th title="Zápasy">Z</th><th title="Výhry">V</th><th title="Prohry">P</th><th title="Prohry v prodloužení a nájezdech">PP</th><th title="Průměr obdržených gólů">POG</th><th title="Úspěšnost zákroků">Úsp. %</th><th title="Čistá konta">ČK</th><th title="Zákroky">Zákr.</th></tr></thead><tbody>
+      ${rows.map((r, i) => `<tr><td class="dim">${i + 1}</td><td class="l"><span class="name">${lgName(r, true)}</span>${r[11] ? chip(r[11]) : ""}</td><td class="l team">${esc(r[1])}</td><td>${r[2]}</td><td>${v(r[3])}</td><td>${v(r[4])}</td><td>${v(r[5])}</td><td>${r[6] == null ? v(null) : nf(r[6], 2)}</td><td style="font-weight:700">${r[7] == null ? v(null) : pctf(r[7], 1)}</td><td>${v(r[8])}</td><td>${v(r[9])}</td></tr>`).join("")}
+      </tbody></table></div>${credit}` : `<div class="empty">Brankářské statistiky tato liga ve veřejných datech neposkytuje.</div>${credit}`;
+  }
+  function renderCesiSvet() {
+    const box = $("#cs-box");
+    if (!LGI) { box.innerHTML = `<div class="loading">Načítám ligy…</div>`; opt("ligy/index.json").then(x => { LGI = x || { leagues: [], cz: [] }; if (view === "cesisvet") renderCesiSvet(); }); return; }
+    const L = LGI.leagues || [], rows = LGI.cz || [];
+    if (!rows.length) { box.innerHTML = `<div class="empty">Data dalších lig se objeví po příští automatické aktualizaci.</div>`; return; }
+    $("#cs-count").textContent = `${rows.filter(r => r[9] === "CZE").length} Čechů a ${rows.filter(r => r[9] === "SVK").length} Slováků`;
+    box.innerHTML = L.map(l => {
+      const rr = rows.filter(r => r[0] === l[0]).sort((a, b) => a[1] - b[1] || b[8] - a[8] || b[5] - a[5]);
+      if (!rr.length) return "";
+      return `<h3 class="prday">${esc(l[1])} <span class="dim" style="font-size:14px;font-weight:400">${esc(l[2])} · ${rr.length}</span></h3><div class="tablebox" style="max-height:none;margin-bottom:16px"><table style="min-width:720px"><thead><tr><th class="l">Hráč</th><th class="l">Tým</th><th class="l">Poz.</th><th title="Zápasy">Z</th><th title="Góly / výhry">G / V</th><th title="Asistence / úspěšnost">A / Úsp.</th><th title="Body / POG">B / POG</th></tr></thead><tbody>
+        ${rr.map(r => `<tr><td class="l"><span class="name">${r[10] ? plb(r[10], r[2], r[1] ? 1 : r[11], r[12], "") : esc(r[2])}</span>${chip(r[9])}</td><td class="l team">${esc(r[3])}</td><td class="l dim">${POS_L[r[4]] || esc(r[4])}</td><td>${r[5]}</td>${r[1] ? `<td>${r[6] ?? "–"}</td><td>${r[7] == null ? "–" : pctf(r[7], 1)}</td><td>${r[8] == null ? "–" : nf(r[8], 2)}</td>` : `<td>${r[6]}</td><td>${r[7]}</td><td style="font-weight:700">${r[8]}</td>`}</tr>`).join("")}
+        </tbody></table></div>`;
+    }).join("") + `<p class="lgcredit">Zdroje: AHL, OHL, WHL, QMJHL a USHL (Official statistics provided by the leagues · Powered by <a href="https://hockeytech.com" target="_blank" rel="noopener">HockeyTech.com</a>), <a href="https://liiga.fi" target="_blank" rel="noopener">Liiga</a>, <a href="https://www.sihf.ch" target="_blank" rel="noopener">Swiss Ice Hockey Federation</a>.</p>`;
+  }
+
   /* ===== Včerejší noc ===== */
   function renderNight() {
     const box = $("#night");
@@ -3025,7 +3128,8 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     ["hraci_s", "Hráči", ["hraci", "brankari", "zebricky", "porovnani", "draft"]],
     ["tymy_s", "Týmy", ["tymy", "vyhled", "zapasy", "program"]],
     ["analyza", "Analýza", ["strely", "formace"]],
-    ["historie", "Historie", ["sezony", "rekordy", "ceny"]]
+    ["historie", "Historie", ["sezony", "rekordy", "ceny"]],
+    ["ligy_s", "Ligy", ["ligy", "cesisvet"]]
   ];
   const secOf = v => (SECTIONS.find(s => s[2].includes(v)) || SECTIONS[0])[0];
   function syncSections() {
@@ -3764,11 +3868,15 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     const ab = e.target.closest("[data-aw]"); if (ab) { awState.t = ab.dataset.aw === "cup" ? "cup" : +ab.dataset.aw; store.set("aw", awState); renderAwards(); return true; }
     return false;
   };
-  ["#pr-box", "#zb-box", "#night", "#rk-box", "#aw-box", "#pc-box", "#rp-box", "#dr-box"].forEach(sel => $(sel).addEventListener("click", plClick));
+  ["#pr-box", "#zb-box", "#night", "#rk-box", "#aw-box", "#pc-box", "#rp-box", "#dr-box", "#lg-box", "#cs-box"].forEach(sel => $(sel).addEventListener("click", plClick));
   $("#lh-box").addEventListener("click", e => { const m = e.target.closest("[data-lh]"); if (m) { lhState.open = lhState.open === m.dataset.lh ? "" : m.dataset.lh; renderLihen(); return; } plClick(e); });
   $("#lh-nat").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; lhState.nat = b.dataset.v; lhState.open = ""; store.set("lh", lhState); renderLihen(); });
   $("#rp-nat").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; rpState.nat = b.dataset.v; store.set("rp", rpState); renderRepre(); });
   $("#rp-sort").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; rpState.sort = b.dataset.v; store.set("rp", rpState); renderRepre(); });
+  $("#lg-code").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; lgState.code = b.dataset.v; store.set("lg", lgState); renderLigy(); });
+  $("#lg-mode").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; lgState.mode = b.dataset.v; store.set("lg", lgState); renderLigy(); });
+  $("#lg-cz").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; lgState.cz = b.dataset.v; store.set("lg", lgState); renderLigy(); });
+  $("#lg-q").addEventListener("input", e => { lgState.q = e.target.value; renderLigy(); });
   $("#dr-mode").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; drState.mode = b.dataset.v; store.set("dr", drState); renderDraft(); });
   $("#dr-year").addEventListener("change", e => { drState.year = +e.target.value; store.set("dr", drState); renderDraft(); });
   /* --- Vzhled: Kostka / Klasika --- */
