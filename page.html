@@ -1031,6 +1031,7 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
           <li><a href="https://www.nhl.com/stats/edge" target="_blank" rel="noopener">NHL EDGE</a>: rychlost bruslení, střela, najeté kilometry a místa střel</li>
           <li><a href="https://records.nhl.com" target="_blank" rel="noopener">NHL Records</a>: trofeje a vítězové cen</li>
           <li><a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a>: očekávané góly (xG), Corsi, GSAx, formace a data jednotlivých střel (zdarma pro nekomerční použití s uvedením zdroje)</li>
+          <li>Další ligy: AHL, OHL, WHL, QMJHL a USHL (oficiální statistiky lig, <a href="https://hockeytech.com" target="_blank" rel="noopener">Powered by HockeyTech.com</a>), <a href="https://liiga.fi" target="_blank" rel="noopener">Liiga</a> a <a href="https://www.sihf.ch" target="_blank" rel="noopener">Swiss Ice Hockey Federation</a></li>
         </ul>
         <p>Data se stahují automaticky dvakrát denně. Kariéry hráčů se obnovují jednou týdně a sledovací data NHL EDGE jednou denně, aby stránka zbytečně nezatěžovala servery zdrojů. Čísla se od oficiálních mohou drobně lišit kvůli dodatečným opravám zápisů.</p>
       </div>
@@ -2694,7 +2695,7 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
       return;
     }
     if (lgState.mode === "sk") {
-      const rows = filt(D.sk || [], 13), xg = D.kind === "liiga";
+      const rows = filt(D.sk || [], 13).sort((a, b) => b[6] - a[6] || b[4] - a[4] || a[3] - b[3]), xg = D.kind === "liiga";
       $("#lg-count").textContent = `${rows.length} hráčů`;
       box.innerHTML = rows.length ? `<div class="tablebox"><table style="min-width:${xg ? 980 : 880}px"><thead><tr><th>#</th><th class="l">Hráč</th><th class="l">Tým</th><th class="l">Poz.</th><th title="Zápasy">Z</th><th title="Góly">G</th><th title="Asistence">A</th><th title="Body">B</th><th title="Plus/minus">+/−</th><th title="Trestné minuty">TM</th>${D.kind === "sihf" ? "" : `<th title="Góly v přesilovce">PPG</th><th title="Střely">S</th>`}${xg ? `<th title="Očekávané góly">xG</th><th title="Průměrný čas na ledě">Čas</th>` : ""}</tr></thead><tbody>
         ${rows.slice(0, 400).map((r, i) => `<tr><td class="dim">${i + 1}</td><td class="l"><span class="name">${lgName(r, false)}</span>${r[13] ? chip(r[13]) : ""}${r[12] ? ` <span class="dim" title="Nováček">N</span>` : ""}</td><td class="l team">${esc(r[1])}</td><td class="l dim">${POS_L[r[2]] || esc(r[2])}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td style="font-weight:700">${r[6]}</td><td class="${r[7] > 0 ? "pos" : r[7] < 0 ? "neg" : "dim"}">${signed(r[7])}</td><td>${r[8]}</td>${D.kind === "sihf" ? "" : `<td>${r[9]}</td><td>${r[10]}</td>`}${xg ? `<td>${nf(r[17] || 0, 1)}</td><td>${r[18] ? toi(Math.round(r[18])) : "–"}</td>` : ""}</tr>`).join("")}
