@@ -1,0 +1,1001 @@
+### robots lscluster.hockeytech.com
+https://lscluster.hockeytech.com/robots.txt
+status=404 type= len=0
+
+
+### robots theahl.com
+https://theahl.com/robots.txt
+status=200 type=text/plain; charset=utf-8 len=208
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Crawl-delay: 10
+
+Sitemap: https://theahl.com/wp-sitemap.xml
+Sitemap: https://theahl.com/sitemap.xml
+Sitemap: https://theahl.com/sitemap.html
+
+
+### robots ontariohockeyleague.com
+https://ontariohockeyleague.com/robots.txt
+status=200 type=text/html; charset=UTF-8 len=418966
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#1f7cb6"/>	<link rel="profile" href="https://gmpg.org/xfn/11" />
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.8 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Ontario Hockey League (OHL)</title>
+	<meta name="description" content="Official Website" />
+	<link rel="canonical" href="https://chl.ca/ohl/" />
+	<link rel="next" href="https://chl.ca/ohl/page/2/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Ontario Hockey League (OHL)" />
+	<meta property="og:description" content="Official Website" />
+	<meta property="og:url" content="https://chl.ca/ohl/" />
+	<meta property="og:site_name" content="Ontario Hockey League" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"CollectionPage","@id":"https:\/\/chl.ca\/ohl\/","url":"https:\/\/chl.ca\/ohl\/","name":"Ontario Hockey League - Official Website of the OHL","isPartOf":{"@id":"https:\/\/chl.ca\/ohl\/#
+
+### robots chl.ca
+https://chl.ca/robots.txt
+status=200 type=text/plain len=4044
+# START YOAST BLOCK
+# ---------------------------
+
+User-agent: *
+
+# WP Defender - Begin
+Disallow: /14e18acbfe443260
+# WP Defender - End
+Crawl-delay: 20
+
+User-agent: GPTBot
+Crawl-delay: 20
+
+User-agent: ClaudeBot
+Crawl-delay: 20
+
+User-agent: TikTokBot
+Crawl-delay: 20
+
+User-agent: Amazonbot
+Crawl-delay: 20
+
+User-agent: CriteoBot
+Crawl-delay: 20
+
+Disallow: /wp-admin/
+Disallow: /wp-json/
+Disallow: /*/wp-json/
+
+Sitemap: https://chl.ca/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-wildcats/sitemap_index.xml
+Sitemap: https://chl.ca/ohl/sitemap_index.xml
+Sitemap: https://chl.ca/whl/sitemap_index.xml
+Sitemap: https://chl.ca/whl-rebels/sitemap_index.xml
+Sitemap: https://chl.ca/ohl-spitfires/sitemap_index.xml
+Sitemap: https://chl.ca/ohlcup/sitemap_index.xml
+Sitemap: https://chl.ca/whl-americans/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-armada/sitemap_index.xml
+Sitemap: https://chl.ca/ohl-attack/sitemap_index.xml
+Sitemap: https://chl.ca/ohl-colts/sitemap_index.xml
+Sitemap: https://chl.ca/ohl-battalion/sitemap_index.xml
+Sitemap: https://chl.ca/whl-blazers/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-eagles/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-cataractes/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-islanders/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-foreurs/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-phoenix/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-titan/sitemap_index.xml
+Sitemap: https://chl.ca/lhjmq-
+
+### robots whl.ca
+https://whl.ca/robots.txt
+status=200 type=text/html; charset=UTF-8 len=488838
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#ce0e2d"/>	<link rel="profile" href="https://gmpg.org/xfn/11" />
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.8 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>WHL Home</title>
+	<meta name="description" content="Headquartered in Calgary, Alberta, the Western Hockey League (WHL) consists of 23 Member Clubs located throughout Western Canada and the U.S. Pacific Northwest." />
+	<link rel="canonical" href="https://chl.ca/whl/" />
+	<link rel="next" href="https://chl.ca/whl/page/2/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="WHL Home" />
+	<meta property="og:description" content="Headquartered in Calgary, Albert, the Western Hockey League (WHL) consists of 22 Member Clubs located throughout Western Canada and the U.S. Pacific Northwest." />
+	<meta property="og:url" content="https://chl.ca/whl/" />
+	<meta property="og:site_name" content="Western Hockey League" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@TheWHL" />
+	<scr
+
+### robots theqmjhl.ca
+https://theqmjhl.ca/robots.txt
+status=200 type=text/html; charset=UTF-8 len=342804
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#026be4"/>	<link rel="profile" href="https://gmpg.org/xfn/11" />
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<link rel="alternate" hreflang="en" href="https://chl.ca/lhjmq/en/" />
+<link rel="alternate" hreflang="fr-ca" href="https://chl.ca/lhjmq/" />
+<link rel="alternate" hreflang="x-default" href="https://chl.ca/lhjmq/" />
+
+	<!-- This site is optimized with the Yoast SEO plugin v28.8 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>LHJMQ -</title>
+	<link rel="canonical" href="https://chl.ca/lhjmq/" />
+	<link rel="next" href="https://chl.ca/lhjmq/page/2/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="LHJMQ" />
+	<meta property="og:url" content="https://chl.ca/lhjmq/" />
+	<meta property="og:site_name" content="LHJMQ" />
+	<meta property="og:image" content="https://cdn.theqmjhl.ca/uploads/2020/11/30152322/LHJMQ-Logo-Couleur.jpg" />
+	<meta property="og:image:width" content="2500" />
+	<meta property="og:image:height" content="2363" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_l
+
+### robots ushl.com
+https://ushl.com/robots.txt
+status=200 type=text/plain; charset=utf-8 len=5489
+User-agent: BLP_bbot/0.1
+Disallow: /
+ 
+User-agent: BLP_bbot
+Disallow: /
+
+User-agent: Slurp 
+Disallow: /
+
+User-agent: Spinn3r
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: BaiduImagespider
+Disallow: /
+
+User-agent: Speedy Spider
+Disallow: /
+
+User-agent: psbot
+Disallow: /
+
+User-agent: VoilaBot
+Disallow: /
+
+User-agent: Ask Jeeves
+Disallow: /
+
+User-agent: daumoa
+Disallow: /
+
+User-agent: Jaxified
+Disallow: /
+
+User-agent: Yeti
+Disallow: /
+
+User-agent: ICC-Crawler
+Disallow: /
+
+User-agent: YesupBot
+Disallow: /
+
+User-agent: Ezooms/1.0
+Disallow: /
+
+User-agent: DotSpotsBot
+Disallow: /
+
+User-agent: Twiceler
+Disallow: /
+
+User-agent: TurnitinBot
+Disallow: /
+
+User-agent: Willow Internet Crawler by Twotrees
+Disallow: /
+
+User-agent: LargeSmall Crawler 
+Disallow: /
+
+User-agent: spbot
+Disallow: /
+
+User-agent: mxbot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: magpie-crawler
+Disallow: /
+
+User-agent: Sogou web spider
+Disallow: /
+
+User-agent: Influencebot/0.9
+Disallow: / 
+
+User-agent: Kwaclebot
+Disallow: /
+
+User-agent: Sosospider
+Disallow: /
+
+User-agent: MSRBOT
+Disallow: /
+
+User-agent: betaBot
+Disallow: /
+
+User-agent: Yahoo-Newscrawler
+Disallow: /
+
+User-agent: Lycos_Spider
+Disallow: /
+
+User-agent: YahooMobile/1.0
+Disallow: /
+
+User-agent: Domaincrawler 1.0
+Disallow: /
+
+User-agent: Yahoo Pipes 1.0
+Disallow: /
+
+User-agent: KSCrawler
+Disallow: /
+
+User-agent: Synaps
+
+### robots liiga.fi
+https://liiga.fi/robots.txt
+status=200 type=text/plain len=54
+# blank file required due to error page setup in AWS 
+
+
+### robots www.nationalleague.ch
+https://www.nationalleague.ch/robots.txt
+status=200 type=text/plain len=84
+User-agent: *
+Disallow: /umbraco
+Disallow: /App_Plugins
+Disallow: /sb
+Disallow: /api
+
+### robots data.sihf.ch
+https://data.sihf.ch/robots.txt
+status=404 type= len=0
+
+
+### robots www.sihf.ch
+https://www.sihf.ch/robots.txt
+status=200 type=text/plain len=560
+User-agent: *
+
+Disallow: /App_Browsers/
+Disallow: /App_Code/
+Disallow: /App_Data/
+Disallow: /App_Plugins/
+Disallow: /bin/
+Disallow: /config/
+Disallow: /data/
+Disallow: /Install/
+Disallow: /macroScripts/
+Disallow: /macropages/
+Disallow: /picture_library/
+Disallow: /wwwroot/umbraco/
+Disallow: /umbraco/
+Disallow: /umbraco_client/
+Disallow: /usercontrols/
+Disallow: /Views/
+Disallow: /xslt/
+
+Allow: /App_Plugins/UmbracoForms/Assets/
+Allow: /App_Plugins/**/Assets/
+
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+sitemap:  https://www.sihf.ch/sitemap.xml
+
+### robots www.penny-del.org
+https://www.penny-del.org/robots.txt
+status=200 type=text/plain; charset=utf-8 len=420
+# Statisch aus public/ ausgeliefert (vorher 404 ueber TYPO3).
+User-agent: *
+Disallow: /typo3/
+Disallow: /index.php?eID=
+Disallow: /anmeldung-erforderlich
+Disallow: /*?type=1700
+Disallow: /*?type=9876
+
+# SEO-Crawler bremsen (zusammen ~16k Anfragen pro Spieltag)
+User-agent: SemrushBot
+Crawl-delay: 30
+
+User-agent: AhrefsBot
+Crawl-delay: 30
+
+User-agent: Bytespider
+Crawl-delay: 30
+
+User-agent: Baiduspider
+Crawl-delay: 30
+
+
+### robots www.shl.se
+https://www.shl.se/robots.txt
+status=200 type=text/html; charset=utf-8 len=179835
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="/assets/EA-B57QjqLQ.png" as="image" type="image/png"><link rel="preload" href="/assets/cocacola-DWIpACf0.png" as="image" type="image/png"><link rel="preload" href="/assets/error-image-CmouA1K8.png" as="image" type="image/png"><link rel="preload" href="/assets/error-hnM_QZLo.png" as="image" type="image/png"><link rel="preload" href="/assets/logo-default--2uj1OHZ.png" as="image" type="image/png"><link rel="preload" href="/assets/nike-C33uNOcU.png" as="image" type="image/png"><link rel="modulepreload" crossorigin href="/assets/NotFoundPage-CVqLRPpU.js"><link rel="stylesheet" href="/assets/NotFoundPage-D4crelEG.css">
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHL</title>
+<script type="text/javascript" data-hid="consent-defaults">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+</script>
+<script type="text/javascript" data-hid="gtm">
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.asy
+
+### robots stats.swehockey.se
+https://stats.swehockey.se/robots.txt
+status=404 type= len=0
+
+
+### robots www.hockeyslovakia.sk
+https://www.hockeyslovakia.sk/robots.txt
+status=200 type=text/plain; charset=utf-8 len=2676
+# As a condition of accessing this website, you agree to abide by the following
+# content signals:
+
+# (a)  If a Content-Signal = yes, you may collect content for the corresponding
+#      use.
+# (b)  If a Content-Signal = no, you may not collect content for the
+#      corresponding use.
+# (c)  If the website operator does not include a Content-Signal for a
+#      corresponding use, the website operator neither grants nor restricts
+#      permission via Content-Signal with respect to the corresponding use.
+
+# The content signals and their meanings are:
+
+# search:   building a search index and providing search results (e.g., returning
+#           hyperlinks and short excerpts from your website's contents). Search does not
+#           include providing AI-generated search summaries.
+# ai-input: inputting content into one or more AI models (e.g., retrieval
+#           augmented generation, grounding, or other real-time taking of content for
+#           generative AI search answers).
+# ai-train: training or fine-tuning AI models.
+# use:      how AI systems may consume the content (immediate, reference, or full).
+
+# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
+# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
+# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
+
+# BEGIN Cloudflare Managed content
+
+
+User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+
+# Training crawlers
+User-agent: Amazonbot
+Disallow: /
+
+### robots www.hokej.cz
+https://www.hokej.cz/robots.txt
+status=200 type=text/plain; charset=utf-8 len=2676
+# As a condition of accessing this website, you agree to abide by the following
+# content signals:
+
+# (a)  If a Content-Signal = yes, you may collect content for the corresponding
+#      use.
+# (b)  If a Content-Signal = no, you may not collect content for the
+#      corresponding use.
+# (c)  If the website operator does not include a Content-Signal for a
+#      corresponding use, the website operator neither grants nor restricts
+#      permission via Content-Signal with respect to the corresponding use.
+
+# The content signals and their meanings are:
+
+# search:   building a search index and providing search results (e.g., returning
+#           hyperlinks and short excerpts from your website's contents). Search does not
+#           include providing AI-generated search summaries.
+# ai-input: inputting content into one or more AI models (e.g., retrieval
+#           augmented generation, grounding, or other real-time taking of content for
+#           generative AI search answers).
+# ai-train: training or fine-tuning AI models.
+# use:      how AI systems may consume the content (immediate, reference, or full).
+
+# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF
+# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT
+# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
+
+# BEGIN Cloudflare Managed content
+
+
+User-agent: *
+Content-Signal: search=yes,ai-train=no,use=reference
+Allow: /
+
+# Training crawlers
+User-agent: Amazonbot
+Disallow: /
+
+### robots www.tipsportextraliga.cz
+https://www.tipsportextraliga.cz/robots.txt
+status=-1 type=<urlopen error [Errno -3] Temporary failure in name resolution> len=0
+
+
+### home ahl
+https://theahl.com/stats/player-stats
+status=200 type=text/html; charset=UTF-8 len=121222
+<!doctype html>
+<html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec"  ng-app="app">
+<head>
+	<base href="/stats/">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" conte
+
+### home ohl
+https://chl.ca/ohl/stats/players/
+status=200 type=text/html; charset=UTF-8 len=726892
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#1f7cb6"/>
+
+### home whl
+https://chl.ca/whl/stats/players/
+status=200 type=text/html; charset=UTF-8 len=737003
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#ce0e2d"/>
+
+### home qmjhl
+https://chl.ca/lhjmq/en/stats/players/
+status=200 type=text/html; charset=UTF-8 len=722601
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#026be4"/>
+
+### home ushl
+https://ushl.com/view#/player-stats
+status=404 type= len=0
+
+
+### home ohl2
+https://ontariohockeyleague.com/stats/players
+status=200 type=text/html; charset=UTF-8 len=418966
+<!DOCTYPE html>
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en-US" class="no-js">
+<!--<![endif]-->
+<head>
+	<meta charset="UTF-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+			<meta name="theme-color" content="#1f7cb6"/>
+
+### home liiga
+https://liiga.fi/fi/tilastot
+status=200 type=text/html len=12435
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+  <!-- redirect old liiga -->
+  <script defer>
+    if (window.location.origin.includes('devtest')) {
+      window.location.href = 'https://infradev.liiga.fi' + window.location.pathname
+    } else if (window.location.origin.includes('old.liiga')) {
+      windo
+
+### home nl
+https://www.nationalleague.ch/de/statistiken
+status=200 type=text/html len=4634
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.00001, viewport-fit=cover"
+		/>
+		<link rel="manifest" href="\mani
+
+### home del
+https://www.penny-del.org/statistik
+status=200 type=text/html; charset=utf-8 len=319672
+<!DOCTYPE html>
+<html lang="de-de">
+<head>
+    <meta charset="utf-8">
+
+<!-- 
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2026 of Kasp
+
+### home shl
+https://www.shl.se/statistik/spelare
+status=200 type=text/html; charset=utf-8 len=179835
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="/assets/EA-B57QjqLQ.png" as="image" type="image/png"><link rel="preload" href="/assets/cocacola-DWIpACf0.png" as="image" 
+
+### home svk
+https://www.hockeyslovakia.sk/sk/stats
+status=403 type= len=0
+
+
+### home hokejcz
+https://www.hokej.cz/tipsport-extraliga/stats-center
+status=403 type= len=0
+
+
+### NALEZENO
+{
+ "ahl": {
+  "keys": [],
+  "codes": [
+   "ahl",
+   "client"
+  ],
+  "apis": [
+   "https://theahl.com/feed"
+  ],
+  "scripts": [
+   "//www.googletagmanager.com/gtag/js?id=G-79GS1TNSSL",
+   "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-route.min.js",
+   "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-touch.min.js",
+   "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js",
+   "https://lscluster.hockeytech.com/statview-1.4.1/js/client/ahl/base.r3.js",
+   "https://lscluster.hockeytech.com/statview-1.4.1/js/ht-controller.r3.js",
+   "https://lscluster.hockeytech.com/statview-1.4.1/js/ht-directives.r3.js",
+   "https://lscluster.hockeytech.com/statview-1.4.1/js/ht-libraries.r3.js",
+   "https://lscluster.hockeytech.com/statview-1.4.1/js/ht-routes.r3.js",
+   "https://lscluster.hockeytech.com/statview-1.4.1/js/ht-services.r3.js",
+   "https://resources.infolinks.com/js/infolinks_main.js",
+   "https://theahl.com/wp-content/plugins/constant-contact-forms/assets/js/ctct-plugin-frontend.min.js?ver=2.22.3",
+   "https://theahl.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.2.4",
+   "https://theahl.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.2.4",
+   "https://theahl.com/wp-content/plugins/contact-form-7/modules/recaptcha/index.js?ver=6.2.4",
+   "https://theahl.com/wp-content/plugins/flowpaper-lite-pdf-flipbook/assets/lity/lity.min.js",
+   "https://theahl.com/wp-content/plugins/foobox-image-lightbox/free/js/foobox.free.min.js?ver=2.8.7",
+   "https://theahl.com/wp-content/plugins/ht-teams-widget/js/team-entries-widget.js",
+   "https://theahl.com/wp-content/plugins/instagram-feed-pro/js/sbi-scripts.min.js?ver=6.4",
+   "https://theahl.com/wp-content/plugins/page-links-to/dist/new-tab.js?ver=3.4.1",
+   "https://theahl.com/wp-content/plugins/responsive-accordion-and-collapse/js/accordion-custom.js?ver=7.1.4",
+   "https://theahl.com/wp-content/plugins/responsive-accordion-and-collapse/js/accordion.js?ver=7.1.4",
+   "https://theahl.com/wp-content/plugins/social-icons-widget-by-wpzoom/assets/js/social-icons-widget-frontend.js?ver=1793295722",
+   "https://theahl.com/wp-content/themes/jaws/js/myloadmore.js?ver=7.1.4",
+   "https://theahl.com/wp-content/themes/jaws/js/navigation-mobile.js?ver=08062019"
+  ]
+ },
+ "ohl": {
+  "keys": [
+   "f1aa699db3d81487"
+  ],
+  "codes": [
+   "null"
+  ],
+  "apis": [
+   "https://lscluster.hockeytech.com/feed/?${e}&fmt=json"
+  ],
+  "scripts": [
+   "https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js?ver=7.1.4",
+   "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js?ver=7.1.4",
+   "https://cdn.tpdads.com/configs/chl.js?ver=7.1.4",
+   "https://chl.ca/ohl/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1793185225",
+   "https://chl.ca/ohl/wp-content/plugins/dt-the7-core/assets/js/post-type.min.js?ver=2.7.13",
+   "https://chl.ca/ohl/wp-content/plugins/fanreach-hockey/build/index.js?ver=1.0",
+   "https://chl.ca/ohl/wp-content/plugins/fanreach-hockey/templates/stats/includes/stats.js",
+   "https://chl.ca/ohl/wp-content/plugins/wp-polls/js/wp-polls.js?ver=3.0.2",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/js/main.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/lib/custom-scrollbar/custom-scrollbar.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/lib/jquery-mousewheel/jquery-mousewheel.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-includes/js/dist/a11y.min.js?ver=31c6cec5a4ff7aff483d",
+   "https://chl.ca/ohl/wp-includes/js/dist/api-fetch.min.js?ver=6f2a4faeee3c722b1e57",
+   "https://chl.ca/ohl/wp-includes/js/dist/autop.min.js?ver=4e10a18cb6f21a043fc0",
+   "https://chl.ca/ohl/wp-includes/js/dist/blob.min.js?ver=c7582a735ddd2edc9731",
+   "https://chl.ca/ohl/wp-includes/js/dist/block-editor.min.js?ver=37e58da384b2558bd479",
+   "https://chl.ca/ohl/wp-includes/js/dist/block-serialization-default-parser.min.js?ver=fc209395a022242d64aa",
+   "https://chl.ca/ohl/wp-includes/js/dist/blocks.min.js?ver=c0e57a630a0b6f6c3bb5",
+   "https://chl.ca/ohl/wp-includes/js/dist/commands.min.js?ver=1a4910212c7ed2355300",
+   "https://chl.ca/ohl/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c",
+   "https://chl.ca/ohl/wp-includes/js/dist/compose.min.js?ver=0e8bde2a499ea6073b42",
+   "https://chl.ca/ohl/wp-includes/js/dist/core-data.min.js?ver=573f98dbff9f49ffeb0b",
+   "https://chl.ca/ohl/wp-includes/js/dist/data.min.js?ver=14a216e0932d72c22976",
+   "https://chl.ca/ohl/wp-includes/js/dist/date.min.js?ver=8173fc0fc12b7bb7eaf0"
+  ]
+ },
+ "whl": {
+  "keys": [
+   "f1aa699db3d81487"
+  ],
+  "codes": [
+   "null"
+  ],
+  "apis": [
+   "https://lscluster.hockeytech.com/feed/?${e}&fmt=json"
+  ],
+  "scripts": [
+   "https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js?ver=7.1.4",
+   "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js?ver=7.1.4",
+   "https://cdn.tpdads.com/configs/chl.js?ver=7.1.4",
+   "https://chl.ca/whl/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1793185225",
+   "https://chl.ca/whl/wp-content/plugins/dt-the7-core/assets/js/post-type.min.js?ver=2.7.13",
+   "https://chl.ca/whl/wp-content/plugins/fanreach-hockey/build/index.js?ver=1.0",
+   "https://chl.ca/whl/wp-content/plugins/fanreach-hockey/templates/stats/includes/stats.js",
+   "https://chl.ca/whl/wp-content/plugins/wp-polls/js/wp-polls.js?ver=3.0.2",
+   "https://chl.ca/whl/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=15.0.7",
+   "https://chl.ca/whl/wp-content/themes/dt-the7/js/main.min.js?ver=15.0.7",
+   "https://chl.ca/whl/wp-content/themes/dt-the7/lib/custom-scrollbar/custom-scrollbar.min.js?ver=15.0.7",
+   "https://chl.ca/whl/wp-content/themes/dt-the7/lib/jquery-mousewheel/jquery-mousewheel.min.js?ver=15.0.7",
+   "https://chl.ca/whl/wp-includes/js/dist/a11y.min.js?ver=31c6cec5a4ff7aff483d",
+   "https://chl.ca/whl/wp-includes/js/dist/api-fetch.min.js?ver=6f2a4faeee3c722b1e57",
+   "https://chl.ca/whl/wp-includes/js/dist/autop.min.js?ver=4e10a18cb6f21a043fc0",
+   "https://chl.ca/whl/wp-includes/js/dist/blob.min.js?ver=c7582a735ddd2edc9731",
+   "https://chl.ca/whl/wp-includes/js/dist/block-editor.min.js?ver=37e58da384b2558bd479",
+   "https://chl.ca/whl/wp-includes/js/dist/block-serialization-default-parser.min.js?ver=fc209395a022242d64aa",
+   "https://chl.ca/whl/wp-includes/js/dist/blocks.min.js?ver=c0e57a630a0b6f6c3bb5",
+   "https://chl.ca/whl/wp-includes/js/dist/commands.min.js?ver=1a4910212c7ed2355300",
+   "https://chl.ca/whl/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c",
+   "https://chl.ca/whl/wp-includes/js/dist/compose.min.js?ver=0e8bde2a499ea6073b42",
+   "https://chl.ca/whl/wp-includes/js/dist/core-data.min.js?ver=573f98dbff9f49ffeb0b",
+   "https://chl.ca/whl/wp-includes/js/dist/data.min.js?ver=14a216e0932d72c22976",
+   "https://chl.ca/whl/wp-includes/js/dist/date.min.js?ver=8173fc0fc12b7bb7eaf0"
+  ]
+ },
+ "qmjhl": {
+  "keys": [
+   "f1aa699db3d81487"
+  ],
+  "codes": [
+   "null"
+  ],
+  "apis": [
+   "https://lscluster.hockeytech.com/feed/?${e}&fmt=json"
+  ],
+  "scripts": [
+   "https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js?ver=7.1.4",
+   "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js?ver=7.1.4",
+   "https://cdn.tpdads.com/configs/chl.js?ver=7.1.4",
+   "https://chl.ca/lhjmq/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1793185225",
+   "https://chl.ca/lhjmq/wp-content/plugins/fanreach-hockey/build/index.js?ver=1.0",
+   "https://chl.ca/lhjmq/wp-content/plugins/fanreach-hockey/templates/stats/includes/stats.js",
+   "https://chl.ca/lhjmq/wp-content/plugins/sitepress-multilingual-cms/res/js/cookies/language-cookie.js?ver=520000",
+   "https://chl.ca/lhjmq/wp-content/plugins/wp-polls/js/wp-polls.js?ver=3.0.2",
+   "https://chl.ca/lhjmq/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=15.0.7",
+   "https://chl.ca/lhjmq/wp-content/themes/dt-the7/js/main.min.js?ver=15.0.7",
+   "https://chl.ca/lhjmq/wp-content/themes/dt-the7/lib/custom-scrollbar/custom-scrollbar.min.js?ver=15.0.7",
+   "https://chl.ca/lhjmq/wp-content/themes/dt-the7/lib/jquery-mousewheel/jquery-mousewheel.min.js?ver=15.0.7",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/a11y.min.js?ver=31c6cec5a4ff7aff483d",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/api-fetch.min.js?ver=6f2a4faeee3c722b1e57",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/autop.min.js?ver=4e10a18cb6f21a043fc0",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/blob.min.js?ver=c7582a735ddd2edc9731",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/block-editor.min.js?ver=37e58da384b2558bd479",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/block-serialization-default-parser.min.js?ver=fc209395a022242d64aa",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/blocks.min.js?ver=c0e57a630a0b6f6c3bb5",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/commands.min.js?ver=1a4910212c7ed2355300",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/compose.min.js?ver=0e8bde2a499ea6073b42",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/core-data.min.js?ver=573f98dbff9f49ffeb0b",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/data.min.js?ver=14a216e0932d72c22976",
+   "https://chl.ca/lhjmq/wp-includes/js/dist/date.min.js?ver=8173fc0fc12b7bb7eaf0"
+  ]
+ },
+ "ushl": {
+  "keys": [],
+  "codes": [],
+  "apis": [],
+  "scripts": []
+ },
+ "ohl2": {
+  "keys": [
+   "f1aa699db3d81487"
+  ],
+  "codes": [
+   "null"
+  ],
+  "apis": [
+   "https://lscluster.hockeytech.com/feed/?${e}&fmt=json"
+  ],
+  "scripts": [
+   "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js?ver=7.1.4",
+   "https://cdn.tpdads.com/configs/chl.js?ver=7.1.4",
+   "https://chl.ca/ohl/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=1793185225",
+   "https://chl.ca/ohl/wp-content/plugins/dt-the7-core/assets/js/post-type.min.js?ver=2.7.13",
+   "https://chl.ca/ohl/wp-content/plugins/fanreach-hockey/build/index.js?ver=1.0",
+   "https://chl.ca/ohl/wp-content/plugins/logo-slider-wp-pro/public/assets/js/logo-slider-wp-public.js?ver=1.0.0",
+   "https://chl.ca/ohl/wp-content/plugins/wp-polls/js/wp-polls.js?ver=3.0.2",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/js/above-the-fold.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/js/main.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/lib/custom-scrollbar/custom-scrollbar.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-content/themes/dt-the7/lib/jquery-mousewheel/jquery-mousewheel.min.js?ver=15.0.7",
+   "https://chl.ca/ohl/wp-includes/js/dist/a11y.min.js?ver=31c6cec5a4ff7aff483d",
+   "https://chl.ca/ohl/wp-includes/js/dist/api-fetch.min.js?ver=6f2a4faeee3c722b1e57",
+   "https://chl.ca/ohl/wp-includes/js/dist/autop.min.js?ver=4e10a18cb6f21a043fc0",
+   "https://chl.ca/ohl/wp-includes/js/dist/blob.min.js?ver=c7582a735ddd2edc9731",
+   "https://chl.ca/ohl/wp-includes/js/dist/block-editor.min.js?ver=37e58da384b2558bd479",
+   "https://chl.ca/ohl/wp-includes/js/dist/block-serialization-default-parser.min.js?ver=fc209395a022242d64aa",
+   "https://chl.ca/ohl/wp-includes/js/dist/blocks.min.js?ver=c0e57a630a0b6f6c3bb5",
+   "https://chl.ca/ohl/wp-includes/js/dist/commands.min.js?ver=1a4910212c7ed2355300",
+   "https://chl.ca/ohl/wp-includes/js/dist/components.min.js?ver=9b751f17060211272a5c",
+   "https://chl.ca/ohl/wp-includes/js/dist/compose.min.js?ver=0e8bde2a499ea6073b42",
+   "https://chl.ca/ohl/wp-includes/js/dist/core-data.min.js?ver=573f98dbff9f49ffeb0b",
+   "https://chl.ca/ohl/wp-includes/js/dist/data.min.js?ver=14a216e0932d72c22976",
+   "https://chl.ca/ohl/wp-includes/js/dist/date.min.js?ver=8173fc0fc12b7bb7eaf0",
+   "https://chl.ca/ohl/wp-includes/js/dist/deprecated.min.js?ver=fe587bac92b7d0ef760e"
+  ]
+ },
+ "liiga": {
+  "keys": [],
+  "codes": [],
+  "apis": [
+   "https://cdn.builder.io/api/v1/image/assets%2Ff11503eeae084753968caac3899a5d78%2Fe03e892feaf04feaa3858936266dadaa"
+  ],
+  "scripts": [
+   "/assets/index-CT6L5_CO.js",
+   "/assets/index-legacy-BDKSc2_o.js",
+   "/assets/polyfills-legacy-PAPAbXji.js",
+   "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0",
+   "https://strongbox.nostemedia.fi/p21/s28/liiga.fi.js"
+  ]
+ },
+ "nl": {
+  "keys": [],
+  "codes": [],
+  "apis": [
+   "https://blaze-audit-uat.clipro.tv/api/eventaudit/v1.1",
+   "https://blaze-audit.clipro.tv/api/eventaudit/v1.1",
+   "https://blaze-uat.clipro.tv/api/useractivity/v1.0",
+   "https://blaze.clipro.tv/api/useractivity/v1.0",
+   "https://blazelogger-uat.clipro.tv/api/blazelogger/v1/logs",
+   "https://blazelogger.clipro.tv/api/blazelogger/v1/logs",
+   "https://blazesdk-prod-cdn.clipro.tv/api/blazesdk/v1.3/videos",
+   "https://player.vimeo.com/api/player.js",
+   "https://www.nationalleague.ch/api/player",
+   "https://www.nationalleague.ch/api/teams"
+  ],
+  "scripts": [
+   "/_expo/static/js/web/index-69ca72d87ce8a9ed117f839090ce9baf.js"
+  ]
+ },
+ "del": {
+  "keys": [],
+  "codes": [],
+  "apis": [
+   "https://vimeo.com/api/oembed.json?url=http://vimeo.com/"
+  ],
+  "scripts": [
+   "/_assets/9367f9e008cf725f0db42f52450342c0/DataTables/datatables.min.js?1793394971",
+   "/_assets/9367f9e008cf725f0db42f52450342c0/js/custom.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/javascript/consent.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/javascript/core.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/javascript/custom.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/javascript/init.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/vendor/bootstrap/js/bootstrap.bundle.min.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/vendor/jquery/jquery-migrate.min.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/vendor/jquery/jquery.min.js?1793394971",
+   "/_assets/e4ccd237e60ebadf8c55c336e47a814f/vendor/swiper/js/swiper-bundle.min.js?1793394971",
+   "https://download.digiaccess.org/digiaccess"
+  ]
+ },
+ "shl": {
+  "keys": [],
+  "codes": [],
+  "apis": [],
+  "scripts": [
+   "/assets/index-PJRXNua3.js"
+  ]
+ },
+ "svk": {
+  "keys": [],
+  "codes": [],
+  "apis": [],
+  "scripts": []
+ },
+ "hokejcz": {
+  "keys": [],
+  "codes": [],
+  "apis": [],
+  "scripts": []
+ }
+}
+### ht ahl 2976319eb44abe94
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=2976319eb44abe94&client_code=ahl&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht ahl 41b145a848f4bd67
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=41b145a848f4bd67&client_code=ahl&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht ahl 50c2cd9b5e18e390
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=50c2cd9b5e18e390&client_code=ahl&fmt=json&lang=en
+status=200 type=application/json; charset=utf-8 len=12507
+{"SiteKit":{"Parameters":{"feed":"modulekit","view":"seasons","key":"50c2cd9b5e18e390","client_code":"ahl","fmt":"json","lang":"en","lang_id":1,"league_id":"4","season_id":"94"},"Seasons":[{"season_id":"94","season_name":"2026-27 Regular Season","shortname":"2026-27","career":"1","playoff":"0","star
+
+### ht ohl 2976319eb44abe94
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=2976319eb44abe94&client_code=ohl&fmt=json&lang=en
+status=200 type=application/json; charset=utf-8 len=11910
+{"SiteKit":{"Parameters":{"feed":"modulekit","view":"seasons","key":"2976319eb44abe94","client_code":"ohl","fmt":"json","lang":"en","lang_id":1,"league_id":"1","season_id":"88"},"Seasons":[{"season_id":"88","season_name":"2026-27 Regular Season","shortname":"26-27 Reg. Season","career":"1","playoff"
+
+### ht whl 2976319eb44abe94
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=2976319eb44abe94&client_code=whl&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht whl 41b145a848f4bd67
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=41b145a848f4bd67&client_code=whl&fmt=json&lang=en
+status=200 type=application/json; charset=utf-8 len=13076
+{"SiteKit":{"Parameters":{"feed":"modulekit","view":"seasons","key":"41b145a848f4bd67","client_code":"whl","fmt":"json","lang":"en","lang_id":1,"league_id":"26","season_id":"295"},"Seasons":[{"season_id":"295","season_name":"2026 - 27 Regular Season","shortname":"26 - 27 Reg","career":"1","playoff":
+
+### ht lhjmq 2976319eb44abe94
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=2976319eb44abe94&client_code=lhjmq&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht lhjmq 41b145a848f4bd67
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=41b145a848f4bd67&client_code=lhjmq&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht lhjmq 50c2cd9b5e18e390
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=50c2cd9b5e18e390&client_code=lhjmq&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht lhjmq e828f89b243dc43f
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=e828f89b243dc43f&client_code=lhjmq&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht lhjmq f1aa699db3d81487
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=f1aa699db3d81487&client_code=lhjmq&fmt=json&lang=en
+status=200 type=application/json; charset=utf-8 len=20875
+{"SiteKit":{"Parameters":{"feed":"modulekit","view":"seasons","key":"f1aa699db3d81487","client_code":"lhjmq","fmt":"json","lang":"en","lang_id":1,"league_id":"1","season_id":"214"},"Seasons":[{"season_id":"214","season_name":"2026-27 | Regular Season","shortname":"2026-27","career":"1","playoff":"0"
+
+### ht ushl 2976319eb44abe94
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=2976319eb44abe94&client_code=ushl&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht ushl 41b145a848f4bd67
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=41b145a848f4bd67&client_code=ushl&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht ushl 50c2cd9b5e18e390
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=50c2cd9b5e18e390&client_code=ushl&fmt=json&lang=en
+status=200 type=text/html; charset=UTF-8 len=21
+Client access denied.
+
+### ht ushl e828f89b243dc43f
+https://lscluster.hockeytech.com/feed/?feed=modulekit&view=seasons&key=e828f89b243dc43f&client_code=ushl&fmt=json&lang=en
+status=200 type=application/json; charset=utf-8 len=11659
+{"SiteKit":{"Parameters":{"feed":"modulekit","view":"seasons","key":"e828f89b243dc43f","client_code":"ushl","fmt":"json","lang":"en","lang_id":1,"league_id":"1","season_id":"91"},"Seasons":[{"season_id":"91","season_name":"2026-27","shortname":"26-27","career":"1","playoff":"0","start_date":"2026-09
+
+### liiga games
+https://liiga.fi/api/v2/games?tournament=runkosarja&season=2026
+status=200 type=application/json len=3033226
+[{"id":1,"season":2026,"start":"2025-09-09T15:30:00Z","homeTeam":{"teamId":"55786244:hpk","teamPlaceholder":null,"teamName":"HPK","goals":2,"timeOut":3818,"goalEvents":[{"scorerPlayerId":33254027,"scorerPlayer":{"playerId":33254027,"firstName":"Vili","lastName":"Alitalo"},"logTime":"2025-09-09T15:48:40Z","winningGoal":false,"gameTime":519,"period":1,"eventId":72,"goalTypes":[],"assistantPlayerIds":[23029644,33296946],"assistantPlayers":[{"playerId":23029644,"firstName":"Teemu","lastName":"Rautiainen"},{"playerId":33296946,"firstName":"Sami","lastName":"Päivärinta"}],"plusPlayerIds":"7 8 12 19 63","minusPlayerIds":"4 7 10 86 91","homeTeamScore":1,"awayTeamScore":0,"assistsSoFarInSeason":{"230
+
+### liiga standings
+https://liiga.fi/api/v2/standings/?season=2026
+status=200 type=application/json len=61262
+{"season":[{"internalId":362185137,"teamId":"362185137:tappara","teamName":"Tappara","teamLogos":{"darkBg":"https://cdn.builder.io/api/v1/image/assets%2Ff11503eeae084753968caac3899a5d78%2F8bb664ba2392481ebc1091a33ee75513","lightBg":"https://cdn.builder.io/api/v1/image/assets%2Ff11503eeae084753968caac3899a5d78%2F8bb664ba2392481ebc1091a33ee75513","darkBgOriginal":null,"lightBgOriginal":null},"ranking":1,"liveRanking":1,"games":60,"liveGames":60,"wins":35,"liveWins":35,"overtimeWins":3,"losses":16,"liveLosses":16,"ties":9,"liveTies":9,"overtimeLosses":6,"points":117,"livePoints":117,"goals":226,"goalsAgainst":149,"liveGoals":226,"liveGoalsAgainst":149,"powerPlayInstances":202,"powerPlayTime":20
+
+### liiga players
+https://liiga.fi/api/v2/players/stats/summed/2026/2026/runkosarja/true?dataType=basicStats
+status=200 type=application/json len=470076
+[{"playerId":23017821,"teamId":1368624751,"teamName":"K-Espoo","teamShortName":"KES","role":"OL","firstName":"Joonas","lastName":"Rask","nationality":"FIN","tournament":"regular","pictureUrl":"https://liiga-backend-prod.s3.eu-north-1.amazonaws.com/2026/1368624751%3Ak-espoo/23017821.png","previousTeamsForTournament":null,"injured":false,"jersey":88,"lastSeason":2026,"goalkeeper":false,"games":24,"playedGames":24,"rookie":false,"suspended":false,"removed":false,"timeOnIce":19440,"current":true,"isU20":false,"goldenHelmets":0,"alumniPoints":5,"goals":4,"assists":3,"points":7,"plus":7,"minus":7,"plusMinus":0,"penaltyMinutes":31,"powerplayGoals":1,"penaltykillGoals":1,"winningGoals":1,"shots":47,
+
+### sihf standing
+https://data.sihf.ch/Statistic/api/cms/cache300?alias=standing&searchQuery=1/2015-2099/1&filterQuery=2026&orderBy=rank&orderByDescending=false&take=20&filterBy=Season&skip=-1&language=de
+status=200 type=application/json; charset=utf-8 len=5205
+{"title":"Rangliste","description":null,"pages":0,"selectedPage":0,"orderBy":"rank","orderByDescending":false,"isLive":false,"availableExports":["Csv","Pdf"],"updateDateTime":"2026-03-10T19:12:16.4481042+01:00","filters":[{"title":"Saison","entries":[{"name":"2026/27","alias":"2027"},{"name":"2025/26","alias":"2026"},{"name":"2024/25","alias":"2025"},{"name":"2023/24","alias":"2024"},{"name":"2022/23","alias":"2023"},{"name":"2021/22","alias":"2022"},{"name":"2020/21","alias":"2021"},{"name":"2019/20","alias":"2020"},{"name":"2018/19","alias":"2019"},{"name":"2017/18","alias":"2018"},{"name":"2016/17","alias":"2017"},{"name":"2015/16","alias":"2016"},{"name":"2014/15","alias":"2015"}],"selec
+
+### sihf player
+https://data.sihf.ch/Statistic/api/cms/cache300?alias=player&searchQuery=1/2015-2099/1&filterQuery=2026&orderBy=points&orderByDescending=true&take=20&filterBy=Season,Phase&skip=0&language=de
+status=200 type=application/json; charset=utf-8 len=6565
+{"title":"Player Stats","description":"Player Stats - Summary","pages":10,"selectedPage":1,"orderBy":"points","orderByDescending":true,"isLive":false,"availableExports":["Csv","Pdf"],"updateDateTime":"2026-05-01T13:10:10.7252787+02:00","filters":[{"title":"Saison","entries":[{"name":"2026/27","alias":"2027"},{"name":"2025/26","alias":"2026"},{"name":"2024/25","alias":"2025"},{"name":"2023/24","alias":"2024"},{"name":"2022/23","alias":"2023"},{"name":"2021/22","alias":"2022"},{"name":"2020/21","alias":"2021"},{"name":"2019/20","alias":"2020"},{"name":"2018/19","alias":"2019"},{"name":"2017/18","alias":"2018"},{"name":"2016/17","alias":"2017"},{"name":"2015/16","alias":"2016"},{"name":"2014/15
+
+### del players
+https://www.penny-del.org/statistik/saison-2025-26/hauptrunde/playerstats/basis/
+status=200 type=text/html; charset=utf-8 len=608374
+<!DOCTYPE html>
+<html lang="de-de">
+<head>
+    <meta charset="utf-8">
+
+<!-- 
+	This website is powered by TYPO3 - inspiring people to share!
+	TYPO3 is a free open source Content Management Framework initially created by Kasper Skaarhoj and licensed under GNU/GPL.
+	TYPO3 is copyright 1998-2026 of Kasper Skaarhoj. Extensions are copyright of their respective owners.
+	Information and contribution at https://typo3.org/
+-->
+
+<link rel="icon" href="/_assets/e4ccd237e60ebadf8c55c336e47a814f/images/del/penny-del-favicon.ico" type="image/vnd.microsoft.icon">
+<title>PENNY DEL - Basis</title>
+<meta name="generator" content="TYPO3 CMS">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+### swehockey
+https://stats.swehockey.se/
+status=200 type=text/html; charset=utf-8 len=98592
+<!DOCTYPE html>
+<html translate="no">
+<head>
+    <meta charset="utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon" href="/Content/Images/Icons/apple-touch-icon.png">
+    <!-- For first- and second-generation iPad: -->
+    <link rel="apple-touch-icon" sizes="72x72" href="/Content/Images/Icons/apple-touch-icon-72x72.png">
+    <!-- For iPhone with high-resolution Retina display: -->
+    <link rel="apple
