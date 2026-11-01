@@ -1,0 +1,209 @@
+{
+ "liiga goalieStats true": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goalieStats false": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goalkeeperStats true": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goalkeeperStats false": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goaliesStats true": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goaliesStats false": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goalkeeper true": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga goalkeeper false": {
+  "st": 400,
+  "n": null,
+  "gk": 0,
+  "gk_sample": [],
+  "keys": null
+ },
+ "liiga basic gk": [],
+ "sihf goalie": {
+  "st": 200,
+  "stub": true,
+  "n": 0,
+  "header": [],
+  "row": null,
+  "menu": null
+ },
+ "sihf goalkeeper": {
+  "st": 200,
+  "stub": null,
+  "n": 20,
+  "header": [
+   "rank",
+   "player",
+   "team",
+   "gamesPlayed",
+   "firstKeeper",
+   "goalsAgainst",
+   "goalsAgainstAverage",
+   "shotsAgainst",
+   "saves",
+   "savesPercentage",
+   "secondsPlayed",
+   "penaltyInMinutes",
+   "goals",
+   "assists"
+  ],
+  "row": [
+   "18",
+   "Berra Reto",
+   {
+    "id": 101149,
+    "name": "EHC Kloten",
+    "acronym": "EHCK",
+    "signed": false,
+    "type": "team",
+    "clubId": 101149
+   },
+   "10",
+   "10",
+   "36",
+   "4.14",
+   "234",
+   "198",
+   "84.62",
+   "521:27",
+   "2",
+   "0",
+   "0"
+  ],
+  "menu": [
+   {
+    "name": "Summary",
+    "rowIdentifierKey": "goalsAgainstAverage",
+    "isOrderDescending": false,
+    "alias": "goalkeeper"
+   },
+   {
+    "name": "Shots",
+    "rowIdentifierKey": "sogaSog",
+    "isOrderDescending": true,
+    "alias": "goalkeeperShotDetail"
+   },
+   {
+    "name": "Wins/Shutout",
+    "rowIdentifierKey": "wins",
+    "isOrderDescending": true,
+    "alias": "goalkeeperWin"
+   },
+   {
+    "name": "Shootout",
+    "rowIdentifierKey": "penShotsAgainst",
+    "isOrderDescending": true,
+    "alias": "goalkeeperShootout"
+   }
+  ]
+ },
+ "sihf goalieSummary": {
+  "st": 200,
+  "stub": true,
+  "n": 0,
+  "header": [],
+  "row": null,
+  "menu": null
+ },
+ "sihf playerGoalie": {
+  "st": 200,
+  "stub": true,
+  "n": 0,
+  "header": [],
+  "row": null,
+  "menu": null
+ },
+ "sihf goaltender": {
+  "st": 200,
+  "stub": true,
+  "n": 0,
+  "header": [],
+  "row": null,
+  "menu": null
+ },
+ "sihf player take100 skip0": {
+  "n": 100,
+  "pages": 4,
+  "sel": 1,
+  "first": [
+   "1",
+   "Järventie Roby"
+  ]
+ },
+ "sihf player take100 skip100": {
+  "n": 0,
+  "pages": 4,
+  "sel": 101,
+  "first": null
+ },
+ "sihf player take100 skip1": {
+  "n": 100,
+  "pages": 4,
+  "sel": 2,
+  "first": [
+   "101",
+   "Rohrbach Dario"
+  ]
+ },
+ "sihf player take20 skip1": {
+  "n": 20,
+  "pages": 19,
+  "sel": 2,
+  "first": [
+   "21",
+   "Rohrer Vinzenz"
+  ]
+ },
+ "sihf player take20 skip20": {
+  "n": 0,
+  "pages": 19,
+  "sel": 21,
+  "first": null
+ },
+ "sihf player take500 skip0": {
+  "n": 370,
+  "pages": 1,
+  "sel": 1,
+  "first": [
+   "1",
+   "Järventie Roby"
+  ]
+ }
+}
