@@ -1012,6 +1012,8 @@ def main():
             wjson("careers.json", cr)
         import build_extras
         step("Reprezentace, líheň a draft", lambda: build_extras.run(SITE, CACHE, data, jget, log))
+        import build_leagues
+        step("Další ligy (AHL, junioři, Liiga, NL)", lambda: build_leagues.run(SITE, data, jget, log))
         sc = step("NHL program", build_schedule)
         if sc:
             wjson("schedule.json", sc)
