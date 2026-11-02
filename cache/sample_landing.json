@@ -1,128 +1,110 @@
 {
- "playerId": 8474102,
+ "playerId": 8476316,
  "isActive": true,
- "currentTeamId": 25,
- "currentTeamAbbrev": "DAL",
+ "currentTeamId": 24,
+ "currentTeamAbbrev": "ANA",
  "fullTeamName": {
-  "default": "Dallas Stars",
-  "fr": "Stars de Dallas"
+  "default": "Anaheim Ducks",
+  "fr": "Ducks d'Anaheim"
  },
  "teamCommonName": {
-  "default": "Stars"
+  "default": "Ducks"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Dallas",
-  "fr": "de Dallas"
+  "default": "Anaheim",
+  "fr": "d'Anaheim"
  },
  "firstName": {
-  "default": "David"
+  "default": "Laurent"
  },
  "lastName": {
-  "default": "Perron"
+  "default": "Brossoit"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/DAL_light.svg",
- "sweaterNumber": 16,
- "position": "L",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/DAL/8474102.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8474102.jpg",
- "heightInInches": 72,
- "heightInCentimeters": 183,
- "weightInPounds": 202,
- "weightInKilograms": 92,
- "birthDate": "1988-05-28",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/ANA_light.svg",
+ "sweaterNumber": 31,
+ "position": "G",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/ANA/8476316.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8476316.jpg",
+ "heightInInches": 74,
+ "heightInCentimeters": 188,
+ "weightInPounds": 217,
+ "weightInKilograms": 98,
+ "birthDate": "1993-03-23",
  "birthCity": {
-  "default": "Sherbrooke"
+  "default": "Port Alberni"
  },
  "birthStateProvince": {
-  "default": "Quebec",
-  "fr": "Québec"
+  "default": "British Columbia",
+  "fr": "Colombie-Britannique",
+  "sk": "Britská Kolumbia"
  },
  "birthCountry": "CAN",
- "shootsCatches": "R",
+ "shootsCatches": "L",
  "draftDetails": {
-  "year": 2007,
-  "teamAbbrev": "STL",
-  "round": 1,
-  "pickInRound": 26,
-  "overallPick": 26
+  "year": 2011,
+  "teamAbbrev": "CGY",
+  "round": 6,
+  "pickInRound": 13,
+  "overallPick": 164
  },
- "playerSlug": "david-perron-8474102",
+ "playerSlug": "laurent-brossoit-8476316",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 0,
-    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goals": 0,
-    "otGoals": 0,
-    "pim": 0,
-    "plusMinus": 1,
-    "points": 0,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 0
+    "goalsAgainstAvg": 3.0,
+    "losses": 0,
+    "otLosses": 0,
+    "savePctg": 0.863636,
+    "shutouts": 0,
+    "wins": 1
    },
    "career": {
-    "assists": 480,
-    "gameWinningGoals": 48,
-    "gamesPlayed": 1240,
-    "goals": 332,
-    "otGoals": 9,
-    "pim": 877,
-    "plusMinus": -11,
-    "points": 812,
-    "powerPlayGoals": 91,
-    "powerPlayPoints": 255,
-    "shootingPctg": 0.1288,
-    "shorthandedGoals": 4,
-    "shorthandedPoints": 7,
-    "shots": 2577
+    "gamesPlayed": 142,
+    "goalsAgainstAvg": 2.66693,
+    "losses": 47,
+    "otLosses": 13,
+    "savePctg": 0.909786,
+    "shutouts": 6,
+    "wins": 65
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 480,
-   "avgToi": "16:34",
-   "faceoffWinningPctg": 0.3836,
-   "gameWinningGoals": 48,
-   "gamesPlayed": 1240,
-   "goals": 332,
-   "otGoals": 9,
-   "pim": 877,
-   "plusMinus": -11,
-   "points": 812,
-   "powerPlayGoals": 91,
-   "powerPlayPoints": 255,
-   "shootingPctg": 0.1288,
-   "shorthandedGoals": 4,
-   "shorthandedPoints": 7,
-   "shots": 2577
+   "assists": 1,
+   "gamesPlayed": 142,
+   "gamesStarted": 120,
+   "goals": 0,
+   "goalsAgainst": 343,
+   "goalsAgainstAvg": 2.66693,
+   "losses": 47,
+   "otLosses": 13,
+   "pim": 2,
+   "savePctg": 0.909786,
+   "shotsAgainst": 3791,
+   "shutouts": 6,
+   "timeOnIce": "7716:44",
+   "wins": 65
   },
   "playoffs": {
-   "assists": 38,
-   "avgToi": "17:18",
-   "faceoffWinningPctg": 0.409,
-   "gameWinningGoals": 5,
-   "gamesPlayed": 110,
-   "goals": 26,
-   "otGoals": 0,
-   "pim": 88,
-   "plusMinus": 5,
-   "points": 64,
-   "powerPlayGoals": 8,
-   "powerPlayPoints": 20,
-   "shootingPctg": 0.10779999999999999,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 241
+   "assists": 0,
+   "gamesPlayed": 10,
+   "gamesStarted": 8,
+   "goals": 0,
+   "goalsAgainst": 25,
+   "goalsAgainstAvg": 3.134794,
+   "losses": 2,
+   "otLosses": 0,
+   "savePctg": 0.890351,
+   "shotsAgainst": 228,
+   "shutouts": 0,
+   "timeOnIce": "478:30",
+   "wins": 5
   }
  },
  "shopLink": "#TODO",
@@ -130,74 +112,76 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "assists": 0,
-   "gameDate": "2026-10-31",
-   "gameId": 2026020225,
+   "decision": "W",
+   "gameDate": "2026-11-01",
+   "gameId": 2026020231,
    "gameTypeId": 2,
-   "goals": 0,
+   "gamesStarted": 1,
+   "goalsAgainst": 3,
    "homeRoadFlag": "H",
-   "opponentAbbrev": "CBJ",
-   "pim": 0,
-   "plusMinus": 1,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 18,
-   "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "DAL",
-   "toi": "11:31"
+   "opponentAbbrev": "OTT",
+   "penaltyMins": 0,
+   "savePctg": 0.863636,
+   "shotsAgainst": 22,
+   "teamAbbrev": "ANA",
+   "toi": "60:00"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 45,
    "gameTypeId": 2,
-   "gamesPlayed": 51,
-   "goals": 24,
-   "leagueAbbrev": "QJHL",
-   "pim": 92,
-   "points": 69,
-   "season": 20052006,
-   "sequence": 1,
+   "gamesPlayed": 1,
+   "goalsAgainst": 5,
+   "goalsAgainstAvg": 8.108,
+   "leagueAbbrev": "WHL",
+   "losses": 0,
+   "savePctg": 0.773,
+   "season": 20082009,
+   "sequence": 2,
+   "shotsAgainst": 17,
+   "shutouts": 0,
    "teamName": {
-    "default": "St-Jerome"
-   }
+    "default": "Edmonton"
+   },
+   "ties": 0,
+   "timeOnIce": "37:00",
+   "wins": 0
   },
   {
-   "assists": 5,
-   "faceoffWinningPctg": 0.0,
-   "gameTypeId": 3,
-   "gamesPlayed": 8,
-   "goals": 4,
-   "leagueAbbrev": "QJHL",
-   "pim": 8,
-   "plusMinus": 0,
-   "points": 9,
-   "season": 20052006,
+   "gameTypeId": 2,
+   "gamesPlayed": 21,
+   "goalsAgainst": 61,
+   "goalsAgainstAvg": 3.66,
+   "leagueAbbrev": "BCHL",
+   "losses": 8,
+   "season": 20092010,
    "sequence": 1,
-   "shootingPctg": 0.0,
-   "shots": 0,
+   "shutouts": 2,
    "teamName": {
-    "default": "St-Jerome"
-   }
+    "default": "Cowichan Valley"
+   },
+   "ties": 0,
+   "timeOnIce": "999:00",
+   "wins": 10
   },
   {
-   "assists": 44,
    "gameTypeId": 2,
-   "gameWinningGoals": 7,
-   "gamesPlayed": 70,
-   "goals": 39,
-   "leagueAbbrev": "QMJHL",
-   "pim": 75,
-   "plusMinus": 37,
-   "points": 83,
-   "powerPlayGoals": 10,
-   "season": 20062007,
-   "sequence": 1,
-   "shorthandedGoals": 0,
+   "gamesPlayed": 2,
+   "goalsAgainst": 4,
+   "goalsAgainstAvg": 2.791,
+   "leagueAbbrev": "WHL",
+   "losses": 1,
+   "savePctg": 0.944,
+   "season": 20092010,
+   "sequence": 2,
+   "shotsAgainst": 71,
+   "shutouts": 0,
    "teamName": {
-    "default": "Lewiston"
-   }
+    "default": "Edmonton"
+   },
+   "ties": 0,
+   "timeOnIce": "86:00",
+   "wins": 0
   }
  ],
  "awards": [
@@ -208,50 +192,48 @@
    },
    "seasons": [
     {
-     "assists": 9,
-     "blockedShots": 9,
+     "gaa": 3.184369,
      "gameTypeId": 3,
-     "gamesPlayed": 26,
-     "goals": 7,
-     "hits": 37,
-     "pim": 16,
-     "plusMinus": 4,
-     "points": 16,
-     "seasonId": 20182019
+     "gamesPlayed": 8,
+     "losses": 2,
+     "otLosses": 0,
+     "savePctg": 0.893519,
+     "seasonId": 20222023,
+     "wins": 5
     }
    ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8473994,
+   "playerId": 8484153,
    "lastName": {
-    "default": "Benn"
+    "default": "Carlsson"
    },
    "firstName": {
-    "default": "Jamie"
+    "default": "Leo"
    },
-   "playerSlug": "jamie-benn-8473994"
+   "playerSlug": "leo-carlsson-8484153"
   },
   {
-   "playerId": 8483425,
+   "playerId": 8481538,
    "lastName": {
-    "default": "Bichsel"
+    "default": "Caulfield"
    },
    "firstName": {
-    "default": "Lian"
+    "default": "Judd"
    },
-   "playerSlug": "lian-bichsel-8483425"
+   "playerSlug": "judd-caulfield-8481538"
   },
   {
-   "playerId": 8476278,
+   "playerId": 8482118,
    "lastName": {
-    "default": "Blackwell"
+    "default": "Colangelo"
    },
    "firstName": {
-    "default": "Colin"
+    "default": "Sam"
    },
-   "playerSlug": "colin-blackwell-8476278"
+   "playerSlug": "sam-colangelo-8482118"
   }
  ]
 }
