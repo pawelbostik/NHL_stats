@@ -1,110 +1,109 @@
 {
- "playerId": 8476316,
+ "playerId": 8481077,
  "isActive": true,
- "currentTeamId": 24,
- "currentTeamAbbrev": "ANA",
+ "currentTeamId": 17,
+ "currentTeamAbbrev": "DET",
  "fullTeamName": {
-  "default": "Anaheim Ducks",
-  "fr": "Ducks d'Anaheim"
+  "default": "Detroit Red Wings",
+  "fr": "Red Wings de Detroit"
  },
  "teamCommonName": {
-  "default": "Ducks"
+  "default": "Red Wings"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Anaheim",
-  "fr": "d'Anaheim"
+  "default": "Detroit",
+  "fr": "de Detroit"
  },
  "firstName": {
-  "default": "Laurent"
+  "default": "John"
  },
  "lastName": {
-  "default": "Brossoit"
+  "default": "Leonard"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/ANA_light.svg",
- "sweaterNumber": 31,
- "position": "G",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/ANA/8476316.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8476316.jpg",
- "heightInInches": 74,
- "heightInCentimeters": 188,
- "weightInPounds": 217,
- "weightInKilograms": 98,
- "birthDate": "1993-03-23",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg",
+ "sweaterNumber": 43,
+ "position": "L",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/DET/8481077.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8481077.jpg",
+ "heightInInches": 71,
+ "heightInCentimeters": 180,
+ "weightInPounds": 192,
+ "weightInKilograms": 87,
+ "birthDate": "1998-08-07",
  "birthCity": {
-  "default": "Port Alberni"
+  "default": "Westwood"
  },
  "birthStateProvince": {
-  "default": "British Columbia",
-  "fr": "Colombie-Britannique",
-  "sk": "Britská Kolumbia"
+  "default": "New Jersey"
  },
- "birthCountry": "CAN",
+ "birthCountry": "USA",
  "shootsCatches": "L",
  "draftDetails": {
-  "year": 2011,
-  "teamAbbrev": "CGY",
+  "year": 2018,
+  "teamAbbrev": "SJS",
   "round": 6,
-  "pickInRound": 13,
-  "overallPick": 164
+  "pickInRound": 27,
+  "overallPick": 182
  },
- "playerSlug": "laurent-brossoit-8476316",
+ "playerSlug": "john-leonard-8481077",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
+    "assists": 0,
+    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goalsAgainstAvg": 3.0,
-    "losses": 0,
-    "otLosses": 0,
-    "savePctg": 0.863636,
-    "shutouts": 0,
-    "wins": 1
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 0,
+    "plusMinus": -2,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 1
    },
    "career": {
-    "gamesPlayed": 142,
-    "goalsAgainstAvg": 2.66693,
-    "losses": 47,
-    "otLosses": 13,
-    "savePctg": 0.909786,
-    "shutouts": 6,
-    "wins": 65
+    "assists": 13,
+    "gameWinningGoals": 1,
+    "gamesPlayed": 82,
+    "goals": 8,
+    "otGoals": 0,
+    "pim": 4,
+    "plusMinus": -18,
+    "points": 21,
+    "powerPlayGoals": 1,
+    "powerPlayPoints": 4,
+    "shootingPctg": 0.0754,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 106
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 1,
-   "gamesPlayed": 142,
-   "gamesStarted": 120,
-   "goals": 0,
-   "goalsAgainst": 343,
-   "goalsAgainstAvg": 2.66693,
-   "losses": 47,
-   "otLosses": 13,
-   "pim": 2,
-   "savePctg": 0.909786,
-   "shotsAgainst": 3791,
-   "shutouts": 6,
-   "timeOnIce": "7716:44",
-   "wins": 65
-  },
-  "playoffs": {
-   "assists": 0,
-   "gamesPlayed": 10,
-   "gamesStarted": 8,
-   "goals": 0,
-   "goalsAgainst": 25,
-   "goalsAgainstAvg": 3.134794,
-   "losses": 2,
-   "otLosses": 0,
-   "savePctg": 0.890351,
-   "shotsAgainst": 228,
-   "shutouts": 0,
-   "timeOnIce": "478:30",
-   "wins": 5
+   "assists": 13,
+   "avgToi": "11:00",
+   "faceoffWinningPctg": 0.25,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 82,
+   "goals": 8,
+   "otGoals": 0,
+   "pim": 4,
+   "plusMinus": -18,
+   "points": 21,
+   "powerPlayGoals": 1,
+   "powerPlayPoints": 4,
+   "shootingPctg": 0.0754,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 106
   }
  },
  "shopLink": "#TODO",
@@ -112,128 +111,96 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "decision": "W",
-   "gameDate": "2026-11-01",
-   "gameId": 2026020231,
+   "assists": 0,
+   "gameDate": "2026-11-02",
+   "gameId": 2026020233,
    "gameTypeId": 2,
-   "gamesStarted": 1,
-   "goalsAgainst": 3,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "OTT",
-   "penaltyMins": 0,
-   "savePctg": 0.863636,
-   "shotsAgainst": 22,
-   "teamAbbrev": "ANA",
-   "toi": "60:00"
+   "goals": 0,
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "FLA",
+   "pim": 0,
+   "plusMinus": -2,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 17,
+   "shorthandedGoals": 0,
+   "shots": 1,
+   "teamAbbrev": "DET",
+   "toi": "12:17"
   }
  ],
  "seasonTotals": [
   {
+   "assists": 9,
+   "gameTypeId": 2,
+   "gamesPlayed": 22,
+   "goals": 15,
+   "leagueAbbrev": "USHS-Prep",
+   "points": 24,
+   "season": 20122013,
+   "sequence": 114938,
+   "teamName": {
+    "default": "Pope Francis High"
+   }
+  },
+  {
+   "assists": 23,
+   "gameTypeId": 2,
+   "gamesPlayed": 25,
+   "goals": 29,
+   "leagueAbbrev": "USHS-Prep",
+   "points": 52,
+   "season": 20132014,
+   "sequence": 114938,
+   "teamName": {
+    "default": "Pope Francis High"
+   }
+  },
+  {
+   "assists": 0,
    "gameTypeId": 2,
    "gamesPlayed": 1,
-   "goalsAgainst": 5,
-   "goalsAgainstAvg": 8.108,
-   "leagueAbbrev": "WHL",
-   "losses": 0,
-   "savePctg": 0.773,
-   "season": 20082009,
-   "sequence": 2,
-   "shotsAgainst": 17,
-   "shutouts": 0,
+   "goals": 0,
+   "leagueAbbrev": "USPHL 16U",
+   "pim": 0,
+   "points": 0,
+   "season": 20132014,
+   "sequence": 159410,
    "teamName": {
-    "default": "Edmonton"
-   },
-   "ties": 0,
-   "timeOnIce": "37:00",
-   "wins": 0
-  },
-  {
-   "gameTypeId": 2,
-   "gamesPlayed": 21,
-   "goalsAgainst": 61,
-   "goalsAgainstAvg": 3.66,
-   "leagueAbbrev": "BCHL",
-   "losses": 8,
-   "season": 20092010,
-   "sequence": 1,
-   "shutouts": 2,
-   "teamName": {
-    "default": "Cowichan Valley"
-   },
-   "ties": 0,
-   "timeOnIce": "999:00",
-   "wins": 10
-  },
-  {
-   "gameTypeId": 2,
-   "gamesPlayed": 2,
-   "goalsAgainst": 4,
-   "goalsAgainstAvg": 2.791,
-   "leagueAbbrev": "WHL",
-   "losses": 1,
-   "savePctg": 0.944,
-   "season": 20092010,
-   "sequence": 2,
-   "shotsAgainst": 71,
-   "shutouts": 0,
-   "teamName": {
-    "default": "Edmonton"
-   },
-   "ties": 0,
-   "timeOnIce": "86:00",
-   "wins": 0
-  }
- ],
- "awards": [
-  {
-   "trophy": {
-    "default": "Stanley Cup",
-    "fr": "Coupe Stanley"
-   },
-   "seasons": [
-    {
-     "gaa": 3.184369,
-     "gameTypeId": 3,
-     "gamesPlayed": 8,
-     "losses": 2,
-     "otLosses": 0,
-     "savePctg": 0.893519,
-     "seasonId": 20222023,
-     "wins": 5
-    }
-   ]
+    "default": "Springfield Jr. Pics 16U"
+   }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8484153,
+   "playerId": 8478891,
    "lastName": {
-    "default": "Carlsson"
+    "default": "Appleton"
    },
    "firstName": {
-    "default": "Leo"
+    "default": "Mason"
    },
-   "playerSlug": "leo-carlsson-8484153"
+   "playerSlug": "mason-appleton-8478891"
   },
   {
-   "playerId": 8481538,
+   "playerId": 8478042,
    "lastName": {
-    "default": "Caulfield"
+    "default": "Arvidsson"
    },
    "firstName": {
-    "default": "Judd"
+    "default": "Viktor"
    },
-   "playerSlug": "judd-caulfield-8481538"
+   "playerSlug": "viktor-arvidsson-8478042"
   },
   {
-   "playerId": 8482118,
+   "playerId": 8480879,
    "lastName": {
-    "default": "Colangelo"
+    "default": "Bernard-Docker"
    },
    "firstName": {
-    "default": "Sam"
+    "default": "Jacob"
    },
-   "playerSlug": "sam-colangelo-8482118"
+   "playerSlug": "jacob-bernard-docker-8480879"
   }
  ]
 }
