@@ -1,52 +1,45 @@
 {
- "playerId": 8481077,
+ "playerId": 8479638,
  "isActive": true,
- "currentTeamId": 17,
- "currentTeamAbbrev": "DET",
+ "currentTeamId": 5,
+ "currentTeamAbbrev": "PIT",
  "fullTeamName": {
-  "default": "Detroit Red Wings",
-  "fr": "Red Wings de Detroit"
+  "default": "Pittsburgh Penguins",
+  "fr": "Penguins de Pittsburgh"
  },
  "teamCommonName": {
-  "default": "Red Wings"
+  "default": "Penguins"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Detroit",
-  "fr": "de Detroit"
+  "default": "Pittsburgh",
+  "fr": "de Pittsburgh"
  },
  "firstName": {
-  "default": "John"
+  "default": "Justin"
  },
  "lastName": {
-  "default": "Leonard"
+  "default": "Brazeau"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg",
- "sweaterNumber": 43,
- "position": "L",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/DET/8481077.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8481077.jpg",
- "heightInInches": 71,
- "heightInCentimeters": 180,
- "weightInPounds": 192,
- "weightInKilograms": 87,
- "birthDate": "1998-08-07",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/PIT_light.svg",
+ "sweaterNumber": 16,
+ "position": "R",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/PIT/8479638.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8479638.jpg",
+ "heightInInches": 79,
+ "heightInCentimeters": 201,
+ "weightInPounds": 236,
+ "weightInKilograms": 107,
+ "birthDate": "1998-02-02",
  "birthCity": {
-  "default": "Westwood"
+  "default": "New Liskeard"
  },
  "birthStateProvince": {
-  "default": "New Jersey"
+  "default": "Ontario"
  },
- "birthCountry": "USA",
- "shootsCatches": "L",
- "draftDetails": {
-  "year": 2018,
-  "teamAbbrev": "SJS",
-  "round": 6,
-  "pickInRound": 27,
-  "overallPick": 182
- },
- "playerSlug": "john-leonard-8481077",
+ "birthCountry": "CAN",
+ "shootsCatches": "R",
+ "playerSlug": "justin-brazeau-8479638",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -59,7 +52,7 @@
     "goals": 0,
     "otGoals": 0,
     "pim": 0,
-    "plusMinus": -2,
+    "plusMinus": 0,
     "points": 0,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
@@ -69,41 +62,59 @@
     "shots": 1
    },
    "career": {
-    "assists": 13,
-    "gameWinningGoals": 1,
-    "gamesPlayed": 82,
-    "goals": 8,
+    "assists": 30,
+    "gameWinningGoals": 8,
+    "gamesPlayed": 160,
+    "goals": 33,
     "otGoals": 0,
-    "pim": 4,
-    "plusMinus": -18,
-    "points": 21,
-    "powerPlayGoals": 1,
-    "powerPlayPoints": 4,
-    "shootingPctg": 0.0754,
+    "pim": 34,
+    "plusMinus": 0,
+    "points": 63,
+    "powerPlayGoals": 9,
+    "powerPlayPoints": 12,
+    "shootingPctg": 0.1466,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 106
+    "shots": 225
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 13,
-   "avgToi": "11:00",
-   "faceoffWinningPctg": 0.25,
-   "gameWinningGoals": 1,
-   "gamesPlayed": 82,
-   "goals": 8,
+   "assists": 30,
+   "avgToi": "12:04",
+   "faceoffWinningPctg": 0.23070000000000002,
+   "gameWinningGoals": 8,
+   "gamesPlayed": 160,
+   "goals": 33,
    "otGoals": 0,
-   "pim": 4,
-   "plusMinus": -18,
-   "points": 21,
-   "powerPlayGoals": 1,
-   "powerPlayPoints": 4,
-   "shootingPctg": 0.0754,
+   "pim": 34,
+   "plusMinus": 0,
+   "points": 63,
+   "powerPlayGoals": 9,
+   "powerPlayPoints": 12,
+   "shootingPctg": 0.1466,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 106
+   "shots": 225
+  },
+  "playoffs": {
+   "assists": 3,
+   "avgToi": "10:13",
+   "faceoffWinningPctg": 0.0,
+   "gameWinningGoals": 0,
+   "gamesPlayed": 16,
+   "goals": 1,
+   "otGoals": 0,
+   "pim": 12,
+   "plusMinus": 2,
+   "points": 4,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.07690000000000001,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 13
   }
  },
  "shopLink": "#TODO",
@@ -112,95 +123,102 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-02",
-   "gameId": 2026020233,
+   "gameDate": "2026-11-03",
+   "gameId": 2026020242,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "FLA",
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "VGK",
    "pim": 0,
-   "plusMinus": -2,
+   "plusMinus": 0,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 17,
+   "shifts": 12,
    "shorthandedGoals": 0,
    "shots": 1,
-   "teamAbbrev": "DET",
-   "toi": "12:17"
+   "teamAbbrev": "PIT",
+   "toi": "8:14"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 9,
-   "gameTypeId": 2,
-   "gamesPlayed": 22,
-   "goals": 15,
-   "leagueAbbrev": "USHS-Prep",
-   "points": 24,
-   "season": 20122013,
-   "sequence": 114938,
-   "teamName": {
-    "default": "Pope Francis High"
-   }
-  },
-  {
-   "assists": 23,
-   "gameTypeId": 2,
-   "gamesPlayed": 25,
-   "goals": 29,
-   "leagueAbbrev": "USHS-Prep",
-   "points": 52,
-   "season": 20132014,
-   "sequence": 114938,
-   "teamName": {
-    "default": "Pope Francis High"
-   }
-  },
-  {
    "assists": 0,
    "gameTypeId": 2,
-   "gamesPlayed": 1,
-   "goals": 0,
-   "leagueAbbrev": "USPHL 16U",
+   "gamesPlayed": 4,
+   "goals": 1,
+   "leagueAbbrev": "GNML",
    "pim": 0,
-   "points": 0,
-   "season": 20132014,
-   "sequence": 159410,
+   "plusMinus": 0,
+   "points": 1,
+   "season": 20122013,
+   "sequence": 63863,
    "teamName": {
-    "default": "Springfield Jr. Pics 16U"
+    "default": "New Liskeard Cubs Midget AAA"
+   }
+  },
+  {
+   "assists": 18,
+   "gameTypeId": 2,
+   "gamesPlayed": 30,
+   "goals": 11,
+   "leagueAbbrev": "GNML",
+   "pim": 12,
+   "plusMinus": 0,
+   "points": 29,
+   "season": 20132014,
+   "sequence": 63863,
+   "teamName": {
+    "default": "New Liskeard Cubs Midget AAA"
+   }
+  },
+  {
+   "assists": 4,
+   "gameTypeId": 3,
+   "gamesPlayed": 7,
+   "goals": 3,
+   "leagueAbbrev": "GNML",
+   "pim": 0,
+   "points": 7,
+   "season": 20132014,
+   "sequence": 63771,
+   "teamName": {
+    "default": "New Liskeard Cubs U18 AAA"
    }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8478891,
+   "playerId": 8479638,
    "lastName": {
-    "default": "Appleton"
+    "default": "Brazeau"
    },
    "firstName": {
-    "default": "Mason"
+    "default": "Justin"
    },
-   "playerSlug": "mason-appleton-8478891"
+   "playerSlug": "justin-brazeau-8479638"
   },
   {
-   "playerId": 8478042,
+   "playerId": 8483398,
    "lastName": {
-    "default": "Arvidsson"
+    "default": "Carlile"
    },
    "firstName": {
-    "default": "Viktor"
+    "default": "Declan"
    },
-   "playerSlug": "viktor-arvidsson-8478042"
+   "playerSlug": "declan-carlile-8483398"
   },
   {
-   "playerId": 8480879,
+   "playerId": 8482475,
    "lastName": {
-    "default": "Bernard-Docker"
+    "default": "Chinakhov",
+    "cs": "Činachov",
+    "fi": "Tshinahov",
+    "sk": "Činachov"
    },
    "firstName": {
-    "default": "Jacob"
+    "default": "Egor"
    },
-   "playerSlug": "jacob-bernard-docker-8480879"
+   "playerSlug": "egor-chinakhov-8482475"
   }
  ]
 }
