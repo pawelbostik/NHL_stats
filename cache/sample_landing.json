@@ -1,110 +1,127 @@
 {
- "playerId": 8483675,
+ "playerId": 8478904,
  "isActive": true,
- "currentTeamId": 26,
- "currentTeamAbbrev": "LAK",
+ "currentTeamId": 29,
+ "currentTeamAbbrev": "CBJ",
  "fullTeamName": {
-  "default": "Los Angeles Kings",
-  "fr": "Kings de Los Angeles"
+  "default": "Columbus Blue Jackets",
+  "fr": "Blue Jackets de Columbus"
  },
  "teamCommonName": {
-  "default": "Kings"
+  "default": "Blue Jackets"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Los Angeles",
-  "fr": "de Los Angeles"
+  "default": "Columbus",
+  "fr": "de Columbus"
  },
  "firstName": {
-  "default": "Kenny"
+  "default": "Steven"
  },
  "lastName": {
-  "default": "Connors"
+  "default": "Lorentz"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/LAK_light.svg",
- "sweaterNumber": 34,
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CBJ_light.svg",
+ "sweaterNumber": 18,
  "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/LAK/8483675.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8483675.jpg",
- "heightInInches": 73,
- "heightInCentimeters": 185,
- "weightInPounds": 199,
- "weightInKilograms": 90,
- "birthDate": "2003-03-10",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8478904.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8478904.jpg",
+ "heightInInches": 76,
+ "heightInCentimeters": 193,
+ "weightInPounds": 219,
+ "weightInKilograms": 99,
+ "birthDate": "1996-04-13",
  "birthCity": {
-  "default": "Glen Mills"
+  "default": "Kitchener"
  },
  "birthStateProvince": {
-  "default": "Pennsylvania",
-  "fr": "Pennsylvanie"
+  "default": "Ontario"
  },
- "birthCountry": "USA",
+ "birthCountry": "CAN",
  "shootsCatches": "L",
  "draftDetails": {
-  "year": 2022,
-  "teamAbbrev": "LAK",
-  "round": 4,
-  "pickInRound": 6,
-  "overallPick": 103
+  "year": 2015,
+  "teamAbbrev": "CAR",
+  "round": 7,
+  "pickInRound": 5,
+  "overallPick": 186
  },
- "playerSlug": "kenny-connors-8483675",
+ "playerSlug": "steven-lorentz-8478904",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 1,
+    "assists": 0,
     "gameWinningGoals": 0,
     "gamesPlayed": 1,
     "goals": 0,
     "otGoals": 0,
     "pim": 0,
-    "plusMinus": 2,
-    "points": 1,
+    "plusMinus": 0,
+    "points": 0,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 0
+    "shots": 1
    },
    "career": {
-    "assists": 1,
-    "gameWinningGoals": 0,
-    "gamesPlayed": 3,
-    "goals": 0,
+    "assists": 44,
+    "gameWinningGoals": 8,
+    "gamesPlayed": 382,
+    "goals": 36,
     "otGoals": 0,
-    "pim": 0,
-    "plusMinus": 1,
-    "points": 1,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 5
+    "pim": 67,
+    "plusMinus": -22,
+    "points": 80,
+    "powerPlayGoals": 1,
+    "powerPlayPoints": 1,
+    "shootingPctg": 0.0882,
+    "shorthandedGoals": 4,
+    "shorthandedPoints": 5,
+    "shots": 408
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 1,
-   "avgToi": "9:33",
-   "faceoffWinningPctg": 0.38880000000000003,
-   "gameWinningGoals": 0,
-   "gamesPlayed": 3,
-   "goals": 0,
+   "assists": 44,
+   "avgToi": "10:56",
+   "faceoffWinningPctg": 0.47979999999999995,
+   "gameWinningGoals": 8,
+   "gamesPlayed": 382,
+   "goals": 36,
    "otGoals": 0,
-   "pim": 0,
-   "plusMinus": 1,
-   "points": 1,
+   "pim": 67,
+   "plusMinus": -22,
+   "points": 80,
+   "powerPlayGoals": 1,
+   "powerPlayPoints": 1,
+   "shootingPctg": 0.0882,
+   "shorthandedGoals": 4,
+   "shorthandedPoints": 5,
+   "shots": 408
+  },
+  "playoffs": {
+   "assists": 6,
+   "avgToi": "9:51",
+   "faceoffWinningPctg": 0.45740000000000003,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 45,
+   "goals": 2,
+   "otGoals": 0,
+   "pim": 25,
+   "plusMinus": -8,
+   "points": 8,
    "powerPlayGoals": 0,
    "powerPlayPoints": 0,
-   "shootingPctg": 0.0,
+   "shootingPctg": 0.0526,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 5
+   "shots": 38
   }
  },
  "shopLink": "#TODO",
@@ -112,103 +129,121 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "assists": 1,
-   "gameDate": "2026-11-04",
-   "gameId": 2026020249,
+   "assists": 0,
+   "gameDate": "2026-11-06",
+   "gameId": 2026020262,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "SJS",
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "BUF",
    "pim": 0,
-   "plusMinus": 2,
-   "points": 1,
+   "plusMinus": 0,
+   "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 18,
+   "shifts": 13,
    "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "LAK",
-   "toi": "11:21"
+   "shots": 1,
+   "teamAbbrev": "CBJ",
+   "toi": "8:45"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 3,
+   "assists": 28,
    "gameTypeId": 2,
-   "gamesPlayed": 5,
-   "goals": 3,
-   "leagueAbbrev": "T1EHL 13U",
-   "pim": 4,
-   "points": 6,
-   "season": 20152016,
+   "gamesPlayed": 56,
+   "goals": 19,
+   "leagueAbbrev": "Minor-ON",
+   "pim": 24,
+   "points": 47,
+   "season": 20112012,
+   "sequence": 1,
+   "teamName": {
+    "default": "Wat. Wolves MM"
+   }
+  },
+  {
+   "assists": 6,
+   "gameTypeId": 3,
+   "gamesPlayed": 14,
+   "goals": 6,
+   "leagueAbbrev": "ALLIANCE U16",
+   "pim": 0,
+   "points": 12,
+   "season": 20112012,
    "sequence": 11,
    "teamName": {
-    "default": "Philadelphia Jr. Flyers 13U AAA"
+    "default": "Waterloo Wolves U16 AAA"
    }
   },
   {
    "assists": 17,
    "gameTypeId": 2,
-   "gamesPlayed": 23,
-   "goals": 18,
-   "leagueAbbrev": "AYHL 13U",
-   "pim": 26,
-   "points": 35,
-   "season": 20162017,
-   "sequence": 11,
+   "gamesPlayed": 31,
+   "goals": 17,
+   "leagueAbbrev": "Minor-ON",
+   "pim": 24,
+   "points": 34,
+   "season": 20122013,
+   "sequence": 1,
    "teamName": {
-    "default": "Philadelphia Flyers Elite 13UAAA"
+    "default": "Wat. Wolves Mid."
    }
-  },
+  }
+ ],
+ "awards": [
   {
-   "assists": 13,
-   "gameTypeId": 2,
-   "gamesPlayed": 16,
-   "goals": 11,
-   "leagueAbbrev": "AYHL 14U",
-   "pim": 8,
-   "points": 24,
-   "season": 20172018,
-   "sequence": 11,
-   "teamName": {
-    "default": "Philadelphia Flyers Elite 14UAAA"
-   }
+   "trophy": {
+    "default": "Stanley Cup",
+    "fr": "Coupe Stanley"
+   },
+   "seasons": [
+    {
+     "assists": 1,
+     "blockedShots": 4,
+     "gameTypeId": 3,
+     "gamesPlayed": 16,
+     "goals": 2,
+     "hits": 40,
+     "pim": 0,
+     "plusMinus": -1,
+     "points": 3,
+     "seasonId": 20232024
+    }
+   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8479998,
+   "playerId": 8481161,
    "lastName": {
-    "default": "Anderson"
+    "default": "Christiansen"
    },
    "firstName": {
-    "default": "Mikey",
-    "cs": "Michael",
-    "de": "Michael",
-    "fi": "Michael",
-    "sk": "Michael",
-    "sv": "Michael"
+    "default": "Jake",
+    "sv": "v"
    },
-   "playerSlug": "mikey-anderson-8479998"
+   "playerSlug": "jake-christiansen-8481161"
   },
   {
-   "playerId": 8476469,
+   "playerId": 8475745,
    "lastName": {
-    "default": "Armia"
+    "default": "Coyle"
    },
    "firstName": {
-    "default": "Joel"
+    "default": "Charlie"
    },
-   "playerSlug": "joel-armia-8476469"
+   "playerSlug": "charlie-coyle-8475745"
   },
   {
-   "playerId": 8482124,
+   "playerId": 8483432,
    "lastName": {
-    "default": "Byfield"
+    "default": "Del Bel Belluz"
    },
    "firstName": {
-    "default": "Quinton"
+    "default": "Luca"
    },
-   "playerSlug": "quinton-byfield-8482124"
+   "playerSlug": "luca-del-bel-belluz-8483432"
   }
  ]
 }
