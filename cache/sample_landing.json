@@ -1,127 +1,107 @@
 {
- "playerId": 8478904,
+ "playerId": 8476914,
  "isActive": true,
- "currentTeamId": 29,
- "currentTeamAbbrev": "CBJ",
+ "currentTeamId": 3,
+ "currentTeamAbbrev": "NYR",
  "fullTeamName": {
-  "default": "Columbus Blue Jackets",
-  "fr": "Blue Jackets de Columbus"
+  "default": "New York Rangers",
+  "fr": "Rangers de New York"
  },
  "teamCommonName": {
-  "default": "Blue Jackets"
+  "default": "Rangers"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Columbus",
-  "fr": "de Columbus"
+  "default": "New York",
+  "fr": "de New York"
  },
  "firstName": {
-  "default": "Steven"
+  "default": "Joonas"
  },
  "lastName": {
-  "default": "Lorentz"
+  "default": "Korpisalo"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CBJ_light.svg",
- "sweaterNumber": 18,
- "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8478904.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8478904.jpg",
- "heightInInches": 76,
- "heightInCentimeters": 193,
- "weightInPounds": 219,
- "weightInKilograms": 99,
- "birthDate": "1996-04-13",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/NYR_light.svg",
+ "sweaterNumber": 70,
+ "position": "G",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/NYR/8476914.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8476914.jpg",
+ "heightInInches": 75,
+ "heightInCentimeters": 191,
+ "weightInPounds": 205,
+ "weightInKilograms": 93,
+ "birthDate": "1994-04-28",
  "birthCity": {
-  "default": "Kitchener"
+  "default": "Pori",
+  "sv": "Björneborg"
  },
- "birthStateProvince": {
-  "default": "Ontario"
- },
- "birthCountry": "CAN",
+ "birthCountry": "FIN",
  "shootsCatches": "L",
  "draftDetails": {
-  "year": 2015,
-  "teamAbbrev": "CAR",
-  "round": 7,
-  "pickInRound": 5,
-  "overallPick": 186
+  "year": 2012,
+  "teamAbbrev": "CBJ",
+  "round": 3,
+  "pickInRound": 1,
+  "overallPick": 62
  },
- "playerSlug": "steven-lorentz-8478904",
+ "playerSlug": "joonas-korpisalo-8476914",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 0,
-    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goals": 0,
-    "otGoals": 0,
-    "pim": 0,
-    "plusMinus": 0,
-    "points": 0,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 1
+    "goalsAgainstAvg": 3.038829,
+    "losses": 0,
+    "otLosses": 0,
+    "savePctg": 0.892857,
+    "shutouts": 0,
+    "wins": 1
    },
    "career": {
-    "assists": 44,
-    "gameWinningGoals": 8,
-    "gamesPlayed": 382,
-    "goals": 36,
-    "otGoals": 0,
-    "pim": 67,
-    "plusMinus": -22,
-    "points": 80,
-    "powerPlayGoals": 1,
-    "powerPlayPoints": 1,
-    "shootingPctg": 0.0882,
-    "shorthandedGoals": 4,
-    "shorthandedPoints": 5,
-    "shots": 408
+    "gamesPlayed": 335,
+    "goalsAgainstAvg": 3.058319,
+    "losses": 126,
+    "otLosses": 38,
+    "savePctg": 0.900032,
+    "shutouts": 8,
+    "wins": 141
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 44,
-   "avgToi": "10:56",
-   "faceoffWinningPctg": 0.47979999999999995,
-   "gameWinningGoals": 8,
-   "gamesPlayed": 382,
-   "goals": 36,
-   "otGoals": 0,
-   "pim": 67,
-   "plusMinus": -22,
-   "points": 80,
-   "powerPlayGoals": 1,
-   "powerPlayPoints": 1,
-   "shootingPctg": 0.0882,
-   "shorthandedGoals": 4,
-   "shorthandedPoints": 5,
-   "shots": 408
+   "assists": 3,
+   "gamesPlayed": 335,
+   "gamesStarted": 303,
+   "goals": 0,
+   "goalsAgainst": 946,
+   "goalsAgainstAvg": 3.058319,
+   "losses": 126,
+   "otLosses": 38,
+   "pim": 8,
+   "savePctg": 0.900032,
+   "shotsAgainst": 9453,
+   "shutouts": 8,
+   "timeOnIce": "18559:12",
+   "wins": 141
   },
   "playoffs": {
-   "assists": 6,
-   "avgToi": "9:51",
-   "faceoffWinningPctg": 0.45740000000000003,
-   "gameWinningGoals": 1,
-   "gamesPlayed": 45,
-   "goals": 2,
-   "otGoals": 0,
-   "pim": 25,
-   "plusMinus": -8,
-   "points": 8,
-   "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.0526,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 38
+   "assists": 0,
+   "gamesPlayed": 16,
+   "gamesStarted": 15,
+   "goals": 0,
+   "goalsAgainst": 41,
+   "goalsAgainstAvg": 2.555665,
+   "losses": 9,
+   "otLosses": 0,
+   "pim": 0,
+   "savePctg": 0.922495,
+   "shotsAgainst": 529,
+   "shutouts": 2,
+   "timeOnIce": "962:34",
+   "wins": 5
   }
  },
  "shopLink": "#TODO",
@@ -129,121 +109,89 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "assists": 0,
-   "gameDate": "2026-11-06",
-   "gameId": 2026020262,
+   "decision": "W",
+   "gameDate": "2026-11-07",
+   "gameId": 2026020267,
    "gameTypeId": 2,
-   "goals": 0,
+   "gamesStarted": 1,
+   "goalsAgainst": 3,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "BUF",
-   "pim": 0,
-   "plusMinus": 0,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 13,
-   "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "CBJ",
-   "toi": "8:45"
+   "opponentAbbrev": "SEA",
+   "penaltyMins": 0,
+   "savePctg": 0.892857,
+   "shotsAgainst": 28,
+   "teamAbbrev": "NYR",
+   "toi": "59:14"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 28,
    "gameTypeId": 2,
-   "gamesPlayed": 56,
-   "goals": 19,
-   "leagueAbbrev": "Minor-ON",
-   "pim": 24,
-   "points": 47,
-   "season": 20112012,
-   "sequence": 1,
+   "gamesPlayed": 2,
+   "goalsAgainstAvg": 7.21,
+   "leagueAbbrev": "Jr. C I-divisioona",
+   "savePctg": 0.843,
+   "season": 20082009,
+   "sequence": 80654,
    "teamName": {
-    "default": "Wat. Wolves MM"
+    "default": "Karhu-Kissat U16"
    }
   },
   {
-   "assists": 6,
+   "gameTypeId": 2,
+   "gamesPlayed": 4,
+   "goalsAgainstAvg": 0.5,
+   "leagueAbbrev": "Jr. C SM-sarja Q",
+   "savePctg": 0.97,
+   "season": 20092010,
+   "sequence": 10153658,
+   "teamName": {
+    "default": "Jokerit U16"
+   }
+  },
+  {
    "gameTypeId": 3,
-   "gamesPlayed": 14,
-   "goals": 6,
-   "leagueAbbrev": "ALLIANCE U16",
-   "pim": 0,
-   "points": 12,
-   "season": 20112012,
-   "sequence": 11,
+   "gamesPlayed": 13,
+   "goalsAgainstAvg": 2.58,
+   "leagueAbbrev": "U16 SM-sarja",
+   "savePctg": 0.936,
+   "season": 20092010,
+   "sequence": 80813,
    "teamName": {
-    "default": "Waterloo Wolves U16 AAA"
+    "default": "Jokerit U16"
    }
-  },
-  {
-   "assists": 17,
-   "gameTypeId": 2,
-   "gamesPlayed": 31,
-   "goals": 17,
-   "leagueAbbrev": "Minor-ON",
-   "pim": 24,
-   "points": 34,
-   "season": 20122013,
-   "sequence": 1,
-   "teamName": {
-    "default": "Wat. Wolves Mid."
-   }
-  }
- ],
- "awards": [
-  {
-   "trophy": {
-    "default": "Stanley Cup",
-    "fr": "Coupe Stanley"
-   },
-   "seasons": [
-    {
-     "assists": 1,
-     "blockedShots": 4,
-     "gameTypeId": 3,
-     "gamesPlayed": 16,
-     "goals": 2,
-     "hits": 40,
-     "pim": 0,
-     "plusMinus": -1,
-     "points": 3,
-     "seasonId": 20232024
-    }
-   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8481161,
+   "playerId": 8477416,
    "lastName": {
-    "default": "Christiansen"
+    "default": "Bjorkstrand"
    },
    "firstName": {
-    "default": "Jake",
-    "sv": "v"
+    "default": "Oliver"
    },
-   "playerSlug": "jake-christiansen-8481161"
+   "playerSlug": "oliver-bjorkstrand-8477416"
   },
   {
-   "playerId": 8475745,
+   "playerId": 8482877,
    "lastName": {
-    "default": "Coyle"
+    "default": "Chmelar"
    },
    "firstName": {
-    "default": "Charlie"
+    "default": "Jaroslav"
    },
-   "playerSlug": "charlie-coyle-8475745"
+   "playerSlug": "jaroslav-chmelar-8482877"
   },
   {
-   "playerId": 8483432,
+   "playerId": 8482157,
    "lastName": {
-    "default": "Del Bel Belluz"
+    "default": "Cuylle"
    },
    "firstName": {
-    "default": "Luca"
+    "default": "Will"
    },
-   "playerSlug": "luca-del-bel-belluz-8483432"
+   "playerSlug": "will-cuylle-8482157"
   }
  ]
 }
