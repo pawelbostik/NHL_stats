@@ -1,107 +1,121 @@
 {
- "playerId": 8476914,
+ "playerId": 8476826,
  "isActive": true,
- "currentTeamId": 3,
- "currentTeamAbbrev": "NYR",
+ "currentTeamId": 14,
+ "currentTeamAbbrev": "TBL",
  "fullTeamName": {
-  "default": "New York Rangers",
-  "fr": "Rangers de New York"
+  "default": "Tampa Bay Lightning",
+  "fr": "Lightning de Tampa Bay"
  },
  "teamCommonName": {
-  "default": "Rangers"
+  "default": "Lightning"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "New York",
-  "fr": "de New York"
+  "default": "Tampa Bay",
+  "fr": "de Tampa Bay"
  },
  "firstName": {
-  "default": "Joonas"
+  "default": "Yanni"
  },
  "lastName": {
-  "default": "Korpisalo"
+  "default": "Gourde"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/NYR_light.svg",
- "sweaterNumber": 70,
- "position": "G",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/NYR/8476914.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8476914.jpg",
- "heightInInches": 75,
- "heightInCentimeters": 191,
- "weightInPounds": 205,
- "weightInKilograms": 93,
- "birthDate": "1994-04-28",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/TBL_light.svg",
+ "sweaterNumber": 37,
+ "position": "C",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8476826.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8476826.jpg",
+ "heightInInches": 70,
+ "heightInCentimeters": 178,
+ "weightInPounds": 175,
+ "weightInKilograms": 79,
+ "birthDate": "1991-12-15",
  "birthCity": {
-  "default": "Pori",
-  "sv": "Björneborg"
+  "default": "Saint-Narcisse"
  },
- "birthCountry": "FIN",
+ "birthStateProvince": {
+  "default": "Quebec",
+  "fr": "Québec"
+ },
+ "birthCountry": "CAN",
  "shootsCatches": "L",
- "draftDetails": {
-  "year": 2012,
-  "teamAbbrev": "CBJ",
-  "round": 3,
-  "pickInRound": 1,
-  "overallPick": 62
- },
- "playerSlug": "joonas-korpisalo-8476914",
+ "playerSlug": "yanni-gourde-8476826",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
+    "assists": 0,
+    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goalsAgainstAvg": 3.038829,
-    "losses": 0,
-    "otLosses": 0,
-    "savePctg": 0.892857,
-    "shutouts": 0,
-    "wins": 1
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 2,
+    "plusMinus": -1,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 1
    },
    "career": {
-    "gamesPlayed": 335,
-    "goalsAgainstAvg": 3.058319,
-    "losses": 126,
-    "otLosses": 38,
-    "savePctg": 0.900032,
-    "shutouts": 8,
-    "wins": 141
+    "assists": 233,
+    "gameWinningGoals": 30,
+    "gamesPlayed": 685,
+    "goals": 142,
+    "otGoals": 6,
+    "pim": 522,
+    "plusMinus": 39,
+    "points": 375,
+    "powerPlayGoals": 21,
+    "powerPlayPoints": 48,
+    "shootingPctg": 0.1247,
+    "shorthandedGoals": 9,
+    "shorthandedPoints": 16,
+    "shots": 1138
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 3,
-   "gamesPlayed": 335,
-   "gamesStarted": 303,
-   "goals": 0,
-   "goalsAgainst": 946,
-   "goalsAgainstAvg": 3.058319,
-   "losses": 126,
-   "otLosses": 38,
-   "pim": 8,
-   "savePctg": 0.900032,
-   "shotsAgainst": 9453,
-   "shutouts": 8,
-   "timeOnIce": "18559:12",
-   "wins": 141
+   "assists": 233,
+   "avgToi": "16:28",
+   "faceoffWinningPctg": 0.48090000000000005,
+   "gameWinningGoals": 30,
+   "gamesPlayed": 685,
+   "goals": 142,
+   "otGoals": 6,
+   "pim": 522,
+   "plusMinus": 39,
+   "points": 375,
+   "powerPlayGoals": 21,
+   "powerPlayPoints": 48,
+   "shootingPctg": 0.1247,
+   "shorthandedGoals": 9,
+   "shorthandedPoints": 16,
+   "shots": 1138
   },
   "playoffs": {
-   "assists": 0,
-   "gamesPlayed": 16,
-   "gamesStarted": 15,
-   "goals": 0,
-   "goalsAgainst": 41,
-   "goalsAgainstAvg": 2.555665,
-   "losses": 9,
-   "otLosses": 0,
-   "pim": 0,
-   "savePctg": 0.922495,
-   "shotsAgainst": 529,
-   "shutouts": 2,
-   "timeOnIce": "962:34",
-   "wins": 5
+   "assists": 24,
+   "avgToi": "17:04",
+   "faceoffWinningPctg": 0.44920000000000004,
+   "gameWinningGoals": 7,
+   "gamesPlayed": 95,
+   "goals": 20,
+   "otGoals": 1,
+   "pim": 64,
+   "plusMinus": 11,
+   "points": 44,
+   "powerPlayGoals": 4,
+   "powerPlayPoints": 5,
+   "shootingPctg": 0.1219,
+   "shorthandedGoals": 2,
+   "shorthandedPoints": 4,
+   "shots": 164
   }
  },
  "shopLink": "#TODO",
@@ -109,89 +123,141 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "decision": "W",
-   "gameDate": "2026-11-07",
-   "gameId": 2026020267,
+   "assists": 0,
+   "gameDate": "2026-11-08",
+   "gameId": 2026020280,
    "gameTypeId": 2,
-   "gamesStarted": 1,
-   "goalsAgainst": 3,
+   "goals": 0,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "SEA",
-   "penaltyMins": 0,
-   "savePctg": 0.892857,
-   "shotsAgainst": 28,
-   "teamAbbrev": "NYR",
-   "toi": "59:14"
+   "opponentAbbrev": "WPG",
+   "pim": 2,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 25,
+   "shorthandedGoals": 0,
+   "shots": 1,
+   "teamAbbrev": "TBL",
+   "toi": "15:41"
   }
  ],
  "seasonTotals": [
   {
+   "assists": 0,
    "gameTypeId": 2,
    "gamesPlayed": 2,
-   "goalsAgainstAvg": 7.21,
-   "leagueAbbrev": "Jr. C I-divisioona",
-   "savePctg": 0.843,
-   "season": 20082009,
-   "sequence": 80654,
+   "goals": 0,
+   "leagueAbbrev": "QMAAA",
+   "pim": 0,
+   "plusMinus": 0,
+   "points": 0,
+   "season": 20072008,
+   "sequence": 65533,
    "teamName": {
-    "default": "Karhu-Kissat U16"
+    "default": "Lévis Chevaliers"
    }
   },
   {
+   "assists": 30,
    "gameTypeId": 2,
-   "gamesPlayed": 4,
-   "goalsAgainstAvg": 0.5,
-   "leagueAbbrev": "Jr. C SM-sarja Q",
-   "savePctg": 0.97,
-   "season": 20092010,
-   "sequence": 10153658,
+   "gamesPlayed": 41,
+   "goals": 23,
+   "leagueAbbrev": "QAAA",
+   "pim": 50,
+   "points": 53,
+   "season": 20082009,
+   "sequence": 1,
    "teamName": {
-    "default": "Jokerit U16"
+    "default": "Jonquiere"
    }
   },
   {
-   "gameTypeId": 3,
-   "gamesPlayed": 13,
-   "goalsAgainstAvg": 2.58,
-   "leagueAbbrev": "U16 SM-sarja",
-   "savePctg": 0.936,
-   "season": 20092010,
-   "sequence": 80813,
+   "assists": 1,
+   "gameTypeId": 2,
+   "gameWinningGoals": 0,
+   "gamesPlayed": 4,
+   "goals": 0,
+   "leagueAbbrev": "QMJHL",
+   "pim": 0,
+   "plusMinus": -2,
+   "points": 1,
+   "powerPlayGoals": 0,
+   "season": 20082009,
+   "sequence": 2,
+   "shootingPctg": 0.0,
+   "shorthandedGoals": 0,
+   "shots": 3,
    "teamName": {
-    "default": "Jokerit U16"
+    "default": "Victoriaville"
    }
+  }
+ ],
+ "awards": [
+  {
+   "trophy": {
+    "default": "Stanley Cup",
+    "fr": "Coupe Stanley"
+   },
+   "seasons": [
+    {
+     "assists": 1,
+     "blockedShots": 10,
+     "gameTypeId": 3,
+     "gamesPlayed": 23,
+     "goals": 6,
+     "hits": 27,
+     "pim": 13,
+     "plusMinus": 4,
+     "points": 7,
+     "seasonId": 20202021
+    },
+    {
+     "assists": 7,
+     "blockedShots": 8,
+     "gameTypeId": 3,
+     "gamesPlayed": 25,
+     "goals": 7,
+     "hits": 49,
+     "pim": 19,
+     "plusMinus": 12,
+     "points": 14,
+     "seasonId": 20192020
+    }
+   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8477416,
+   "playerId": 8474590,
    "lastName": {
-    "default": "Bjorkstrand"
+    "default": "Carlson"
    },
    "firstName": {
-    "default": "Oliver"
+    "default": "John"
    },
-   "playerSlug": "oliver-bjorkstrand-8477416"
+   "playerSlug": "john-carlson-8474590"
   },
   {
-   "playerId": 8482877,
+   "playerId": 8478416,
    "lastName": {
-    "default": "Chmelar"
+    "default": "Cernak",
+    "cs": "Černák",
+    "sk": "Černák"
    },
    "firstName": {
-    "default": "Jaroslav"
+    "default": "Erik"
    },
-   "playerSlug": "jaroslav-chmelar-8482877"
+   "playerSlug": "erik-cernak-8478416"
   },
   {
-   "playerId": 8482157,
+   "playerId": 8478519,
    "lastName": {
-    "default": "Cuylle"
+    "default": "Cirelli"
    },
    "firstName": {
-    "default": "Will"
+    "default": "Anthony"
    },
-   "playerSlug": "will-cuylle-8482157"
+   "playerSlug": "anthony-cirelli-8478519"
   }
  ]
 }
