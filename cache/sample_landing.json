@@ -1,46 +1,52 @@
 {
- "playerId": 8476826,
+ "playerId": 8482525,
  "isActive": true,
- "currentTeamId": 14,
- "currentTeamAbbrev": "TBL",
+ "currentTeamId": 10,
+ "currentTeamAbbrev": "TOR",
  "fullTeamName": {
-  "default": "Tampa Bay Lightning",
-  "fr": "Lightning de Tampa Bay"
+  "default": "Toronto Maple Leafs",
+  "fr": "Maple Leafs de Toronto"
  },
  "teamCommonName": {
-  "default": "Lightning"
+  "default": "Maple Leafs"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Tampa Bay",
-  "fr": "de Tampa Bay"
+  "default": "Toronto",
+  "fr": "de Toronto"
  },
  "firstName": {
-  "default": "Yanni"
+  "default": "Ryan"
  },
  "lastName": {
-  "default": "Gourde"
+  "default": "Tverberg"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/TBL_light.svg",
- "sweaterNumber": 37,
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg",
+ "sweaterNumber": 77,
  "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/TBL/8476826.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8476826.jpg",
- "heightInInches": 70,
- "heightInCentimeters": 178,
- "weightInPounds": 175,
- "weightInKilograms": 79,
- "birthDate": "1991-12-15",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/TOR/8482525.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8482525.jpg",
+ "heightInInches": 71,
+ "heightInCentimeters": 180,
+ "weightInPounds": 187,
+ "weightInKilograms": 85,
+ "birthDate": "2002-01-30",
  "birthCity": {
-  "default": "Saint-Narcisse"
+  "default": "Richmond Hill"
  },
  "birthStateProvince": {
-  "default": "Quebec",
-  "fr": "Québec"
+  "default": "Ontario"
  },
  "birthCountry": "CAN",
- "shootsCatches": "L",
- "playerSlug": "yanni-gourde-8476826",
+ "shootsCatches": "R",
+ "draftDetails": {
+  "year": 2020,
+  "teamAbbrev": "TOR",
+  "round": 7,
+  "pickInRound": 27,
+  "overallPick": 213
+ },
+ "playerSlug": "ryan-tverberg-8482525",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -52,6 +58,22 @@
     "gamesPlayed": 1,
     "goals": 0,
     "otGoals": 0,
+    "pim": 0,
+    "plusMinus": -2,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 2
+   },
+   "career": {
+    "assists": 0,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 3,
+    "goals": 0,
+    "otGoals": 0,
     "pim": 2,
     "plusMinus": -1,
     "points": 0,
@@ -60,62 +82,27 @@
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 1
-   },
-   "career": {
-    "assists": 233,
-    "gameWinningGoals": 30,
-    "gamesPlayed": 685,
-    "goals": 142,
-    "otGoals": 6,
-    "pim": 522,
-    "plusMinus": 39,
-    "points": 375,
-    "powerPlayGoals": 21,
-    "powerPlayPoints": 48,
-    "shootingPctg": 0.1247,
-    "shorthandedGoals": 9,
-    "shorthandedPoints": 16,
-    "shots": 1138
+    "shots": 3
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 233,
-   "avgToi": "16:28",
-   "faceoffWinningPctg": 0.48090000000000005,
-   "gameWinningGoals": 30,
-   "gamesPlayed": 685,
-   "goals": 142,
-   "otGoals": 6,
-   "pim": 522,
-   "plusMinus": 39,
-   "points": 375,
-   "powerPlayGoals": 21,
-   "powerPlayPoints": 48,
-   "shootingPctg": 0.1247,
-   "shorthandedGoals": 9,
-   "shorthandedPoints": 16,
-   "shots": 1138
-  },
-  "playoffs": {
-   "assists": 24,
-   "avgToi": "17:04",
-   "faceoffWinningPctg": 0.44920000000000004,
-   "gameWinningGoals": 7,
-   "gamesPlayed": 95,
-   "goals": 20,
-   "otGoals": 1,
-   "pim": 64,
-   "plusMinus": 11,
-   "points": 44,
-   "powerPlayGoals": 4,
-   "powerPlayPoints": 5,
-   "shootingPctg": 0.1219,
-   "shorthandedGoals": 2,
-   "shorthandedPoints": 4,
-   "shots": 164
+   "assists": 0,
+   "avgToi": "11:45",
+   "gameWinningGoals": 0,
+   "gamesPlayed": 3,
+   "goals": 0,
+   "otGoals": 0,
+   "pim": 2,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.0,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 3
   }
  },
  "shopLink": "#TODO",
@@ -124,140 +111,100 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-08",
-   "gameId": 2026020280,
+   "gameDate": "2026-11-10",
+   "gameId": 2026020286,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "WPG",
-   "pim": 2,
-   "plusMinus": -1,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "COL",
+   "pim": 0,
+   "plusMinus": -2,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 25,
+   "shifts": 21,
    "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "TBL",
-   "toi": "15:41"
+   "shots": 2,
+   "teamAbbrev": "TOR",
+   "toi": "15:31"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 0,
-   "gameTypeId": 2,
-   "gamesPlayed": 2,
-   "goals": 0,
-   "leagueAbbrev": "QMAAA",
-   "pim": 0,
-   "plusMinus": 0,
-   "points": 0,
-   "season": 20072008,
-   "sequence": 65533,
-   "teamName": {
-    "default": "Lévis Chevaliers"
-   }
-  },
-  {
-   "assists": 30,
-   "gameTypeId": 2,
-   "gamesPlayed": 41,
-   "goals": 23,
-   "leagueAbbrev": "QAAA",
-   "pim": 50,
-   "points": 53,
-   "season": 20082009,
-   "sequence": 1,
-   "teamName": {
-    "default": "Jonquiere"
-   }
-  },
-  {
    "assists": 1,
    "gameTypeId": 2,
-   "gameWinningGoals": 0,
-   "gamesPlayed": 4,
+   "gamesPlayed": 6,
    "goals": 0,
-   "leagueAbbrev": "QMJHL",
-   "pim": 0,
-   "plusMinus": -2,
+   "leagueAbbrev": "Brick Invitational",
+   "pim": 2,
    "points": 1,
-   "powerPlayGoals": 0,
-   "season": 20082009,
-   "sequence": 2,
-   "shootingPctg": 0.0,
-   "shorthandedGoals": 0,
-   "shots": 3,
+   "season": 20112012,
+   "sequence": 11,
    "teamName": {
-    "default": "Victoriaville"
+    "default": "Toronto Bulldogs"
    }
-  }
- ],
- "awards": [
+  },
   {
-   "trophy": {
-    "default": "Stanley Cup",
-    "fr": "Coupe Stanley"
-   },
-   "seasons": [
-    {
-     "assists": 1,
-     "blockedShots": 10,
-     "gameTypeId": 3,
-     "gamesPlayed": 23,
-     "goals": 6,
-     "hits": 27,
-     "pim": 13,
-     "plusMinus": 4,
-     "points": 7,
-     "seasonId": 20202021
-    },
-    {
-     "assists": 7,
-     "blockedShots": 8,
-     "gameTypeId": 3,
-     "gamesPlayed": 25,
-     "goals": 7,
-     "hits": 49,
-     "pim": 19,
-     "plusMinus": 12,
-     "points": 14,
-     "seasonId": 20192020
-    }
-   ]
+   "assists": 0,
+   "gameTypeId": 3,
+   "gamesPlayed": 2,
+   "goals": 0,
+   "leagueAbbrev": "Brick Invitational",
+   "pim": 4,
+   "points": 0,
+   "season": 20112012,
+   "sequence": 11,
+   "teamName": {
+    "default": "Toronto Bulldogs"
+   }
+  },
+  {
+   "assists": 22,
+   "gameTypeId": 2,
+   "gamesPlayed": 58,
+   "goals": 19,
+   "leagueAbbrev": "U16 AAA",
+   "points": 41,
+   "season": 20172018,
+   "sequence": 11,
+   "teamName": {
+    "default": "Toronto Jr. Canadiens U16 AAA"
+   }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8474590,
+   "playerId": 8482515,
    "lastName": {
-    "default": "Carlson"
+    "default": "Akhtyamov"
    },
    "firstName": {
-    "default": "John"
+    "default": "Artur"
    },
-   "playerSlug": "john-carlson-8474590"
+   "playerSlug": "artur-akhtyamov-8482515"
   },
   {
-   "playerId": 8478416,
+   "playerId": 8483565,
    "lastName": {
-    "default": "Cernak",
-    "cs": "Černák",
-    "sk": "Černák"
+    "default": "Blankenburg"
    },
    "firstName": {
-    "default": "Erik"
+    "default": "Nick"
    },
-   "playerSlug": "erik-cernak-8478416"
+   "playerSlug": "nick-blankenburg-8483565"
   },
   {
-   "playerId": 8478519,
+   "playerId": 8476927,
    "lastName": {
-    "default": "Cirelli"
+    "default": "Blueger",
+    "cs": "Blugers",
+    "sk": "Blugers"
    },
    "firstName": {
-    "default": "Anthony"
+    "default": "Teddy",
+    "cs": "Theodors",
+    "sk": "Theodors"
    },
-   "playerSlug": "anthony-cirelli-8478519"
+   "playerSlug": "teddy-blueger-8476927"
   }
  ]
 }
