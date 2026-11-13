@@ -4,12 +4,12 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#13202b">
+<meta name="theme-color" content="#f3f5f8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="NHL statistiky">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap">
 <style>
 /* Vzhled podle Cadastry na ledě: světle modrá ledová plocha se stopami bruslí, inkoust, červená a modrá z čar kluziště, Fraunces + Spectral, ostré rohy, vlasové linky
    a tabulky jako katastrální výpis. Detaily hráče a týmu přebírají barvy klubu (--tc1, --tc2). */
@@ -717,14 +717,124 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
   :root[data-skin="kostka"] .pd-head:not(.team) .pd-num #pd-num-v { font-size: 44px; }
   .pcard { width: 112px; height: 164px; } .pcard .pc-top { height: 90px; } .pcard .pc-n { font-size: 48px; }
 }
+/* ===== Kůže Moderní: čisté bílé karty, Inter, zaoblené rohy, jemné stíny; světlá i tmavá podle systému ===== */
+:root[data-skin="moderni"] {
+  --ice: #f3f5f8; --board: #ffffff; --row: #f8f9fb; --field: #ffffff; --ink: #0d1424; --muted: #5d6779; --faint: #98a1b1;
+  --line: #eceef3; --line-strong: #d9dde5; --frame: #e4e7ed; --red: #e5383b; --red-deep: #d0262f; --blue: #2459d6; --blue-soft: #e8efff; --red-soft: #fdeced;
+  --accent: #2459d6; --accent-soft: #eef3ff;
+  --good: #16884a; --bad: #d0262f; --bar: #e4e8ef; --rink: #fbfcfe; --rinkline: #c4ccd8; --rinkblue: #2459d6; --heat: 229, 56, 59; --cool: 36, 89, 214;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .05), 0 6px 20px -6px rgba(16, 24, 40, .10); --scrim: rgb(13 20 36 / .45); --rad: 14px;
+  --page-bg: radial-gradient(900px 420px at 100% -10%, rgba(36, 89, 214, .10), transparent 70%), radial-gradient(700px 360px at -10% 0%, rgba(229, 56, 59, .07), transparent 70%), #f3f5f8;
+  --font-display: "Inter Tight", "Inter", system-ui, sans-serif; --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-skin="moderni"] {
+    --ice: #0a0e16; --board: #121826; --row: #151c2b; --field: #0f1522; --ink: #e9edf5; --muted: #9aa4b6; --faint: #6b7588;
+    --line: #1e2636; --line-strong: #2b3547; --frame: #222b3c; --red: #ff5a5f; --red-deep: #ff7b7f; --blue: #6c9bff; --blue-soft: #18233d; --red-soft: #2a1820;
+    --accent: #6c9bff; --accent-soft: #18233d;
+    --good: #4ade80; --bad: #ff7b7f; --bar: #263044; --rink: #0f1522; --rinkline: #33405a; --rinkblue: #6c9bff; --heat: 255, 90, 95; --cool: 108, 155, 255;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -8px rgba(0, 0, 0, .55); --scrim: rgb(2 4 10 / .65);
+    --page-bg: radial-gradient(900px 420px at 100% -10%, rgba(108, 155, 255, .12), transparent 70%), radial-gradient(700px 360px at -10% 0%, rgba(255, 90, 95, .07), transparent 70%), #0a0e16;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="moderni"] body { font-size: 15px; -moz-osx-font-smoothing: grayscale; }
+:root[data-skin="moderni"] .wrap { gap: 20px; }
+/* Záhlaví */
+:root[data-skin="moderni"] header { padding-top: 28px; }
+:root[data-skin="moderni"] h1 { font-weight: 800; letter-spacing: -.035em; font-size: clamp(34px, 6vw, 56px); }
+:root[data-skin="moderni"] h1 .dot { color: var(--accent); }
+:root[data-skin="moderni"] .eyebrow { font-family: var(--font-body); letter-spacing: .08em; font-size: 12px; color: var(--accent); }
+:root[data-skin="moderni"] .rink { height: 3px; margin-top: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent) 0 40%, var(--red) 40% 41%, var(--line) 41%); }
+:root[data-skin="moderni"] .meta { font-size: 13.5px; }
+:root[data-skin="moderni"] a, :root[data-skin="moderni"] .aboutlink, :root[data-skin="moderni"] .reset, :root[data-skin="moderni"] .meta a, :root[data-skin="moderni"] .seasonbar a, :root[data-skin="moderni"] footer a, :root[data-skin="moderni"] .about a { color: var(--accent); }
+/* Štítky a nadpisy sekcí: tiché šedé verzálky místo červených */
+:root[data-skin="moderni"] .lead .lbl, :root[data-skin="moderni"] .field > span, :root[data-skin="moderni"] thead th, :root[data-skin="moderni"] .card h3, :root[data-skin="moderni"] .board h3,
+:root[data-skin="moderni"] .night-p h4, :root[data-skin="moderni"] .about h4, :root[data-skin="moderni"] .chip {
+  font-family: var(--font-body); color: var(--muted); letter-spacing: .06em; font-weight: 600;
+}
+:root[data-skin="moderni"] .card h3, :root[data-skin="moderni"] .board h3, :root[data-skin="moderni"] .drawer h4, :root[data-skin="moderni"] .pct h4 { border-bottom-color: var(--line); }
+:root[data-skin="moderni"] .card .more, :root[data-skin="moderni"] .lhc .more { font-family: var(--font-body); letter-spacing: .02em; text-transform: none; font-size: 13px; color: var(--accent); border-bottom: 0; }
+/* Hlavní navigace jako segmentový přepínač */
+:root[data-skin="moderni"] .secnav { padding: 5px; gap: 4px; border-radius: 16px; }
+:root[data-skin="moderni"] .secbtn { border-radius: 11px; font: 600 14.5px/1 var(--font-body); letter-spacing: 0; padding: 11px 10px; transition: background .15s, color .15s; }
+:root[data-skin="moderni"] .secbtn + .secbtn { border-left: 0; }
+:root[data-skin="moderni"] .secbtn[aria-current="true"] { background: var(--ink); color: var(--board); box-shadow: 0 2px 8px -2px rgba(13, 20, 36, .35); }
+:root[data-skin="moderni"] .secbtn:hover:not([aria-current="true"]) { background: var(--row); }
+/* Podzáložky jako pilulky */
+:root[data-skin="moderni"] .tabs { box-shadow: none; gap: 6px; padding: 2px 0; }
+:root[data-skin="moderni"] .tab { font: 500 14.5px/1 var(--font-body); padding: 9px 14px; border: 1px solid transparent; border-radius: 999px; }
+:root[data-skin="moderni"] .tab[aria-selected="true"] { background: var(--accent-soft); color: var(--accent); border-color: transparent; box-shadow: none; font-weight: 600; }
+:root[data-skin="moderni"] .tab:hover:not([aria-selected="true"]) { background: var(--board); }
+/* Ovládací prvky */
+:root[data-skin="moderni"] .seg { border-color: var(--line-strong); padding: 3px; gap: 2px; border-radius: 11px; background: var(--row); }
+:root[data-skin="moderni"] .seg button { border-radius: 8px; font-size: 14px; min-height: 32px; }
+:root[data-skin="moderni"] .seg button + button { border-left: 0; }
+:root[data-skin="moderni"] .seg button[aria-pressed="true"] { background: var(--board); color: var(--ink); font-weight: 600; box-shadow: 0 1px 3px rgba(16, 24, 40, .14); }
+:root[data-skin="moderni"] input[type="search"], :root[data-skin="moderni"] select, :root[data-skin="moderni"] input[type="number"] { border-radius: 10px; border-color: var(--line-strong); }
+:root[data-skin="moderni"] .lead:focus-visible, :root[data-skin="moderni"] button:focus-visible, :root[data-skin="moderni"] select:focus-visible, :root[data-skin="moderni"] input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+:root[data-skin="moderni"] .count, :root[data-skin="moderni"] .legend, :root[data-skin="moderni"] .empty, :root[data-skin="moderni"] .lead .tm { font-style: normal; }
+/* Karty lídrů */
+:root[data-skin="moderni"] .lead { padding: 14px 16px 15px; transition: transform .15s, box-shadow .15s; }
+:root[data-skin="moderni"] .lead:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(16, 24, 40, .06), 0 14px 28px -10px rgba(16, 24, 40, .22); }
+:root[data-skin="moderni"] .lead .val { font-weight: 800; letter-spacing: -.03em; font-size: 38px; }
+:root[data-skin="moderni"] .lead.cz { border-color: var(--frame); box-shadow: inset 0 3px 0 var(--red), var(--shadow); }
+/* Tabulky */
+:root[data-skin="moderni"] th, :root[data-skin="moderni"] td { padding: 9px 12px; }
+:root[data-skin="moderni"] thead th { font-size: 11px; background: var(--board); border-bottom: 1px solid var(--line-strong); }
+:root[data-skin="moderni"] th.sorted { color: var(--ink); }
+:root[data-skin="moderni"] th.sorted button::after { color: var(--accent); }
+:root[data-skin="moderni"] tbody tr:nth-child(even) td { background: var(--board); }
+:root[data-skin="moderni"] tbody tr:hover td { background: var(--accent-soft); }
+:root[data-skin="moderni"] .pts .bar { border-radius: 2px; }
+:root[data-skin="moderni"] .pts .bar i { background: var(--accent); border-radius: 2px; }
+:root[data-skin="moderni"] .team { font-family: var(--font-body); letter-spacing: .02em; }
+:root[data-skin="moderni"] .tdot { border-radius: 50%; }
+:root[data-skin="moderni"] .chip { border-radius: 6px; padding: 1px 5px; }
+:root[data-skin="moderni"] .chip.cze { border-color: transparent; }
+:root[data-skin="moderni"] .chip.svk { border-color: transparent; background: var(--blue-soft); }
+:root[data-skin="moderni"] .streak { border-radius: 6px; font-family: var(--font-body); }
+:root[data-skin="moderni"] .cut td { border-bottom: 1px dashed var(--accent); }
+/* Detail hráče / týmu */
+:root[data-skin="moderni"] .drawer { border-radius: 20px; border-color: var(--frame); box-shadow: 0 30px 80px -20px rgba(2, 6, 23, .45); }
+:root[data-skin="moderni"] .pd-head { border-radius: 20px 20px 0 0; }
+:root[data-skin="moderni"] .pd-head::after { height: 3px; bottom: 0; box-shadow: none; }
+:root[data-skin="moderni"] .pd-num { font-weight: 800; letter-spacing: -.05em; }
+:root[data-skin="moderni"] .drawer h3 { font-weight: 800; letter-spacing: -.03em; }
+:root[data-skin="moderni"] .dnav button { border-radius: 10px; border-color: transparent; background: rgb(255 255 255 / .16); backdrop-filter: blur(8px); font-family: var(--font-body); letter-spacing: .04em; }
+:root[data-skin="moderni"] .big { border-color: var(--line); background: var(--row); }
+:root[data-skin="moderni"] .big b { font-weight: 800; letter-spacing: -.03em; }
+:root[data-skin="moderni"] .big span, :root[data-skin="moderni"] .drawer h4, :root[data-skin="moderni"] .pct h4 { font-family: var(--font-body); letter-spacing: .06em; }
+:root[data-skin="moderni"] .tohome { border-radius: 999px; font-family: var(--font-body); letter-spacing: .04em; border-color: var(--frame); }
+:root[data-skin="moderni"] .gmlink, :root[data-skin="moderni"] .favbtn, :root[data-skin="moderni"] .cmpbtn { border-radius: 8px; font-family: var(--font-body); letter-spacing: .04em; }
+:root[data-skin="moderni"] .ngame { border-color: var(--line); background: var(--row); transition: border-color .15s, background .15s; }
+:root[data-skin="moderni"] .ngame:hover { border-color: var(--accent); background: var(--board); }
+:root[data-skin="moderni"] .night-h h2, :root[data-skin="moderni"] .conf h2, :root[data-skin="moderni"] .about h2, :root[data-skin="moderni"] .prday { font-weight: 800; letter-spacing: -.025em; }
+:root[data-skin="moderni"] .prday, :root[data-skin="moderni"] .about { border-color: var(--line); }
+:root[data-skin="moderni"] h1 a, :root[data-skin="moderni"] h1 a.home { color: var(--ink); }
+:root[data-skin="moderni"] #view-prehled { display: flex; flex-direction: column; gap: 12px; }
+:root[data-skin="moderni"] #view-prehled[hidden] { display: none; }
+:root[data-skin="moderni"] .minis ol { list-style: none; padding-left: 0; counter-reset: mi; }
+:root[data-skin="moderni"] .minis li { display: flex; align-items: baseline; gap: 6px; counter-increment: mi; white-space: nowrap; }
+:root[data-skin="moderni"] .minis li::before { content: counter(mi) "."; color: var(--faint); min-width: 1.1em; font-size: 13px; }
+:root[data-skin="moderni"] .minis li .tlink2 { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+:root[data-skin="moderni"] .minis li span { float: none; margin-left: auto; font-family: var(--font-body); }
+@media (max-width: 700px) {
+  :root[data-skin="moderni"] .secnav { padding: 4px 4px max(4px, env(safe-area-inset-bottom, 0px)); gap: 2px; border-radius: 18px 18px 0 0; border: 0; box-shadow: 0 -6px 24px -6px rgba(16, 24, 40, .18); background: color-mix(in srgb, var(--board) 88%, transparent); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  :root[data-skin="moderni"] .secbtn { min-width: 0; padding: 8px 2px 7px; font-size: 11px; border-radius: 12px; }
+}
+:root[data-skin="moderni"] .minis { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+:root[data-skin="moderni"] .minis > div, :root[data-skin="moderni"] .minis li { min-width: 0; }
+:root[data-skin="moderni"] .minis li .tlink2 { white-space: nowrap; flex: 0 1 auto; }
 </style>
-<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika"].indexOf(s)<0)s=matchMedia("(prefers-color-scheme: dark)").matches?"kostka":"klasika";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka")r.setAttribute("data-theme","dark");})();</script>
+<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika","moderni"].indexOf(s)<0)s="moderni";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka")r.setAttribute("data-theme","dark");})();</script>
 
 <div class="wrap">
   <header>
     <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
     <div class="hrow"><h1><a href="#prehled" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
-    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button></div></div>
+    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="moderni" aria-pressed="false">Moderní</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button></div></div>
     <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><div class="field" id="partbar" hidden><span>Část sezony</span><div class="seg" id="part" role="group" aria-label="Část sezony"><button type="button" data-v="reg" aria-pressed="true">Základní část</button><button type="button" data-v="po" aria-pressed="false">Play-off</button></div></div><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span><button type="button" class="aboutlink" id="aboutlink">O stránce</button></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -3878,10 +3988,10 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     r.setAttribute("data-skin", sk);
     if (sk === "kostka") r.setAttribute("data-theme", "dark"); else r.removeAttribute("data-theme");
     document.querySelectorAll("#skinsw button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.skin === sk)));
-    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" ? "#070707" : "#13202b");
+    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" ? "#070707" : sk === "moderni" ? "#f3f5f8" : "#13202b");
     if (save) store.set("skin", sk);
   }
-  applySkin(document.documentElement.getAttribute("data-skin") || "klasika", false);
+  applySkin(document.documentElement.getAttribute("data-skin") || "moderni", false);
   $("#skinsw").addEventListener("click", e => { const b = e.target.closest("button[data-skin]"); if (b) applySkin(b.dataset.skin, true); });
   $("#drawer").addEventListener("click", e => { const c = e.target.closest(".pd-head:not(.team) .pd-num"); if (c) c.classList.toggle("flip"); });
   $("#mj-box").addEventListener("click", e => {
