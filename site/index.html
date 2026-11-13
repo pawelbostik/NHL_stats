@@ -9,12 +9,12 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#0a0a3c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="NHL statistiky">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=VT323&family=Jersey+10&display=swap">
 <style>
 /* Vzhled podle Cadastry na ledě: světle modrá ledová plocha se stopami bruslí, inkoust, červená a modrá z čar kluziště, Fraunces + Spectral, ostré rohy, vlasové linky
    a tabulky jako katastrální výpis. Detaily hráče a týmu přebírají barvy klubu (--tc1, --tc2). */
@@ -986,18 +986,175 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
 /* Přepínač vzhledů se čtyřmi tlačítky se na úzkém displeji posouvá */
 .skinsw { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
 .skinsw button { flex: none; }
+/* ===== Kůže 16 bit: menu hokejových her z 16bitových konzolí – modré pixelové panely, žlutý kurzor, písmo Jersey 10 ===== */
+@keyframes px-blink { 50% { opacity: 0; } }
+:root[data-skin="px16"] {
+  --px-navy: #0a0a3c; --px-deep: #0e1a5c; --px-panel: #1a32a4; --px-panel2: #1e3ab6; --px-hi: #7090ff; --px-yellow: #f8d838; --px-orange: #f88818; --px-red: #f04838;
+  --px-green: #58f070; --px-cyan: #78d8f8; --px-white: #f4f6ff;
+  --ice: var(--px-navy); --board: var(--px-panel); --row: var(--px-panel2); --field: #08083a; --ink: var(--px-white); --muted: #a8b8f0; --faint: #7d8cc8;
+  --line: #2a48c8; --line-strong: var(--px-hi); --frame: #000; --red: var(--px-red); --red-deep: var(--px-orange); --blue: var(--px-cyan); --blue-soft: var(--px-deep); --red-soft: #3a2a8c;
+  --amber: var(--px-yellow); --good: var(--px-green); --bad: var(--px-red); --bar: #0e1a5c; --rink: #e8f0ff; --rinkline: #7090ff; --rinkblue: #2848d8; --heat: 248, 72, 56; --cool: 120, 216, 248;
+  --shadow: none; --scrim: rgb(4 4 30 / .75); --rad: 0px;
+  --px-edge: inset 0 0 0 3px #000, inset 0 0 0 6px var(--px-hi), inset 0 0 0 9px #000;
+  --px-notch: polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px);
+  --page-bg: linear-gradient(180deg, rgba(60, 0, 120, .35), rgba(0, 0, 0, 0) 420px), repeating-conic-gradient(#0a0a3c 0 25%, #0e0e4a 0 50%) 0 0 / 4px 4px, #0a0a3c;
+  --font-display: "Jersey 10", "Arial Narrow", sans-serif; --font-body: "Jersey 10", "Arial Narrow", sans-serif; --font-num: "Jersey 10", sans-serif;
+  color-scheme: dark;
+}
+:root[data-skin="px16"], :root[data-skin="px16"] *, :root[data-skin="px16"] *::before, :root[data-skin="px16"] *::after { font-size-adjust: 0.56 !important; font-synthesis: none; font-variant-ligatures: none; }
+:root[data-skin="px16"] *, :root[data-skin="px16"] *::before, :root[data-skin="px16"] *::after { font-style: normal !important; }
+:root[data-skin="px16"] body { font-size: 18px; line-height: 1.25; -webkit-font-smoothing: none; }
+:root[data-skin="px16"] a, :root[data-skin="px16"] .aboutlink, :root[data-skin="px16"] .reset { color: var(--px-cyan); }
+/* Pixelové panely se zkosenými rohy a trojitým rámečkem */
+:root[data-skin="px16"] .night, :root[data-skin="px16"] .card, :root[data-skin="px16"] .board, :root[data-skin="px16"] .lhc, :root[data-skin="px16"] .mile, :root[data-skin="px16"] .lead, :root[data-skin="px16"] .secnav {
+  background: var(--px-panel); border: 0; box-shadow: var(--px-edge); clip-path: var(--px-notch); padding: 16px 18px;
+}
+:root[data-skin="px16"] .tablebox { background: var(--px-panel); border: 3px solid #000; outline: 3px solid var(--px-hi); outline-offset: -6px; box-shadow: none; }
+/* Záhlaví: titulek jako z úvodní obrazovky hry */
+:root[data-skin="px16"] header { padding-top: 26px; gap: 12px; }
+:root[data-skin="px16"] h1 { font-weight: 400; font-size: clamp(40px, 7vw, 76px); line-height: 1; letter-spacing: .02em; }
+:root[data-skin="px16"] h1 a { color: var(--px-yellow); text-shadow: 3px 3px 0 #c83000, 6px 6px 0 #000; }
+:root[data-skin="px16"] h1 .dot { color: var(--px-red); }
+:root[data-skin="px16"] .eyebrow { font-family: var(--font-display); font-weight: 400; font-size: 17px; letter-spacing: .04em; color: var(--px-cyan) !important; }
+:root[data-skin="px16"] .eyebrow::before { content: "► "; color: var(--px-yellow); animation: px-blink 1s steps(1) infinite; }
+:root[data-skin="px16"] .meta { font-size: 15px; color: var(--muted); }
+:root[data-skin="px16"] .rink { height: 12px; margin-top: 4px; background: linear-gradient(180deg, #2848d8 0 4px, transparent 4px 8px, var(--px-red) 8px 12px);
+  -webkit-mask: repeating-linear-gradient(90deg, #000 0 8px, transparent 8px 12px); mask: repeating-linear-gradient(90deg, #000 0 8px, transparent 8px 12px); }
+/* Štítky */
+:root[data-skin="px16"] .lead .lbl, :root[data-skin="px16"] .field > span, :root[data-skin="px16"] .night-p h4, :root[data-skin="px16"] .about h4, :root[data-skin="px16"] .minis h4,
+:root[data-skin="px16"] .big span, :root[data-skin="px16"] .pd-bio b, :root[data-skin="px16"] .gm-role, :root[data-skin="px16"] .pd-num small {
+  font-family: var(--font-display); font-weight: 400; font-size: 14px; letter-spacing: .04em; color: var(--px-orange); opacity: 1;
+}
+:root[data-skin="px16"] .card h3, :root[data-skin="px16"] .board h3, :root[data-skin="px16"] .drawer h4, :root[data-skin="px16"] .pct h4, :root[data-skin="px16"] .lhc header {
+  font: 400 18px/1.1 var(--font-display); letter-spacing: .02em; color: var(--px-yellow); border-bottom: 3px dotted var(--px-hi); padding-bottom: 8px; margin: 0 0 10px;
+}
+:root[data-skin="px16"] .night-h h2, :root[data-skin="px16"] .conf h2, :root[data-skin="px16"] .about h2, :root[data-skin="px16"] .prday, :root[data-skin="px16"] .drawer h3 {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: 0; color: var(--px-yellow); text-shadow: 3px 3px 0 #000; border-color: var(--px-hi);
+}
+:root[data-skin="px16"] .night-h h2 { font-size: 28px; }
+:root[data-skin="px16"] .conf h2, :root[data-skin="px16"] .about h2 { font-size: 30px; }
+:root[data-skin="px16"] .prday { font-size: 24px; }
+:root[data-skin="px16"] .drawer h3 { font-size: clamp(34px, 5vw, 54px); line-height: 1.3; color: inherit; }
+/* Hlavní menu s blikajícím kurzorem */
+:root[data-skin="px16"] .secnav { padding: 12px; gap: 4px; overflow: visible; }
+:root[data-skin="px16"] .secbtn { font: 400 18px/1.1 var(--font-display); letter-spacing: 0; color: var(--px-white); padding: 12px 6px; border: 0 !important; background: none; }
+:root[data-skin="px16"] .secbtn .si { display: none; }
+:root[data-skin="px16"] .secbtn::before { content: "►"; color: var(--px-yellow); visibility: hidden; }
+:root[data-skin="px16"] .secbtn[aria-current="true"] { background: var(--px-deep); color: var(--px-yellow); box-shadow: inset 0 0 0 3px #000; }
+:root[data-skin="px16"] .secbtn[aria-current="true"]::before { visibility: visible; animation: px-blink 1s steps(1) infinite; }
+:root[data-skin="px16"] .secbtn:hover:not([aria-current="true"]) { background: var(--px-panel2); color: var(--px-yellow); }
+/* Podzáložky jako tlačítka z menu */
+:root[data-skin="px16"] .tabs { box-shadow: none; gap: 8px; flex-wrap: wrap; overflow: visible; }
+:root[data-skin="px16"] .tab { font: 400 20px/1 var(--font-body); padding: 9px 14px; color: var(--px-white); background: var(--px-deep); border: 3px solid #000; border-radius: 0; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .45), inset 0 3px 0 rgba(255, 255, 255, .12); }
+:root[data-skin="px16"] .tab[aria-selected="true"] { background: var(--px-yellow); color: #000; border-color: #000; box-shadow: inset 0 -3px 0 #c89800, inset 0 3px 0 #fff4a0; }
+:root[data-skin="px16"] .tab:hover:not([aria-selected="true"]) { color: var(--px-yellow); }
+/* Ovládací prvky */
+:root[data-skin="px16"] input[type="search"], :root[data-skin="px16"] select, :root[data-skin="px16"] input[type="number"] { font-family: var(--font-body); font-size: 19px; background: var(--px-navy); color: var(--px-white); border: 3px solid var(--px-hi); border-radius: 0; box-shadow: inset 3px 3px 0 #000; }
+:root[data-skin="px16"] .gsearch input { background-color: var(--px-navy); caret-color: var(--px-yellow); }
+:root[data-skin="px16"] input::placeholder { color: #7d8cc8; }
+:root[data-skin="px16"] .seg { border: 3px solid #000; background: var(--px-deep); gap: 0; }
+:root[data-skin="px16"] .seg button { font: 400 18px/1 var(--font-body); color: var(--px-white); }
+:root[data-skin="px16"] .seg button + button { border-left: 3px solid #000; }
+:root[data-skin="px16"] .seg button[aria-pressed="true"] { background: var(--px-yellow); color: #000; box-shadow: inset 0 -3px 0 #c89800; }
+:root[data-skin="px16"] .lead:focus-visible, :root[data-skin="px16"] button:focus-visible, :root[data-skin="px16"] select:focus-visible, :root[data-skin="px16"] input:focus-visible { outline: 3px solid var(--px-yellow); outline-offset: 2px; }
+:root[data-skin="px16"] .count, :root[data-skin="px16"] .legend { color: var(--px-cyan); }
+/* Výsledky noci */
+:root[data-skin="px16"] .ngame { background: var(--px-deep); border: 3px solid #000; }
+:root[data-skin="px16"] .ngame:hover { background: var(--px-panel2); border-color: var(--px-yellow); }
+:root[data-skin="px16"] .ngame span { font-family: var(--font-body); font-weight: 400; color: var(--muted); }
+:root[data-skin="px16"] .ngame span.w { color: var(--px-white); }
+:root[data-skin="px16"] .ngame b { font: 400 24px/1.1 var(--font-display); color: var(--px-yellow); }
+:root[data-skin="px16"] .ngame small { color: var(--px-cyan); }
+/* Lídři jako karty hráčů */
+:root[data-skin="px16"] .leaders { gap: 10px; }
+:root[data-skin="px16"] .lead { gap: 6px; padding: 16px 16px 18px; transition: none; }
+:root[data-skin="px16"] .lead:hover { transform: none; box-shadow: inset 0 0 0 3px #000, inset 0 0 0 6px var(--px-yellow), inset 0 0 0 9px #000; }
+:root[data-skin="px16"] .lead .val { font: 400 44px/1.1 var(--font-display); color: var(--px-yellow); text-shadow: 3px 3px 0 #000; }
+:root[data-skin="px16"] .lead .who { font-weight: 400; color: var(--px-white); }
+:root[data-skin="px16"] .lead .tm { color: var(--px-cyan); font-size: 14px; }
+:root[data-skin="px16"] .lead.cz .val { color: var(--px-red); }
+:root[data-skin="px16"] .lead.cz { box-shadow: inset 0 0 0 3px #000, inset 0 0 0 6px var(--px-red), inset 0 0 0 9px #000; }
+/* Tabulky jako statistiky po zápase */
+:root[data-skin="px16"] th, :root[data-skin="px16"] td { padding: 6px 10px; border: 0; }
+:root[data-skin="px16"] thead th { font: 400 15px/1.1 var(--font-display); letter-spacing: 0; background: var(--px-deep); color: var(--px-yellow); border-bottom: 3px solid #000; padding-top: 10px; padding-bottom: 9px; }
+:root[data-skin="px16"] th.sorted { color: var(--px-white); }
+:root[data-skin="px16"] th.sorted button::after { color: var(--px-red); }
+:root[data-skin="px16"] tbody tr td { background: var(--px-panel); }
+:root[data-skin="px16"] tbody tr:nth-child(even) td { background: var(--px-panel2); }
+:root[data-skin="px16"] tbody tr:hover td { background: #3454e4; }
+:root[data-skin="px16"] tbody tr:hover .name { color: var(--px-yellow); }
+:root[data-skin="px16"] .stick1 { color: var(--px-cyan); }
+:root[data-skin="px16"] .stick2 { box-shadow: none; }
+:root[data-skin="px16"] .name { font-weight: 400; color: var(--px-white); }
+:root[data-skin="px16"] .team { font-family: var(--font-body); font-weight: 400; color: var(--px-cyan); letter-spacing: .03em; }
+:root[data-skin="px16"] .pts { font-weight: 400; color: var(--px-yellow); }
+:root[data-skin="px16"] .pts .bar { background: #000; height: 3px; }
+:root[data-skin="px16"] .pts .bar i { background: var(--px-yellow); }
+:root[data-skin="px16"] .tdot { border-radius: 0; width: 10px; height: 10px; box-shadow: inset -5px 0 0 var(--c2, transparent), 0 0 0 1px #000; }
+:root[data-skin="px16"] .chip { font: 400 12px/1.1 var(--font-display); border: 0; padding: 3px 4px; color: #000; background: var(--px-white); }
+:root[data-skin="px16"] .chip.cze { background: var(--px-red); color: var(--px-white); }
+:root[data-skin="px16"] .chip.svk { background: var(--px-cyan); color: #000; }
+:root[data-skin="px16"] .streak { font-family: var(--font-body); font-weight: 400; border: 2px solid #000; }
+:root[data-skin="px16"] .streak.w { background: var(--px-green); color: #000; }
+:root[data-skin="px16"] .streak.l { background: var(--px-red); color: #000; }
+:root[data-skin="px16"] .cut td { border-bottom: 3px dashed var(--px-yellow); }
+:root[data-skin="px16"] .hl td { color: var(--px-yellow); }
+:root[data-skin="px16"] tr.czr td { background: #4a2a9c; }
+:root[data-skin="px16"] .minis { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+:root[data-skin="px16"] .minis > div, :root[data-skin="px16"] .minis li { min-width: 0; }
+:root[data-skin="px16"] .minis ol { list-style: none; padding-left: 0; counter-reset: mi; }
+:root[data-skin="px16"] .minis li { display: flex; align-items: baseline; gap: 6px; counter-increment: mi; white-space: nowrap; }
+:root[data-skin="px16"] .minis li::before { content: counter(mi); color: var(--px-cyan); min-width: 1em; }
+:root[data-skin="px16"] .minis li .tlink2 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 0 1 auto; }
+:root[data-skin="px16"] .minis li span { float: none; margin-left: auto; font-family: var(--font-body); font-weight: 400; color: var(--px-yellow); }
+/* Detail hráče a týmu */
+:root[data-skin="px16"] .drawer { background: var(--px-panel); border: 0; box-shadow: inset 0 0 0 4px #000, inset 0 0 0 8px var(--px-hi), inset 0 0 0 12px #000; padding: 12px; clip-path: var(--px-notch); }
+:root[data-skin="px16"] .pd-head::after { height: 6px; bottom: 0; box-shadow: none; -webkit-mask: repeating-linear-gradient(90deg, #000 0 8px, transparent 8px 12px); mask: repeating-linear-gradient(90deg, #000 0 8px, transparent 8px 12px); }
+:root[data-skin="px16"] .pd-num, :root[data-skin="px16"] .gm-ab, :root[data-skin="px16"] .gm-score b { font-family: var(--font-display); font-weight: 400; letter-spacing: 0; text-shadow: 4px 4px 0 rgba(0, 0, 0, .55); }
+:root[data-skin="px16"] .pd-num { font-size: clamp(60px, 9vw, 100px); }
+:root[data-skin="px16"] .gm-ab { font-size: clamp(44px, 6.5vw, 72px); }
+:root[data-skin="px16"] .gm-score b { font-size: clamp(50px, 7.5vw, 84px); }
+:root[data-skin="px16"] .dnav { margin-right: 22px; margin-top: 22px; }
+:root[data-skin="px16"] .dnav button { font: 400 15px/1.1 var(--font-display); letter-spacing: 0; border: 3px solid #000; background: var(--px-yellow); color: #000; box-shadow: inset 0 -3px 0 #c89800; }
+:root[data-skin="px16"] .dnav .close { background: var(--px-red); color: var(--px-white); font-size: 20px; box-shadow: inset 0 -3px 0 #a02010; }
+:root[data-skin="px16"] .big { border: 3px solid #000; background: var(--px-deep); }
+:root[data-skin="px16"] .big div + div { border-left: 3px solid #000; }
+:root[data-skin="px16"] .big b { font: 400 34px/1.1 var(--font-display); color: var(--px-yellow); text-shadow: 2px 2px 0 #000; }
+:root[data-skin="px16"] .gmlink, :root[data-skin="px16"] .favbtn, :root[data-skin="px16"] .cmpbtn, :root[data-skin="px16"] .tohome { font: 400 15px/1.1 var(--font-display); letter-spacing: 0; border: 3px solid #000; background: var(--px-yellow); color: #000; box-shadow: inset 0 -3px 0 #c89800; }
+:root[data-skin="px16"] .card .more, :root[data-skin="px16"] .lhc .more { font: 400 15px/1.1 var(--font-display); letter-spacing: 0; color: var(--px-cyan); border-bottom: 0; }
+:root[data-skin="px16"] .card .more::before, :root[data-skin="px16"] .lhc .more::before { content: "► "; color: var(--px-yellow); }
+:root[data-skin="px16"] .gres { background: var(--px-deep); border: 3px solid #000; box-shadow: inset 0 0 0 3px var(--px-hi); }
+:root[data-skin="px16"] .about { border-top: 3px dotted var(--px-hi); }
+:root[data-skin="px16"] .about p, :root[data-skin="px16"] .about li { color: var(--px-white); }
+:root[data-skin="px16"] .skinsw { border-color: #000; }
+@media (max-width: 700px) {
+  :root[data-skin="px16"] .secnav { clip-path: none; padding: 6px 4px max(6px, env(safe-area-inset-bottom, 0px)); gap: 2px; box-shadow: inset 0 3px 0 #000, inset 0 6px 0 var(--px-hi); }
+  :root[data-skin="px16"] .secbtn { font-size: 15px; padding: 10px 1px 8px; gap: 2px; }
+  :root[data-skin="px16"] .secbtn::before { display: none; }
+  :root[data-skin="px16"] .lead .val { font-size: 34px; }
+  :root[data-skin="px16"] .night, :root[data-skin="px16"] .card, :root[data-skin="px16"] .board, :root[data-skin="px16"] .lhc, :root[data-skin="px16"] .lead { padding: 14px; }
+}
+/* Pixelové postavičky (jen ve vzhledu 16 bit) */
+.pxs { display: none; }
+:root[data-skin="px16"] .pxs { display: block; image-rendering: pixelated; }
+:root[data-skin="px16"] .lead { position: relative; padding-right: 76px; }
+:root[data-skin="px16"] .lead .pxs { position: absolute; right: 14px; bottom: 12px; width: 54px; height: auto; }
+:root[data-skin="px16"] .pd-head:not(.team) .pd-num #pd-num-v, :root[data-skin="px16"] .pd-head:not(.team) .pd-num small { display: none; }
+:root[data-skin="px16"] .pd-head:not(.team) .pd-num .pxs { width: clamp(84px, 11vw, 132px); height: auto; filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, .45)); }
+:root[data-skin="px16"] .pd-head:not(.team) .pd-num.flip .pxs { display: none; }
+@media (max-width: 700px) { :root[data-skin="px16"] .lead { padding-right: 60px; } :root[data-skin="px16"] .lead .pxs { width: 40px; } }
 </style>
 </head>
 <body>
 
-<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika","moderni","teletext"].indexOf(s)<0)s="teletext";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka"||s==="teletext")r.setAttribute("data-theme","dark");})();</script>
+<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika","moderni","teletext","px16"].indexOf(s)<0)s="px16";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka"||s==="teletext"||s==="px16")r.setAttribute("data-theme","dark");})();</script>
 
 <div class="wrap">
   <header>
     <div class="ttx-bar" aria-hidden="true"><span class="ttx-n">P201</span><b>NHL TEXT</b><span>201</span><span class="ttx-clock" id="ttxclock"></span></div>
     <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
     <div class="hrow"><h1><a href="#prehled" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
-    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="teletext" aria-pressed="false">Teletext</button><button type="button" data-skin="moderni" aria-pressed="false">Moderní</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button></div></div>
+    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="px16" aria-pressed="false">16 bit</button><button type="button" data-skin="teletext" aria-pressed="false">Teletext</button><button type="button" data-skin="moderni" aria-pressed="false">Moderní</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button></div></div>
     <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><div class="field" id="partbar" hidden><span>Část sezony</span><div class="seg" id="part" role="group" aria-label="Část sezony"><button type="button" data-v="reg" aria-pressed="true">Základní část</button><button type="button" data-v="po" aria-pressed="false">Play-off</button></div></div><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span><button type="button" class="aboutlink" id="aboutlink">O stránce</button></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -1552,7 +1709,7 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     const cz = SK.filter(r => r.nat === "CZE");
     if (cz.length) L.push({ lbl: "Nejlepší Čech", r: top(cz, r => r.p, byGoalsTie), v: r => r.p + " b.", cz: true });
     $("#leaders").innerHTML = L.map(x => `<button type="button" class="lead${x.cz ? " cz" : ""}" data-id="${x.r.id}" data-team="${x.r.team}">
-      <span class="lbl">${x.lbl}</span><span class="val num">${x.v(x.r)}</span><span class="who">${esc(x.r.name)}</span><span class="tm">${tdot(x.r.team)}${esc(TM[x.r.team]?.place || "")} ${esc(TM[x.r.team]?.name || x.r.team)}</span></button>`).join("");
+      <span class="lbl">${x.lbl}</span><span class="val num">${x.v(x.r)}</span><span class="who">${esc(x.r.name)}</span><span class="tm">${tdot(x.r.team)}${esc(TM[x.r.team]?.place || "")} ${esc(TM[x.r.team]?.name || x.r.team)}</span>${pxSprite(x.r.team, x.r.num, x.g)}</button>`).join("");
   }
 
   function sorter(state, cols) {
@@ -1800,6 +1957,26 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     const on = contrast(c1, "#ffffff") >= 3 ? "#ffffff" : "#171511";
     return `--tc1:${c1};--tc2:${c2};--tc-on:${on};--tcl:${readable(c1, c2, "#f5f9fc", "#000000")};--tcd:${readable(c1, c2, "#16222d", "#ffffff")}`;
   }
+  /* Pixelová postavička pro vzhled 16 bit: obecný hráč v barvách klubu (helma s mřížkou, dres s číslem), žádná skutečná podoba */
+  const PX_MAP = {
+    f: ["................", ".....HHHHHH.....", "....HhhHHHHH....", "...HhHHHHHHHH...", "...HHHHHHHHHH...", "...HVvVVVVVVH...", "...HVVVVVVVVH...", "...HCcCcCcCcH...", "....cCcCcCcC....", ".....CcCcCcC....", "......NNNN......",
+        "..JJJJJJJJJJJJ..", ".JJJJJJJJJJJJJJ.", "JJSSSJJJJJJSSSJJ", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ"],
+    g: ["................", ".....MMMMMM.....", "....MmmMMMMM....", "...MmHHHHHHMM...", "...MHHHHHHHHM...", "...MCcCcCcCcM...", "...McCcCcCcCM...", "...MCcCcCcCcM...", "....McCcCcCM....", ".....MMMMMM.....", "......NNNN......",
+        "..JJJJJJJJJJJJ..", ".JJJJJJJJJJJJJJ.", "JJSSSJJJJJJSSSJJ", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ", "JJJJJJJJJJJJJJJJ"]
+  };
+  function pxSprite(ab, num, goalie) {
+    const [c1, c2] = TC[ab] || ["#2848d8", "#f8d838"];
+    const pal = { H: c1, h: "rgba(255,255,255,.45)", V: "#10183a", v: "#78d8f8", C: "#c8d0e0", c: "#10183a", N: c2, J: c1, S: c2, M: "#f4f6ff", m: "#c8d0e0" };
+    const map = PX_MAP[goalie ? "g" : "f"], W = 16, H = map.length, filled = (x, y) => y >= 0 && y < H && x >= 0 && x < W && map[y][x] !== ".";
+    let r = "";
+    for (let y = -1; y <= H; y++) for (let x = -1; x <= W; x++) {
+      if (filled(x, y)) r += `<rect x="${x + 1}" y="${y + 1}" width="1" height="1" fill="${pal[map[y][x]]}"/>`;
+      else if (filled(x - 1, y) || filled(x + 1, y) || filled(x, y - 1) || filled(x, y + 1)) r += `<rect x="${x + 1}" y="${y + 1}" width="1" height="1" fill="#000"/>`;
+    }
+    const on = contrast(c1, "#ffffff") >= 3 ? "#ffffff" : "#000000";
+    const t = num ? `<text x="9" y="${H - 0.6}" text-anchor="middle" font-family="'Jersey 10', sans-serif" font-size="${String(num).length > 1 ? 5.4 : 6}" fill="${on}" stroke="${c2}" stroke-width=".35" paint-order="stroke">${esc(String(num))}</text>` : "";
+    return `<svg class="pxs" viewBox="0 0 18 ${H + 1}" shape-rendering="crispEdges" aria-hidden="true">${r}${t}</svg>`;
+  }
   const tdot = ab => { const c = TC[ab]; return c ? `<i class="tdot" style="--c1:${c[0]};--c2:${c[1]}" aria-hidden="true"></i>` : ""; };
   const teamName = ab => { const t = TM[ab]; return t ? t.place + " " + t.name : ab; };
 
@@ -1981,7 +2158,7 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
     const other = (goalie ? GK : SK).filter(x => x.id === r.id && x.team !== r.team);
     const back = goalie ? `${r.gp} zápasů<br>${r.w} výher<br>${pctf(r.svp, 1)} % úspěšnost` : `${r.gp} zápasů<br>${r.g} gólů · ${r.a} asist.<br>${r.p} bodů`;
     return `<header class="pd-head">
-      <button type="button" class="pd-num" title="Otočit kartičku"><span id="pd-num-v">${num}</span><small>${num ? "číslo dresu" : ""}</small><em class="pd-ct">${esc(r.team)} · ${goalie ? "B" : (POS_SHORT[r.pos] || "")}</em><span class="pd-back"><b>${esc(r.name)}</b>${back}<i>klikni pro otočení</i></span></button>
+      <button type="button" class="pd-num" title="Otočit kartičku">${pxSprite(r.team, num, goalie)}<span id="pd-num-v">${num}</span><small>${num ? "číslo dresu" : ""}</small><em class="pd-ct">${esc(r.team)} · ${goalie ? "B" : (POS_SHORT[r.pos] || "")}</em><span class="pd-back"><b>${esc(r.name)}</b>${back}<i>klikni pro otočení</i></span></button>
       <div class="pd-id"><div class="eyebrow">${label} · <button type="button" class="tlink" data-team="${r.team}">${esc(t.place || "")} ${esc(t.name || r.team)}</button></div>
         <h3 id="d-name">${esc(r.name)}</h3>
         <div class="sub">${r.nat ? esc(COUNTRY[r.nat] || r.nat) : "Národnost neuvedena"}${other.length ? ` · v sezoně také za ${other.map(o => `<button type="button" class="tlink" data-team="${o.team}">${o.team}</button>`).join(", ")}` : ""}</div>
@@ -4149,12 +4326,12 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
   function applySkin(sk, save) {
     const r = document.documentElement;
     r.setAttribute("data-skin", sk);
-    if (sk === "kostka" || sk === "teletext") r.setAttribute("data-theme", "dark"); else r.removeAttribute("data-theme");
+    if (sk === "kostka" || sk === "teletext" || sk === "px16") r.setAttribute("data-theme", "dark"); else r.removeAttribute("data-theme");
     document.querySelectorAll("#skinsw button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.skin === sk)));
-    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" || sk === "teletext" ? "#000000" : sk === "moderni" ? "#f3f5f8" : "#13202b");
+    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" || sk === "teletext" ? "#000000" : sk === "px16" ? "#0a0a3c" : sk === "moderni" ? "#f3f5f8" : "#13202b");
     if (save) store.set("skin", sk);
   }
-  applySkin(document.documentElement.getAttribute("data-skin") || "teletext", false);
+  applySkin(document.documentElement.getAttribute("data-skin") || "px16", false);
   (function ttxClock() { const el = $("#ttxclock"); if (!el) return; const D = ["ne", "po", "út", "st", "čt", "pá", "so"], z = n => String(n).padStart(2, "0");
     const tick = () => { if (document.documentElement.getAttribute("data-skin") !== "teletext") return; const d = new Date(); el.textContent = `${D[d.getDay()]} ${d.getDate()}.${d.getMonth() + 1}. ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`; };
     tick(); setInterval(tick, 1000); })();
