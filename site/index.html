@@ -9,12 +9,12 @@
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
-<meta name="theme-color" content="#f3f5f8">
+<meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="NHL statistiky">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=Doto:wght@700;900&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@600;700;800&family=VT323&display=swap">
 <style>
 /* Vzhled podle Cadastry na ledě: světle modrá ledová plocha se stopami bruslí, inkoust, červená a modrá z čar kluziště, Fraunces + Spectral, ostré rohy, vlasové linky
    a tabulky jako katastrální výpis. Detaily hráče a týmu přebírají barvy klubu (--tc1, --tc2). */
@@ -832,17 +832,172 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
 :root[data-skin="moderni"] .minis { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 :root[data-skin="moderni"] .minis > div, :root[data-skin="moderni"] .minis li { min-width: 0; }
 :root[data-skin="moderni"] .minis li .tlink2 { white-space: nowrap; flex: 0 1 auto; }
+/* ===== Kůže Teletext: stránka 201 – černá obrazovka, 8 barev, pixelové písmo, barevná tlačítka dálkového ovladače ===== */
+.ttx-bar { display: none; }
+:root[data-skin="teletext"] {
+  --tt-red: #ff3b3b; --tt-green: #3bff5a; --tt-yellow: #ffef3b; --tt-blue: #2b3bff; --tt-magenta: #ff3bf2; --tt-cyan: #3bf6ff; --tt-white: #f4f4f4;
+  --ice: #000; --board: #000; --row: #000; --field: #000; --ink: var(--tt-white); --muted: var(--tt-cyan); --faint: #7a7a7a;
+  --line: #000; --line-strong: #2b3bff; --frame: var(--tt-blue); --red: var(--tt-red); --red-deep: var(--tt-yellow); --blue: var(--tt-cyan); --blue-soft: #00007a; --red-soft: #00007a;
+  --amber: var(--tt-yellow); --good: var(--tt-green); --bad: var(--tt-red); --bar: #1a1a6e; --rink: #000; --rinkline: #3bf6ff; --rinkblue: #2b3bff; --heat: 255, 59, 59; --cool: 59, 246, 255;
+  --shadow: none; --scrim: rgb(0 0 0 / .8); --rad: 0px;
+  --page-bg: repeating-linear-gradient(180deg, rgba(255, 255, 255, .035) 0 1px, transparent 1px 3px), #000;
+  --font-display: "VT323", "Courier New", monospace; --font-body: "VT323", "Courier New", monospace; --font-num: "VT323", monospace;
+  color-scheme: dark;
+}
+/* VT323 má malou výšku písmen: font-size-adjust ji srovná s běžnými písmy (zkratka font ji ruší, proto na všech prvcích) */
+:root[data-skin="teletext"], :root[data-skin="teletext"] *, :root[data-skin="teletext"] *::before, :root[data-skin="teletext"] *::after { font-size-adjust: 0.56 !important; font-synthesis: none; }
+:root[data-skin="teletext"] body { font-size: 15px; line-height: 1.15; letter-spacing: .02em; text-shadow: 0 0 6px rgba(255, 255, 255, .18); -webkit-font-smoothing: none; }
+:root[data-skin="teletext"] .wrap { gap: 18px; max-width: 1180px; }
+:root[data-skin="teletext"] *, :root[data-skin="teletext"] *::before, :root[data-skin="teletext"] *::after { font-style: normal !important; }
+:root[data-skin="teletext"] a, :root[data-skin="teletext"] .aboutlink, :root[data-skin="teletext"] .reset { color: var(--tt-cyan); }
+/* Stavový řádek: číslo stránky, název, datum a běžící hodiny */
+:root[data-skin="teletext"] .ttx-bar { display: flex; gap: 0 1.2em; flex-wrap: wrap; font: 400 15.5px/1 var(--font-body); color: var(--tt-white); padding: 4px 0; }
+:root[data-skin="teletext"] .ttx-bar b { font-weight: 400; color: var(--tt-yellow); }
+:root[data-skin="teletext"] .ttx-bar .ttx-n { color: var(--tt-green); }
+:root[data-skin="teletext"] .ttx-bar .ttx-clock { margin-left: auto; color: var(--tt-yellow); }
+:root[data-skin="teletext"] header { padding-top: 14px; gap: 10px; }
+/* Dvojitá výška nadpisu na modrém pruhu */
+:root[data-skin="teletext"] h1 { font-weight: 400; font-size: clamp(26px, 3.6vw, 34px); line-height: 1; letter-spacing: .04em; transform: scaleY(1.7); transform-origin: left top; margin: .15em 0 .85em; }
+:root[data-skin="teletext"] h1 a { color: var(--tt-yellow); background: var(--tt-blue); padding: 0 .3em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+:root[data-skin="teletext"] h1 .dot { color: var(--tt-red); }
+:root[data-skin="teletext"] .eyebrow { font-family: var(--font-body); font-weight: 400; font-size: 14.5px; letter-spacing: .06em; color: var(--tt-green) !important; }
+:root[data-skin="teletext"] .meta { font-size: 13px; color: var(--tt-white); }
+/* Mozaikový pruh místo čar kluziště */
+:root[data-skin="teletext"] .rink { height: 10px; margin-top: 2px; background:
+  linear-gradient(90deg, var(--tt-red) 0 16.66%, var(--tt-green) 0 33.33%, var(--tt-yellow) 0 50%, var(--tt-cyan) 0 66.66%, var(--tt-magenta) 0 83.33%, var(--tt-blue) 0);
+  -webkit-mask: repeating-linear-gradient(90deg, #000 0 12px, transparent 12px 16px); mask: repeating-linear-gradient(90deg, #000 0 12px, transparent 12px 16px); }
+/* Štítky */
+:root[data-skin="teletext"] .lead .lbl, :root[data-skin="teletext"] .field > span, :root[data-skin="teletext"] .night-p h4, :root[data-skin="teletext"] .about h4, :root[data-skin="teletext"] .minis h4,
+:root[data-skin="teletext"] .big span, :root[data-skin="teletext"] .pd-bio b, :root[data-skin="teletext"] .gm-role {
+  font-family: var(--font-body); font-weight: 400; font-size: 12px; letter-spacing: .08em; color: var(--tt-cyan); opacity: 1;
+}
+/* Nadpisy boxů jako barevné pruhy */
+:root[data-skin="teletext"] .card h3, :root[data-skin="teletext"] .board h3, :root[data-skin="teletext"] .drawer h4, :root[data-skin="teletext"] .pct h4, :root[data-skin="teletext"] .lhc header {
+  font: 400 14.5px/1.1 var(--font-body); letter-spacing: .06em; color: var(--tt-yellow); background: var(--tt-blue); padding: 3px 8px; border: 0; margin: 0 0 8px;
+}
+:root[data-skin="teletext"] .night-h h2, :root[data-skin="teletext"] .conf h2, :root[data-skin="teletext"] .about h2, :root[data-skin="teletext"] .prday, :root[data-skin="teletext"] .drawer h3 {
+  font-family: var(--font-body); font-weight: 400; letter-spacing: .03em; color: var(--tt-yellow); border-color: var(--tt-blue);
+}
+:root[data-skin="teletext"] .night-h h2 { font-size: 21.5px; }
+/* Fastext: barevná tlačítka dálkového ovladače */
+:root[data-skin="teletext"] .secnav { border: 0; background: #000; gap: 10px; overflow: visible; }
+:root[data-skin="teletext"] .secbtn { font: 400 15.5px/1 var(--font-body); letter-spacing: .04em; padding: 8px 6px; border: 0 !important; background: none; color: var(--fx); }
+:root[data-skin="teletext"] .secbtn::before { content: ""; width: 14px; height: 14px; background: var(--fx); flex: none; }
+:root[data-skin="teletext"] .secbtn .si { display: none; }
+:root[data-skin="teletext"] .secbtn:nth-child(6n+1) { --fx: var(--tt-red); } :root[data-skin="teletext"] .secbtn:nth-child(6n+2) { --fx: var(--tt-green); }
+:root[data-skin="teletext"] .secbtn:nth-child(6n+3) { --fx: var(--tt-yellow); } :root[data-skin="teletext"] .secbtn:nth-child(6n+4) { --fx: var(--tt-cyan); }
+:root[data-skin="teletext"] .secbtn:nth-child(6n+5) { --fx: var(--tt-magenta); } :root[data-skin="teletext"] .secbtn:nth-child(6n+6) { --fx: var(--tt-white); }
+:root[data-skin="teletext"] .secbtn[aria-current="true"] { background: var(--fx); color: #000; text-shadow: none; }
+:root[data-skin="teletext"] .secbtn[aria-current="true"]::before { background: #000; }
+:root[data-skin="teletext"] .secbtn:hover:not([aria-current="true"]) { background: #111; }
+/* Podstránky jako čísla stránek */
+:root[data-skin="teletext"] .tabs { box-shadow: none; gap: 4px 18px; flex-wrap: wrap; overflow: visible; }
+:root[data-skin="teletext"] .tab { font: 400 15px/1 var(--font-body); padding: 4px 6px; border: 0; color: var(--tt-white); counter-increment: ttp; }
+:root[data-skin="teletext"] .tabs { counter-reset: ttp 200; }
+:root[data-skin="teletext"] .tab::before { content: counter(ttp) " "; color: var(--tt-cyan); }
+:root[data-skin="teletext"] .tab[aria-selected="true"] { background: var(--tt-yellow); color: #000; border: 0; box-shadow: none; text-shadow: none; }
+:root[data-skin="teletext"] .tab[aria-selected="true"]::before { color: var(--tt-blue); }
+:root[data-skin="teletext"] .tab:hover:not([aria-selected="true"]) { color: var(--tt-yellow); }
+/* Ovládací prvky */
+:root[data-skin="teletext"] input[type="search"], :root[data-skin="teletext"] select, :root[data-skin="teletext"] input[type="number"] { font-size: 15px; background: #000; color: var(--tt-yellow); border: 2px solid var(--tt-blue); border-radius: 0; }
+:root[data-skin="teletext"] .gsearch input { background-color: #000; caret-color: var(--tt-yellow); }
+:root[data-skin="teletext"] input::placeholder { color: #6f6f6f; }
+:root[data-skin="teletext"] .seg { border: 2px solid var(--tt-blue); background: #000; }
+:root[data-skin="teletext"] .seg button { font: 400 14.5px/1 var(--font-body); color: var(--tt-white); }
+:root[data-skin="teletext"] .seg button + button { border-left: 2px solid var(--tt-blue); }
+:root[data-skin="teletext"] .seg button[aria-pressed="true"] { background: var(--tt-cyan); color: #000; text-shadow: none; }
+:root[data-skin="teletext"] .lead:focus-visible, :root[data-skin="teletext"] button:focus-visible, :root[data-skin="teletext"] select:focus-visible, :root[data-skin="teletext"] input:focus-visible { outline: 2px solid var(--tt-yellow); outline-offset: 2px; }
+:root[data-skin="teletext"] .count, :root[data-skin="teletext"] .legend { color: var(--tt-green); }
+/* Boxy: žádné stíny ani rámečky, jen černá plocha */
+:root[data-skin="teletext"] .night, :root[data-skin="teletext"] .card, :root[data-skin="teletext"] .board, :root[data-skin="teletext"] .lhc, :root[data-skin="teletext"] .mile, :root[data-skin="teletext"] .tablebox { border: 0; box-shadow: none; padding-left: 0; padding-right: 0; }
+:root[data-skin="teletext"] .night { padding-top: 0; }
+:root[data-skin="teletext"] .ngame { background: #000; border: 0; border-left: 4px solid var(--tt-blue); }
+:root[data-skin="teletext"] .ngame:hover { border-left-color: var(--tt-yellow); background: #0a0a2a; }
+:root[data-skin="teletext"] .ngame span { font-family: var(--font-body); font-weight: 400; color: var(--tt-white); }
+:root[data-skin="teletext"] .ngame span.w { color: var(--tt-yellow); }
+:root[data-skin="teletext"] .ngame b { font-family: var(--font-body); font-weight: 400; font-size: 20px; color: var(--tt-green); }
+:root[data-skin="teletext"] .ngame small { color: var(--tt-cyan); }
+/* Lídři: velké žluté číslo, jméno bíle, tým azurově */
+:root[data-skin="teletext"] .leaders { gap: 8px; }
+:root[data-skin="teletext"] .lead { border: 0; border-top: 4px solid var(--tt-blue); padding: 8px 4px 10px; background: #000; }
+:root[data-skin="teletext"] .lead:hover { transform: none; box-shadow: none; background: #0a0a2a; }
+:root[data-skin="teletext"] .lead .val { font-family: var(--font-body); font-weight: 400; font-size: 45.5px; line-height: .85; color: var(--tt-yellow); }
+:root[data-skin="teletext"] .lead .who { font-weight: 400; color: var(--tt-white); }
+:root[data-skin="teletext"] .lead .tm { color: var(--tt-cyan); font-size: 13px; }
+:root[data-skin="teletext"] .lead.cz { border-top-color: var(--tt-red); }
+:root[data-skin="teletext"] .lead.cz .val { color: var(--tt-red); }
+/* Tabulky: barevné sloupce bez čar */
+:root[data-skin="teletext"] th, :root[data-skin="teletext"] td { padding: 3px 9px; border: 0; }
+:root[data-skin="teletext"] thead th { font: 400 13px/1.1 var(--font-body); letter-spacing: .04em; background: var(--tt-blue); color: var(--tt-yellow); border: 0; text-shadow: none; }
+:root[data-skin="teletext"] th.sorted { color: var(--tt-white); }
+:root[data-skin="teletext"] th.sorted button::after { color: var(--tt-white); }
+:root[data-skin="teletext"] tbody tr td, :root[data-skin="teletext"] tbody tr:nth-child(even) td { background: #000; }
+:root[data-skin="teletext"] tbody tr:hover td { background: var(--tt-blue); color: var(--tt-white); }
+:root[data-skin="teletext"] .stick1 { color: var(--tt-green); }
+:root[data-skin="teletext"] .stick2 { box-shadow: none; }
+:root[data-skin="teletext"] .name { font-weight: 400; color: var(--tt-white); }
+:root[data-skin="teletext"] .team { font-family: var(--font-body); font-weight: 400; color: var(--tt-cyan); letter-spacing: .04em; font-size: inherit; }
+:root[data-skin="teletext"] .pts { font-weight: 400; color: var(--tt-yellow); }
+:root[data-skin="teletext"] .pts .bar { display: none; }
+:root[data-skin="teletext"] .tdot { border-radius: 0; width: 10px; height: 10px; }
+:root[data-skin="teletext"] .chip { font: 400 11.5px/1 var(--font-body); border: 0; padding: 1px 4px; color: #000; background: var(--tt-white); text-shadow: none; }
+:root[data-skin="teletext"] .chip.cze { background: var(--tt-red); color: var(--tt-white); }
+:root[data-skin="teletext"] .chip.svk { background: var(--tt-cyan); color: #000; }
+:root[data-skin="teletext"] .streak { font-family: var(--font-body); font-weight: 400; border: 0; }
+:root[data-skin="teletext"] .streak.w { background: var(--tt-green); color: #000; }
+:root[data-skin="teletext"] .streak.l { background: var(--tt-red); color: #000; }
+:root[data-skin="teletext"] .cut td { border-bottom: 2px dashed var(--tt-magenta); }
+:root[data-skin="teletext"] .hl td { font-weight: 400; color: var(--tt-yellow); }
+:root[data-skin="teletext"] tr.czr td { background: #2a0000; }
+:root[data-skin="teletext"] .minis li span { font-family: var(--font-body); font-weight: 400; color: var(--tt-yellow); }
+:root[data-skin="teletext"] .minis { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+:root[data-skin="teletext"] .minis > div, :root[data-skin="teletext"] .minis li { min-width: 0; }
+:root[data-skin="teletext"] .minis ol { list-style: none; padding-left: 0; counter-reset: mi; }
+:root[data-skin="teletext"] .minis li { display: flex; align-items: baseline; gap: 6px; counter-increment: mi; white-space: nowrap; }
+:root[data-skin="teletext"] .minis li::before { content: counter(mi); color: var(--tt-green); min-width: 1em; }
+:root[data-skin="teletext"] .minis li .tlink2 { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 0 1 auto; }
+:root[data-skin="teletext"] .minis li span { float: none; margin-left: auto; }
+/* Detail hráče a týmu: týmové barvy zůstávají, písmo pixelové */
+:root[data-skin="teletext"] .drawer { background: #000; border: 3px solid var(--tt-blue); box-shadow: 0 0 0 9999px rgb(0 0 0 / .55); }
+:root[data-skin="teletext"] .pd-head::after { height: 8px; bottom: 0; box-shadow: none; -webkit-mask: repeating-linear-gradient(90deg, #000 0 12px, transparent 12px 16px); mask: repeating-linear-gradient(90deg, #000 0 12px, transparent 12px 16px); }
+:root[data-skin="teletext"] .pd-num, :root[data-skin="teletext"] .gm-ab, :root[data-skin="teletext"] .gm-score b { font-family: var(--font-body); font-weight: 400; letter-spacing: 0; }
+:root[data-skin="teletext"] .drawer h3 { color: inherit; font-size: clamp(26px, 3.6vw, 40px); }
+:root[data-skin="teletext"] .dnav button { font: 400 13.5px/1 var(--font-body); border: 0; background: var(--tt-yellow); color: #000; text-shadow: none; }
+:root[data-skin="teletext"] .dnav .close { background: var(--tt-red); color: var(--tt-white); }
+:root[data-skin="teletext"] .big { border: 0; background: #000; }
+:root[data-skin="teletext"] .big div + div { border-left: 0; }
+:root[data-skin="teletext"] .big b { font-family: var(--font-body); font-weight: 400; font-size: 37px; color: var(--tt-yellow); }
+:root[data-skin="teletext"] .gmlink, :root[data-skin="teletext"] .favbtn, :root[data-skin="teletext"] .cmpbtn, :root[data-skin="teletext"] .tohome { font: 400 13.5px/1 var(--font-body); letter-spacing: .04em; border: 0; background: var(--tt-cyan); color: #000; text-shadow: none; box-shadow: none; }
+:root[data-skin="teletext"] .card .more, :root[data-skin="teletext"] .lhc .more { font: 400 13.5px/1 var(--font-body); letter-spacing: .03em; color: var(--tt-cyan); border-bottom: 0; text-transform: none; }
+:root[data-skin="teletext"] .card .more::before, :root[data-skin="teletext"] .lhc .more::before { content: "► "; color: var(--tt-yellow); }
+:root[data-skin="teletext"] .gres { background: #000; border: 2px solid var(--tt-blue); }
+:root[data-skin="teletext"] .about { border-top: 4px solid var(--tt-blue); }
+:root[data-skin="teletext"] .about p, :root[data-skin="teletext"] .about li { color: var(--tt-white); font-size: 13.5px; }
+:root[data-skin="teletext"] .skinsw button { font-size: 13.5px; }
+@media (max-width: 700px) {
+  :root[data-skin="teletext"] body { font-size: 13.5px; }
+  :root[data-skin="teletext"] .ttx-bar { font-size: 13px; }
+  :root[data-skin="teletext"] .secnav { gap: 0; border-top: 3px solid var(--tt-blue); background: #000; box-shadow: none; }
+  :root[data-skin="teletext"] .secbtn { font-size: 11.5px; padding: 7px 1px 6px; gap: 4px; }
+  :root[data-skin="teletext"] .secbtn::before { width: 100%; height: 6px; }
+  :root[data-skin="teletext"] .lead .val { font-size: 34.5px; }
+  :root[data-skin="teletext"] h1 { font-size: 24.5px; transform: scaleY(1.5); white-space: nowrap; margin-bottom: .45em; }
+}
+/* Přepínač vzhledů se čtyřmi tlačítky se na úzkém displeji posouvá */
+.skinsw { max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+.skinsw button { flex: none; }
 </style>
 </head>
 <body>
 
-<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika","moderni"].indexOf(s)<0)s="moderni";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka")r.setAttribute("data-theme","dark");})();</script>
+<script>(function(){var s=null;try{s=JSON.parse(localStorage.getItem("nhlstat:skin"));}catch(e){}if(["kostka","klasika","moderni","teletext"].indexOf(s)<0)s="teletext";var r=document.documentElement;r.setAttribute("data-skin",s);if(s==="kostka"||s==="teletext")r.setAttribute("data-theme","dark");})();</script>
 
 <div class="wrap">
   <header>
+    <div class="ttx-bar" aria-hidden="true"><span class="ttx-n">P201</span><b>NHL TEXT</b><span>201</span><span class="ttx-clock" id="ttxclock"></span></div>
     <div class="eyebrow" id="eyebrow">NHL · základní část 2026/27</div>
     <div class="hrow"><h1><a href="#prehled" class="home" id="home" title="Na úvodní stránku">Statistiky NHL<span class="dot">.</span></a></h1>
-    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="moderni" aria-pressed="false">Moderní</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button></div></div>
+    <div class="gsearch" role="search"><input type="search" id="gq" placeholder="Hledat hráče nebo tým…" autocomplete="off" aria-label="Hledat hráče nebo tým v celé historii NHL"><div class="gres" id="gres" hidden></div></div><div class="seg skinsw" id="skinsw" role="group" aria-label="Vzhled stránky"><button type="button" data-skin="teletext" aria-pressed="false">Teletext</button><button type="button" data-skin="moderni" aria-pressed="false">Moderní</button><button type="button" data-skin="klasika" aria-pressed="false">Klasika</button><button type="button" data-skin="kostka" aria-pressed="false">Kostka</button></div></div>
     <div class="seasonbar" id="seasonbar" hidden><label class="field"><span>Sezona</span><select id="season" aria-label="Vybrat sezonu"></select></label><div class="field" id="partbar" hidden><span>Část sezony</span><div class="seg" id="part" role="group" aria-label="Část sezony"><button type="button" data-v="reg" aria-pressed="true">Základní část</button><button type="button" data-v="po" aria-pressed="false">Play-off</button></div></div><a id="tocurrent" href="./" hidden>Zpět na aktuální sezonu</a></div>
     <div class="meta"><span id="asof">Načítám data…</span><span>Zdroj: <a href="https://www.nhl.com/stats/" target="_blank" rel="noopener">NHL.com</a></span><span id="mpcredit" hidden>Pokročilé statistiky (xG, Corsi, GSAx): <a href="https://moneypuck.com" target="_blank" rel="noopener">MoneyPuck.com</a></span><button type="button" class="aboutlink" id="aboutlink">O stránce</button></div>
     <div class="rink" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -3994,12 +4149,15 @@ button.pd-num { background: none; border: 0; color: inherit; cursor: pointer; pa
   function applySkin(sk, save) {
     const r = document.documentElement;
     r.setAttribute("data-skin", sk);
-    if (sk === "kostka") r.setAttribute("data-theme", "dark"); else r.removeAttribute("data-theme");
+    if (sk === "kostka" || sk === "teletext") r.setAttribute("data-theme", "dark"); else r.removeAttribute("data-theme");
     document.querySelectorAll("#skinsw button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.skin === sk)));
-    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" ? "#070707" : sk === "moderni" ? "#f3f5f8" : "#13202b");
+    const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", sk === "kostka" || sk === "teletext" ? "#000000" : sk === "moderni" ? "#f3f5f8" : "#13202b");
     if (save) store.set("skin", sk);
   }
-  applySkin(document.documentElement.getAttribute("data-skin") || "moderni", false);
+  applySkin(document.documentElement.getAttribute("data-skin") || "teletext", false);
+  (function ttxClock() { const el = $("#ttxclock"); if (!el) return; const D = ["ne", "po", "út", "st", "čt", "pá", "so"], z = n => String(n).padStart(2, "0");
+    const tick = () => { if (document.documentElement.getAttribute("data-skin") !== "teletext") return; const d = new Date(); el.textContent = `${D[d.getDay()]} ${d.getDate()}.${d.getMonth() + 1}. ${z(d.getHours())}:${z(d.getMinutes())}:${z(d.getSeconds())}`; };
+    tick(); setInterval(tick, 1000); })();
   $("#skinsw").addEventListener("click", e => { const b = e.target.closest("button[data-skin]"); if (b) applySkin(b.dataset.skin, true); });
   $("#drawer").addEventListener("click", e => { const c = e.target.closest(".pd-head:not(.team) .pd-num"); if (c) c.classList.toggle("flip"); });
   $("#mj-box").addEventListener("click", e => {
