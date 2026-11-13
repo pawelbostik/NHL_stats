@@ -1,102 +1,124 @@
 {
- "playerId": 8479312,
+ "playerId": 8477942,
  "isActive": true,
- "currentTeamId": 7,
- "currentTeamAbbrev": "BUF",
+ "currentTeamId": 26,
+ "currentTeamAbbrev": "LAK",
  "fullTeamName": {
-  "default": "Buffalo Sabres",
-  "fr": "Sabres de Buffalo"
+  "default": "Los Angeles Kings",
+  "fr": "Kings de Los Angeles"
  },
  "teamCommonName": {
-  "default": "Sabres"
+  "default": "Kings"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Buffalo",
-  "fr": "de Buffalo"
+  "default": "Los Angeles",
+  "fr": "de Los Angeles"
  },
  "firstName": {
-  "default": "Alex"
+  "default": "Kevin"
  },
  "lastName": {
-  "default": "Lyon"
+  "default": "Fiala"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/BUF_light.svg",
- "sweaterNumber": 34,
- "position": "G",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/BUF/8479312.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8479312.jpg",
- "heightInInches": 73,
- "heightInCentimeters": 185,
- "weightInPounds": 199,
- "weightInKilograms": 90,
- "birthDate": "1992-12-09",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/LAK_light.svg",
+ "sweaterNumber": 22,
+ "position": "L",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/LAK/8477942.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8477942.jpg",
+ "heightInInches": 72,
+ "heightInCentimeters": 183,
+ "weightInPounds": 205,
+ "weightInKilograms": 93,
+ "birthDate": "1996-07-22",
  "birthCity": {
-  "default": "Baudette"
+  "default": "St. Gallen"
  },
- "birthStateProvince": {
-  "default": "Minnesota"
- },
- "birthCountry": "USA",
+ "birthCountry": "CHE",
  "shootsCatches": "L",
- "playerSlug": "alex-lyon-8479312",
+ "draftDetails": {
+  "year": 2014,
+  "teamAbbrev": "NSH",
+  "round": 1,
+  "pickInRound": 11,
+  "overallPick": 11
+ },
+ "playerSlug": "kevin-fiala-8477942",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
+    "assists": 1,
+    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goalsAgainstAvg": 2.871577,
-    "losses": 0,
-    "otLosses": 1,
-    "savePctg": 0.88,
-    "shutouts": 0,
-    "wins": 0
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 0,
+    "plusMinus": -1,
+    "points": 1,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 1,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 0
    },
    "career": {
-    "gamesPlayed": 150,
-    "goalsAgainstAvg": 2.933924,
-    "losses": 48,
-    "otLosses": 16,
-    "savePctg": 0.903226,
-    "shutouts": 7,
-    "wins": 71
+    "assists": 300,
+    "gameWinningGoals": 35,
+    "gamesPlayed": 708,
+    "goals": 229,
+    "otGoals": 6,
+    "pim": 403,
+    "plusMinus": 1,
+    "points": 529,
+    "powerPlayGoals": 62,
+    "powerPlayPoints": 170,
+    "shootingPctg": 0.1197,
+    "shorthandedGoals": 1,
+    "shorthandedPoints": 1,
+    "shots": 1912
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 2,
-   "gamesPlayed": 150,
-   "gamesStarted": 135,
-   "goals": 0,
-   "goalsAgainst": 398,
-   "goalsAgainstAvg": 2.933924,
-   "losses": 48,
-   "otLosses": 16,
-   "pim": 8,
-   "savePctg": 0.903226,
-   "shotsAgainst": 4092,
-   "shutouts": 7,
-   "timeOnIce": "8139:16",
-   "wins": 71
+   "assists": 300,
+   "avgToi": "16:46",
+   "faceoffWinningPctg": 0.3214,
+   "gameWinningGoals": 35,
+   "gamesPlayed": 708,
+   "goals": 229,
+   "otGoals": 6,
+   "pim": 403,
+   "plusMinus": 1,
+   "points": 529,
+   "powerPlayGoals": 62,
+   "powerPlayPoints": 170,
+   "shootingPctg": 0.1197,
+   "shorthandedGoals": 1,
+   "shorthandedPoints": 1,
+   "shots": 1912
   },
   "playoffs": {
-   "assists": 0,
-   "gamesPlayed": 14,
-   "gamesStarted": 11,
-   "goals": 0,
-   "goalsAgainst": 32,
-   "goalsAgainstAvg": 2.900448,
-   "losses": 5,
-   "otLosses": 0,
-   "pim": 0,
-   "savePctg": 0.898734,
-   "shotsAgainst": 316,
-   "shutouts": 0,
-   "timeOnIce": "661:58",
-   "wins": 5
+   "assists": 16,
+   "avgToi": "16:59",
+   "faceoffWinningPctg": 0.3333,
+   "gameWinningGoals": 3,
+   "gamesPlayed": 49,
+   "goals": 14,
+   "otGoals": 2,
+   "pim": 46,
+   "plusMinus": -12,
+   "points": 30,
+   "powerPlayGoals": 7,
+   "powerPlayPoints": 13,
+   "shootingPctg": 0.09390000000000001,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 149
   }
  },
  "shopLink": "#TODO",
@@ -104,89 +126,106 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "decision": "O",
+   "assists": 1,
    "gameDate": "2026-11-12",
-   "gameId": 2026020305,
+   "gameId": 2026020308,
    "gameTypeId": 2,
-   "gamesStarted": 1,
-   "goalsAgainst": 3,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "CHI",
-   "penaltyMins": 0,
-   "savePctg": 0.88,
-   "shotsAgainst": 25,
-   "teamAbbrev": "BUF",
-   "toi": "62:41"
+   "goals": 0,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "NYI",
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 1,
+   "powerPlayGoals": 0,
+   "shifts": 22,
+   "shorthandedGoals": 0,
+   "shots": 0,
+   "teamAbbrev": "LAK",
+   "toi": "16:37"
   }
  ],
  "seasonTotals": [
   {
+   "assists": 5,
    "gameTypeId": 2,
-   "gamesPlayed": 4,
-   "goalsAgainstAvg": 6.86,
-   "leagueAbbrev": "USHS-MN",
-   "savePctg": 0.847,
+   "gamesPlayed": 14,
+   "goals": 25,
+   "leagueAbbrev": "Mini A",
+   "pim": 10,
+   "plusMinus": 0,
+   "points": 30,
+   "season": 20062007,
+   "sequence": 10083251,
+   "teamName": {
+    "default": "Wil U15"
+   }
+  },
+  {
+   "assists": 16,
+   "gameTypeId": 2,
+   "gamesPlayed": 16,
+   "goals": 27,
+   "leagueAbbrev": "Mini A",
+   "pim": 34,
+   "plusMinus": 0,
+   "points": 43,
    "season": 20072008,
-   "sequence": 70002,
+   "sequence": 10083261,
    "teamName": {
-    "default": "Lake of the Woods High"
+    "default": "Uzwil U15"
    }
   },
   {
-   "gameTypeId": 2,
-   "gamesPlayed": 17,
-   "goalsAgainstAvg": 3.44,
-   "leagueAbbrev": "USHS-MN",
-   "savePctg": 0.909,
-   "season": 20082009,
-   "sequence": 70002,
-   "teamName": {
-    "default": "Lake of the Woods High"
-   }
-  },
-  {
+   "assists": 16,
    "gameTypeId": 2,
    "gamesPlayed": 25,
-   "goalsAgainstAvg": 2.8,
-   "leagueAbbrev": "USHS-MN",
-   "savePctg": 0.919,
-   "season": 20092010,
-   "sequence": 70002,
+   "goals": 15,
+   "leagueAbbrev": "Top Mini",
+   "pim": 40,
+   "plusMinus": 0,
+   "points": 31,
+   "season": 20082009,
+   "sequence": 79982,
    "teamName": {
-    "default": "Lake of the Woods High"
+    "default": "Rheintal U15"
    }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8484145,
+   "playerId": 8479998,
    "lastName": {
-    "default": "Benson"
+    "default": "Anderson"
    },
    "firstName": {
-    "default": "Zach"
+    "default": "Mikey",
+    "cs": "Michael",
+    "de": "Michael",
+    "fi": "Michael",
+    "sk": "Michael",
+    "sv": "Michael"
    },
-   "playerSlug": "zach-benson-8484145"
+   "playerSlug": "mikey-anderson-8479998"
   },
   {
-   "playerId": 8475842,
+   "playerId": 8476469,
    "lastName": {
-    "default": "Carrick"
+    "default": "Armia"
    },
    "firstName": {
-    "default": "Sam"
+    "default": "Joel"
    },
-   "playerSlug": "sam-carrick-8475842"
+   "playerSlug": "joel-armia-8476469"
   },
   {
-   "playerId": 8481806,
+   "playerId": 8482124,
    "lastName": {
-    "default": "Crevier"
+    "default": "Byfield"
    },
    "firstName": {
-    "default": "Louis"
+    "default": "Quinton"
    },
-   "playerSlug": "louis-crevier-8481806"
+   "playerSlug": "quinton-byfield-8482124"
   }
  ]
 }
