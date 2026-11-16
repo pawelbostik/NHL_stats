@@ -1,54 +1,52 @@
 {
- "playerId": 8478445,
+ "playerId": 8482178,
  "isActive": true,
- "currentTeamId": 2,
- "currentTeamAbbrev": "NYI",
+ "currentTeamId": 24,
+ "currentTeamAbbrev": "ANA",
  "fullTeamName": {
-  "default": "New York Islanders",
-  "fr": "Islanders de New York"
+  "default": "Anaheim Ducks",
+  "fr": "Ducks d'Anaheim"
  },
  "teamCommonName": {
-  "default": "Islanders"
+  "default": "Ducks"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "New York",
-  "fr": "de New York"
+  "default": "Anaheim",
+  "fr": "d'Anaheim"
  },
  "firstName": {
-  "default": "Mathew"
+  "default": "Ian"
  },
  "lastName": {
-  "default": "Barzal"
+  "default": "Moore"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/NYI_light.svg",
- "sweaterNumber": 13,
- "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/NYI/8478445.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8478445.jpg",
- "heightInInches": 73,
- "heightInCentimeters": 185,
- "weightInPounds": 190,
- "weightInKilograms": 86,
- "birthDate": "1997-05-26",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/ANA_light.svg",
+ "sweaterNumber": 3,
+ "position": "D",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/ANA/8482178.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8482178.jpg",
+ "heightInInches": 75,
+ "heightInCentimeters": 191,
+ "weightInPounds": 209,
+ "weightInKilograms": 95,
+ "birthDate": "2002-01-04",
  "birthCity": {
-  "default": "Coquitlam"
+  "default": "Salt Lake City"
  },
  "birthStateProvince": {
-  "default": "British Columbia",
-  "fr": "Colombie-Britannique",
-  "sk": "Britská Kolumbia"
+  "default": "Utah"
  },
- "birthCountry": "CAN",
+ "birthCountry": "USA",
  "shootsCatches": "R",
  "draftDetails": {
-  "year": 2015,
-  "teamAbbrev": "NYI",
-  "round": 1,
-  "pickInRound": 16,
-  "overallPick": 16
+  "year": 2020,
+  "teamAbbrev": "ANA",
+  "round": 3,
+  "pickInRound": 5,
+  "overallPick": 67
  },
- "playerSlug": "mathew-barzal-8478445",
+ "playerSlug": "ian-moore-8482178",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -61,69 +59,69 @@
     "goals": 0,
     "otGoals": 0,
     "pim": 0,
-    "plusMinus": 0,
+    "plusMinus": 1,
     "points": 1,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 4
+    "shots": 0
    },
    "career": {
-    "assists": 382,
-    "gameWinningGoals": 25,
-    "gamesPlayed": 612,
-    "goals": 153,
-    "otGoals": 7,
-    "pim": 313,
-    "plusMinus": 20,
-    "points": 535,
-    "powerPlayGoals": 26,
-    "powerPlayPoints": 153,
-    "shootingPctg": 0.1047,
+    "assists": 10,
+    "gameWinningGoals": 1,
+    "gamesPlayed": 71,
+    "goals": 4,
+    "otGoals": 0,
+    "pim": 24,
+    "plusMinus": -12,
+    "points": 14,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0571,
     "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 1460
+    "shorthandedPoints": 1,
+    "shots": 70
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 382,
-   "avgToi": "19:02",
-   "faceoffWinningPctg": 0.4203,
-   "gameWinningGoals": 25,
-   "gamesPlayed": 612,
-   "goals": 153,
-   "otGoals": 7,
-   "pim": 313,
-   "plusMinus": 20,
-   "points": 535,
-   "powerPlayGoals": 26,
-   "powerPlayPoints": 153,
-   "shootingPctg": 0.1047,
+   "assists": 10,
+   "avgToi": "13:43",
+   "faceoffWinningPctg": 0.0,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 71,
+   "goals": 4,
+   "otGoals": 0,
+   "pim": 24,
+   "plusMinus": -12,
+   "points": 14,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.0571,
    "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 1460
+   "shorthandedPoints": 1,
+   "shots": 70
   },
   "playoffs": {
-   "assists": 28,
-   "avgToi": "18:39",
-   "faceoffWinningPctg": 0.4509,
-   "gameWinningGoals": 4,
-   "gamesPlayed": 60,
-   "goals": 17,
-   "otGoals": 2,
-   "pim": 43,
-   "plusMinus": 2,
-   "points": 45,
-   "powerPlayGoals": 4,
-   "powerPlayPoints": 13,
-   "shootingPctg": 0.1125,
+   "assists": 0,
+   "avgToi": "10:06",
+   "faceoffWinningPctg": 0.0,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 10,
+   "goals": 1,
+   "otGoals": 0,
+   "pim": 2,
+   "plusMinus": -1,
+   "points": 1,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.07690000000000001,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 151
+   "shots": 13
   }
  },
  "shopLink": "#TODO",
@@ -132,119 +130,97 @@
  "last5Games": [
   {
    "assists": 1,
-   "gameDate": "2026-11-14",
-   "gameId": 2026020324,
+   "gameDate": "2026-11-15",
+   "gameId": 2026020328,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "ANA",
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "CGY",
    "pim": 0,
-   "plusMinus": 0,
+   "plusMinus": 1,
    "points": 1,
    "powerPlayGoals": 0,
    "shifts": 21,
    "shorthandedGoals": 0,
-   "shots": 4,
-   "teamAbbrev": "NYI",
-   "toi": "16:21"
+   "shots": 0,
+   "teamAbbrev": "ANA",
+   "toi": "16:59"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 6,
+   "assists": 1,
    "gameTypeId": 2,
-   "gamesPlayed": 7,
-   "goals": 7,
+   "gamesPlayed": 6,
+   "goals": 0,
    "leagueAbbrev": "Brick Invitational",
-   "points": 13,
-   "season": 20062007,
+   "pim": 8,
+   "points": 1,
+   "season": 20112012,
    "sequence": 11,
    "teamName": {
-    "default": "Vancouver Vipers"
+    "default": "Boston Jr. Bruins"
    }
   },
   {
-   "assists": 6,
-   "gameTypeId": 3,
-   "gamesPlayed": 7,
-   "goals": 7,
-   "leagueAbbrev": "Brick Invitational",
-   "pim": 0,
-   "plusMinus": 0,
-   "points": 13,
-   "season": 20062007,
-   "sequence": 10203507,
-   "teamName": {
-    "default": "Vancouver Vipers"
-   }
-  },
-  {
-   "assists": 11,
+   "assists": 2,
    "gameTypeId": 2,
-   "gamesPlayed": 7,
-   "goals": 11,
+   "gamesPlayed": 2,
+   "goals": 0,
    "leagueAbbrev": "QC Int PW",
-   "pim": 4,
-   "points": 22,
-   "season": 20092010,
+   "pim": 2,
+   "points": 2,
+   "season": 20132014,
    "sequence": 11,
    "teamName": {
-    "default": "Burnaby Winter Club Bruins"
+    "default": "Minuteman Flames"
    }
-  }
- ],
- "awards": [
+  },
   {
-   "trophy": {
-    "default": "Calder Memorial Trophy",
-    "fr": "Trophée Calder"
-   },
-   "seasons": [
-    {
-     "assists": 63,
-     "blockedShots": 31,
-     "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 22,
-     "hits": 21,
-     "pim": 30,
-     "plusMinus": 1,
-     "points": 85,
-     "seasonId": 20172018
-    }
-   ]
+   "assists": 0,
+   "gameTypeId": 2,
+   "gamesPlayed": 3,
+   "goals": 0,
+   "leagueAbbrev": "QC Int PW",
+   "pim": 2,
+   "points": 0,
+   "season": 20142015,
+   "sequence": 11,
+   "teamName": {
+    "default": "Long Island Stars"
+   }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8478445,
+   "playerId": 8476316,
    "lastName": {
-    "default": "Barzal"
+    "default": "Brossoit"
    },
    "firstName": {
-    "default": "Mathew"
+    "default": "Laurent"
    },
-   "playerSlug": "mathew-barzal-8478445"
+   "playerSlug": "laurent-brossoit-8476316"
   },
   {
-   "playerId": 8482070,
+   "playerId": 8484153,
    "lastName": {
-    "default": "Chaffee"
+    "default": "Carlsson"
    },
    "firstName": {
-    "default": "Mitchell"
+    "default": "Leo"
    },
-   "playerSlug": "mitchell-chaffee-8482070"
+   "playerSlug": "leo-carlsson-8484153"
   },
   {
-   "playerId": 8475231,
+   "playerId": 8481538,
    "lastName": {
-    "default": "Cizikas"
+    "default": "Caulfield"
    },
    "firstName": {
-    "default": "Casey"
+    "default": "Judd"
    },
-   "playerSlug": "casey-cizikas-8475231"
+   "playerSlug": "judd-caulfield-8481538"
   }
  ]
 }
