@@ -1,127 +1,83 @@
 {
- "playerId": 8482178,
+ "playerId": 8484268,
  "isActive": true,
- "currentTeamId": 24,
- "currentTeamAbbrev": "ANA",
+ "currentTeamId": 23,
+ "currentTeamAbbrev": "VAN",
  "fullTeamName": {
-  "default": "Anaheim Ducks",
-  "fr": "Ducks d'Anaheim"
+  "default": "Vancouver Canucks",
+  "fr": "Canucks de Vancouver"
  },
  "teamCommonName": {
-  "default": "Ducks"
+  "default": "Canucks"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Anaheim",
-  "fr": "d'Anaheim"
+  "default": "Vancouver",
+  "fr": "de Vancouver"
  },
  "firstName": {
-  "default": "Ian"
+  "default": "Nikita"
  },
  "lastName": {
-  "default": "Moore"
+  "default": "Tolopilo"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/ANA_light.svg",
- "sweaterNumber": 3,
- "position": "D",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/ANA/8482178.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8482178.jpg",
- "heightInInches": 75,
- "heightInCentimeters": 191,
- "weightInPounds": 209,
- "weightInKilograms": 95,
- "birthDate": "2002-01-04",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/VAN_light.svg",
+ "sweaterNumber": 60,
+ "position": "G",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/VAN/8484268.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8484268.jpg",
+ "heightInInches": 78,
+ "heightInCentimeters": 198,
+ "weightInPounds": 229,
+ "weightInKilograms": 104,
+ "birthDate": "2000-04-06",
  "birthCity": {
-  "default": "Salt Lake City"
+  "default": "Minsk"
  },
- "birthStateProvince": {
-  "default": "Utah"
- },
- "birthCountry": "USA",
- "shootsCatches": "R",
- "draftDetails": {
-  "year": 2020,
-  "teamAbbrev": "ANA",
-  "round": 3,
-  "pickInRound": 5,
-  "overallPick": 67
- },
- "playerSlug": "ian-moore-8482178",
+ "birthCountry": "BLR",
+ "shootsCatches": "L",
+ "playerSlug": "nikita-tolopilo-8484268",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 1,
-    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goals": 0,
-    "otGoals": 0,
-    "pim": 0,
-    "plusMinus": 1,
-    "points": 1,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 0
+    "goalsAgainstAvg": 2.0,
+    "losses": 0,
+    "otLosses": 0,
+    "savePctg": 0.944444,
+    "shutouts": 0,
+    "wins": 1
    },
    "career": {
-    "assists": 10,
-    "gameWinningGoals": 1,
-    "gamesPlayed": 71,
-    "goals": 4,
-    "otGoals": 0,
-    "pim": 24,
-    "plusMinus": -12,
-    "points": 14,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0571,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 1,
-    "shots": 70
+    "gamesPlayed": 24,
+    "goalsAgainstAvg": 3.443638,
+    "losses": 12,
+    "otLosses": 2,
+    "savePctg": 0.885093,
+    "shutouts": 0,
+    "wins": 8
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 10,
-   "avgToi": "13:43",
-   "faceoffWinningPctg": 0.0,
-   "gameWinningGoals": 1,
-   "gamesPlayed": 71,
-   "goals": 4,
-   "otGoals": 0,
-   "pim": 24,
-   "plusMinus": -12,
-   "points": 14,
-   "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.0571,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 1,
-   "shots": 70
-  },
-  "playoffs": {
    "assists": 0,
-   "avgToi": "10:06",
-   "faceoffWinningPctg": 0.0,
-   "gameWinningGoals": 1,
-   "gamesPlayed": 10,
-   "goals": 1,
-   "otGoals": 0,
+   "gamesPlayed": 24,
+   "gamesStarted": 20,
+   "goals": 0,
+   "goalsAgainst": 74,
+   "goalsAgainstAvg": 3.443638,
+   "losses": 12,
+   "otLosses": 2,
    "pim": 2,
-   "plusMinus": -1,
-   "points": 1,
-   "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.07690000000000001,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 13
+   "savePctg": 0.885093,
+   "shotsAgainst": 644,
+   "shutouts": 0,
+   "timeOnIce": "1289:20",
+   "wins": 8
   }
  },
  "shopLink": "#TODO",
@@ -129,98 +85,105 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "assists": 1,
-   "gameDate": "2026-11-15",
-   "gameId": 2026020328,
+   "decision": "W",
+   "gameDate": "2026-11-16",
+   "gameId": 2026020332,
    "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "CGY",
-   "pim": 0,
-   "plusMinus": 1,
-   "points": 1,
-   "powerPlayGoals": 0,
-   "shifts": 21,
-   "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "ANA",
-   "toi": "16:59"
+   "gamesStarted": 1,
+   "goalsAgainst": 2,
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "UTA",
+   "penaltyMins": 0,
+   "savePctg": 0.944444,
+   "shotsAgainst": 36,
+   "teamAbbrev": "VAN",
+   "toi": "60:00"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 1,
    "gameTypeId": 2,
-   "gamesPlayed": 6,
-   "goals": 0,
-   "leagueAbbrev": "Brick Invitational",
-   "pim": 8,
-   "points": 1,
-   "season": 20112012,
-   "sequence": 11,
+   "gamesPlayed": 28,
+   "goalsAgainst": 70,
+   "goalsAgainstAvg": 2.51,
+   "leagueAbbrev": "U17-Elit",
+   "losses": 9,
+   "otLosses": 3,
+   "season": 20152016,
+   "sequence": 45409,
+   "shutouts": 2,
    "teamName": {
-    "default": "Boston Jr. Bruins"
-   }
+    "default": "Gottéron U17"
+   },
+   "timeOnIce": "1672:29",
+   "wins": 15
   },
   {
-   "assists": 2,
-   "gameTypeId": 2,
-   "gamesPlayed": 2,
-   "goals": 0,
-   "leagueAbbrev": "QC Int PW",
-   "pim": 2,
-   "points": 2,
-   "season": 20132014,
-   "sequence": 11,
+   "gameTypeId": 3,
+   "gamesPlayed": 5,
+   "goalsAgainst": 17,
+   "goalsAgainstAvg": 3.15,
+   "leagueAbbrev": "U17-Elit",
+   "losses": 2,
+   "otLosses": 2,
+   "season": 20152016,
+   "sequence": 45409,
+   "shutouts": 0,
    "teamName": {
-    "default": "Minuteman Flames"
-   }
+    "default": "Gottéron U17"
+   },
+   "timeOnIce": "324:02",
+   "wins": 1
   },
   {
-   "assists": 0,
    "gameTypeId": 2,
-   "gamesPlayed": 3,
-   "goals": 0,
-   "leagueAbbrev": "QC Int PW",
-   "pim": 2,
-   "points": 0,
-   "season": 20142015,
-   "sequence": 11,
+   "gamesPlayed": 1,
+   "goalsAgainst": 2,
+   "goalsAgainstAvg": 37.5,
+   "leagueAbbrev": "WJC-18",
+   "losses": 1,
+   "savePctg": 0.6,
+   "season": 20162017,
+   "sequence": 17773,
+   "shotsAgainst": 5,
+   "shutouts": 0,
    "teamName": {
-    "default": "Long Island Stars"
-   }
+    "default": "Belarus U18"
+   },
+   "timeOnIce": "3:12",
+   "wins": 0
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8476316,
+   "playerId": 8483395,
    "lastName": {
-    "default": "Brossoit"
+    "default": "Bains"
    },
    "firstName": {
-    "default": "Laurent"
+    "default": "Arshdeep"
    },
-   "playerSlug": "laurent-brossoit-8476316"
+   "playerSlug": "arshdeep-bains-8483395"
   },
   {
-   "playerId": 8484153,
+   "playerId": 8478444,
    "lastName": {
-    "default": "Carlsson"
+    "default": "Boeser"
    },
    "firstName": {
-    "default": "Leo"
+    "default": "Brock"
    },
-   "playerSlug": "leo-carlsson-8484153"
+   "playerSlug": "brock-boeser-8478444"
   },
   {
-   "playerId": 8481538,
+   "playerId": 8478465,
    "lastName": {
-    "default": "Caulfield"
+    "default": "Brisebois"
    },
    "firstName": {
-    "default": "Judd"
+    "default": "Guillaume"
    },
-   "playerSlug": "judd-caulfield-8481538"
+   "playerSlug": "guillaume-brisebois-8478465"
   }
  ]
 }
