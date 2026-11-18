@@ -1,83 +1,108 @@
 {
- "playerId": 8484268,
+ "playerId": 8481567,
  "isActive": true,
- "currentTeamId": 23,
- "currentTeamAbbrev": "VAN",
+ "currentTeamId": 52,
+ "currentTeamAbbrev": "WPG",
  "fullTeamName": {
-  "default": "Vancouver Canucks",
-  "fr": "Canucks de Vancouver"
+  "default": "Winnipeg Jets",
+  "fr": "Jets de Winnipeg"
  },
  "teamCommonName": {
-  "default": "Canucks"
+  "default": "Jets"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Vancouver",
-  "fr": "de Vancouver"
+  "default": "Winnipeg",
+  "fr": "de Winnipeg"
  },
  "firstName": {
-  "default": "Nikita"
+  "default": "Henry"
  },
  "lastName": {
-  "default": "Tolopilo"
+  "default": "Thrun"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/VAN_light.svg",
- "sweaterNumber": 60,
- "position": "G",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/VAN/8484268.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8484268.jpg",
- "heightInInches": 78,
- "heightInCentimeters": 198,
- "weightInPounds": 229,
- "weightInKilograms": 104,
- "birthDate": "2000-04-06",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/WPG_light.svg",
+ "sweaterNumber": 8,
+ "position": "D",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/WPG/8481567.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8481567.jpg",
+ "heightInInches": 74,
+ "heightInCentimeters": 188,
+ "weightInPounds": 211,
+ "weightInKilograms": 96,
+ "birthDate": "2001-03-12",
  "birthCity": {
-  "default": "Minsk"
+  "default": "Southborough"
  },
- "birthCountry": "BLR",
+ "birthStateProvince": {
+  "default": "Massachusetts"
+ },
+ "birthCountry": "USA",
  "shootsCatches": "L",
- "playerSlug": "nikita-tolopilo-8484268",
+ "draftDetails": {
+  "year": 2019,
+  "teamAbbrev": "ANA",
+  "round": 4,
+  "pickInRound": 8,
+  "overallPick": 101
+ },
+ "playerSlug": "henry-thrun-8481567",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
+    "assists": 0,
+    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goalsAgainstAvg": 2.0,
-    "losses": 0,
-    "otLosses": 0,
-    "savePctg": 0.944444,
-    "shutouts": 0,
-    "wins": 1
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 0,
+    "plusMinus": -1,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 0
    },
    "career": {
-    "gamesPlayed": 24,
-    "goalsAgainstAvg": 3.443638,
-    "losses": 12,
-    "otLosses": 2,
-    "savePctg": 0.885093,
-    "shutouts": 0,
-    "wins": 8
+    "assists": 20,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 124,
+    "goals": 5,
+    "otGoals": 0,
+    "pim": 46,
+    "plusMinus": -50,
+    "points": 25,
+    "powerPlayGoals": 2,
+    "powerPlayPoints": 4,
+    "shootingPctg": 0.045,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 111
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 0,
-   "gamesPlayed": 24,
-   "gamesStarted": 20,
-   "goals": 0,
-   "goalsAgainst": 74,
-   "goalsAgainstAvg": 3.443638,
-   "losses": 12,
-   "otLosses": 2,
-   "pim": 2,
-   "savePctg": 0.885093,
-   "shotsAgainst": 644,
-   "shutouts": 0,
-   "timeOnIce": "1289:20",
-   "wins": 8
+   "assists": 20,
+   "avgToi": "18:34",
+   "gameWinningGoals": 0,
+   "gamesPlayed": 124,
+   "goals": 5,
+   "otGoals": 0,
+   "pim": 46,
+   "plusMinus": -50,
+   "points": 25,
+   "powerPlayGoals": 2,
+   "powerPlayPoints": 4,
+   "shootingPctg": 0.045,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 111
   }
  },
  "shopLink": "#TODO",
@@ -85,105 +110,98 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "decision": "W",
-   "gameDate": "2026-11-16",
-   "gameId": 2026020332,
+   "assists": 0,
+   "gameDate": "2026-11-17",
+   "gameId": 2026020341,
    "gameTypeId": 2,
-   "gamesStarted": 1,
-   "goalsAgainst": 2,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "UTA",
-   "penaltyMins": 0,
-   "savePctg": 0.944444,
-   "shotsAgainst": 36,
-   "teamAbbrev": "VAN",
-   "toi": "60:00"
+   "goals": 0,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "OTT",
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 18,
+   "shorthandedGoals": 0,
+   "shots": 0,
+   "teamAbbrev": "WPG",
+   "toi": "13:28"
   }
  ],
  "seasonTotals": [
   {
+   "assists": 3,
    "gameTypeId": 2,
-   "gamesPlayed": 28,
-   "goalsAgainst": 70,
-   "goalsAgainstAvg": 2.51,
-   "leagueAbbrev": "U17-Elit",
-   "losses": 9,
-   "otLosses": 3,
-   "season": 20152016,
-   "sequence": 45409,
-   "shutouts": 2,
+   "gamesPlayed": 6,
+   "goals": 0,
+   "leagueAbbrev": "Brick Invitational",
+   "pim": 2,
+   "points": 3,
+   "season": 20102011,
+   "sequence": 11,
    "teamName": {
-    "default": "Gottéron U17"
-   },
-   "timeOnIce": "1672:29",
-   "wins": 15
+    "default": "Boston Jr. Bruins"
+   }
   },
   {
+   "assists": 3,
    "gameTypeId": 3,
-   "gamesPlayed": 5,
-   "goalsAgainst": 17,
-   "goalsAgainstAvg": 3.15,
-   "leagueAbbrev": "U17-Elit",
-   "losses": 2,
-   "otLosses": 2,
-   "season": 20152016,
-   "sequence": 45409,
-   "shutouts": 0,
+   "gamesPlayed": 6,
+   "goals": 0,
+   "leagueAbbrev": "Brick Invitational",
+   "pim": 2,
+   "points": 3,
+   "season": 20102011,
+   "sequence": 129727,
    "teamName": {
-    "default": "Gottéron U17"
-   },
-   "timeOnIce": "324:02",
-   "wins": 1
+    "default": "Boston Jr. Bruins"
+   }
   },
   {
+   "assists": 0,
    "gameTypeId": 2,
-   "gamesPlayed": 1,
-   "goalsAgainst": 2,
-   "goalsAgainstAvg": 37.5,
-   "leagueAbbrev": "WJC-18",
-   "losses": 1,
-   "savePctg": 0.6,
-   "season": 20162017,
-   "sequence": 17773,
-   "shotsAgainst": 5,
-   "shutouts": 0,
+   "gamesPlayed": 2,
+   "goals": 0,
+   "leagueAbbrev": "QC Int PW",
+   "pim": 0,
+   "points": 0,
+   "season": 20132014,
+   "sequence": 11,
    "teamName": {
-    "default": "Belarus U18"
-   },
-   "timeOnIce": "3:12",
-   "wins": 0
+    "default": "Minuteman Flames"
+   }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8483395,
+   "playerId": 8480289,
    "lastName": {
-    "default": "Bains"
+    "default": "Barron"
    },
    "firstName": {
-    "default": "Arshdeep"
+    "default": "Morgan"
    },
-   "playerSlug": "arshdeep-bains-8483395"
+   "playerSlug": "morgan-barron-8480289"
   },
   {
-   "playerId": 8478444,
+   "playerId": 8482459,
    "lastName": {
-    "default": "Boeser"
+    "default": "Bauer"
    },
    "firstName": {
-    "default": "Brock"
+    "default": "Tyrel"
    },
-   "playerSlug": "brock-boeser-8478444"
+   "playerSlug": "tyrel-bauer-8482459"
   },
   {
-   "playerId": 8478465,
+   "playerId": 8486025,
    "lastName": {
-    "default": "Brisebois"
+    "default": "Björck"
    },
    "firstName": {
-    "default": "Guillaume"
+    "default": "Viggo"
    },
-   "playerSlug": "guillaume-brisebois-8478465"
+   "playerSlug": "viggo-björck-8486025"
   }
  ]
 }
