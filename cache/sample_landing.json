@@ -1,108 +1,127 @@
 {
- "playerId": 8481567,
+ "playerId": 8470613,
  "isActive": true,
- "currentTeamId": 52,
- "currentTeamAbbrev": "WPG",
+ "currentTeamId": 21,
+ "currentTeamAbbrev": "COL",
  "fullTeamName": {
-  "default": "Winnipeg Jets",
-  "fr": "Jets de Winnipeg"
+  "default": "Colorado Avalanche",
+  "fr": "Avalanche du Colorado"
  },
  "teamCommonName": {
-  "default": "Jets"
+  "default": "Avalanche"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Winnipeg",
-  "fr": "de Winnipeg"
+  "default": "Colorado",
+  "fr": "du Colorado"
  },
  "firstName": {
-  "default": "Henry"
+  "default": "Brent"
  },
  "lastName": {
-  "default": "Thrun"
+  "default": "Burns"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/WPG_light.svg",
- "sweaterNumber": 8,
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/COL_light.svg",
+ "sweaterNumber": 84,
  "position": "D",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/WPG/8481567.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8481567.jpg",
- "heightInInches": 74,
- "heightInCentimeters": 188,
- "weightInPounds": 211,
- "weightInKilograms": 96,
- "birthDate": "2001-03-12",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/COL/8470613.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8470613.jpg",
+ "heightInInches": 77,
+ "heightInCentimeters": 196,
+ "weightInPounds": 228,
+ "weightInKilograms": 103,
+ "birthDate": "1985-03-09",
  "birthCity": {
-  "default": "Southborough"
+  "default": "Barrie"
  },
  "birthStateProvince": {
-  "default": "Massachusetts"
+  "default": "Ontario"
  },
- "birthCountry": "USA",
- "shootsCatches": "L",
+ "birthCountry": "CAN",
+ "shootsCatches": "R",
  "draftDetails": {
-  "year": 2019,
-  "teamAbbrev": "ANA",
-  "round": 4,
-  "pickInRound": 8,
-  "overallPick": 101
+  "year": 2003,
+  "teamAbbrev": "MIN",
+  "round": 1,
+  "pickInRound": 20,
+  "overallPick": 20
  },
- "playerSlug": "henry-thrun-8481567",
+ "playerSlug": "brent-burns-8470613",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 0,
+    "assists": 6,
     "gameWinningGoals": 0,
-    "gamesPlayed": 1,
+    "gamesPlayed": 21,
     "goals": 0,
     "otGoals": 0,
-    "pim": 0,
+    "pim": 12,
     "plusMinus": -1,
-    "points": 0,
+    "points": 6,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 0
+    "shots": 30
    },
    "career": {
-    "assists": 20,
-    "gameWinningGoals": 0,
-    "gamesPlayed": 124,
-    "goals": 5,
-    "otGoals": 0,
-    "pim": 46,
-    "plusMinus": -50,
-    "points": 25,
-    "powerPlayGoals": 2,
-    "powerPlayPoints": 4,
-    "shootingPctg": 0.045,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 111
+    "assists": 678,
+    "gameWinningGoals": 47,
+    "gamesPlayed": 1600,
+    "goals": 273,
+    "otGoals": 16,
+    "pim": 899,
+    "plusMinus": 42,
+    "points": 951,
+    "powerPlayGoals": 88,
+    "powerPlayPoints": 323,
+    "shootingPctg": 0.0641,
+    "shorthandedGoals": 3,
+    "shorthandedPoints": 17,
+    "shots": 4253
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 20,
-   "avgToi": "18:34",
+   "assists": 678,
+   "avgToi": "22:07",
+   "faceoffWinningPctg": 0.455,
+   "gameWinningGoals": 47,
+   "gamesPlayed": 1600,
+   "goals": 273,
+   "otGoals": 16,
+   "pim": 899,
+   "plusMinus": 42,
+   "points": 951,
+   "powerPlayGoals": 88,
+   "powerPlayPoints": 323,
+   "shootingPctg": 0.0641,
+   "shorthandedGoals": 3,
+   "shorthandedPoints": 17,
+   "shots": 4253
+  },
+  "playoffs": {
+   "assists": 60,
+   "avgToi": "23:41",
+   "faceoffWinningPctg": 0.22219999999999998,
    "gameWinningGoals": 0,
-   "gamesPlayed": 124,
-   "goals": 5,
+   "gamesPlayed": 148,
+   "goals": 24,
    "otGoals": 0,
-   "pim": 46,
-   "plusMinus": -50,
-   "points": 25,
-   "powerPlayGoals": 2,
-   "powerPlayPoints": 4,
-   "shootingPctg": 0.045,
+   "pim": 123,
+   "plusMinus": 25,
+   "points": 84,
+   "powerPlayGoals": 8,
+   "powerPlayPoints": 32,
+   "shootingPctg": 0.0559,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 111
+   "shots": 429
   }
  },
  "shopLink": "#TODO",
@@ -111,97 +130,180 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-17",
-   "gameId": 2026020341,
+   "gameDate": "2026-11-14",
+   "gameId": 2026020315,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "H",
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "MTL",
+   "pim": 0,
+   "plusMinus": 2,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 25,
+   "shorthandedGoals": 0,
+   "shots": 0,
+   "teamAbbrev": "COL",
+   "toi": "19:24"
+  },
+  {
+   "assists": 0,
+   "gameDate": "2026-11-12",
+   "gameId": 2026020301,
+   "gameTypeId": 2,
+   "goals": 0,
+   "homeRoadFlag": "R",
    "opponentAbbrev": "OTT",
    "pim": 0,
    "plusMinus": -1,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 18,
+   "shifts": 22,
    "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "WPG",
-   "toi": "13:28"
+   "shots": 2,
+   "teamAbbrev": "COL",
+   "toi": "17:21"
+  },
+  {
+   "assists": 0,
+   "gameDate": "2026-11-10",
+   "gameId": 2026020286,
+   "gameTypeId": 2,
+   "goals": 0,
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "TOR",
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "shifts": 21,
+   "shorthandedGoals": 0,
+   "shots": 1,
+   "teamAbbrev": "COL",
+   "toi": "16:11"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 3,
+   "assists": 7,
+   "faceoffWinningPctg": 0.0,
    "gameTypeId": 2,
-   "gamesPlayed": 6,
-   "goals": 0,
-   "leagueAbbrev": "Brick Invitational",
-   "pim": 2,
-   "points": 3,
-   "season": 20102011,
-   "sequence": 11,
+   "gamesPlayed": 46,
+   "goals": 4,
+   "leagueAbbrev": "MTHL",
+   "pim": 16,
+   "points": 11,
+   "season": 20002001,
+   "sequence": 1,
    "teamName": {
-    "default": "Boston Jr. Bruins"
+    "default": "North York"
    }
   },
   {
-   "assists": 3,
-   "gameTypeId": 3,
-   "gamesPlayed": 6,
-   "goals": 0,
-   "leagueAbbrev": "Brick Invitational",
-   "pim": 2,
-   "points": 3,
-   "season": 20102011,
-   "sequence": 129727,
+   "assists": 25,
+   "faceoffWinningPctg": 0.0,
+   "gameTypeId": 2,
+   "gamesPlayed": 68,
+   "goals": 15,
+   "leagueAbbrev": "OPJHL",
+   "pim": 14,
+   "points": 40,
+   "season": 20012002,
+   "sequence": 1,
    "teamName": {
-    "default": "Boston Jr. Bruins"
+    "default": "Couchiching"
    }
   },
   {
-   "assists": 0,
+   "assists": 25,
+   "faceoffWinningPctg": 0.0,
    "gameTypeId": 2,
-   "gamesPlayed": 2,
-   "goals": 0,
-   "leagueAbbrev": "QC Int PW",
-   "pim": 0,
-   "points": 0,
-   "season": 20132014,
-   "sequence": 11,
+   "gamesPlayed": 68,
+   "goals": 15,
+   "leagueAbbrev": "OHL",
+   "pim": 14,
+   "plusMinus": 6,
+   "points": 40,
+   "powerPlayGoals": 4,
+   "season": 20022003,
+   "sequence": 1,
+   "shorthandedGoals": 2,
    "teamName": {
-    "default": "Minuteman Flames"
+    "default": "Brampton"
    }
+  }
+ ],
+ "awards": [
+  {
+   "trophy": {
+    "default": "James Norris Memorial Trophy",
+    "fr": "Trophée James Norris"
+   },
+   "seasons": [
+    {
+     "assists": 47,
+     "blockedShots": 142,
+     "gameTypeId": 2,
+     "gamesPlayed": 82,
+     "goals": 29,
+     "hits": 69,
+     "pim": 40,
+     "plusMinus": 19,
+     "points": 76,
+     "seasonId": 20162017
+    }
+   ]
+  },
+  {
+   "trophy": {
+    "default": "NHL Foundation Player Award"
+   },
+   "seasons": [
+    {
+     "assists": 43,
+     "blockedShots": 124,
+     "gameTypeId": 2,
+     "gamesPlayed": 82,
+     "goals": 17,
+     "hits": 148,
+     "pim": 65,
+     "plusMinus": -9,
+     "points": 60,
+     "seasonId": 20142015
+    }
+   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8480289,
+   "playerId": 8478406,
    "lastName": {
-    "default": "Barron"
+    "default": "Blackwood"
    },
    "firstName": {
-    "default": "Morgan"
+    "default": "Mackenzie"
    },
-   "playerSlug": "morgan-barron-8480289"
+   "playerSlug": "mackenzie-blackwood-8478406"
   },
   {
-   "playerId": 8482459,
+   "playerId": 8484149,
    "lastName": {
-    "default": "Bauer"
+    "default": "Brindley"
    },
    "firstName": {
-    "default": "Tyrel"
+    "default": "Gavin"
    },
-   "playerSlug": "tyrel-bauer-8482459"
+   "playerSlug": "gavin-brindley-8484149"
   },
   {
-   "playerId": 8486025,
+   "playerId": 8470613,
    "lastName": {
-    "default": "Björck"
+    "default": "Burns"
    },
    "firstName": {
-    "default": "Viggo"
+    "default": "Brent"
    },
-   "playerSlug": "viggo-björck-8486025"
+   "playerSlug": "brent-burns-8470613"
   }
  ]
 }
