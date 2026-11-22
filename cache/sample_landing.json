@@ -1,53 +1,52 @@
 {
- "playerId": 8480806,
+ "playerId": 8481517,
  "isActive": true,
- "currentTeamId": 29,
- "currentTeamAbbrev": "CBJ",
+ "currentTeamId": 28,
+ "currentTeamAbbrev": "SJS",
  "fullTeamName": {
-  "default": "Columbus Blue Jackets",
-  "fr": "Blue Jackets de Columbus"
+  "default": "San Jose Sharks",
+  "fr": "Sharks de San Jose"
  },
  "teamCommonName": {
-  "default": "Blue Jackets"
+  "default": "Sharks"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Columbus",
-  "fr": "de Columbus"
+  "default": "San Jose",
+  "fr": "de San Jose"
  },
  "firstName": {
-  "default": "Isac"
+  "default": "Brett"
  },
  "lastName": {
-  "default": "Lundeström"
+  "default": "Leason"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CBJ_light.svg",
- "sweaterNumber": 21,
- "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8480806.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8480806.jpg",
- "heightInInches": 73,
- "heightInCentimeters": 185,
- "weightInPounds": 199,
- "weightInKilograms": 90,
- "birthDate": "1999-11-06",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/SJS_light.svg",
+ "sweaterNumber": 17,
+ "position": "R",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/SJS/8481517.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8481517.jpg",
+ "heightInInches": 77,
+ "heightInCentimeters": 196,
+ "weightInPounds": 220,
+ "weightInKilograms": 100,
+ "birthDate": "1999-04-30",
  "birthCity": {
-  "default": "Gallivare",
-  "cs": "Gällivare",
-  "fi": "Jällivaara",
-  "sk": "Gällivare",
-  "sv": "Gällivare"
+  "default": "Calgary"
  },
- "birthCountry": "SWE",
- "shootsCatches": "L",
+ "birthStateProvince": {
+  "default": "Alberta"
+ },
+ "birthCountry": "CAN",
+ "shootsCatches": "R",
  "draftDetails": {
-  "year": 2018,
-  "teamAbbrev": "ANA",
-  "round": 1,
-  "pickInRound": 23,
-  "overallPick": 23
+  "year": 2019,
+  "teamAbbrev": "WSH",
+  "round": 2,
+  "pickInRound": 25,
+  "overallPick": 56
  },
- "playerSlug": "isac-lundeström-8480806",
+ "playerSlug": "brett-leason-8481517",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -59,7 +58,7 @@
     "gamesPlayed": 1,
     "goals": 0,
     "otGoals": 0,
-    "pim": 0,
+    "pim": 2,
     "plusMinus": 0,
     "points": 0,
     "powerPlayGoals": 0,
@@ -67,44 +66,60 @@
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 0
+    "shots": 2
    },
    "career": {
-    "assists": 57,
-    "gameWinningGoals": 4,
-    "gamesPlayed": 406,
-    "goals": 39,
+    "assists": 29,
+    "gameWinningGoals": 1,
+    "gamesPlayed": 227,
+    "goals": 25,
     "otGoals": 0,
-    "pim": 42,
-    "plusMinus": -43,
-    "points": 96,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 3,
-    "shootingPctg": 0.1056,
-    "shorthandedGoals": 6,
-    "shorthandedPoints": 6,
-    "shots": 369
+    "pim": 56,
+    "plusMinus": -31,
+    "points": 54,
+    "powerPlayGoals": 1,
+    "powerPlayPoints": 2,
+    "shootingPctg": 0.0929,
+    "shorthandedGoals": 2,
+    "shorthandedPoints": 2,
+    "shots": 269
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 57,
-   "avgToi": "14:06",
-   "faceoffWinningPctg": 0.4643,
-   "gameWinningGoals": 4,
-   "gamesPlayed": 406,
-   "goals": 39,
+   "assists": 29,
+   "avgToi": "11:44",
+   "faceoffWinningPctg": 0.3333,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 227,
+   "goals": 25,
    "otGoals": 0,
-   "pim": 42,
-   "plusMinus": -43,
-   "points": 96,
+   "pim": 56,
+   "plusMinus": -31,
+   "points": 54,
+   "powerPlayGoals": 1,
+   "powerPlayPoints": 2,
+   "shootingPctg": 0.0929,
+   "shorthandedGoals": 2,
+   "shorthandedPoints": 2,
+   "shots": 269
+  },
+  "playoffs": {
+   "assists": 0,
+   "avgToi": "8:17",
+   "gameWinningGoals": 0,
+   "gamesPlayed": 1,
+   "goals": 0,
+   "otGoals": 0,
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
    "powerPlayGoals": 0,
-   "powerPlayPoints": 3,
-   "shootingPctg": 0.1056,
-   "shorthandedGoals": 6,
-   "shorthandedPoints": 6,
-   "shots": 369
+   "powerPlayPoints": 0,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 0
   }
  },
  "shopLink": "#TODO",
@@ -113,99 +128,109 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-19",
-   "gameId": 2026020353,
+   "gameDate": "2026-11-21",
+   "gameId": 2026020372,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "CHI",
-   "pim": 0,
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "SEA",
+   "pim": 2,
    "plusMinus": 0,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 12,
+   "shifts": 18,
    "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "CBJ",
-   "toi": "8:54"
+   "shots": 2,
+   "teamAbbrev": "SJS",
+   "toi": "11:22"
   }
  ],
  "seasonTotals": [
   {
    "assists": 0,
    "gameTypeId": 2,
-   "gamesPlayed": 1,
-   "goals": 0,
-   "leagueAbbrev": "J18 Allsvenskan",
-   "pim": 0,
-   "plusMinus": 0,
-   "points": 0,
-   "season": 20132014,
-   "sequence": 5934,
-   "teamName": {
-    "default": "Luleå HF J18"
-   }
-  },
-  {
-   "assists": 1,
-   "gameTypeId": 2,
    "gamesPlayed": 3,
-   "goals": 2,
-   "leagueAbbrev": "U16 SM",
-   "pim": 0,
+   "goals": 3,
+   "leagueAbbrev": "QC Int PW",
+   "pim": 2,
    "points": 3,
-   "season": 20132014,
-   "sequence": 43381,
+   "season": 20102011,
+   "sequence": 11,
    "teamName": {
-    "default": "Luleå HF U16"
+    "default": "Crowfoot Jr. Flames"
    }
   },
   {
-   "assists": 6,
+   "assists": 0,
    "gameTypeId": 3,
-   "gamesPlayed": 5,
-   "goals": 2,
-   "leagueAbbrev": "TV-Pucken",
-   "pim": 0,
-   "points": 8,
-   "season": 20132014,
-   "sequence": 10271,
+   "gamesPlayed": 3,
+   "goals": 3,
+   "leagueAbbrev": "QC Int PW",
+   "pim": 2,
+   "points": 3,
+   "season": 20102011,
+   "sequence": 10247405,
    "teamName": {
-    "default": "Norrbotten"
+    "default": "Crowfoot Jr. Flames"
    }
+  },
+  {
+   "assists": 12,
+   "gameTypeId": 2,
+   "gamesPlayed": 30,
+   "goals": 9,
+   "leagueAbbrev": "AMBHL",
+   "pim": 10,
+   "points": 21,
+   "season": 20122013,
+   "sequence": 149948,
+   "teamName": {
+    "default": "Calgary Flames Bantam AAA"
+   }
+  }
+ ],
+ "awards": [
+  {
+   "trophy": {
+    "default": "E.J. McGuire Award of Excellence"
+   },
+   "seasons": [
+    {
+     "seasonId": 20182019
+    }
+   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8481161,
+   "playerId": 8482700,
    "lastName": {
-    "default": "Christiansen"
+    "default": "Allan"
    },
    "firstName": {
-    "default": "Jake",
-    "sv": "v"
+    "default": "Nolan"
    },
-   "playerSlug": "jake-christiansen-8481161"
+   "playerSlug": "nolan-allan-8482700"
   },
   {
-   "playerId": 8475745,
+   "playerId": 8482137,
    "lastName": {
-    "default": "Coyle"
+    "default": "Askarov"
    },
    "firstName": {
-    "default": "Charlie"
+    "default": "Yaroslav"
    },
-   "playerSlug": "charlie-coyle-8475745"
+   "playerSlug": "yaroslav-askarov-8482137"
   },
   {
-   "playerId": 8483432,
+   "playerId": 8484801,
    "lastName": {
-    "default": "Del Bel Belluz"
+    "default": "Celebrini"
    },
    "firstName": {
-    "default": "Luca"
+    "default": "Macklin"
    },
-   "playerSlug": "luca-del-bel-belluz-8483432"
+   "playerSlug": "macklin-celebrini-8484801"
   }
  ]
 }
