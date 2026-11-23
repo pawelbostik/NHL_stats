@@ -1,52 +1,49 @@
 {
- "playerId": 8481517,
+ "playerId": 8477573,
  "isActive": true,
- "currentTeamId": 28,
- "currentTeamAbbrev": "SJS",
+ "currentTeamId": 19,
+ "currentTeamAbbrev": "STL",
  "fullTeamName": {
-  "default": "San Jose Sharks",
-  "fr": "Sharks de San Jose"
+  "default": "St. Louis Blues",
+  "fr": "Blues de St. Louis"
  },
  "teamCommonName": {
-  "default": "Sharks"
+  "default": "Blues"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "San Jose",
-  "fr": "de San Jose"
+  "default": "St. Louis",
+  "fr": "de St. Louis"
  },
  "firstName": {
-  "default": "Brett"
+  "default": "Nathan"
  },
  "lastName": {
-  "default": "Leason"
+  "default": "Walker"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/SJS_light.svg",
- "sweaterNumber": 17,
- "position": "R",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/SJS/8481517.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8481517.jpg",
- "heightInInches": 77,
- "heightInCentimeters": 196,
- "weightInPounds": 220,
- "weightInKilograms": 100,
- "birthDate": "1999-04-30",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/STL_light.svg",
+ "sweaterNumber": 26,
+ "position": "L",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/STL/8477573.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8477573.jpg",
+ "heightInInches": 69,
+ "heightInCentimeters": 175,
+ "weightInPounds": 191,
+ "weightInKilograms": 87,
+ "birthDate": "1994-02-07",
  "birthCity": {
-  "default": "Calgary"
+  "default": "Cardiff"
  },
- "birthStateProvince": {
-  "default": "Alberta"
- },
- "birthCountry": "CAN",
- "shootsCatches": "R",
+ "birthCountry": "GBR",
+ "shootsCatches": "L",
  "draftDetails": {
-  "year": 2019,
+  "year": 2014,
   "teamAbbrev": "WSH",
-  "round": 2,
-  "pickInRound": 25,
-  "overallPick": 56
+  "round": 3,
+  "pickInRound": 29,
+  "overallPick": 89
  },
- "playerSlug": "brett-leason-8481517",
+ "playerSlug": "nathan-walker-8477573",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -58,68 +55,70 @@
     "gamesPlayed": 1,
     "goals": 0,
     "otGoals": 0,
-    "pim": 2,
-    "plusMinus": 0,
+    "pim": 0,
+    "plusMinus": -1,
     "points": 0,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 2
+    "shots": 0
    },
    "career": {
-    "assists": 29,
-    "gameWinningGoals": 1,
-    "gamesPlayed": 227,
-    "goals": 25,
+    "assists": 35,
+    "gameWinningGoals": 4,
+    "gamesPlayed": 276,
+    "goals": 32,
     "otGoals": 0,
-    "pim": 56,
-    "plusMinus": -31,
-    "points": 54,
-    "powerPlayGoals": 1,
-    "powerPlayPoints": 2,
-    "shootingPctg": 0.0929,
-    "shorthandedGoals": 2,
-    "shorthandedPoints": 2,
-    "shots": 269
+    "pim": 150,
+    "plusMinus": -10,
+    "points": 67,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.124,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 1,
+    "shots": 258
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 29,
-   "avgToi": "11:44",
-   "faceoffWinningPctg": 0.3333,
-   "gameWinningGoals": 1,
-   "gamesPlayed": 227,
-   "goals": 25,
+   "assists": 35,
+   "avgToi": "11:20",
+   "faceoffWinningPctg": 0.5207,
+   "gameWinningGoals": 4,
+   "gamesPlayed": 276,
+   "goals": 32,
    "otGoals": 0,
-   "pim": 56,
-   "plusMinus": -31,
-   "points": 54,
-   "powerPlayGoals": 1,
-   "powerPlayPoints": 2,
-   "shootingPctg": 0.0929,
-   "shorthandedGoals": 2,
-   "shorthandedPoints": 2,
-   "shots": 269
-  },
-  "playoffs": {
-   "assists": 0,
-   "avgToi": "8:17",
-   "gameWinningGoals": 0,
-   "gamesPlayed": 1,
-   "goals": 0,
-   "otGoals": 0,
-   "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
+   "pim": 150,
+   "plusMinus": -10,
+   "points": 67,
    "powerPlayGoals": 0,
    "powerPlayPoints": 0,
+   "shootingPctg": 0.124,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 1,
+   "shots": 258
+  },
+  "playoffs": {
+   "assists": 2,
+   "avgToi": "12:00",
+   "faceoffWinningPctg": 0.6666,
+   "gameWinningGoals": 0,
+   "gamesPlayed": 12,
+   "goals": 3,
+   "otGoals": 0,
+   "pim": 24,
+   "plusMinus": 7,
+   "points": 5,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.21420000000000003,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 0
+   "shots": 14
   }
  },
  "shopLink": "#TODO",
@@ -128,109 +127,98 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-21",
-   "gameId": 2026020372,
+   "gameDate": "2026-11-22",
+   "gameId": 2026020375,
    "gameTypeId": 2,
    "goals": 0,
    "homeRoadFlag": "H",
-   "opponentAbbrev": "SEA",
-   "pim": 2,
-   "plusMinus": 0,
+   "opponentAbbrev": "EDM",
+   "pim": 0,
+   "plusMinus": -1,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 18,
+   "shifts": 12,
    "shorthandedGoals": 0,
-   "shots": 2,
-   "teamAbbrev": "SJS",
-   "toi": "11:22"
+   "shots": 0,
+   "teamAbbrev": "STL",
+   "toi": "10:26"
   }
  ],
  "seasonTotals": [
   {
    "assists": 0,
    "gameTypeId": 2,
-   "gamesPlayed": 3,
-   "goals": 3,
-   "leagueAbbrev": "QC Int PW",
+   "gamesPlayed": 1,
+   "goals": 0,
+   "leagueAbbrev": "Czech U18",
    "pim": 2,
-   "points": 3,
-   "season": 20102011,
-   "sequence": 11,
+   "plusMinus": 0,
+   "points": 0,
+   "season": 20072008,
+   "sequence": 38002,
    "teamName": {
-    "default": "Crowfoot Jr. Flames"
+    "default": "HC Vitkovice U18"
+   }
+  },
+  {
+   "assists": 9,
+   "gameTypeId": 2,
+   "gamesPlayed": 33,
+   "goals": 6,
+   "leagueAbbrev": "CzR-U17",
+   "pim": 12,
+   "points": 15,
+   "season": 20082009,
+   "sequence": 1,
+   "teamName": {
+    "default": "Vitkovice U17"
    }
   },
   {
    "assists": 0,
    "gameTypeId": 3,
-   "gamesPlayed": 3,
-   "goals": 3,
-   "leagueAbbrev": "QC Int PW",
-   "pim": 2,
-   "points": 3,
-   "season": 20102011,
-   "sequence": 10247405,
+   "gamesPlayed": 5,
+   "goals": 1,
+   "leagueAbbrev": "CzR-U17",
+   "pim": 4,
+   "points": 1,
+   "season": 20082009,
+   "sequence": 1,
    "teamName": {
-    "default": "Crowfoot Jr. Flames"
+    "default": "Vitkovice U17"
    }
-  },
-  {
-   "assists": 12,
-   "gameTypeId": 2,
-   "gamesPlayed": 30,
-   "goals": 9,
-   "leagueAbbrev": "AMBHL",
-   "pim": 10,
-   "points": 21,
-   "season": 20122013,
-   "sequence": 149948,
-   "teamName": {
-    "default": "Calgary Flames Bantam AAA"
-   }
-  }
- ],
- "awards": [
-  {
-   "trophy": {
-    "default": "E.J. McGuire Award of Excellence"
-   },
-   "seasons": [
-    {
-     "seasonId": 20182019
-    }
-   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8482700,
+   "playerId": 8482111,
    "lastName": {
-    "default": "Allan"
+    "default": "Barron"
    },
    "firstName": {
-    "default": "Nolan"
+    "default": "Justin"
    },
-   "playerSlug": "nolan-allan-8482700"
+   "playerSlug": "justin-barron-8482111"
   },
   {
-   "playerId": 8482137,
+   "playerId": 8481013,
    "lastName": {
-    "default": "Askarov"
+    "default": "Berggren"
    },
    "firstName": {
-    "default": "Yaroslav"
+    "default": "Jonatan"
    },
-   "playerSlug": "yaroslav-askarov-8482137"
+   "playerSlug": "jonatan-berggren-8481013"
   },
   {
-   "playerId": 8484801,
+   "playerId": 8476412,
    "lastName": {
-    "default": "Celebrini"
+    "default": "Binnington"
    },
    "firstName": {
-    "default": "Macklin"
+    "default": "Jordan"
    },
-   "playerSlug": "macklin-celebrini-8484801"
+   "playerSlug": "jordan-binnington-8476412"
   }
  ]
 }
