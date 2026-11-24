@@ -1,54 +1,45 @@
 {
- "playerId": 8482451,
+ "playerId": 8484821,
  "isActive": true,
- "currentTeamId": 29,
- "currentTeamAbbrev": "CBJ",
+ "currentTeamId": 20,
+ "currentTeamAbbrev": "CGY",
  "fullTeamName": {
-  "default": "Columbus Blue Jackets",
-  "fr": "Blue Jackets de Columbus"
+  "default": "Calgary Flames",
+  "fr": "Flames de Calgary"
  },
  "teamCommonName": {
-  "default": "Blue Jackets"
+  "default": "Flames"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Columbus",
-  "fr": "de Columbus"
+  "default": "Calgary",
+  "fr": "de Calgary"
  },
  "firstName": {
-  "default": "Mikael"
+  "default": "Sam"
  },
  "lastName": {
-  "default": "Pyyhtia",
-  "cs": "Pyyhtiä",
-  "fi": "Pyyhtiä",
-  "sk": "Pyyhtiä",
-  "sv": "Pyyhtiä"
+  "default": "Morton"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CBJ_light.svg",
- "sweaterNumber": 82,
- "position": "L",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8482451.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8482451.jpg",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CGY_light.svg",
+ "sweaterNumber": 45,
+ "position": "C",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CGY/8484821.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8484821.jpg",
  "heightInInches": 72,
  "heightInCentimeters": 183,
- "weightInPounds": 177,
- "weightInKilograms": 80,
- "birthDate": "2001-12-17",
+ "weightInPounds": 185,
+ "weightInKilograms": 84,
+ "birthDate": "1999-07-28",
  "birthCity": {
-  "default": "Turku",
-  "sv": "Åbo"
+  "default": "Lafayette"
  },
- "birthCountry": "FIN",
+ "birthStateProvince": {
+  "default": "Colorado"
+ },
+ "birthCountry": "USA",
  "shootsCatches": "L",
- "draftDetails": {
-  "year": 2020,
-  "teamAbbrev": "CBJ",
-  "round": 4,
-  "pickInRound": 21,
-  "overallPick": 114
- },
- "playerSlug": "mikael-pyyhtia-8482451",
+ "playerSlug": "sam-morton-8484821",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -58,54 +49,54 @@
     "assists": 0,
     "gameWinningGoals": 0,
     "gamesPlayed": 1,
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 2,
+    "plusMinus": 0,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 1
+   },
+   "career": {
+    "assists": 0,
+    "gameWinningGoals": 1,
+    "gamesPlayed": 5,
     "goals": 1,
     "otGoals": 0,
-    "pim": 0,
+    "pim": 12,
     "plusMinus": 0,
     "points": 1,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
-    "shootingPctg": 0.5,
-    "shorthandedGoals": 1,
-    "shorthandedPoints": 1,
-    "shots": 2
-   },
-   "career": {
-    "assists": 6,
-    "gameWinningGoals": 0,
-    "gamesPlayed": 71,
-    "goals": 5,
-    "otGoals": 0,
-    "pim": 8,
-    "plusMinus": -19,
-    "points": 11,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 1,
-    "shootingPctg": 0.0806,
-    "shorthandedGoals": 1,
-    "shorthandedPoints": 1,
-    "shots": 62
+    "shootingPctg": 0.2,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 5
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 6,
-   "avgToi": "12:16",
-   "faceoffWinningPctg": 0.4285,
-   "gameWinningGoals": 0,
-   "gamesPlayed": 71,
-   "goals": 5,
+   "assists": 0,
+   "avgToi": "9:34",
+   "faceoffWinningPctg": 0.625,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 5,
+   "goals": 1,
    "otGoals": 0,
-   "pim": 8,
-   "plusMinus": -19,
-   "points": 11,
+   "pim": 12,
+   "plusMinus": 0,
+   "points": 1,
    "powerPlayGoals": 0,
-   "powerPlayPoints": 1,
-   "shootingPctg": 0.0806,
-   "shorthandedGoals": 1,
-   "shorthandedPoints": 1,
-   "shots": 62
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.2,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 5
   }
  },
  "shopLink": "#TODO",
@@ -115,97 +106,95 @@
   {
    "assists": 0,
    "gameDate": "2026-11-23",
-   "gameId": 2026020378,
+   "gameId": 2026020380,
    "gameTypeId": 2,
-   "goals": 1,
+   "goals": 0,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "NJD",
-   "pim": 0,
+   "opponentAbbrev": "OTT",
+   "pim": 2,
    "plusMinus": 0,
-   "points": 1,
+   "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 12,
-   "shorthandedGoals": 1,
-   "shots": 2,
-   "teamAbbrev": "CBJ",
-   "toi": "8:38"
+   "shifts": 10,
+   "shorthandedGoals": 0,
+   "shots": 1,
+   "teamAbbrev": "CGY",
+   "toi": "7:26"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 7,
+   "assists": 2,
    "gameTypeId": 2,
-   "gamesPlayed": 16,
-   "goals": 7,
-   "leagueAbbrev": "U16 SM-sarja",
-   "pim": 4,
-   "points": 14,
-   "season": 20162017,
+   "gamesPlayed": 5,
+   "goals": 2,
+   "leagueAbbrev": "T1EHL 14U",
+   "pim": 0,
+   "points": 4,
+   "season": 20132014,
    "sequence": 11,
    "teamName": {
-    "default": "TPS U16"
+    "default": "Colorado Thunderbirds 14U AAA"
    }
   },
   {
-   "assists": 1,
-   "gameTypeId": 3,
-   "gamesPlayed": 4,
-   "goals": 1,
-   "leagueAbbrev": "U16 SM-sarja",
-   "pim": 2,
-   "points": 2,
-   "season": 20162017,
+   "assists": 4,
+   "gameTypeId": 2,
+   "gamesPlayed": 5,
+   "goals": 0,
+   "leagueAbbrev": "USA-S15",
+   "points": 4,
+   "season": 20142015,
    "sequence": 11,
    "teamName": {
-    "default": "TPS U16"
+    "default": "Team Black"
    }
   },
   {
-   "assists": 16,
+   "assists": 6,
    "gameTypeId": 2,
-   "gamesPlayed": 42,
+   "gamesPlayed": 21,
    "goals": 3,
-   "leagueAbbrev": "U18 SM-sarja",
-   "pim": 12,
-   "points": 19,
-   "season": 20172018,
-   "sequence": 11,
+   "leagueAbbrev": "16U AAA",
+   "pim": 22,
+   "points": 9,
+   "season": 20142015,
+   "sequence": 12,
    "teamName": {
-    "default": "TPS U18"
+    "default": "Rocky Mountain Roughriders 16U"
    }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8481161,
+   "playerId": 8474150,
    "lastName": {
-    "default": "Christiansen"
+    "default": "Backlund"
    },
    "firstName": {
-    "default": "Jake",
-    "sv": "v"
+    "default": "Mikael"
    },
-   "playerSlug": "jake-christiansen-8481161"
+   "playerSlug": "mikael-backlund-8474150"
   },
   {
-   "playerId": 8475745,
+   "playerId": 8480860,
    "lastName": {
-    "default": "Coyle"
+    "default": "Bahl"
    },
    "firstName": {
-    "default": "Charlie"
+    "default": "Kevin"
    },
-   "playerSlug": "charlie-coyle-8475745"
+   "playerSlug": "kevin-bahl-8480860"
   },
   {
-   "playerId": 8483432,
+   "playerId": 8484154,
    "lastName": {
-    "default": "Del Bel Belluz"
+    "default": "Castagna"
    },
    "firstName": {
-    "default": "Luca"
+    "default": "Jonathan"
    },
-   "playerSlug": "luca-del-bel-belluz-8483432"
+   "playerSlug": "jonathan-castagna-8484154"
   }
  ]
 }
