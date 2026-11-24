@@ -1,102 +1,108 @@
 {
- "playerId": 8484821,
+ "playerId": 8479406,
  "isActive": true,
- "currentTeamId": 20,
- "currentTeamAbbrev": "CGY",
+ "currentTeamId": 30,
+ "currentTeamAbbrev": "MIN",
  "fullTeamName": {
-  "default": "Calgary Flames",
-  "fr": "Flames de Calgary"
+  "default": "Minnesota Wild",
+  "fr": "Wild du Minnesota"
  },
  "teamCommonName": {
-  "default": "Flames"
+  "default": "Wild"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Calgary",
-  "fr": "de Calgary"
+  "default": "Minnesota",
+  "fr": "du Minnesota"
  },
  "firstName": {
-  "default": "Sam"
+  "default": "Filip"
  },
  "lastName": {
-  "default": "Morton"
+  "default": "Gustavsson"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CGY_light.svg",
- "sweaterNumber": 45,
- "position": "C",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CGY/8484821.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8484821.jpg",
- "heightInInches": 72,
- "heightInCentimeters": 183,
- "weightInPounds": 185,
- "weightInKilograms": 84,
- "birthDate": "1999-07-28",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/MIN_light.svg",
+ "sweaterNumber": 32,
+ "position": "G",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/MIN/8479406.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8479406.jpg",
+ "heightInInches": 74,
+ "heightInCentimeters": 188,
+ "weightInPounds": 184,
+ "weightInKilograms": 83,
+ "birthDate": "1998-06-07",
  "birthCity": {
-  "default": "Lafayette"
+  "default": "Skelleftea",
+  "fi": "Skellefteå",
+  "sv": "Skellefteå"
  },
- "birthStateProvince": {
-  "default": "Colorado"
- },
- "birthCountry": "USA",
+ "birthCountry": "SWE",
  "shootsCatches": "L",
- "playerSlug": "sam-morton-8484821",
+ "draftDetails": {
+  "year": 2016,
+  "teamAbbrev": "PIT",
+  "round": 2,
+  "pickInRound": 25,
+  "overallPick": 55
+ },
+ "playerSlug": "filip-gustavsson-8479406",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 0,
-    "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goals": 0,
-    "otGoals": 0,
-    "pim": 2,
-    "plusMinus": 0,
-    "points": 0,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 1
+    "goalsAgainstAvg": 2.016242,
+    "losses": 0,
+    "otLosses": 0,
+    "savePctg": 0.916667,
+    "shutouts": 0,
+    "wins": 1
    },
    "career": {
-    "assists": 0,
-    "gameWinningGoals": 1,
-    "gamesPlayed": 5,
-    "goals": 1,
-    "otGoals": 0,
-    "pim": 12,
-    "plusMinus": 0,
-    "points": 1,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.2,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 5
+    "gamesPlayed": 220,
+    "goalsAgainstAvg": 2.670286,
+    "losses": 74,
+    "otLosses": 26,
+    "savePctg": 0.910787,
+    "shutouts": 15,
+    "wins": 112
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 0,
-   "avgToi": "9:34",
-   "faceoffWinningPctg": 0.625,
-   "gameWinningGoals": 1,
-   "gamesPlayed": 5,
+   "assists": 5,
+   "gamesPlayed": 220,
+   "gamesStarted": 211,
    "goals": 1,
-   "otGoals": 0,
-   "pim": 12,
-   "plusMinus": 0,
-   "points": 1,
-   "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.2,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 5
+   "goalsAgainst": 570,
+   "goalsAgainstAvg": 2.670286,
+   "losses": 74,
+   "otLosses": 26,
+   "pim": 0,
+   "savePctg": 0.910787,
+   "shotsAgainst": 6378,
+   "shutouts": 15,
+   "timeOnIce": "12807:37",
+   "wins": 112
+  },
+  "playoffs": {
+   "assists": 0,
+   "gamesPlayed": 12,
+   "gamesStarted": 12,
+   "goals": 0,
+   "goalsAgainst": 32,
+   "goalsAgainstAvg": 2.667035,
+   "losses": 7,
+   "otLosses": 0,
+   "pim": 0,
+   "savePctg": 0.910615,
+   "shotsAgainst": 358,
+   "shutouts": 0,
+   "timeOnIce": "719:54",
+   "wins": 4
   }
  },
  "shopLink": "#TODO",
@@ -104,97 +110,104 @@
  "watchLink": "#TODO",
  "last5Games": [
   {
-   "assists": 0,
+   "decision": "W",
    "gameDate": "2026-11-23",
-   "gameId": 2026020380,
+   "gameId": 2026020384,
    "gameTypeId": 2,
-   "goals": 0,
+   "gamesStarted": 1,
+   "goalsAgainst": 2,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "OTT",
-   "pim": 2,
-   "plusMinus": 0,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 10,
-   "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "CGY",
-   "toi": "7:26"
+   "opponentAbbrev": "SJS",
+   "penaltyMins": 0,
+   "savePctg": 0.916667,
+   "shotsAgainst": 24,
+   "teamAbbrev": "MIN",
+   "toi": "59:31"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 2,
    "gameTypeId": 2,
-   "gamesPlayed": 5,
-   "goals": 2,
-   "leagueAbbrev": "T1EHL 14U",
-   "pim": 0,
-   "points": 4,
+   "gamesPlayed": 1,
+   "goalsAgainst": 3,
+   "goalsAgainstAvg": 3.0,
+   "leagueAbbrev": "Swe-U18",
+   "losses": 0,
+   "season": 20122013,
+   "sequence": 1,
+   "shutouts": 0,
+   "teamName": {
+    "default": "Skelleftea U18"
+   },
+   "ties": 0,
+   "timeOnIce": "60:00",
+   "wins": 1
+  },
+  {
+   "gameTypeId": 2,
+   "gamesPlayed": 18,
+   "goalsAgainst": 28,
+   "goalsAgainstAvg": 1.55,
+   "leagueAbbrev": "Swe-U18",
+   "losses": 3,
    "season": 20132014,
-   "sequence": 11,
+   "sequence": 1,
+   "shutouts": 4,
    "teamName": {
-    "default": "Colorado Thunderbirds 14U AAA"
-   }
+    "default": "Skelleftea U18"
+   },
+   "ties": 0,
+   "timeOnIce": "1082:00",
+   "wins": 15
   },
   {
-   "assists": 4,
    "gameTypeId": 2,
-   "gamesPlayed": 5,
-   "goals": 0,
-   "leagueAbbrev": "USA-S15",
-   "points": 4,
+   "gamesPlayed": 18,
+   "goalsAgainst": 40,
+   "goalsAgainstAvg": 2.2,
+   "leagueAbbrev": "Swe-U18",
+   "losses": 9,
    "season": 20142015,
-   "sequence": 11,
+   "sequence": 1,
+   "shutouts": 2,
    "teamName": {
-    "default": "Team Black"
-   }
-  },
-  {
-   "assists": 6,
-   "gameTypeId": 2,
-   "gamesPlayed": 21,
-   "goals": 3,
-   "leagueAbbrev": "16U AAA",
-   "pim": 22,
-   "points": 9,
-   "season": 20142015,
-   "sequence": 12,
-   "teamName": {
-    "default": "Rocky Mountain Roughriders 16U"
-   }
+    "default": "Lulea U18"
+   },
+   "ties": 0,
+   "timeOnIce": "1092:00",
+   "wins": 9
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8474150,
+   "playerId": 8474567,
    "lastName": {
-    "default": "Backlund"
+    "default": "Bogosian"
    },
    "firstName": {
-    "default": "Mikael"
+    "default": "Zach"
    },
-   "playerSlug": "mikael-backlund-8474150"
+   "playerSlug": "zach-bogosian-8474567"
   },
   {
-   "playerId": 8480860,
+   "playerId": 8481557,
    "lastName": {
-    "default": "Bahl"
+    "default": "Boldy"
    },
    "firstName": {
-    "default": "Kevin"
+    "default": "Matt"
    },
-   "playerSlug": "kevin-bahl-8480860"
+   "playerSlug": "matt-boldy-8481557"
   },
   {
-   "playerId": 8484154,
+   "playerId": 8481553,
    "lastName": {
-    "default": "Castagna"
+    "default": "Brink"
    },
    "firstName": {
-    "default": "Jonathan"
+    "default": "Bobby"
    },
-   "playerSlug": "jonathan-castagna-8484154"
+   "playerSlug": "bobby-brink-8481553"
   }
  ]
 }
