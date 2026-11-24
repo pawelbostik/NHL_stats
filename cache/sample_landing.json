@@ -1,49 +1,54 @@
 {
- "playerId": 8477573,
+ "playerId": 8482451,
  "isActive": true,
- "currentTeamId": 19,
- "currentTeamAbbrev": "STL",
+ "currentTeamId": 29,
+ "currentTeamAbbrev": "CBJ",
  "fullTeamName": {
-  "default": "St. Louis Blues",
-  "fr": "Blues de St. Louis"
+  "default": "Columbus Blue Jackets",
+  "fr": "Blue Jackets de Columbus"
  },
  "teamCommonName": {
-  "default": "Blues"
+  "default": "Blue Jackets"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "St. Louis",
-  "fr": "de St. Louis"
+  "default": "Columbus",
+  "fr": "de Columbus"
  },
  "firstName": {
-  "default": "Nathan"
+  "default": "Mikael"
  },
  "lastName": {
-  "default": "Walker"
+  "default": "Pyyhtia",
+  "cs": "Pyyhtiä",
+  "fi": "Pyyhtiä",
+  "sk": "Pyyhtiä",
+  "sv": "Pyyhtiä"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/STL_light.svg",
- "sweaterNumber": 26,
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/CBJ_light.svg",
+ "sweaterNumber": 82,
  "position": "L",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/STL/8477573.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8477573.jpg",
- "heightInInches": 69,
- "heightInCentimeters": 175,
- "weightInPounds": 191,
- "weightInKilograms": 87,
- "birthDate": "1994-02-07",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/CBJ/8482451.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8482451.jpg",
+ "heightInInches": 72,
+ "heightInCentimeters": 183,
+ "weightInPounds": 177,
+ "weightInKilograms": 80,
+ "birthDate": "2001-12-17",
  "birthCity": {
-  "default": "Cardiff"
+  "default": "Turku",
+  "sv": "Åbo"
  },
- "birthCountry": "GBR",
+ "birthCountry": "FIN",
  "shootsCatches": "L",
  "draftDetails": {
-  "year": 2014,
-  "teamAbbrev": "WSH",
-  "round": 3,
-  "pickInRound": 29,
-  "overallPick": 89
+  "year": 2020,
+  "teamAbbrev": "CBJ",
+  "round": 4,
+  "pickInRound": 21,
+  "overallPick": 114
  },
- "playerSlug": "nathan-walker-8477573",
+ "playerSlug": "mikael-pyyhtia-8482451",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -53,72 +58,54 @@
     "assists": 0,
     "gameWinningGoals": 0,
     "gamesPlayed": 1,
-    "goals": 0,
+    "goals": 1,
     "otGoals": 0,
     "pim": 0,
-    "plusMinus": -1,
-    "points": 0,
+    "plusMinus": 0,
+    "points": 1,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 0
+    "shootingPctg": 0.5,
+    "shorthandedGoals": 1,
+    "shorthandedPoints": 1,
+    "shots": 2
    },
    "career": {
-    "assists": 35,
-    "gameWinningGoals": 4,
-    "gamesPlayed": 276,
-    "goals": 32,
+    "assists": 6,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 71,
+    "goals": 5,
     "otGoals": 0,
-    "pim": 150,
-    "plusMinus": -10,
-    "points": 67,
+    "pim": 8,
+    "plusMinus": -19,
+    "points": 11,
     "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.124,
-    "shorthandedGoals": 0,
+    "powerPlayPoints": 1,
+    "shootingPctg": 0.0806,
+    "shorthandedGoals": 1,
     "shorthandedPoints": 1,
-    "shots": 258
+    "shots": 62
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 35,
-   "avgToi": "11:20",
-   "faceoffWinningPctg": 0.5207,
-   "gameWinningGoals": 4,
-   "gamesPlayed": 276,
-   "goals": 32,
-   "otGoals": 0,
-   "pim": 150,
-   "plusMinus": -10,
-   "points": 67,
-   "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.124,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 1,
-   "shots": 258
-  },
-  "playoffs": {
-   "assists": 2,
-   "avgToi": "12:00",
-   "faceoffWinningPctg": 0.6666,
+   "assists": 6,
+   "avgToi": "12:16",
+   "faceoffWinningPctg": 0.4285,
    "gameWinningGoals": 0,
-   "gamesPlayed": 12,
-   "goals": 3,
+   "gamesPlayed": 71,
+   "goals": 5,
    "otGoals": 0,
-   "pim": 24,
-   "plusMinus": 7,
-   "points": 5,
+   "pim": 8,
+   "plusMinus": -19,
+   "points": 11,
    "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.21420000000000003,
-   "shorthandedGoals": 0,
-   "shorthandedPoints": 0,
-   "shots": 14
+   "powerPlayPoints": 1,
+   "shootingPctg": 0.0806,
+   "shorthandedGoals": 1,
+   "shorthandedPoints": 1,
+   "shots": 62
   }
  },
  "shopLink": "#TODO",
@@ -127,98 +114,98 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-22",
-   "gameId": 2026020375,
+   "gameDate": "2026-11-23",
+   "gameId": 2026020378,
    "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "EDM",
+   "goals": 1,
+   "homeRoadFlag": "R",
+   "opponentAbbrev": "NJD",
    "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
+   "plusMinus": 0,
+   "points": 1,
    "powerPlayGoals": 0,
    "shifts": 12,
-   "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "STL",
-   "toi": "10:26"
+   "shorthandedGoals": 1,
+   "shots": 2,
+   "teamAbbrev": "CBJ",
+   "toi": "8:38"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 0,
+   "assists": 7,
    "gameTypeId": 2,
-   "gamesPlayed": 1,
-   "goals": 0,
-   "leagueAbbrev": "Czech U18",
-   "pim": 2,
-   "plusMinus": 0,
-   "points": 0,
-   "season": 20072008,
-   "sequence": 38002,
-   "teamName": {
-    "default": "HC Vitkovice U18"
-   }
-  },
-  {
-   "assists": 9,
-   "gameTypeId": 2,
-   "gamesPlayed": 33,
-   "goals": 6,
-   "leagueAbbrev": "CzR-U17",
-   "pim": 12,
-   "points": 15,
-   "season": 20082009,
-   "sequence": 1,
-   "teamName": {
-    "default": "Vitkovice U17"
-   }
-  },
-  {
-   "assists": 0,
-   "gameTypeId": 3,
-   "gamesPlayed": 5,
-   "goals": 1,
-   "leagueAbbrev": "CzR-U17",
+   "gamesPlayed": 16,
+   "goals": 7,
+   "leagueAbbrev": "U16 SM-sarja",
    "pim": 4,
-   "points": 1,
-   "season": 20082009,
-   "sequence": 1,
+   "points": 14,
+   "season": 20162017,
+   "sequence": 11,
    "teamName": {
-    "default": "Vitkovice U17"
+    "default": "TPS U16"
+   }
+  },
+  {
+   "assists": 1,
+   "gameTypeId": 3,
+   "gamesPlayed": 4,
+   "goals": 1,
+   "leagueAbbrev": "U16 SM-sarja",
+   "pim": 2,
+   "points": 2,
+   "season": 20162017,
+   "sequence": 11,
+   "teamName": {
+    "default": "TPS U16"
+   }
+  },
+  {
+   "assists": 16,
+   "gameTypeId": 2,
+   "gamesPlayed": 42,
+   "goals": 3,
+   "leagueAbbrev": "U18 SM-sarja",
+   "pim": 12,
+   "points": 19,
+   "season": 20172018,
+   "sequence": 11,
+   "teamName": {
+    "default": "TPS U18"
    }
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8482111,
+   "playerId": 8481161,
    "lastName": {
-    "default": "Barron"
+    "default": "Christiansen"
    },
    "firstName": {
-    "default": "Justin"
+    "default": "Jake",
+    "sv": "v"
    },
-   "playerSlug": "justin-barron-8482111"
+   "playerSlug": "jake-christiansen-8481161"
   },
   {
-   "playerId": 8481013,
+   "playerId": 8475745,
    "lastName": {
-    "default": "Berggren"
+    "default": "Coyle"
    },
    "firstName": {
-    "default": "Jonatan"
+    "default": "Charlie"
    },
-   "playerSlug": "jonatan-berggren-8481013"
+   "playerSlug": "charlie-coyle-8475745"
   },
   {
-   "playerId": 8476412,
+   "playerId": 8483432,
    "lastName": {
-    "default": "Binnington"
+    "default": "Del Bel Belluz"
    },
    "firstName": {
-    "default": "Jordan"
+    "default": "Luca"
    },
-   "playerSlug": "jordan-binnington-8476412"
+   "playerSlug": "luca-del-bel-belluz-8483432"
   }
  ]
 }
