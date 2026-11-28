@@ -1,49 +1,45 @@
 {
- "playerId": 8485010,
+ "playerId": 8477839,
  "isActive": true,
- "currentTeamId": 68,
- "currentTeamAbbrev": "UTA",
+ "currentTeamId": 7,
+ "currentTeamAbbrev": "BUF",
  "fullTeamName": {
-  "default": "Utah Mammoth",
-  "fr": "Mammoth de l'Utah"
+  "default": "Buffalo Sabres",
+  "fr": "Sabres de Buffalo"
  },
  "teamCommonName": {
-  "default": "Mammoth"
+  "default": "Sabres"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Utah",
-  "fr": "de l'Utah"
+  "default": "Buffalo",
+  "fr": "de Buffalo"
  },
  "firstName": {
-  "default": "Gregor"
+  "default": "Conor"
  },
  "lastName": {
-  "default": "Biber"
+  "default": "Sheary"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/UTA_light.svg",
- "sweaterNumber": 94,
- "position": "D",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/UTA/8485010.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8485010.jpg",
- "heightInInches": 75,
- "heightInCentimeters": 191,
- "weightInPounds": 187,
- "weightInKilograms": 85,
- "birthDate": "2006-08-09",
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/BUF_light.svg",
+ "sweaterNumber": 43,
+ "position": "L",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/BUF/8477839.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8477839.jpg",
+ "heightInInches": 68,
+ "heightInCentimeters": 173,
+ "weightInPounds": 184,
+ "weightInKilograms": 83,
+ "birthDate": "1992-06-08",
  "birthCity": {
-  "default": "Krems"
+  "default": "Winchester"
  },
- "birthCountry": "AUT",
+ "birthStateProvince": {
+  "default": "Massachusetts"
+ },
+ "birthCountry": "USA",
  "shootsCatches": "L",
- "draftDetails": {
-  "year": 2024,
-  "teamAbbrev": "UTA",
-  "round": 4,
-  "pickInRound": 1,
-  "overallPick": 98
- },
- "playerSlug": "gregor-biber-8485010",
+ "playerSlug": "conor-sheary-8477839",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
@@ -56,50 +52,69 @@
     "goals": 0,
     "otGoals": 0,
     "pim": 0,
-    "plusMinus": 1,
+    "plusMinus": 0,
     "points": 0,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 2
+    "shots": 0
    },
    "career": {
-    "assists": 0,
-    "gameWinningGoals": 0,
-    "gamesPlayed": 1,
-    "goals": 0,
-    "otGoals": 0,
-    "pim": 0,
-    "plusMinus": 1,
-    "points": 0,
-    "powerPlayGoals": 0,
-    "powerPlayPoints": 0,
-    "shootingPctg": 0.0,
-    "shorthandedGoals": 0,
-    "shorthandedPoints": 0,
-    "shots": 2
+    "assists": 154,
+    "gameWinningGoals": 22,
+    "gamesPlayed": 656,
+    "goals": 131,
+    "otGoals": 4,
+    "pim": 142,
+    "plusMinus": 4,
+    "points": 285,
+    "powerPlayGoals": 14,
+    "powerPlayPoints": 35,
+    "shootingPctg": 0.1189,
+    "shorthandedGoals": 3,
+    "shorthandedPoints": 3,
+    "shots": 1101
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 0,
-   "avgToi": "9:33",
-   "gameWinningGoals": 0,
-   "gamesPlayed": 1,
-   "goals": 0,
-   "otGoals": 0,
-   "pim": 0,
-   "plusMinus": 1,
-   "points": 0,
+   "assists": 154,
+   "avgToi": "13:57",
+   "faceoffWinningPctg": 0.4514,
+   "gameWinningGoals": 22,
+   "gamesPlayed": 656,
+   "goals": 131,
+   "otGoals": 4,
+   "pim": 142,
+   "plusMinus": 4,
+   "points": 285,
+   "powerPlayGoals": 14,
+   "powerPlayPoints": 35,
+   "shootingPctg": 0.1189,
+   "shorthandedGoals": 3,
+   "shorthandedPoints": 3,
+   "shots": 1101
+  },
+  "playoffs": {
+   "assists": 16,
+   "avgToi": "13:54",
+   "faceoffWinningPctg": 0.4285,
+   "gameWinningGoals": 1,
+   "gamesPlayed": 72,
+   "goals": 7,
+   "otGoals": 1,
+   "pim": 18,
+   "plusMinus": -11,
+   "points": 23,
    "powerPlayGoals": 0,
-   "powerPlayPoints": 0,
-   "shootingPctg": 0.0,
+   "powerPlayPoints": 3,
+   "shootingPctg": 0.0564,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 2
+   "shots": 124
   }
  },
  "shopLink": "#TODO",
@@ -109,99 +124,133 @@
   {
    "assists": 0,
    "gameDate": "2026-11-27",
-   "gameId": 2026020402,
+   "gameId": 2026020413,
    "gameTypeId": 2,
    "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "NSH",
+   "homeRoadFlag": "H",
+   "opponentAbbrev": "PIT",
    "pim": 0,
-   "plusMinus": 1,
+   "plusMinus": 0,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 13,
+   "shifts": 15,
    "shorthandedGoals": 0,
-   "shots": 2,
-   "teamAbbrev": "UTA",
-   "toi": "9:33"
+   "shots": 0,
+   "teamAbbrev": "BUF",
+   "toi": "9:39"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 5,
-   "gameTypeId": 2,
-   "gamesPlayed": 19,
-   "goals": 1,
-   "leagueAbbrev": "ICEJL",
-   "pim": 29,
-   "plusMinus": 11,
-   "points": 6,
-   "season": 20212022,
-   "sequence": 11,
-   "teamName": {
-    "default": "EC-KAC U18"
-   }
-  },
-  {
-   "assists": 0,
-   "gameTypeId": 2,
-   "gamesPlayed": 5,
-   "goals": 0,
-   "leagueAbbrev": "WJC-18 D1B",
-   "pim": 0,
-   "plusMinus": -1,
-   "points": 0,
-   "season": 20212022,
-   "sequence": 12,
-   "teamName": {
-    "default": "Austria U18"
-   }
-  },
-  {
    "assists": 2,
-   "gameTypeId": 3,
-   "gamesPlayed": 10,
-   "goals": 1,
-   "leagueAbbrev": "ICEJL",
-   "pim": 6,
-   "plusMinus": 8,
-   "points": 3,
-   "season": 20212022,
-   "sequence": 11,
+   "gameTypeId": 2,
+   "gamesPlayed": 29,
+   "goals": 2,
+   "leagueAbbrev": "USHS-Prep",
+   "pim": 0,
+   "plusMinus": 0,
+   "points": 4,
+   "season": 20072008,
+   "sequence": 26608,
    "teamName": {
-    "default": "EC-KAC U18"
+    "default": "Cushing Academy"
    }
+  },
+  {
+   "assists": 27,
+   "gameTypeId": 2,
+   "gamesPlayed": 31,
+   "goals": 16,
+   "leagueAbbrev": "USHS-Prep",
+   "pim": 0,
+   "plusMinus": 0,
+   "points": 43,
+   "season": 20082009,
+   "sequence": 26608,
+   "teamName": {
+    "default": "Cushing Academy"
+   }
+  },
+  {
+   "assists": 41,
+   "gameTypeId": 2,
+   "gamesPlayed": 31,
+   "goals": 30,
+   "leagueAbbrev": "USHS-Prep",
+   "pim": 0,
+   "plusMinus": 0,
+   "points": 71,
+   "season": 20092010,
+   "sequence": 26608,
+   "teamName": {
+    "default": "Cushing Academy"
+   }
+  }
+ ],
+ "awards": [
+  {
+   "trophy": {
+    "default": "Stanley Cup",
+    "fr": "Coupe Stanley"
+   },
+   "seasons": [
+    {
+     "assists": 5,
+     "blockedShots": 8,
+     "gameTypeId": 3,
+     "gamesPlayed": 22,
+     "goals": 2,
+     "hits": 29,
+     "pim": 4,
+     "plusMinus": -5,
+     "points": 7,
+     "seasonId": 20162017
+    },
+    {
+     "assists": 6,
+     "blockedShots": 13,
+     "gameTypeId": 3,
+     "gamesPlayed": 23,
+     "goals": 4,
+     "hits": 23,
+     "pim": 8,
+     "plusMinus": -1,
+     "points": 10,
+     "seasonId": 20152016
+    }
+   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8485010,
+   "playerId": 8484145,
    "lastName": {
-    "default": "Biber"
+    "default": "Benson"
    },
    "firstName": {
-    "default": "Gregor"
+    "default": "Zach"
    },
-   "playerSlug": "gregor-biber-8485010"
+   "playerSlug": "zach-benson-8484145"
   },
   {
-   "playerId": 8485594,
+   "playerId": 8475842,
    "lastName": {
-    "default": "Borikov"
+    "default": "Carrick"
    },
    "firstName": {
-    "default": "Yegor"
+    "default": "Sam"
    },
-   "playerSlug": "yegor-borikov-8485594"
+   "playerSlug": "sam-carrick-8475842"
   },
   {
-   "playerId": 8484388,
+   "playerId": 8481806,
    "lastName": {
-    "default": "But"
+    "default": "Crevier"
    },
    "firstName": {
-    "default": "Daniil"
+    "default": "Louis"
    },
-   "playerSlug": "daniil-but-8484388"
+   "playerSlug": "louis-crevier-8481806"
   }
  ]
 }
