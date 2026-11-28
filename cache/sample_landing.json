@@ -1,127 +1,105 @@
 {
- "playerId": 8470613,
+ "playerId": 8485010,
  "isActive": true,
- "currentTeamId": 21,
- "currentTeamAbbrev": "COL",
+ "currentTeamId": 68,
+ "currentTeamAbbrev": "UTA",
  "fullTeamName": {
-  "default": "Colorado Avalanche",
-  "fr": "Avalanche du Colorado"
+  "default": "Utah Mammoth",
+  "fr": "Mammoth de l'Utah"
  },
  "teamCommonName": {
-  "default": "Avalanche"
+  "default": "Mammoth"
  },
  "teamPlaceNameWithPreposition": {
-  "default": "Colorado",
-  "fr": "du Colorado"
+  "default": "Utah",
+  "fr": "de l'Utah"
  },
  "firstName": {
-  "default": "Brent"
+  "default": "Gregor"
  },
  "lastName": {
-  "default": "Burns"
+  "default": "Biber"
  },
  "badges": [],
- "teamLogo": "https://assets.nhle.com/logos/nhl/svg/COL_light.svg",
- "sweaterNumber": 84,
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/UTA_light.svg",
+ "sweaterNumber": 94,
  "position": "D",
- "headshot": "https://assets.nhle.com/mugs/nhl/20262027/COL/8470613.png",
- "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8470613.jpg",
- "heightInInches": 77,
- "heightInCentimeters": 196,
- "weightInPounds": 228,
- "weightInKilograms": 103,
- "birthDate": "1985-03-09",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/UTA/8485010.png",
+ "heroImage": "https://assets.nhle.com/mugs/actionshots/1296x729/8485010.jpg",
+ "heightInInches": 75,
+ "heightInCentimeters": 191,
+ "weightInPounds": 187,
+ "weightInKilograms": 85,
+ "birthDate": "2006-08-09",
  "birthCity": {
-  "default": "Barrie"
+  "default": "Krems"
  },
- "birthStateProvince": {
-  "default": "Ontario"
- },
- "birthCountry": "CAN",
- "shootsCatches": "R",
+ "birthCountry": "AUT",
+ "shootsCatches": "L",
  "draftDetails": {
-  "year": 2003,
-  "teamAbbrev": "MIN",
-  "round": 1,
-  "pickInRound": 20,
-  "overallPick": 20
+  "year": 2024,
+  "teamAbbrev": "UTA",
+  "round": 4,
+  "pickInRound": 1,
+  "overallPick": 98
  },
- "playerSlug": "brent-burns-8470613",
+ "playerSlug": "gregor-biber-8485010",
  "inTop100AllTime": 0,
  "inHHOF": 0,
  "featuredStats": {
   "season": 20262027,
   "regularSeason": {
    "subSeason": {
-    "assists": 6,
+    "assists": 0,
     "gameWinningGoals": 0,
-    "gamesPlayed": 23,
+    "gamesPlayed": 1,
     "goals": 0,
     "otGoals": 0,
-    "pim": 12,
-    "plusMinus": -1,
-    "points": 6,
+    "pim": 0,
+    "plusMinus": 1,
+    "points": 0,
     "powerPlayGoals": 0,
     "powerPlayPoints": 0,
     "shootingPctg": 0.0,
     "shorthandedGoals": 0,
     "shorthandedPoints": 0,
-    "shots": 31
+    "shots": 2
    },
    "career": {
-    "assists": 678,
-    "gameWinningGoals": 47,
-    "gamesPlayed": 1602,
-    "goals": 273,
-    "otGoals": 16,
-    "pim": 899,
-    "plusMinus": 42,
-    "points": 951,
-    "powerPlayGoals": 88,
-    "powerPlayPoints": 323,
-    "shootingPctg": 0.0641,
-    "shorthandedGoals": 3,
-    "shorthandedPoints": 17,
-    "shots": 4254
+    "assists": 0,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 1,
+    "goals": 0,
+    "otGoals": 0,
+    "pim": 0,
+    "plusMinus": 1,
+    "points": 0,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 0,
+    "shootingPctg": 0.0,
+    "shorthandedGoals": 0,
+    "shorthandedPoints": 0,
+    "shots": 2
    }
   }
  },
  "careerTotals": {
   "regularSeason": {
-   "assists": 678,
-   "avgToi": "22:07",
-   "faceoffWinningPctg": 0.455,
-   "gameWinningGoals": 47,
-   "gamesPlayed": 1602,
-   "goals": 273,
-   "otGoals": 16,
-   "pim": 899,
-   "plusMinus": 42,
-   "points": 951,
-   "powerPlayGoals": 88,
-   "powerPlayPoints": 323,
-   "shootingPctg": 0.0641,
-   "shorthandedGoals": 3,
-   "shorthandedPoints": 17,
-   "shots": 4254
-  },
-  "playoffs": {
-   "assists": 60,
-   "avgToi": "23:41",
-   "faceoffWinningPctg": 0.22219999999999998,
+   "assists": 0,
+   "avgToi": "9:33",
    "gameWinningGoals": 0,
-   "gamesPlayed": 148,
-   "goals": 24,
+   "gamesPlayed": 1,
+   "goals": 0,
    "otGoals": 0,
-   "pim": 123,
-   "plusMinus": 25,
-   "points": 84,
-   "powerPlayGoals": 8,
-   "powerPlayPoints": 32,
-   "shootingPctg": 0.0559,
+   "pim": 0,
+   "plusMinus": 1,
+   "points": 0,
+   "powerPlayGoals": 0,
+   "powerPlayPoints": 0,
+   "shootingPctg": 0.0,
    "shorthandedGoals": 0,
    "shorthandedPoints": 0,
-   "shots": 429
+   "shots": 2
   }
  },
  "shopLink": "#TODO",
@@ -130,180 +108,100 @@
  "last5Games": [
   {
    "assists": 0,
-   "gameDate": "2026-11-19",
-   "gameId": 2026020356,
-   "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "H",
-   "opponentAbbrev": "ANA",
-   "pim": 0,
-   "plusMinus": 0,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 20,
-   "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "COL",
-   "toi": "15:59"
-  },
-  {
-   "assists": 0,
-   "gameDate": "2026-11-18",
-   "gameId": 2026020346,
+   "gameDate": "2026-11-27",
+   "gameId": 2026020402,
    "gameTypeId": 2,
    "goals": 0,
    "homeRoadFlag": "R",
-   "opponentAbbrev": "UTA",
+   "opponentAbbrev": "NSH",
    "pim": 0,
-   "plusMinus": 0,
+   "plusMinus": 1,
    "points": 0,
    "powerPlayGoals": 0,
-   "shifts": 23,
+   "shifts": 13,
    "shorthandedGoals": 0,
-   "shots": 1,
-   "teamAbbrev": "COL",
-   "toi": "17:52"
-  },
-  {
-   "assists": 0,
-   "gameDate": "2026-11-14",
-   "gameId": 2026020315,
-   "gameTypeId": 2,
-   "goals": 0,
-   "homeRoadFlag": "R",
-   "opponentAbbrev": "MTL",
-   "pim": 0,
-   "plusMinus": 2,
-   "points": 0,
-   "powerPlayGoals": 0,
-   "shifts": 25,
-   "shorthandedGoals": 0,
-   "shots": 0,
-   "teamAbbrev": "COL",
-   "toi": "19:24"
+   "shots": 2,
+   "teamAbbrev": "UTA",
+   "toi": "9:33"
   }
  ],
  "seasonTotals": [
   {
-   "assists": 7,
-   "faceoffWinningPctg": 0.0,
+   "assists": 5,
    "gameTypeId": 2,
-   "gamesPlayed": 46,
-   "goals": 4,
-   "leagueAbbrev": "MTHL",
-   "pim": 16,
-   "points": 11,
-   "season": 20002001,
-   "sequence": 1,
+   "gamesPlayed": 19,
+   "goals": 1,
+   "leagueAbbrev": "ICEJL",
+   "pim": 29,
+   "plusMinus": 11,
+   "points": 6,
+   "season": 20212022,
+   "sequence": 11,
    "teamName": {
-    "default": "North York"
+    "default": "EC-KAC U18"
    }
   },
   {
-   "assists": 25,
-   "faceoffWinningPctg": 0.0,
+   "assists": 0,
    "gameTypeId": 2,
-   "gamesPlayed": 68,
-   "goals": 15,
-   "leagueAbbrev": "OPJHL",
-   "pim": 14,
-   "points": 40,
-   "season": 20012002,
-   "sequence": 1,
+   "gamesPlayed": 5,
+   "goals": 0,
+   "leagueAbbrev": "WJC-18 D1B",
+   "pim": 0,
+   "plusMinus": -1,
+   "points": 0,
+   "season": 20212022,
+   "sequence": 12,
    "teamName": {
-    "default": "Couchiching"
+    "default": "Austria U18"
    }
   },
   {
-   "assists": 25,
-   "faceoffWinningPctg": 0.0,
-   "gameTypeId": 2,
-   "gamesPlayed": 68,
-   "goals": 15,
-   "leagueAbbrev": "OHL",
-   "pim": 14,
-   "plusMinus": 6,
-   "points": 40,
-   "powerPlayGoals": 4,
-   "season": 20022003,
-   "sequence": 1,
-   "shorthandedGoals": 2,
+   "assists": 2,
+   "gameTypeId": 3,
+   "gamesPlayed": 10,
+   "goals": 1,
+   "leagueAbbrev": "ICEJL",
+   "pim": 6,
+   "plusMinus": 8,
+   "points": 3,
+   "season": 20212022,
+   "sequence": 11,
    "teamName": {
-    "default": "Brampton"
+    "default": "EC-KAC U18"
    }
-  }
- ],
- "awards": [
-  {
-   "trophy": {
-    "default": "James Norris Memorial Trophy",
-    "fr": "Trophée James Norris"
-   },
-   "seasons": [
-    {
-     "assists": 47,
-     "blockedShots": 142,
-     "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 29,
-     "hits": 69,
-     "pim": 40,
-     "plusMinus": 19,
-     "points": 76,
-     "seasonId": 20162017
-    }
-   ]
-  },
-  {
-   "trophy": {
-    "default": "NHL Foundation Player Award"
-   },
-   "seasons": [
-    {
-     "assists": 43,
-     "blockedShots": 124,
-     "gameTypeId": 2,
-     "gamesPlayed": 82,
-     "goals": 17,
-     "hits": 148,
-     "pim": 65,
-     "plusMinus": -9,
-     "points": 60,
-     "seasonId": 20142015
-    }
-   ]
   }
  ],
  "currentTeamRoster": [
   {
-   "playerId": 8481550,
+   "playerId": 8485010,
    "lastName": {
-    "default": "Beckman"
+    "default": "Biber"
    },
    "firstName": {
-    "default": "Adam"
+    "default": "Gregor"
    },
-   "playerSlug": "adam-beckman-8481550"
+   "playerSlug": "gregor-biber-8485010"
   },
   {
-   "playerId": 8478406,
+   "playerId": 8485594,
    "lastName": {
-    "default": "Blackwood"
+    "default": "Borikov"
    },
    "firstName": {
-    "default": "Mackenzie"
+    "default": "Yegor"
    },
-   "playerSlug": "mackenzie-blackwood-8478406"
+   "playerSlug": "yegor-borikov-8485594"
   },
   {
-   "playerId": 8484149,
+   "playerId": 8484388,
    "lastName": {
-    "default": "Brindley"
+    "default": "But"
    },
    "firstName": {
-    "default": "Gavin"
+    "default": "Daniil"
    },
-   "playerSlug": "gavin-brindley-8484149"
+   "playerSlug": "daniil-but-8484388"
   }
  ]
 }
